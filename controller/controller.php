@@ -12,10 +12,15 @@ function createUser($username, $email, $password)
 {
     $userManager = new UserManager();
     $userManager->addUser($username, $email, $password);
-    // header("Location: index.php");
+    header("Location: index.php");
 }
 
 function addUser()
 {
     require "./view/userAddForm.php";
+}
+
+function showSignInForm()
+{
+    require "./view/signInForm.php";
 }

@@ -27,6 +27,10 @@ try {
             }
             break;
 
+        case "signInForm":
+            showSignInForm();
+            break;
+
         default:
             showIndex();
             break;
