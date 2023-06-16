@@ -1,5 +1,5 @@
 <?php
-// require_once "./model/ArticleManager.php";
+require_once "./model/UserManager.php";
 
 function showIndex()
 {
@@ -10,9 +10,9 @@ function showIndex()
 // CREATING A NEW USER
 function createUser($username, $email, $password)
 {
-    $userManager = new SubManager();
+    $userManager = new UserManager();
     $userManager->addUser($username, $email, $password);
-    header("Location: index.php");
+    // header("Location: index.php");
 }
 
 function addUser()

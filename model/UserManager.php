@@ -2,7 +2,7 @@
 
 require_once "Manager.php";
 // TODO: Rename this and rename the file
-class SubManager extends Manager
+class UserManager extends Manager
 {
     // CREATING A NEW USER
     public function addUser($username, $email, $password)

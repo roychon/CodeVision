@@ -5,9 +5,9 @@ ob_start();
 
 <h1>SIGN UP</h1>
 
-<form action="index.php?action=add_user" method="POST" id="form">
+<form action="index.php?action=createUser" method="POST" id="form">
     <p>
-        <input type="text" name="user_name" placeholder="Username..." id="username">
+        <input type="text" name="username" placeholder="Username..." id="username">
     </p>
     <p>
         <span id="usernameNotValid">Not valid Username</span>
@@ -34,7 +34,7 @@ ob_start();
         <input type="password" name="password_confirm" placeholder="Confirm password..." id="passwordConfirm">
     </p>
     <p>
-        <span id="passwordConfirmError">Does not match with Password</span>
+        <span id="passwordConfirmError">Password does not match</span>
         <span>&#8203;</span>
     </p>
     <p>
