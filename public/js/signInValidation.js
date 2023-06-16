@@ -1,22 +1,19 @@
 //Check login function
 
-function checkLogin() {
-    if (login.value.length >= 4) {
+function checkUserName() {
+    console.log("check username");
+    if (username.value.length >= 4) {
         //TODO:Check w/team on login restrictions
-        login.classList.remove("invalid");
-        login.classList.add("valid");
+        username.classList.remove("invalid");
+        username.classList.add("valid");
     } else {
-        login.classList.add("invalid");
-        login.classList.remove("valid");
+        username.classList.add("invalid");
+        username.classList.remove("valid");
     }
 }
 
-login.addEventListener("keyup", checkLogin);
-login.addEventListener("blur", removeBorder);
-
-function removeBorder(e) {
-    e.target.classList.remove("valid");
-}
+username.addEventListener("keyup", checkUserName);
+username.addEventListener("blur", removeBorder);
 
 // Check password function
 

@@ -8,5 +8,10 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require "template.php";
+
+if (isset($_SESSION['user_id'])) {
+  require "loggedInTemplate.php";
+} else {
+  require "nonLoggedInTemplate.php";
+}
 ?>

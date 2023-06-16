@@ -8,6 +8,9 @@ try {
         case "something else":
             // do something;
             break;
+        case "signInForm":
+            showSignInForm();
+            break;
         default:
             showIndex();
             break;
