@@ -1,0 +1,14 @@
+
+#usernameNotValid, #usernameMissing, #emailNotValid, #emailMissing,
+#passwordNotValid, #passwordMissing, #passwordConfirmError {
+	display: none;
+	color: red;
+	font-size: 10px;
+	
+}
+.red {
+	box-shadow: 0 0 5px 1px rgb(255, 24, 24);
+}
+.green {
+	box-shadow: 0 0 5px 1px rgba(44, 248, 3);
+}

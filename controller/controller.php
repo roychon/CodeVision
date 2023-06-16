@@ -14,3 +14,8 @@ function createUser($username, $email, $password)
     $userManager->addUser($username, $email, $password);
     header("Location: index.php");
 }
+
+function addUser()
+{
+    require "./view/userAddForm.php";
+}
