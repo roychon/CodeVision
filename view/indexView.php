@@ -1,9 +1,9 @@
 <?php
-$title = "TODO: CHANGE ME";
+$title = "Change me";
 ob_start();
 ?>
 
-<h1>INDEX VIEW</h1>
+<h1>TODO: Change me</h1>
 
 <?php
 $content = ob_get_clean();
