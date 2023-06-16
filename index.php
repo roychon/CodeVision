@@ -8,6 +8,25 @@ try {
         case "something else":
             // do something;
             break;
+
+
+            // CREATING A NEW USER 
+        case "createUser":
+            $username = $_POST['username'] ?? "";
+            $email = $_POST['email'] ?? "";
+            $password = $_POST['password'] ?? "";
+            $password_confirm = $_POST['password_confirm'] ?? "";
+            // TODO: Check password confirm
+            // 
+
+            if ($username and $email and $password and $password_confirm and $password === $password_confirm) {
+                createUser($username, $email, $password, $password_confirm);
+            } else {
+                throw new Exception("Couldn't create your account, missing required information.");
+                // TODO: NEEDS TO GO BACK TO SIGN UP PAGE WITH ERROR MESSAGE
+            }
+            break;
+
         default:
             showIndex();
             break;
