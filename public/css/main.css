@@ -64,6 +64,7 @@ input[type=search] {
 .right-side > i {
     color: var(--light-grey);
 }
+
 input {
     outline: none;
     border: 1px solid gray;

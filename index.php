@@ -11,6 +11,8 @@ try {
         case "signInForm":
             showSignInForm();
             break;
+        case "logOut":
+            logOut();
         default:
             showIndex();
             break;
