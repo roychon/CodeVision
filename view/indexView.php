@@ -1,9 +1,10 @@
 <?php
-$title = "Change me";
+
+$title = "Batch 20 Final Project";
 ob_start();
 ?>
 
-<h1>TODO: Change me</h1>
+<h1>Landing Page</h1>
 
 <?php
 $content = ob_get_clean();
