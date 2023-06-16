@@ -14,7 +14,7 @@
     </div>
     <div>
         <!-- RIGHT SIDE -->
-        <a href="this-signs-in">Sign In</a>
+        <a href="index.php?action=signInForm">Sign In</a>
         <a href="this-signs-up">Sign Up</a>
         <!-- nav bar maybe? -->
     </div>

@@ -19,7 +19,9 @@
     -->
 
     <!-- TODO: INCLUDE HEADER FOR LOGGED IN USERS -->
-
+    <?php
+    include "./view/component/loggedOutHeader.php";
+    ?>
     <?= $content; ?>
 
 

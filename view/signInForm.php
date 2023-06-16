@@ -2,10 +2,10 @@
 $title = "SIGN IN";
 ob_start();
 ?>
-
+<link rel="stylesheet" href="./public/css/formInput.css">
 <h1>Sign In Form</h1>
 
-<form action="check_sign_in.php" method="POST">
+<form action="" method="POST">
   <p>
     <label for="username">Username: </label>
     <input type="text" name="username" id="username">
@@ -23,6 +23,7 @@ ob_start();
   </p>
 
 </form>
+<script src="./public/js/signInValidation.js"></script>
 
 <?php
 
