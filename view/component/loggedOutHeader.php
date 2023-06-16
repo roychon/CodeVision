@@ -17,8 +17,8 @@
     <div class="right-side">
         <!-- RIGHT SIDE -->
         <img class="user-profile-pic" src="" alt="">
-        <a href="log-in-btn">Log In</a>
-        <a class="log-out-btn" href="">Log Out</a>
+        <a href="index.php?action=signInForm">Log in</a>
+        <a class="" href="">Sign up</a>
         <i class="fa-solid fa-user"></i>
         <!-- nav bar? -->
     </div>

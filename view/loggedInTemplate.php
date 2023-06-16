@@ -10,23 +10,24 @@
 </head>
 
 <body>
-    <!-- CAN VIEW :::
+    <!-- LOGGED IN CAN VIEW :::
   MAIN PAGE // OPENING PAGE // OVERALL CARD PAGES (SAME THING THAT LOGGED IN USERS CAN SEE)
   LOGIN IN PAGE
   SIGN UP PAGE
-  INDIVIDUAL CARDS
-  PROFILES
+  LOGOUT PAGE
+
+  CANNOT VIEW:::
+  INDIVIDUAL CARD PAGES
+  LOG OUT PAGE
     -->
 
-    <!-- TODO: INCLUDE HEADER FOR LOGGED IN USERS -->
-    <?php
-    include "./view/component/loggedOutHeader.php";
-    ?>
+    <!-- TODO: INCLUDE HEADER FOR NON LOGGED IN USERS -->
+
     <?= $content; ?>
 
 
     <footer>
-        <!-- TODO: INCLUDE FOOTER LOGGED IN USERS -->
+        <!-- TODO: INCLUDE FOOTER FOR NON LOGGED IN USERS -->
     </footer>
 
 </body>

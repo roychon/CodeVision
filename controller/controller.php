@@ -5,3 +5,8 @@ function showIndex()
 {
     require "./view/indexView.php";
 }
+
+function showSignInForm()
+{
+    require "./view/signInForm.php";
+}
