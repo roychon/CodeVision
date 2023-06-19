@@ -114,6 +114,7 @@ input {
     border-radius: 50%;
     border: 1px solid var(--light-grey);
 }
+
 .bottom-card-container {
     margin-top: 10px;
 }

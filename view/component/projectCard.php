@@ -11,7 +11,8 @@
         <div class="bottom-card-container">
             <!-- this has same class as the header -->
             <img class="user-profile-pic" src="<?= htmlspecialchars($project->profile_img) ?>" alt="user profile pic">
-            <?= htmlspecialchars($language['language_name']) ?>
+            <!-- <?= htmlspecialchars($language['language_name']) ?> -->
+            <!-- TODO: delete above line? broke when added inactive -->
             <span class="language-tag"> <?php
                                         foreach ($project->languages as $language) {
                                             echo "$language ";
