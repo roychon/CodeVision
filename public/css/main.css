@@ -100,7 +100,7 @@ input {
 }
 
 .card {
-    width: 25%;
+    width: 20%;
     height: 20%;
     border: 1px solid var(--search-bar-shadow);
     border-radius: var(--search-bar-radius);
