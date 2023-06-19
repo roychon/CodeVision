@@ -28,8 +28,10 @@ try {
             if ($username and $email and $password and $password_confirm and $password === $password_confirm) {
                 createUser($username, $email, $password, $password_confirm);
             } else {
-                throw new Exception("Couldn't create your account, missing required information.");
+                // throw new Exception("Couldn't create your account, missing required information.");
                 // TODO: NEEDS TO GO BACK TO SIGN UP PAGE WITH ERROR MESSAGE
+                $message = urlencode("Sign up failed");
+                header("Location: index.php?action=signInForm&error=true&message=$message");
             }
             break;
 
