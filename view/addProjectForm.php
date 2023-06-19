@@ -8,7 +8,7 @@ ob_start();
 
 <h1>Add Project</h1>
 
-<form action="index.php?action=insert_project" method="POST">
+<form action="index.php?action=insertNewProject" method="POST">
     <p>
         <label for="gif">Gif: </label>
         <input type="text" name="gif" id="gif">

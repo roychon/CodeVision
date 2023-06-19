@@ -9,8 +9,7 @@ try {
         case "add_project":
             addProject();
             break;
-        case "insert_project":
-            insertProject(); // TODO: add function to insert project into database
+            
         case "add_user":
             addUser();
             break;
