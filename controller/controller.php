@@ -1,7 +1,7 @@
 <?php
-// require_once "./model/ArticleManager.php";
+require_once "./model/SubManager.php";
 
-function showIndex()
-{
-    require "./view/indexView.php";
-}
+// function showIndex()
+// {
+//     require "./view/indexView.php";
+// }

@@ -1,0 +1,18 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--search-bar-radius: 1.5rem;
+	--search-bar-shadow: rgba(223, 217, 217, 1);
+	--light-grey: rgba(0, 0, 0, 0.5);
+}
+
+/* css for add project form */
+.add-project-container {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+}

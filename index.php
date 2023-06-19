@@ -1,6 +1,7 @@
 <?php
 
 require "./controller/controller.php";
+require "./controller/projectcontroller.php";
 
 try {
     $action = $_GET['action'] ?? "";
@@ -9,7 +10,7 @@ try {
             // do something;
             break;
         default:
-            showIndex();
+            displayCards();
             break;
     }
 } catch (Exception $e) {
