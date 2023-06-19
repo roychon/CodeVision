@@ -5,9 +5,12 @@ require "./controller/controller.php";
 try {
     $action = $_GET['action'] ?? "";
     switch ($action) {
-        // link add project btn to "index.php?action=add_project"
+        // TODO: link add project btn to "index.php?action=add_project"
         case "add_project":
             addProject();
+            break;
+        case "insert_project":
+            insertProject(); // TODO: add function to insert project into database
             break;
         default:
             showIndex();
