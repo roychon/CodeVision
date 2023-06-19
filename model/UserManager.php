@@ -16,4 +16,17 @@ class UserManager extends Manager
         $req->bindParam("password", $hashed_password, PDO::PARAM_STR);
         $req->execute();
     }
+
+    public function logIn($username, $password)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("SELECT username, password FROM user WHERE username = :username");
+        $req->execute([
+            "username" => $username
+        ]);
+
+        $result = $req->fetch();
+        $array = [$result->username, $result->password];
+        return $array;
+    }
 }

@@ -111,18 +111,18 @@ password.addEventListener("blur", function () {
 // VALIDATING PASSWORD CONFIRMATION INPUT
 function confirmPassword(passwordConfirm) {
 	if (
-		passwordConfirm.value == "" ||
-		passwordConfirm.value.length < 3 ||
-		!passwordRegex.test(passwordConfirm.value) ||
-		passwordConfirm.value !== password.value
+		passwordConfirm.value !== "" &&
+		passwordConfirm.value.length > 3 &&
+		passwordRegex.test(passwordConfirm.value) &&
+		passwordConfirm.value === password.value
 	) {
-		passwordConfirm.className = "red";
-		passwordConfirmError.style.display = "inline";
-		return false;
-	} else {
 		passwordConfirm.className = "green";
 		passwordConfirmError.style.display = "none";
 		return true;
+	} else {
+		passwordConfirm.className = "red";
+		passwordConfirmError.style.display = "inline";
+		return false;
 	}
 }
 
