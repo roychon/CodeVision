@@ -29,4 +29,11 @@ class UserManager extends Manager
         $array = [$result->username, $result->password];
         return $array;
     }
-}
+
+    public function deleteProject($project_id) {
+        $db = $this->dbConnect();
+
+        $delete_req = $db->prepare("UPDATE project SET is_active = 0 WHERE id = ?");
+        $delete_req->execute([$project_id]);
+        }
+    }
