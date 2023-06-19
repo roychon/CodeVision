@@ -22,7 +22,11 @@
     -->
 
     <!-- TODO: INCLUDE HEADER FOR NON LOGGED IN USERS -->
-
+    <?php
+    if (isset($_GET['error'])) {
+        include "./view/component/statusPopUp.php";
+    }
+    ?>
     <?= $content; ?>
 
 

@@ -1,16 +1,26 @@
 <div class="main-container">
     <div class="card">
-        <h2 class="project-title">Project Title Here</h2>
-        <img class="project-gif" src="https://i.pinimg.com/564x/c6/84/28/c68428e616e6985395160bcc868e157f.jpg" alt="project gif">
+        <h2 class="project-title">
+            <span>
+                <?= htmlspecialchars($project->title) ?>
+            </span>
+        </h2>
+        <p>
+            <img class="project-gif" src="<?= $project->gif ?>" alt="user project gif">
+        </p>
         <div class="bottom-card-container">
             <!-- this has same class as the header -->
-            <img class="user-profile-pic" src="https://i.pinimg.com/564x/3f/93/7e/3f937ecfa588e239dcb8b6fda51c1c3f.jpg" alt="user profile">
+            <img class="user-profile-pic" src="<?= htmlspecialchars($project->profile_img) ?>" alt="user profile pic">
             <div class="user-info">
                 <p>
+                    <!-- username goes here -->
                     Username
                 </p>
-                <span class="language-tag">Languages Here</span>
-                <!-- TODO: we need to be able to display multiple tags here -->
+                <?= htmlspecialchars($language['language_name']) ?>
+                <span class="language-tag"> <?php
+                                            foreach ($project->languages as $language) {
+                                                echo "$language ";
+                                            } ?></span>
             </div>
         </div>
     </div>

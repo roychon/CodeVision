@@ -1,11 +1,12 @@
 <?php
 $title = "SIGN IN";
 ob_start();
+
 ?>
 <link rel="stylesheet" href="./public/css/formInput.css">
 <h1>Sign In Form</h1>
 
-<form action="" method="POST">
+<form action="index.php?action=logIn" method="POST">
   <p>
     <label for="username">Username: </label>
     <input type="text" name="username" id="username">
