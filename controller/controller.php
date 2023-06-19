@@ -24,3 +24,9 @@ function showSignInForm()
 {
     require "./view/signInForm.php";
 }
+
+function insertNewProject($gif, $title, $description, $tags, $languages)
+{
+    $userManager = new UserManager();
+    $userManager->insertNewProject($gif, $title, $description, $tags, $languages);
+}
