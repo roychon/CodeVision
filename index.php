@@ -5,6 +5,11 @@ require "./controller/controller.php";
 try {
     $action = $_GET['action'] ?? "";
     switch ($action) {
+            // TODO: link add project btn to "index.php?action=add_project"
+        case "add_project":
+            addProject();
+            break;
+            
         case "add_user":
             addUser();
             break;
@@ -33,7 +38,7 @@ try {
 
         case "logOut":
             logOut();
-        break;
+            break;
         case "logIn":
             $username = $_POST['username'] ?? "";
             $password = $_POST['password'] ?? "";

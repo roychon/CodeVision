@@ -6,6 +6,10 @@ function showIndex()
     require "./view/indexView.php";
 }
 
+function addProject()
+{
+    require "./view/addProjectForm.php";
+}
 
 // CREATING A NEW USER
 function createUser($username, $email, $password)
