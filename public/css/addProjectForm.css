@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+}
+
+input {
+    outline: none;
+}
+
+.red {
+    border: 1px solid red;
+}
+
+.green {
+    border: 1px solid green;
+}
+
+
+.border {
+    border: 1px solid black;
+}
+
+.selectSearch {
+    background: lightgray;
+}
+
+
+.tag-container, .languages-container {
+    border: 1px solid black;
+    padding: 18px;
+    border-radius: 5px;
+    display: flex;
+}
+
+.tag-container .tag, .languages-container .tag {
+    padding: 5px;
+    border: 1px solid #ccc;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    z-index: 2; /* so users can click */
+}
+
+.tag-container input, .languages-container input {
+    flex: 1;
+    font-size: 16px;
+    padding: 5px;
+    outline: none;
+    border: 0;
+    z-index: 1;
+}
+
+.languages-container {
+    position: relative;
+}
+
+#languageResults {
+    position: absolute;
+    top: 100%;
+    width: 147px;
+    height: 140px;
+    overflow-y: auto;
+}
+
+#languageResults p {
+    margin: 0;
+}
+
+#submit {
+    margin-top: 200px;
+}

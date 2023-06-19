@@ -1,6 +1,7 @@
 <?php
 $title = "SIGN IN";
 ob_start();
+
 ?>
 <link rel="stylesheet" href="./public/css/formInput.css">
 <h1>Sign In Form</h1>

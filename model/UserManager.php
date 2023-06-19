@@ -8,7 +8,7 @@ class UserManager extends Manager
     public function addUser($username, $email, $password)
     {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
+        // maybe we add the check here? 
         $db = $this->dbConnect();
         $req = $db->prepare("INSERT INTO user (username, email, password) VALUES (:username, :email, :password)");
         $req->bindParam("username", $username, PDO::PARAM_STR);

@@ -6,13 +6,18 @@ function showIndex()
     require "./view/indexView.php";
 }
 
+function addProject()
+{
+    require "./view/addProjectForm.php";
+}
 
 // CREATING A NEW USER
 function createUser($username, $email, $password)
 {
     $userManager = new UserManager();
     $userManager->addUser($username, $email, $password);
-    header("Location: index.php");
+    $message = urlencode("User created successfully. Please log in.");
+    header("Location: index.php?action=showSignInForm&error=false&message=$message");
 }
 
 function addUser()
@@ -22,6 +27,13 @@ function addUser()
 
 function showSignInForm()
 {
+    require "./view/signInForm.php";
+}
+
+function logOut()
+{
+    session_start();
+    session_destroy();
     require "./view/signInForm.php";
 }
 

@@ -5,7 +5,13 @@ ob_start();
 ?>
 
 <h1>Landing Page</h1>
-
+<div class="project-container">
+  <?php
+  foreach ($projects as $project) {
+    include "./view/component/projectCard.php";
+  }
+  ?>
+</div>
 <?php
 $content = ob_get_clean();
 
