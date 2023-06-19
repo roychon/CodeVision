@@ -33,6 +33,13 @@ try {
 
         case "logOut":
             logOut();
+        break;
+        case "logIn":
+            $username = $_POST['username'] ?? "";
+            $password = $_POST['password'] ?? "";
+            if ($username and $password) {
+                logIn($username, $password);
+            }
             break;
 
         default:

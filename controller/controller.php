@@ -31,3 +31,17 @@ function logOut()
     session_destroy();
     require "./view/signInForm.php";
 }
+
+function logIn($username, $password)
+{
+    $userManager = new UserManager();
+    $result = $userManager->logIn($username, $password);
+
+    if ($result[0] === $username && password_verify($password, $result[1])) {
+
+        $_SESSION['username'] = $result[0];
+        $_SESSION['password'] = $result[1];
+
+        require "./view/userPage.php";
+    }
+}
