@@ -16,7 +16,8 @@ function createUser($username, $email, $password)
 {
     $userManager = new UserManager();
     $userManager->addUser($username, $email, $password);
-    header("Location: index.php");
+    $message = urlencode("User created successfully. Please log in.");
+    header("Location: index.php?action=showSignInForm&error=false&message=$message");
 }
 
 function addUser()

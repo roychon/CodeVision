@@ -35,7 +35,7 @@ ob_start();
         <span>Languages: </span>
         <p class="languages-container">
             <input type="text" name="languages" id="languagesInput">
-            <div id="languageResults"></div>
+            <p id="languageResults"></p>
         </p>
     </p>
 
