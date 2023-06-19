@@ -2,6 +2,7 @@
 $title = "Add Project";
 ob_start();
 ?>
+
 <link rel="stylesheet" href="./public/css/addProjectForm.css">
 <script defer src="./public/js/validateAddProjectForm.js"></script>
 <script defer src="https://kit.fontawesome.com/033b80222d.js" crossorigin="anonymous"></script>

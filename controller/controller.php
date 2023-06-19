@@ -86,8 +86,39 @@ function submitEditedUser(
 }
 
 
-function deleteProject($project_id) {
+function deleteProject($project_id)
+{
     $userManager = new UserManager();
     $userManager->deleteProject($project_id);
     header("Location: index.php");
+}
+
+
+// user goes to update FORM and updates project with 'project_id'
+function updateProjectForm($project_id)
+{
+    $userManager = new UserManager();
+
+    $project = $userManager->getProject($project_id);
+    $languages = $userManager->getProjectLanguages($project_id);
+    $tags = $userManager->getProjectTags($project_id);
+
+    $languageInputVal = join("," , $languages);
+    
+    $tagsInputVal = join("," , $tags);
+
+    require "./view/updateProjectForm.php";
+}
+
+
+// insert project updates into database
+function updateProject($gif, $description, $title, $tags, $languages, $project_id) {
+    
+    $userManager = new UserManager();
+    $userManager->updateProjectMain($gif, $description, $title, $project_id);
+    $userManager->updateProjectTags($tags, $project_id);
+    $userManager->updateProjectLanguages($languages, $project_id);
+
+    header("Location: index.php");
+
 }
