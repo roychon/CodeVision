@@ -21,6 +21,9 @@
     <!-- TODO: INCLUDE HEADER FOR LOGGED IN USERS -->
     <?php
     include "./view/component/loggedOutHeader.php";
+    if (isset($_GET['error'])) {
+        include "./view/component/statusPopUp.php";
+    }
     ?>
     <?= $content; ?>
 
