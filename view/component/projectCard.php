@@ -11,17 +11,11 @@
         <div class="bottom-card-container">
             <!-- this has same class as the header -->
             <img class="user-profile-pic" src="<?= htmlspecialchars($project->profile_img) ?>" alt="user profile pic">
-            <div class="user-info">
-                <p>
-                    <!-- username goes here -->
-                    Username
-                </p>
-                <?= htmlspecialchars($language['language_name']) ?>
-                <span class="language-tag"> <?php
-                                            foreach ($project->languages as $language) {
-                                                echo "$language ";
-                                            } ?></span>
-            </div>
+            <?= htmlspecialchars($language['language_name']) ?>
+            <span class="language-tag"> <?php
+                                        foreach ($project->languages as $language) {
+                                            echo "$language ";
+                                        } ?></span>
         </div>
     </div>
 </div>

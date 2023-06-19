@@ -114,11 +114,6 @@ input {
     border-radius: 50%;
     border: 1px solid var(--light-grey);
 }
-
-.user-info {
-    display: inline-block;
-}
-
 .bottom-card-container {
     margin-top: 10px;
 }
