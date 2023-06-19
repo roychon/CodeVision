@@ -5,8 +5,9 @@ require "./controller/controller.php";
 try {
     $action = $_GET['action'] ?? "";
     switch ($action) {
-        case "something else":
-            // do something;
+        // link add project btn to "index.php?action=add_project"
+        case "add_project":
+            addProject();
             break;
         default:
             showIndex();
