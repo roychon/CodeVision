@@ -31,6 +31,9 @@ try {
             showSignInForm();
             break;
 
+        case "logOut":
+            logOut();
+        break;
         case "logIn":
             $username = $_POST['username'] ?? "";
             $password = $_POST['password'] ?? "";

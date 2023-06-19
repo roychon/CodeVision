@@ -25,6 +25,13 @@ function showSignInForm()
     require "./view/signInForm.php";
 }
 
+function logOut()
+{
+    session_start();
+    session_destroy();
+    require "./view/signInForm.php";
+}
+
 function logIn($username, $password)
 {
     $userManager = new UserManager();
