@@ -29,14 +29,14 @@ function showSignInForm()
     require "./view/signInForm.php";
 }
 
-function insertNewProject($gif, $title, $description, $tags, $languages)
+function insertNewProject($user_id, $gif, $title, $description, $tags, $languages)
 {
     $userManager = new UserManager();
-    $userManager->insertNewProject($gif, $title, $description, $tags, $languages);
+    $userManager->insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
 }
 function logOut()
 {
-    session_start();
+    // session_start();
     session_destroy();
     require "./view/signInForm.php";
 }
@@ -46,10 +46,11 @@ function logIn($username, $password)
     $userManager = new UserManager();
     $result = $userManager->logIn($username, $password);
 
-    if ($result[0] === $username && password_verify($password, $result[1])) {
+    if ($result->username === $username && password_verify($password, $result->password)) {
 
-        $_SESSION['username'] = $result[0];
-        $_SESSION['password'] = $result[1];
+        $_SESSION['username'] = $result->username;
+        // $_SESSION['password'] = $result[1];
+        $_SESSION['user_id'] = $result->id;
 
         require "./view/userPage.php";
     }

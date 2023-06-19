@@ -183,7 +183,7 @@ function getLanguages(txt) {
 }
 
 function validateTags() {
-    if (tags.length === 0|| tags.length > 5) {
+    if (tags.length === 0 || tags.length > 5) {
         tagContainer.style.border = "1px solid red";
         return false;
     } else {
@@ -210,7 +210,6 @@ Event Listeners
 ************
 */
 
-
 title.addEventListener("keyup", () => {
     validateTitle(title.value);
 });
@@ -230,7 +229,6 @@ tagInput.addEventListener("keyup", (e) => {
         tagInput.value = "";
     }
 });
-
 
 tagContainer.addEventListener("click", (e) => {
     if (e.target.tagName === "I") {
@@ -305,7 +303,6 @@ languageContainer.addEventListener("click", (e) => {
     }
 });
 
-
 // Before submitting form, join the 'tags' and 'languages' array and set them as values to their respective input field
 form.addEventListener("submit", (e) => {
     let valid = validateURL(gif.value);
@@ -319,12 +316,11 @@ form.addEventListener("submit", (e) => {
         // Set the value of the languagesInput input field
         languagesInput.value = languages.join(",");
         // Set the value of the tags input field
-        tags.value = tags.join(",");
+        tagsInput.value = tags.join(",");
     } else {
         alert("Not valid");
         e.preventDefault();
     }
-
 });
 
 // validate number of tags user can input

@@ -21,9 +21,9 @@ ob_start();
 
     <p>
         <span>Tags: </span>
-        <div class="tag-container">
-            <input type="text" name="tags" id="tags">
-        </div>
+    <div class="tag-container">
+        <input type="text" name="tags" id="tagsInput">
+    </div>
     </p>
 
     <p>
@@ -33,10 +33,10 @@ ob_start();
 
     <p>
         <span>Languages: </span>
-        <div class="languages-container">
-            <input type="text" name="languages" id="languagesInput">
-            <div id="languageResults"></div>
-        </div>
+    <div class="languages-container">
+        <input type="text" name="languages" id="languagesInput">
+        <div id="languageResults"></div>
+    </div>
     </p>
 
     <input type="submit" value="Add Project" id="submit">
