@@ -31,15 +31,15 @@ ob_start();
         <input type="text" name="description" id="description">
     </p>
 
-    <p>
+    <div>
         <span>Languages: </span>
-    <div class="languages-container">
-        <input type="text" name="languages" id="languagesInput">
-        <div id="languageResults"></div>
-    </div>
-    </p>
+        <div class="languages-container">
+            <input type="text" name="languages" id="languagesInput">
+            <div id="languageResults"></div>
+        </div>
+        </p>
 
-    <input type="submit" value="Add Project" id="submit">
+        <input type="submit" value="Add Project" id="submit">
 </form>
 
 
