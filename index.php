@@ -5,6 +5,11 @@ require "./controller/controller.php";
 try {
     $action = $_GET['action'] ?? "";
     switch ($action) {
+            // TODO: link add project btn to "index.php?action=add_project"
+        case "add_project":
+            addProject();
+            break;
+
         case "add_user":
             addUser();
             break;
@@ -42,6 +47,16 @@ try {
                 insertNewProject($gif, $title, $description, $tags, $languages);
             } else {
                 throw new Exception("Missing required information.");
+            }
+            break;
+        case "logOut":
+            logOut();
+            break;
+        case "logIn":
+            $username = $_POST['username'] ?? "";
+            $password = $_POST['password'] ?? "";
+            if ($username and $password) {
+                logIn($username, $password);
             }
             break;
 
