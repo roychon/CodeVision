@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require "./controller/controller.php";
 require "./controller/projectcontroller.php";
@@ -57,6 +58,58 @@ try {
             $password = $_POST['password'] ?? "";
             if ($username and $password) {
                 logIn($username, $password);
+            }
+            break;
+
+            // FOR EDITING A USER
+        case "editUser":
+            $username = $_SESSION['username'] ?? "";
+            $email = $_SESSION['email'] ?? "";
+            $password = $_SESSION['password'] ?? "";
+            $id = $_GET['id'] ?? "";
+            if ($id and $username and $email and $password) {
+
+                editUser($username, $email, $password);
+            }
+
+            // EDITING THE USER
+        case "submitEditedUser":
+            $id = $_POST['id'] ?? "";
+            $first_name = $_POST['firstName'] ?? "";
+            $last_name = $_POST['lastName'] ?? "";
+            $username = $_POST['username'] ?? "";
+            $email = $_POST['email'] ?? "";
+            $password = $_POST['password'] ?? "";
+            $profile_image = $_POST['profileImage'] ?? "";
+            $bio = $_POST['bio'] ?? "";
+            $linked_in = $_POST['linkedIn'] ?? "";
+            $git_hub = $_POST['gitHub'] ?? "";
+            if (
+                // 'OR' IS USED SO THAT A USER CAN EDIT ANY PIECE OF 
+                // INFORMATION THEY WANT
+                $id or
+                $first_name or
+                $last_name or
+                $username or
+                $email or
+                $password or
+                $profile_image or
+                $bio or
+                $linked_in or
+                $git_hub
+            ) {
+                submitEditedUser(
+                    $id,
+                    $first_name,
+                    $last_name,
+                    $username,
+                    $email,
+                    $password,
+                    $profile_image,
+                    $bio,
+                    $linked_in,
+                    $git_hub
+                );
             }
             break;
 

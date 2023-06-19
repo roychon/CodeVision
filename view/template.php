@@ -8,6 +8,7 @@
     <script defer src="./public/js/validateSignUp.js"></script>
     <script src="https://kit.fontawesome.com/74c73035c9.js" crossorigin="anonymous"></script>
     <script src="./public/js/nyan.js"></script>
+    <script defer src="./public/js/validateEditUser.js"></script>
 </head>
 
 <body>

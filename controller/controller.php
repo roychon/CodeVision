@@ -42,13 +42,47 @@ function logIn($username, $password)
     $userManager = new UserManager();
     $result = $userManager->logIn($username, $password);
 
-    if ($result[0] === $username && password_verify($password, $result[1])) {
+    if ($result->username === $username && password_verify($password, $result->password)) {
 
-        $_SESSION['username'] = $result[0];
-        $_SESSION['password'] = $result[1];
-
-        require "./view/userPage.php";
+        $_SESSION['id'] = $result->id;
+        $_SESSION['username'] = $result->username;
+        $_SESSION['email'] = $result->email;
+        $_SESSION['password'] = $result->password;
     }
+    require "./view/userPage.php";
+}
+function editUser($username, $email, $password)
+{
+    require "./view/editUserForm.php";
+}
+// EDITING A USER INFO
+function submitEditedUser(
+    $id,
+    $first_name,
+    $last_name,
+    $username,
+    $email,
+    $password,
+    $profile_image,
+    $bio,
+    $linked_in,
+    $git_hub
+) {
+    $userManager = new UserManager();
+    $userManager->submitEditedUser(
+        $id,
+        $first_name,
+        $last_name,
+        $username,
+        $email,
+        $password,
+        $profile_image,
+        $bio,
+        $linked_in,
+        $git_hub
+    );
+
+    header("Location: index.php");
 }
 
 
