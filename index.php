@@ -10,11 +10,21 @@ try {
         case "add_project":
             addProject();
             break;
-            
+
+            // TODO: link delete project btn to "index.php?action=delete_project&project_id='projectid'"
+        case "delete_project":
+            $project_id = $_GET['project_id'] ?? "";
+
+            if ($project_id) {
+                deleteProject($project_id);
+            } else {
+                throw new Exception("Missing project id");
+            }
+            break;
+        
         case "add_user":
             addUser();
             break;
-
 
             // CREATING A NEW USER 
         case "createUser":
