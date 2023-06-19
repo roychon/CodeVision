@@ -1,5 +1,9 @@
-#usernameNotValid, #usernameMissing, #emailNotValid, #emailMissing,
-#passwordNotValid, #passwordMissing, #passwordConfirmError {
+#usernameNotValid, #usernameMissing, 
+#emailNotValid, #emailMissing,
+#passwordNotValid, #passwordMissing, 
+#passwordConfirmError, #firstNameNotValid, 
+#firstNameMissing, #lastNameNotValid, 
+#lastNameMissing{
 	display: none;
 	color: red;
 	font-size: 10px;
