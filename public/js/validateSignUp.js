@@ -1,6 +1,7 @@
 // CREATING THE REGEX FOR ALL INPUTS
 const usernameRegex = /^[A-Za-z][A-Za-z0-9]{5,31}$/;
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const passwordRegex =
+	/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 // GRABBING INPUT ELEMENTS FROM HTML
@@ -16,7 +17,10 @@ function checkUsername(userName) {
 		usernameMissing.style.display = "inline";
 		usernameNotValid.style.display = "none";
 		return false;
-	} else if (userName.value !== "" && (userName.value.length < 3 || !usernameRegex.test(userName.value))) {
+	} else if (
+		userName.value !== "" &&
+		(userName.value.length < 3 || !usernameRegex.test(userName.value))
+	) {
 		userName.className = "red";
 		usernameNotValid.style.display = "inline";
 		usernameMissing.style.display = "none";
@@ -49,7 +53,10 @@ function checkEmail(email) {
 		emailNotValid.style.display = "none";
 		email.className = "red";
 		return false;
-	} else if (email.value !== "" && (email.value.length < 3 || !emailRegex.test(email.value))) {
+	} else if (
+		email.value !== "" &&
+		(email.value.length < 3 || !emailRegex.test(email.value))
+	) {
 		email.className = "red";
 		emailNotValid.style.display = "inline";
 		emailMissing.style.display = "none";
@@ -82,7 +89,10 @@ function checkPassword(password) {
 		passwordMissing.style.display = "inline";
 		passwordNotValid.style.display = "none";
 		return false;
-	} else if (password.value !== "" && (password.value.length < 3 || !passwordRegex.test(password.value))) {
+	} else if (
+		password.value !== "" &&
+		(password.value.length < 3 || !passwordRegex.test(password.value))
+	) {
 		password.className = "red";
 		passwordNotValid.style.display = "inline";
 		passwordMissing.style.display = "none";
@@ -150,8 +160,17 @@ function checkAllInputs(e) {
 		checkEmail();
 		checkPassword();
 		confirmPassword();
+
+		// $message = urlencode("Sign up failed");
+		// header("Location: index.php?action=add_user&error=true&message=$message");
 	} else {
-		alert("Form is submitted");
+		// alert("Form is submitted");
+		// THIS IS FOR THE POP UP THAT WILL APPEAR FOR USERS ---
+		// NEEDS TO BE ON EVERY CASE i.e. createProject, deleteProject, etc etc
+		// $message = urlencode("Sign up succeeded");
+		// header(
+		//   "Location: index.php?action=signInForm&error=false&message=$message"
+		// );
 	}
 }
 

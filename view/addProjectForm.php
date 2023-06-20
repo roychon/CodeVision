@@ -2,6 +2,7 @@
 $title = "Add Project";
 ob_start();
 ?>
+
 <link rel="stylesheet" href="./public/css/addProjectForm.css">
 <script defer src="./public/js/validateAddProjectForm.js"></script>
 <script defer src="https://kit.fontawesome.com/033b80222d.js" crossorigin="anonymous"></script>
@@ -22,7 +23,7 @@ ob_start();
     <p>
         <span>Tags: </span>
     <div class="tag-container">
-        <input type="text" name="tags" id="tags">
+        <input type="text" name="tags" id="tagsInput">
     </div>
     </p>
 
@@ -31,15 +32,15 @@ ob_start();
         <input type="text" name="description" id="description">
     </p>
 
-    <p>
+    <div>
         <span>Languages: </span>
-    <div class="languages-container">
-        <input type="text" name="languages" id="languagesInput">
-        <div id="languageResults"></div>
-    </div>
-    </p>
+        <div class="languages-container">
+            <input type="text" name="languages" id="languagesInput">
+            <div id="languageResults"></div>
+        </div>
+        </p>
 
-    <input type="submit" value="Add Project" id="submit">
+        <input type="submit" value="Add Project" id="submit">
 </form>
 
 

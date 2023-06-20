@@ -9,8 +9,8 @@ ob_start();
 <main class="user-profile-view">
     <section class="user-profile-view-info">
         <h1> <?= $profiles->username; ?></h1>
-        <?php if (isset($_SESSION['username']) and isset($_SESSION['password'])) { ?>
-            <a href="index.php?action=editUser">Click here if you want to edit the information</a>
+        <?php if (isset($_SESSION['id'])) { ?>
+            <a href="index.php?action=editUser">Edit Profile</a>
         <?php
         } ?>
 
@@ -45,7 +45,7 @@ ob_start();
         </aside>
         <div class="user-profile-projects">
             <?php
-            foreach ($projects as $projects) {
+            foreach ($projects as $project) {
                 include "./view/component/projectCard.php";
             }
             ?>
@@ -55,7 +55,7 @@ ob_start();
 </main>
 <?php
 $content = ob_get_clean();
-
+require "template.php";
 // if (isset($_SESSION['user_id'])) {
 //     require "loggedInTemplate.php";
 // } else {

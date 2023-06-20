@@ -1,0 +1,41 @@
+dialog {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem 1.3rem;
+    width: 30%;
+    height: 40%;
+    border-radius: 0.3rem;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    text-align: center;
+    border: none;
+    
+    /* removes default chrome setting that gives it colored border */
+    outline: 0;
+
+
+
+    
+}
+
+dialog::backdrop {
+    background-color: rgba(255, 255, 255, 0.756);
+}
+
+
+.close-button {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    border-color: rgba(255, 255, 255, 0.41);
+    background-color: transparent;
+    /* removes default chrome setting that gives it colored border */
+    outline: 0;
+}
+
+.close-button:hover {
+    background-color: rgba(239, 239, 239, 0.712);
+}
+
