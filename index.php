@@ -44,6 +44,11 @@ try {
             }
             break;
 
+            // FOR LOGGED IN USERS -- so that it doesn't take them to new page
+        case "showUserPage":
+            showUserPage();
+            break;
+
         default:
             showIndex();
             break;
