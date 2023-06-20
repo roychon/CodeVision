@@ -17,7 +17,7 @@ function createUser($username, $email, $password)
     $userManager = new UserManager();
     $userManager->addUser($username, $email, $password);
     $message = urlencode("User created successfully. Please log in.");
-    header("Location: index.php?action=showSignInForm&error=false&message=$message");
+    header("Location: index.php?action=signInForm&error=false&message=$message");
 }
 
 function addUser()
@@ -52,10 +52,15 @@ function logIn($username, $password)
         $_SESSION['id'] = $result->id;
         $_SESSION['username'] = $result->username;
         $_SESSION['email'] = $result->email;
-        $_SESSION['password'] = $result->password;
+        // require "./view/userPage.php";
+        $message = urlencode("You have succesfully logged in!");
+        header("Location: index.php?action=showUserPage&error=false&message=$message");
+    } else {
+        $message = urlencode("You have failed to login. Please try again");
+        header("Location: index.php?action=signInForm&error=true&message=$message");
     }
-    require "./view/userPage.php";
 }
+
 function editUser($username, $email, $password)
 {
     require "./view/editUserForm.php";
@@ -96,4 +101,9 @@ function deleteProject($project_id)
     $userManager = new UserManager();
     $userManager->deleteProject($project_id);
     header("Location: index.php");
+}
+
+function showUserPage()
+{
+    require "./view/indexView.php";
 }
