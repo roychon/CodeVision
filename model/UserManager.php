@@ -69,22 +69,24 @@ class UserManager extends Manager
     }
 
     // 'deactivate' project with 'project_id' (set is_active = false)
-    public function deleteProject($project_id) {
+    public function deleteProject($project_id)
+    {
         $db = $this->dbConnect();
 
         $delete_req = $db->prepare("UPDATE project SET is_active = 0 WHERE id = ?");
         $delete_req->execute([$project_id]);
-        }
+    }
 
     // get description, gif, title, id of project with project_id
-    public function getProject($project_id) {
+    public function getProject($project_id)
+    {
         $db = $this->dbConnect();
 
         $req = $db->prepare(
             "SELECT p.gif, p.description, p.title, p.id
             FROM project p
             WHERE id = ?"
-            );
+        );
 
         $req->execute([$project_id]);
 
@@ -106,7 +108,7 @@ class UserManager extends Manager
             WHERE p.id = ?"
         );
 
-        
+
         $req->execute([$project_id]);
         $languagesArr = [];
 
@@ -115,7 +117,6 @@ class UserManager extends Manager
         }
 
         return $languagesArr;
-
     }
 
     // get all tags of project with 'project_id'
@@ -144,7 +145,8 @@ class UserManager extends Manager
     }
 
     // update gif, desciption, title of project with 'project_id'
-    public function updateProjectMain($gif, $description, $title, $project_id) {
+    public function updateProjectMain($gif, $description, $title, $project_id)
+    {
         $db = $this->dbConnect();
 
         $req = $db->prepare("UPDATE project SET gif = :gif, description = :description, title = :title WHERE id = :project_id");
@@ -153,20 +155,21 @@ class UserManager extends Manager
             "description" => $description,
             "title" => $title,
             "project_id" => $project_id
-        ));  
+        ));
     }
 
     // update tags of project with 'project_id'
-    public function updateProjectTags($tags, $project_id) {
+    public function updateProjectTags($tags, $project_id)
+    {
         $db = $this->dbConnect();
-        
+
         // clear project tag map table
         $deleteReq = $db->prepare("DELETE FROM project_tag_map WHERE project_id = ?");
         $deleteReq->execute([$project_id]);
-        
+
         // insert into tag names into database 'tag'
         $tagsArr = explode(",", $tags);
-        foreach($tagsArr as $tag) {
+        foreach ($tagsArr as $tag) {
             try {
                 $req = $db->prepare("INSERT INTO tag (tag_name) VALUES (?)");
                 $req->execute([$tag]);
@@ -176,7 +179,7 @@ class UserManager extends Manager
         }
 
         // insert new tag names into database 'project_tag_map'
-        foreach($tagsArr as $tag) {
+        foreach ($tagsArr as $tag) {
             $tag_id_req = $db->prepare("SELECT id FROM tag WHERE tag_name = ?");
             $tag_id_req->execute([$tag]);
             $tag_id = $tag_id_req->fetch();
@@ -186,9 +189,7 @@ class UserManager extends Manager
                 "project_id" => $project_id,
                 "tag_id" => $tag_id->id
             ));
-
         }
-
     }
 
     // update tags of project with 'project_id'
@@ -201,7 +202,8 @@ class UserManager extends Manager
         $deleteReq->execute([$project_id]);
 
         // insert into tag names into database 'tag'
-        $languagesArr = explode(",",
+        $languagesArr = explode(
+            ",",
             $languages
         );
         foreach ($languagesArr as $language) {
@@ -226,5 +228,4 @@ class UserManager extends Manager
             ));
         }
     }
-
-    }
+}
