@@ -22,7 +22,7 @@ try {
                 throw new Exception("Missing project id");
             }
             break;
-        
+
         case "add_user":
             addUser();
             break;
@@ -53,6 +53,7 @@ try {
         case "logOut":
             logOut();
             break;
+
         case "logIn":
             $username = $_POST['username'] ?? "";
             $password = $_POST['password'] ?? "";

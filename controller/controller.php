@@ -48,6 +48,9 @@ function logIn($username, $password)
         $_SESSION['username'] = $result->username;
         $_SESSION['email'] = $result->email;
         $_SESSION['password'] = $result->password;
+    } else {
+        // TODO: VALIDATE THE USERNAME OR PASSWORD
+        throw new Exception("Password or username is invalid!");
     }
     require "./view/userPage.php";
 }
@@ -86,7 +89,8 @@ function submitEditedUser(
 }
 
 
-function deleteProject($project_id) {
+function deleteProject($project_id)
+{
     $userManager = new UserManager();
     $userManager->deleteProject($project_id);
     header("Location: index.php");
