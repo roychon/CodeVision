@@ -36,4 +36,29 @@ class ProjectManager extends Manager
         return $projects;
         // return $languages;
     }
+
+    public function projectVotes()
+    {
+        $db = $this->dbConnect();
+
+        $sql = "SELECT u.id, p.id, pv.user_id, pv.project_id
+                FROM project p 
+                INNER JOIN project_votes pv
+                ON pv.project_id = :project_id
+                INNER JOIN user u 
+                ON pv.user_id = :user_id";
+
+        $res = $db->query($sql);
+        $data = $res->fetch();
+
+        if ($data) {
+            // run an UPDATE
+
+
+        } else {
+            // do an INSERT
+        }
+
+        return $data;
+    }
 }

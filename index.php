@@ -22,7 +22,7 @@ try {
                 throw new Exception("Missing project id");
             }
             break;
-        
+
         case "add_user":
             addUser();
             break;
@@ -111,6 +111,17 @@ try {
                     $git_hub
                 );
             }
+            break;
+        case "getProjectVotes":
+            // grab the status, project_id, and user_id from the GET parameters
+            if (
+                isset($_GET['user_id']) and
+                isset($_GET['project_id']) and
+                isset($_GET['stat'])
+            ) {
+                getProjectVotes($_GET['user_id'], ($_GET['project_id']), ($_GET['stat']));
+            }
+            // getProjectVotes();
             break;
 
         default:

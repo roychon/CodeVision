@@ -86,7 +86,8 @@ function submitEditedUser(
 }
 
 
-function deleteProject($project_id) {
+function deleteProject($project_id)
+{
     $userManager = new UserManager();
     $userManager->deleteProject($project_id);
     header("Location: index.php");
