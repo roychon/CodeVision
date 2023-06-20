@@ -52,19 +52,12 @@ function logIn($username, $password)
         $_SESSION['id'] = $result->id;
         $_SESSION['username'] = $result->username;
         $_SESSION['email'] = $result->email;
-<<<<<<< HEAD
-        $_SESSION['password'] = $result->password;
-    } else {
-        // TODO: VALIDATE THE USERNAME OR PASSWORD
-        throw new Exception("Password or username is invalid!");
-=======
         // require "./view/userPage.php";
         $message = urlencode("You have succesfully logged in!");
         header("Location: index.php?action=showUserPage&error=false&message=$message");
     } else {
         $message = urlencode("You have failed to login. Please try again");
         header("Location: index.php?action=signInForm&error=true&message=$message");
->>>>>>> main
     }
 }
 
@@ -120,17 +113,18 @@ function updateProjectForm($project_id)
     $languages = $userManager->getProjectLanguages($project_id);
     $tags = $userManager->getProjectTags($project_id);
 
-    $languageInputVal = join("," , $languages);
-    
-    $tagsInputVal = join("," , $tags);
+    $languageInputVal = join(",", $languages);
+
+    $tagsInputVal = join(",", $tags);
 
     require "./view/updateProjectForm.php";
 }
 
 
 // insert project updates into database
-function updateProject($gif, $description, $title, $tags, $languages, $project_id) {
-    
+function updateProject($gif, $description, $title, $tags, $languages, $project_id)
+{
+
     $userManager = new UserManager();
     $userManager->updateProjectMain($gif, $description, $title, $project_id);
     $userManager->updateProjectTags($tags, $project_id);
