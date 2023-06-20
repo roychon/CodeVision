@@ -12,10 +12,6 @@ dialog {
     
     /* removes default chrome setting that gives it colored border */
     outline: 0;
-
-
-
-    
 }
 
 dialog::backdrop {

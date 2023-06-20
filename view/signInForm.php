@@ -4,27 +4,31 @@ ob_start();
 
 ?>
 <link rel="stylesheet" href="./public/css/formInput.css">
-<h1>Sign In Form</h1>
+<h1>Log in to "SITE NAME"</h1>
 
-<form action="index.php?action=logIn" method="POST">
-  <p>
-    <label for="username">Username: </label>
-    <input type="text" name="username" id="username">
-  </p>
-  <p>
-    <label for="password">Password: </label>
-    <input type="text" name="password" id="password">
-  </p>
-  <p>
-    <input type="submit" value="submit" id="submit">
-  </p>
-  <p>
-    <span>Username or Password Invalid</span>;
-    <span></span>
-  </p>
+<!-- DIV CLASS GIVEN -->
+<div class="login-form">
+  <!-- FORM ID has been given an id of "login" -->
+  <form action="index.php?action=logIn" method="POST" id="login">
+    <p>
+      <label for="username">Username: </label>
+      <input type="text" name="username" id="username">
+    </p>
+    <p>
+      <label for="password">Password: </label>
+      <input type="text" name="password" id="password">
+    </p>
+    <p>
+      <input type="submit" value="submit" id="submit">
+    </p>
+    <p>
+      <span>Username or Password Invalid</span>;
+      <span></span>
+    </p>
 
-</form>
-<script src="./public/js/signInValidation.js"></script>
+  </form>
+  <script src="./public/js/signInValidation.js"></script>
+</div>
 
 <?php
 
