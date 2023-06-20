@@ -17,7 +17,7 @@ function createUser($username, $email, $password)
     $userManager = new UserManager();
     $userManager->addUser($username, $email, $password);
     $message = urlencode("User created successfully. Please log in.");
-    header("Location: index.php?action=showSignInForm&error=false&message=$message");
+    header("Location: index.php?action=signInForm&error=false&message=$message");
 }
 
 function addUser()
@@ -52,13 +52,22 @@ function logIn($username, $password)
         $_SESSION['id'] = $result->id;
         $_SESSION['username'] = $result->username;
         $_SESSION['email'] = $result->email;
+<<<<<<< HEAD
         $_SESSION['password'] = $result->password;
     } else {
         // TODO: VALIDATE THE USERNAME OR PASSWORD
         throw new Exception("Password or username is invalid!");
+=======
+        // require "./view/userPage.php";
+        $message = urlencode("You have succesfully logged in!");
+        header("Location: index.php?action=showUserPage&error=false&message=$message");
+    } else {
+        $message = urlencode("You have failed to login. Please try again");
+        header("Location: index.php?action=signInForm&error=true&message=$message");
+>>>>>>> main
     }
-    require "./view/userPage.php";
 }
+
 function editUser($username, $email, $password)
 {
     require "./view/editUserForm.php";
@@ -99,4 +108,38 @@ function deleteProject($project_id)
     $userManager = new UserManager();
     $userManager->deleteProject($project_id);
     header("Location: index.php");
+}
+
+
+// user goes to update FORM and updates project with 'project_id'
+function updateProjectForm($project_id)
+{
+    $userManager = new UserManager();
+
+    $project = $userManager->getProject($project_id);
+    $languages = $userManager->getProjectLanguages($project_id);
+    $tags = $userManager->getProjectTags($project_id);
+
+    $languageInputVal = join("," , $languages);
+    
+    $tagsInputVal = join("," , $tags);
+
+    require "./view/updateProjectForm.php";
+}
+
+
+// insert project updates into database
+function updateProject($gif, $description, $title, $tags, $languages, $project_id) {
+    
+    $userManager = new UserManager();
+    $userManager->updateProjectMain($gif, $description, $title, $project_id);
+    $userManager->updateProjectTags($tags, $project_id);
+    $userManager->updateProjectLanguages($languages, $project_id);
+
+    header("Location: index.php");
+}
+
+function showUserPage()
+{
+    require "./view/indexView.php";
 }

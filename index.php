@@ -22,6 +22,34 @@ try {
             } else {
                 throw new Exception("Missing project id");
             }
+
+            break;
+
+            // TODO: link update project btn to "index.php?action=updateProjectForm&project_id=*"
+        case "updateProjectForm":
+            $project_id = $_GET['project_id'] ?? "";
+            if ($project_id) {
+                updateProjectForm($project_id);
+            } else {
+                throw new Exception("Missing project id");
+            }
+
+            break;
+
+        case "updateProject":
+            $gif = $_POST['gif'] ?? "";
+            $description = $_POST['description'] ?? "";
+            $title = $_POST['title'] ?? "";
+            $tags = $_POST['tags'] ?? "";
+            $languages = $_POST['languages'] ?? "";
+            $project_id = $_GET['project_id'] ?? "";
+
+            if ($gif and $description and $title and $tags and $languages and $project_id) {
+                updateProject($gif, $description, $title, $tags, $languages, $_GET['project_id']);
+            } else {
+                throw new Exception("Error, missing project info");
+            }
+
             break;
 
         case "add_user":
@@ -80,6 +108,11 @@ try {
             }
             break;
 
+            // FOR LOGGED IN USERS -- so that it doesn't take them to new page
+        case "showUserPage":
+            showUserPage();
+            break;
+  
             // FOR EDITING A USER
         case "editUser":
             $username = $_SESSION['username'] ?? "";
@@ -90,7 +123,8 @@ try {
 
                 editUser($username, $email, $password);
             }
-
+            break;
+        
             // EDITING THE USER
         case "submitEditedUser":
             $id = $_POST['id'] ?? "";
