@@ -11,6 +11,19 @@ function addProject()
     require "./view/addProjectForm.php";
 }
 
+//TODO: CHECK PASSING PARAMATER??
+function showUserProfile($user_id)
+{
+    if (isset($_SESSION['username']) and isset($_SESSION['password'])) {
+        $userManager = new userManager();
+        // TODO: pass in the id/user not post
+        $profiles = $userManager->getUserInfo($user_id);
+        require "./view/userProfileView.php";
+    } else {
+        require "./view/signInForm.php";
+    }
+}
+
 // CREATING A NEW USER
 function createUser($username, $email, $password)
 {

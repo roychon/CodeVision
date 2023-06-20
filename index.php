@@ -10,11 +10,19 @@ try {
         case "add_project":
             addProject();
             break;
-            
+
         case "add_user":
             addUser();
             break;
 
+            //CREATING USER PROFILE VIEW PAGE
+        case "userProfileView":
+            if (isset($_GET['id'])) {
+                showUserProfile($_GET['id']);
+            }
+            // check this??
+
+            break;
 
             // CREATING A NEW USER 
         case "createUser":

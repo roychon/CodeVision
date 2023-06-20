@@ -6,7 +6,7 @@ class ProjectManager extends Manager
     public function getCards()
     {
         $db = $this->dbConnect();
-        $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, p.is_active, p.title, p.gif, p.description, l.language_name
+        $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.gif, p.description, l.language_name
             FROM user u
             INNER JOIN project p
             ON u.id = p.user_id
@@ -16,11 +16,9 @@ class ProjectManager extends Manager
             ON plm.language_id = l.id;";
 
         $res = $db->query($sql);
-        // $projects = $res->fetchAll();
 
 
         $projects = [];
-        // $languages = [];
         while ($data = $res->fetch()) {
             $project_id = $data->id;
             if (isset($projects[$project_id])) {
@@ -34,6 +32,5 @@ class ProjectManager extends Manager
             }
         }
         return $projects;
-        // return $languages;
     }
 }
