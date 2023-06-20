@@ -5,7 +5,7 @@ class Manager
     protected function dbConnect()
     {
         $HOST = "localhost";
-        $DATABASE = "batch20_project"; // TODO: Add Database
+        $DATABASE = "batch20_project";
         $USER = "root";
         $PWD = "";
 

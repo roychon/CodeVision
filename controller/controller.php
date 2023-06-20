@@ -6,6 +6,10 @@ function showIndex()
     require "./view/indexView.php";
 }
 
+function addProject()
+{
+    require "./view/addProjectForm.php";
+}
 
 // CREATING A NEW USER
 function createUser($username, $email, $password)
@@ -26,9 +30,14 @@ function showSignInForm()
     require "./view/signInForm.php";
 }
 
+function insertNewProject($user_id, $gif, $title, $description, $tags, $languages)
+{
+    $userManager = new UserManager();
+    $userManager->insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
+}
 function logOut()
 {
-    session_start();
+    // session_start();
     session_destroy();
     require "./view/signInForm.php";
 }
@@ -38,11 +47,11 @@ function logIn($username, $password)
     $userManager = new UserManager();
     $result = $userManager->logIn($username, $password);
 
-    if ($result[0] === $username && password_verify($password, $result[1])) {
+    if ($result->username === $username && password_verify($password, $result->password)) {
 
-        $_SESSION['username'] = $result[0];
-        $_SESSION['password'] = $result[1];
-
+        $_SESSION['id'] = $result->id;
+        $_SESSION['username'] = $result->username;
+        $_SESSION['email'] = $result->email;
         // require "./view/userPage.php";
         $message = urlencode("You have succesfully logged in!");
         header("Location: index.php?action=showUserPage&error=false&message=$message");
@@ -50,6 +59,48 @@ function logIn($username, $password)
         $message = urlencode("You have failed to login. Please try again");
         header("Location: index.php?action=signInForm&error=true&message=$message");
     }
+}
+
+function editUser($username, $email, $password)
+{
+    require "./view/editUserForm.php";
+}
+// EDITING A USER INFO
+function submitEditedUser(
+    $id,
+    $first_name,
+    $last_name,
+    $username,
+    $email,
+    $password,
+    $profile_image,
+    $bio,
+    $linked_in,
+    $git_hub
+) {
+    $userManager = new UserManager();
+    $userManager->submitEditedUser(
+        $id,
+        $first_name,
+        $last_name,
+        $username,
+        $email,
+        $password,
+        $profile_image,
+        $bio,
+        $linked_in,
+        $git_hub
+    );
+
+    header("Location: index.php");
+}
+
+
+function deleteProject($project_id)
+{
+    $userManager = new UserManager();
+    $userManager->deleteProject($project_id);
+    header("Location: index.php");
 }
 
 function showUserPage()

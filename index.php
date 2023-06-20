@@ -1,14 +1,32 @@
 <?php
+session_start();
 
 require "./controller/controller.php";
+session_start();
+require "./controller/projectcontroller.php";
 
 try {
     $action = $_GET['action'] ?? "";
     switch ($action) {
+            // TODO: link add project btn to "index.php?action=add_project"
+        case "add_project":
+            addProject();
+            break;
+
+            // TODO: link delete project btn to "index.php?action=delete_project&project_id='projectid'"
+        case "delete_project":
+            $project_id = $_GET['project_id'] ?? "";
+
+            if ($project_id) {
+                deleteProject($project_id);
+            } else {
+                throw new Exception("Missing project id");
+            }
+            break;
+
         case "add_user":
             addUser();
             break;
-
 
             // CREATING A NEW USER 
         case "createUser":
@@ -33,9 +51,27 @@ try {
             showSignInForm();
             break;
 
+        case "insertNewProject":
+            echo "<pre>";
+            print_r($_POST);
+            $gif = $_POST['gif'] ?? "";
+            $title = $_POST['title'] ?? "";
+            $description = $_POST['description'] ?? "";
+            $tags = $_POST['tags'] ?? "";
+            $languages = $_POST['languages'] ?? "";
+            $user_id = $_SESSION['user_id'] ?? "";
+
+            if ($user_id and $gif and $title and $description and $tags and $languages) {
+                insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
+            } else {
+                throw new Exception("Missing required information.");
+            }
+            break;
+
         case "logOut":
             logOut();
             break;
+
         case "logIn":
             $username = $_POST['username'] ?? "";
             $password = $_POST['password'] ?? "";
@@ -48,9 +84,62 @@ try {
         case "showUserPage":
             showUserPage();
             break;
+  
+            // FOR EDITING A USER
+        case "editUser":
+            $username = $_SESSION['username'] ?? "";
+            $email = $_SESSION['email'] ?? "";
+            $password = $_SESSION['password'] ?? "";
+            $id = $_GET['id'] ?? "";
+            if ($id and $username and $email and $password) {
+
+                editUser($username, $email, $password);
+            }
+            break;
+        
+            // EDITING THE USER
+        case "submitEditedUser":
+            $id = $_POST['id'] ?? "";
+            $first_name = $_POST['firstName'] ?? "";
+            $last_name = $_POST['lastName'] ?? "";
+            $username = $_POST['username'] ?? "";
+            $email = $_POST['email'] ?? "";
+            $password = $_POST['password'] ?? "";
+            $profile_image = $_POST['profileImage'] ?? "";
+            $bio = $_POST['bio'] ?? "";
+            $linked_in = $_POST['linkedIn'] ?? "";
+            $git_hub = $_POST['gitHub'] ?? "";
+            if (
+                // 'OR' IS USED SO THAT A USER CAN EDIT ANY PIECE OF 
+                // INFORMATION THEY WANT
+                $id or
+                $first_name or
+                $last_name or
+                $username or
+                $email or
+                $password or
+                $profile_image or
+                $bio or
+                $linked_in or
+                $git_hub
+            ) {
+                submitEditedUser(
+                    $id,
+                    $first_name,
+                    $last_name,
+                    $username,
+                    $email,
+                    $password,
+                    $profile_image,
+                    $bio,
+                    $linked_in,
+                    $git_hub
+                );
+            }
+            break;
 
         default:
-            showIndex();
+            displayCards();
             break;
     }
 } catch (Exception $e) {
