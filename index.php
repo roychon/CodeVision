@@ -2,6 +2,7 @@
 session_start();
 
 require "./controller/controller.php";
+session_start();
 require "./controller/projectcontroller.php";
 
 try {
@@ -78,9 +79,27 @@ try {
             showSignInForm();
             break;
 
+        case "insertNewProject":
+            echo "<pre>";
+            print_r($_POST);
+            $gif = $_POST['gif'] ?? "";
+            $title = $_POST['title'] ?? "";
+            $description = $_POST['description'] ?? "";
+            $tags = $_POST['tags'] ?? "";
+            $languages = $_POST['languages'] ?? "";
+            $user_id = $_SESSION['user_id'] ?? "";
+
+            if ($user_id and $gif and $title and $description and $tags and $languages) {
+                insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
+            } else {
+                throw new Exception("Missing required information.");
+            }
+            break;
+
         case "logOut":
             logOut();
             break;
+
         case "logIn":
             $username = $_POST['username'] ?? "";
             $password = $_POST['password'] ?? "";
