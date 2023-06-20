@@ -14,7 +14,20 @@ const languageInput = document.querySelector(".languages-container input");
 const form = document.querySelector("form");
 
 var tags = []; // store all tags
+
 var languages = []; // store all languages
+
+if (languageInput.value) {
+    languages = languageInput.value.split(",");
+    addLanguages();
+    languageInput.value = "";
+}
+
+if (tagInput.value) {
+    tags = tagInput.value.split(",");
+    addTags();
+    tagInput.value = "";
+}
 
 /*
 ************
@@ -183,7 +196,7 @@ function getLanguages(txt) {
 }
 
 function validateTags() {
-    if (tags.length === 0|| tags.length > 5) {
+    if (tags.length === 0 || tags.length > 5) {
         tagContainer.style.border = "1px solid red";
         return false;
     } else {
@@ -210,7 +223,6 @@ Event Listeners
 ************
 */
 
-
 title.addEventListener("keyup", () => {
     validateTitle(title.value);
 });
@@ -231,13 +243,13 @@ tagInput.addEventListener("keyup", (e) => {
     }
 });
 
-
 tagContainer.addEventListener("click", (e) => {
     if (e.target.tagName === "I") {
         const value = e.target.getAttribute("data-item");
         const index = tags.indexOf(value);
         tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
         addTags();
+        validateTags();
     }
 });
 
@@ -302,9 +314,9 @@ languageContainer.addEventListener("click", (e) => {
             ...languages.slice(index + 1),
         ];
         addLanguages();
+        validateLanguages();
     }
 });
-
 
 // Before submitting form, join the 'tags' and 'languages' array and set them as values to their respective input field
 form.addEventListener("submit", (e) => {
@@ -319,12 +331,11 @@ form.addEventListener("submit", (e) => {
         // Set the value of the languagesInput input field
         languagesInput.value = languages.join(",");
         // Set the value of the tags input field
-        tags.value = tags.join(",");
+        tagInput.value = tags.join(",");
     } else {
         alert("Not valid");
         e.preventDefault();
     }
-
 });
 
 // validate number of tags user can input

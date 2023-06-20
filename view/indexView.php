@@ -12,7 +12,7 @@ ob_start();
   }
   ?>
 </div>
-<script src="./public/js/projectVotes.js"></script>
+<script defer src="./public/js/projectVotes.js"></script>
 <?php
 $content = ob_get_clean();
 

@@ -37,7 +37,7 @@ class ProjectManager extends Manager
         // return $languages;
     }
 
-    public function projectVotes()
+    public function projectVotes($user_id, $project_id, $stat)
     {
         $db = $this->dbConnect();
 
@@ -48,17 +48,24 @@ class ProjectManager extends Manager
                 INNER JOIN user u 
                 ON pv.user_id = :user_id";
 
-        $res = $db->query($sql);
-        $data = $res->fetch();
+        $req = $db->query($sql);
+        $data = $req->fetch();
+        return $data;
 
         if ($data) {
             // run an UPDATE
-
-
+            $req = $db->prepare("UPDATE projectVotes SET stat = :stat WHERE user_id = :user_id and project_id = :project_id");
+            $req->bindParam("stat", $stat, PDO::PARAM_INT);
+            $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
+            $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
+            $req->execute();
         } else {
             // do an INSERT
+            $req = $db->prepare("INSERT INTO projectVotes (user_id, project_id, stat) VALUES (:user_id, :project_id, :stat)");
+            $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
+            $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
+            $req->bindParam("stat", $stat, PDO::PARAM_INT);
+            $req->execute();
         }
-
-        return $data;
     }
 }
