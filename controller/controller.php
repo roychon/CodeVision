@@ -30,9 +30,14 @@ function showSignInForm()
     require "./view/signInForm.php";
 }
 
+function insertNewProject($user_id, $gif, $title, $description, $tags, $languages)
+{
+    $userManager = new UserManager();
+    $userManager->insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
+}
 function logOut()
 {
-    session_start();
+    // session_start();
     session_destroy();
     require "./view/signInForm.php";
 }
@@ -86,7 +91,8 @@ function submitEditedUser(
 }
 
 
-function deleteProject($project_id) {
+function deleteProject($project_id)
+{
     $userManager = new UserManager();
     $userManager->deleteProject($project_id);
     header("Location: index.php");
