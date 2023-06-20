@@ -14,7 +14,20 @@ const languageInput = document.querySelector(".languages-container input");
 const form = document.querySelector("form");
 
 var tags = []; // store all tags
+
 var languages = []; // store all languages
+
+if (languageInput.value) {
+    languages = languageInput.value.split(",");
+    addLanguages();
+    languageInput.value = "";
+}
+
+if (tagInput.value) {
+    tags = tagInput.value.split(",");
+    addTags();
+    tagInput.value = "";
+}
 
 /*
 ************
@@ -236,6 +249,7 @@ tagContainer.addEventListener("click", (e) => {
         const index = tags.indexOf(value);
         tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
         addTags();
+        validateTags();
     }
 });
 
@@ -300,6 +314,7 @@ languageContainer.addEventListener("click", (e) => {
             ...languages.slice(index + 1),
         ];
         addLanguages();
+        validateLanguages();
     }
 });
 
@@ -316,7 +331,7 @@ form.addEventListener("submit", (e) => {
         // Set the value of the languagesInput input field
         languagesInput.value = languages.join(",");
         // Set the value of the tags input field
-        tagsInput.value = tags.join(",");
+        tagInput.value = tags.join(",");
     } else {
         alert("Not valid");
         e.preventDefault();
