@@ -1,5 +1,5 @@
 <header class="logged-in">
-    <!-- TODO:place logo here -->
+    <!-- TODO:place logo here. -->
     <div class="left-side">
         <!-- TODO: add logo  -->
         <img class="company-logo" src="" alt="">
