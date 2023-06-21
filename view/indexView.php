@@ -21,9 +21,13 @@ ob_start();
 <?php
 $content = ob_get_clean();
 
+
 if (isset($_SESSION['id'])) {
   require "loggedInTemplate.php";
 } else {
   require "nonLoggedInTemplate.php";
 }
+
+
+
 ?>

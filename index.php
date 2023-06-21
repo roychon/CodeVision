@@ -2,10 +2,6 @@
 session_start();
 
 require "./controller/controller.php";
-<<<<<<< HEAD
-// session_start();
-=======
->>>>>>> main
 require "./controller/projectcontroller.php";
 
 try {
