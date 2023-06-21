@@ -88,7 +88,7 @@ function logIn($username, $password)
     }
 }
 
-function editUser($username, $email, $password)
+function editUser($id, $username, $email)
 {
     require "./view/editUserForm.php";
 }

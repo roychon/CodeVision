@@ -1,0 +1,5 @@
+# We can put here file that will not be stored and pushed
+
+model/Manager.php
+
+.DS_Store
