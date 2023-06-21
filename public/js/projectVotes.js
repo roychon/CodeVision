@@ -1,8 +1,8 @@
 // AJAX: upvote, downvote
 function projectVotes(user_id, project_id, stat) {
-  console.log("user_id", user_id);
-  console.log("project_id", project_id);
-  console.log("stat", stat);
+  // console.log("user_id", user_id);
+  // console.log("project_id", project_id);
+  // console.log("stat", stat);
   window.location.href = `index.php?action=getProjectVotes&user_id=${user_id}&project_id=${project_id}&stat=${stat}`;
   // const xhr = new XMLHttpRequest();
   // xhr.open(

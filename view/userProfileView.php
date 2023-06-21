@@ -9,10 +9,10 @@ ob_start();
 <main class="user-profile-view">
     <section class="user-profile-view-info">
         <h1> <?= $profiles->username; ?></h1>
-        <?php if (isset($_SESSION['id'])) { ?>
+        <!-- <?php if (isset($_SESSION['id'])) { ?>
             <a href="index.php?action=editUser">Edit Profile</a>
         <?php
-        } ?>
+                } ?> -->
 
     </section>
     <section class="user-profile-view">
@@ -30,6 +30,7 @@ ob_start();
                 <!-- feel free to change the span to something else to make it easier
             to style :) -->
                 <span class="user-language-tag"> <?php
+                                                    if (count($projects))
                                                     foreach ($profiles->languages as $language) {
                                                         echo "$language ";
                                                     } ?></span>
@@ -50,6 +51,10 @@ ob_start();
             }
             ?>
         </div>
+
+        <?php if (isset($_SESSION) and $_SESSION['username'] === $profiles->username) { ?>
+            <button><a href="index.php?action=add_project">Add a Project</a></button>
+        <?php } ?>
 
     </section>
 </main>

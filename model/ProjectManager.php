@@ -90,7 +90,6 @@ class ProjectManager extends Manager
         ));
         $data = $req->fetch();
         if ($data->stat != 0) {
-            $newStat = 0;
             $req = $db->prepare("UPDATE project_votes SET stat = 0 WHERE user_id = :user_id and project_id = :project_id");
             $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
             $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
