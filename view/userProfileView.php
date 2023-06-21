@@ -38,13 +38,14 @@ ob_start();
             <div class="user-profile-languages">
                 <!-- feel free to change the span to something else to make it easier
             to style :) -->
-                <p>languages</p>
-                <div class="language-spans">
-                    <span class="user-language-tag"> <?php
-                                                        foreach ($profiles->languages as $language) {
-                                                            echo "$language ";
-                                                        } ?></span>
-                </div>
+              <p>languages</p>
+              <div class="language-spans">
+                <span class="user-language-tag"> <?php
+                                                    if (count($projects))
+                                                    foreach ($profiles->languages as $language) {
+                                                        echo "$language ";
+                                                    } ?></span>
+
             </div>
             <div class="user-profile-socials">
                 <a href="<?= htmlspecialchars($profiles->gitHub); ?>"><i class="fa-brands fa-linkedin"></i></a>

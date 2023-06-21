@@ -88,7 +88,7 @@ try {
             break;
 
         case "insertNewProject":
-            if (!$SESSION['id']) {
+            if (!$_SESSION['id']) {
                 throw new Exception("Missing user id");
             }
             echo "<pre>";
