@@ -2,7 +2,10 @@
 session_start();
 
 require "./controller/controller.php";
+<<<<<<< HEAD
 // session_start();
+=======
+>>>>>>> main
 require "./controller/projectcontroller.php";
 
 try {
@@ -56,6 +59,15 @@ try {
             addUser();
             break;
 
+            //CREATING USER PROFILE VIEW PAGE
+        case "userProfileView":
+            if (isset($_GET['id'])) {
+                showUserProfile($_GET['id']);
+            } else {
+                throw new Exception("error");
+            }
+            break;
+
             // CREATING A NEW USER 
         case "createUser":
             $username = $_POST['username'] ?? "";
@@ -80,6 +92,9 @@ try {
             break;
 
         case "insertNewProject":
+            if (!$SESSION['id']) {
+                throw new Exception("Missing user id");
+            }
             echo "<pre>";
             print_r($_POST);
             $gif = $_POST['gif'] ?? "";
@@ -87,7 +102,7 @@ try {
             $description = $_POST['description'] ?? "";
             $tags = $_POST['tags'] ?? "";
             $languages = $_POST['languages'] ?? "";
-            $user_id = $_SESSION['user_id'] ?? "";
+            $user_id = $_SESSION['id'] ?? "";
 
             if ($user_id and $gif and $title and $description and $tags and $languages) {
                 insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
@@ -110,18 +125,19 @@ try {
 
             // FOR LOGGED IN USERS -- so that it doesn't take them to new page
         case "showUserPage":
-            showUserPage();
+            displayCards();
+            // showUserPage();
             break;
 
             // FOR EDITING A USER
         case "editUser":
-            $username = $_SESSION['username'] ?? "";
-            $email = $_SESSION['email'] ?? "";
-            $password = $_SESSION['password'] ?? "";
-            $id = $_GET['id'] ?? "";
-            if ($id and $username and $email and $password) {
-
-                editUser($username, $email, $password);
+            $id = $_SESSION['id'];
+            $username = $_SESSION['username'];
+            $email = $_SESSION['email'];
+            if ($id and $username and $email) {
+                editUser($id, $username, $email);
+            } else {
+                throw new Exception("The data is missing");
             }
             break;
 
