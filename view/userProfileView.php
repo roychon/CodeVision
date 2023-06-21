@@ -10,13 +10,10 @@ ob_start();
     <section class="user-profile-title">
         <div class="empty"></div>
         <h1> <?= $profiles->username; ?></h1>
-        <div class="edit-profile-link">
-            <?php if (isset($_SESSION['id'])) { ?>
-                <a href="index.php?action=editUser">
-                    <span>Edit Profile</span></a>
-        </div>
-    <?php
-            } ?>
+        <!-- <?php if (isset($_SESSION['id'])) { ?>
+            <a href="index.php?action=editUser">Edit Profile</a>
+        <?php
+                } ?> -->
 
     </section>
     <section class="user-profile-info">
@@ -55,6 +52,14 @@ ob_start();
             </div>
 
         </aside>
+
+        <?php if (isset($_SESSION) and $_SESSION['username'] === $profiles->username) { ?>
+            <button><a href="index.php?action=add_project">Add a Project</a></button>
+        <?php } ?>
+
+        <?php if (isset($_SESSION) and $_SESSION['username'] === $profiles->username) { ?>
+            <button><a href="index.php?action=add_project">Add a Project</a></button>
+        <?php } ?>
 
     </section>
 </main>
