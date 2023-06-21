@@ -1,11 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Molengo&display=swap');
-
-#usernameNotValid, #usernameMissing, 
-#emailNotValid, #emailMissing,
-#passwordNotValid, #passwordMissing, 
-#passwordConfirmError, #firstNameNotValid, 
-#firstNameMissing, #lastNameNotValid, 
-#lastNameMissing{
+#usernameNotValid,
+#usernameMissing,
+#emailNotValid,
+#emailMissing,
+#passwordNotValid,
+#passwordMissing,
+#passwordConfirmError,
+#firstNameNotValid,
+#firstNameMissing,
+#lastNameNotValid,
+#lastNameMissing {
 	display: none;
 	color: red;
 	font-size: 10px;
@@ -17,19 +20,17 @@
 	box-shadow: 0 0 5px 1px rgba(44, 248, 3);
 }
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
 }
 
 :root {
 	--search-bar-radius: 1.5rem;
 	--search-bar-shadow: rgba(223, 217, 217, 1);
 	--light-grey: rgba(0, 0, 0, 0.5);
-	--light-purple-btn: #948DCE;
-	--dark-purple-btn: #580EF6;
 }
 
 /* -------- HEADER LOGGED IN --------*/
@@ -39,9 +40,9 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 1rem 1.5rem;
-	font-family: 'Molengo', sans-serif;
+	font-family: "Molengo", sans-serif;
 	font-weight: 600;
-	background: #25272D;
+	background: #25272d;
 }
 
 /* .logged-in a:hover {
@@ -91,7 +92,7 @@ input[type="search"] {
 	text-decoration: none;
 	padding-right: 1rem;
 	color: white;
-	padding: .5em 1.6em;
+	padding: 0.5em 1.6em;
 	border-radius: 1em;
 }
 
@@ -110,33 +111,33 @@ input[type="search"] {
 /*-------- PROJECT CARD --------*/
 
 .main-container {
-    width: 100%;
-    height: 100%;
-    display: flex; 
-    justify-content: center;
-    margin-top: 2rem;
-    gap: 1.5rem;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 2rem;
+	gap: 1.5rem;
 }
 .project-gif {
-    width: 100%;
+	width: 100%;
 }
 
 .card {
-    width: 20%;
-    height: 20%;
-    border: 1px solid var(--search-bar-shadow);
-    border-radius: var(--search-bar-radius);
-    padding: 20px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 0.8rem;
+	width: 20%;
+	height: 20%;
+	border: 1px solid var(--search-bar-shadow);
+	border-radius: var(--search-bar-radius);
+	padding: 20px;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 0.8rem;
 }
 
 .user-profile-pic {
-    width: 10%;
-    border-radius: 50%;
-    border: 1px solid var(--light-grey);
+	width: 10%;
+	border-radius: 50%;
+	border: 1px solid var(--light-grey);
 }
 
 .bottom-card-container {
-    margin-top: 10px;
+	margin-top: 10px;
 }

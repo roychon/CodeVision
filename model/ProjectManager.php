@@ -62,6 +62,7 @@ class ProjectManager extends Manager
             if (isset($projects[$project_id])) {
                 $projects[$project_id]->languages[] = $data->language_name;
             } else {
+                // first time checking
                 $projects[$project_id] = $data;
                 $projects[$project_id]->languages = [];
                 $projects[$project_id]->languages[] = $data->language_name;
