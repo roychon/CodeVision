@@ -29,14 +29,4 @@ function closeModal() {
     const newUrl = url.replace(regex, '');
     history.replaceState(null, null, newUrl);
     dialog.close();
-
-
-
-
-
-    // 
-
-
-
-
 }
