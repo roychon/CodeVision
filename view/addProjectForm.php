@@ -7,9 +7,9 @@ ob_start();
 <script defer src="./public/js/validateAddProjectForm.js"></script>
 <script defer src="https://kit.fontawesome.com/033b80222d.js" crossorigin="anonymous"></script>
 
-<h1>Add Project</h1>
 
 <form action="index.php?action=insertNewProject" method="POST">
+    <h2>Add Project to DevShop</h2>
     <p>
         <label for="gif">Gif: </label>
         <input type="text" name="gif" id="gif">
@@ -20,12 +20,12 @@ ob_start();
         <input type="text" name="title" id="title">
     </p>
 
-    <p>
+    <div>
         <span>Tags: </span>
-    <div class="tag-container">
-        <input type="text" name="tags" id="tagsInput">
+        <div class="tag-container">
+            <input type="text" name="tags" id="tagsInput">
+        </div>
     </div>
-    </p>
 
     <p>
         <label for="description">Description: </label>
@@ -36,9 +36,9 @@ ob_start();
         <span>Languages: </span>
         <div class="languages-container">
             <input type="text" name="languages" id="languagesInput">
-            <div id="languageResults"></div>
-        </div>
-        </p>
+        <div id="languageResults"></div>
+    </div>
+        
 
         <input type="submit" value="Add Project" id="submit">
 </form>
