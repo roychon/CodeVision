@@ -8,7 +8,9 @@ ob_start();
 <div class="project-container">
   <?php
   foreach ($projects as $project) {
-    include "./view/component/projectCard.php";
+    if ($project->is_active) {
+      include "./view/component/projectCard.php";
+    }
   }
   ?>
 </div>

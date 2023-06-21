@@ -2,7 +2,6 @@
 session_start();
 
 require "./controller/controller.php";
-// session_start();
 require "./controller/projectcontroller.php";
 
 try {
@@ -54,6 +53,15 @@ try {
 
         case "add_user":
             addUser();
+            break;
+
+            //CREATING USER PROFILE VIEW PAGE
+        case "userProfileView":
+            if (isset($_GET['id'])) {
+                showUserProfile($_GET['id']);
+            } else {
+                throw new Exception("error");
+            }
             break;
 
             // CREATING A NEW USER 
@@ -110,7 +118,8 @@ try {
 
             // FOR LOGGED IN USERS -- so that it doesn't take them to new page
         case "showUserPage":
-            showUserPage();
+            displayCards();
+            // showUserPage();
             break;
 
             // FOR EDITING A USER
@@ -173,8 +182,9 @@ try {
                 isset($_GET['stat'])
             ) {
                 getProjectVotes($_GET['user_id'], ($_GET['project_id']), ($_GET['stat']));
+            } else {
+                echo "Bad";
             }
-            // getProjectVotes();
             break;
 
         default:

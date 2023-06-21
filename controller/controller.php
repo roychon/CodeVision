@@ -11,6 +11,30 @@ function addProject()
     require "./view/addProjectForm.php";
 }
 
+//TODO: CHECK PASSING PARAMATER??
+function showUserProfile($user_id)
+{
+    if (isset($_SESSION['id'])) {
+        // print_r($_SESSION['id']);
+        $userManager = new UserManager();
+        $projectManager = new ProjectManager();
+
+        $projects = $projectManager->getUserProjects($user_id);
+        // TODO: pass in the id/user not post
+        $profiles = ($userManager->getUserInfo($user_id))[$user_id];
+        // echo "<pre>";
+        // print_r($profiles[$user_id]);
+        // echo "</pre>";
+        // echo "<pre>";
+        // print_r($profiles);
+        // echo "</pre>";
+
+        require "./view/userProfileView.php";
+    } else {
+        require "./view/signInForm.php";
+    }
+}
+
 // CREATING A NEW USER
 function createUser($username, $email, $password)
 {
@@ -39,7 +63,8 @@ function logOut()
 {
     // session_start();
     session_destroy();
-    require "./view/signInForm.php";
+    // require "./view/signInForm.php";
+    header("Location: index.php");
 }
 
 function logIn($username, $password)
@@ -47,14 +72,16 @@ function logIn($username, $password)
     $userManager = new UserManager();
     $result = $userManager->logIn($username, $password);
 
+
+
     if ($result->username === $username && password_verify($password, $result->password)) {
 
         $_SESSION['id'] = $result->id;
         $_SESSION['username'] = $result->username;
         $_SESSION['email'] = $result->email;
-        // require "./view/userPage.php";
         $message = urlencode("You have succesfully logged in!");
         header("Location: index.php?action=showUserPage&error=false&message=$message");
+        require "./view/indexView.php";
     } else {
         $message = urlencode("You have failed to login. Please try again");
         header("Location: index.php?action=signInForm&error=true&message=$message");
