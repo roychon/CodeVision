@@ -2,7 +2,7 @@
 session_start();
 
 require "./controller/controller.php";
-session_start();
+// session_start();
 require "./controller/projectcontroller.php";
 
 try {
@@ -112,7 +112,7 @@ try {
         case "showUserPage":
             showUserPage();
             break;
-  
+
             // FOR EDITING A USER
         case "editUser":
             $username = $_SESSION['username'] ?? "";
@@ -124,7 +124,7 @@ try {
                 editUser($username, $email, $password);
             }
             break;
-        
+
             // EDITING THE USER
         case "submitEditedUser":
             $id = $_POST['id'] ?? "";
