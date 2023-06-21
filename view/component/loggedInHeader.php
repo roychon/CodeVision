@@ -16,16 +16,18 @@
             <i class="fa-solid fa-magnifying-glass"></i>
         </div>
         <!-- TODO:users can click on profile pic to take them to their profile -->
-        <div>
-            <img class="user-profile-pic" src="" alt="">
-            <!-- TODO:  add the index.php?action=""id="php user id here" -->
-            <?php if (isset($_SESSION)) { ?>
-                <a href="index.php?action=editUser">Edit Profile</a>
-                <a class="log-out-btn" href="index.php?action=logOut">Log Out</a>
-            <?php
-            } ?>
-            <i class="fa-solid fa-user"></i>
-        </div>
+        <img class="user-profile-pic" src="" alt="">
+        <!-- TODO:  add the index.php?action=""id="php user id here" -->
+
+        <!-- MAKING CONNECTION TO MY PROFILE  -->
+        <?php if (isset($_SESSION['id']) and isset($_GET['id']) and $_SESSION['id'] == $_GET['id']) { ?>
+            <a href="index.php?action=editUser">Edit Profile</a>
+        <?php } else { ?>
+            <a href="index.php?action=userProfileView&id=<?= $_SESSION['id'] ?>">My profile</a>
+        <?php } ?>
+        <a class="log-out-btn" href="index.php?action=logOut">Log Out</a>
+
+        <i class="fa-solid fa-user"></i>
     </div>
     <!-- nav bar? -->
 </header>
