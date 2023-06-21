@@ -30,6 +30,7 @@ ob_start();
                 <!-- feel free to change the span to something else to make it easier
             to style :) -->
                 <span class="user-language-tag"> <?php
+                                                    if (count($projects))
                                                     foreach ($profiles->languages as $language) {
                                                         echo "$language ";
                                                     } ?></span>

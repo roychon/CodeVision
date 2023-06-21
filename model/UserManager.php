@@ -288,7 +288,7 @@ class UserManager extends Manager
 
 
     // TODO: check how to use $_POST['id'] so that it will grab the information for the user
-    public function getUserInfo($user_id)
+    public function getUserInfoProjects($user_id)
     {
         //i need to fetch all of the projects, languages, the profile pic, adctive status
         //where it all matches on the _id_id
@@ -323,5 +323,15 @@ class UserManager extends Manager
             }
         }
         return $profiles;
+    }
+
+    // get user info if they have no projects
+    public function getUserInfo($user_id) {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT username, profile_img, bio, gitHub, linkedIn FROM user WHERE id = ? ");
+        $req->execute([$user_id]);
+
+        return $req->fetch();
     }
 }
