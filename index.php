@@ -2,6 +2,10 @@
 session_start();
 
 require "./controller/controller.php";
+<<<<<<< HEAD
+// session_start();
+=======
+>>>>>>> main
 require "./controller/projectcontroller.php";
 
 try {
@@ -19,7 +23,7 @@ try {
             if ($project_id) {
                 deleteProject($project_id);
             } else {
-                throw new Exception("Missing project id");
+                throw new Exception("Missing project id in GET parameter");
             }
 
             break;
