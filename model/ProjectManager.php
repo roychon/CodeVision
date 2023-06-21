@@ -17,7 +17,6 @@ class ProjectManager extends Manager
 
         $res = $db->query($sql);
 
-
         $projects = [];
         while ($data = $res->fetch()) {
             $project_id = $data->id;
@@ -27,6 +26,12 @@ class ProjectManager extends Manager
                 $projects[$project_id] = $data;
                 $projects[$project_id]->languages = [];
                 $projects[$project_id]->languages[] = $data->language_name;
+
+                $sumsQuery = $db->prepare("SELECT SUM(stat) AS sum_stat FROM project_votes WHERE project_id = :project_id");
+                $sumsQuery->bindParam("project_id", $project_id, PDO::PARAM_INT);
+                $sumsQuery->execute();
+                $sum = $sumsQuery->fetch()->sum_stat;
+                $projects[$project_id]->sum = $sum;
 
                 unset($projects[$project_id]->language_name);
             }
@@ -71,7 +76,7 @@ class ProjectManager extends Manager
     {
         $db = $this->dbConnect();
 
-        $sql = "SELECT u.id, p.id, pv.user_id, pv.project_id, pv.stat, pv.votes
+        $sql = "SELECT u.id, p.id, pv.user_id, pv.project_id, pv.stat
                 FROM project p 
                 INNER JOIN project_votes pv
                 ON pv.project_id = :project_id
@@ -84,24 +89,28 @@ class ProjectManager extends Manager
             "user_id" => $user_id
         ));
         $data = $req->fetch();
-        // return $data;
-
-        if ($data) {
-            // run an UPDATE
-            $req = $db->prepare("UPDATE project_votes SET stat = :stat WHERE user_id = :user_id and project_id = :project_id");
-            $req->bindParam("stat", $stat, PDO::PARAM_INT);
+        if ($data->stat != 0) {
+            $newStat = 0;
+            $req = $db->prepare("UPDATE project_votes SET stat = 0 WHERE user_id = :user_id and project_id = :project_id");
             $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
             $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
             $req->execute();
         } else {
-            // do an INSERT
-
-            $req = $db->prepare("INSERT INTO project_votes (user_id, project_id, stat) VALUES (:user_id, :project_id, :stat)");
-            $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
-            $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
-            $req->bindParam("stat", $stat, PDO::PARAM_INT);
-            $req->execute();
+            if ($data) {
+                // run an UPDATE
+                $req = $db->prepare("UPDATE project_votes SET stat = :stat WHERE user_id = :user_id and project_id = :project_id");
+                $req->bindParam("stat", $stat, PDO::PARAM_INT);
+                $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
+                $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
+                $req->execute();
+            } else {
+                // do an INSERT
+                $req = $db->prepare("INSERT INTO project_votes (user_id, project_id, stat) VALUES (:user_id, :project_id, :stat)");
+                $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
+                $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
+                $req->bindParam("stat", $stat, PDO::PARAM_INT);
+                $req->execute();
+            }
         }
-        // return $req;
     }
 }
