@@ -19,7 +19,7 @@ try {
             if ($project_id) {
                 deleteProject($project_id);
             } else {
-                throw new Exception("Missing project id");
+                throw new Exception("Missing project id in GET parameter");
             }
 
             break;
@@ -88,6 +88,9 @@ try {
             break;
 
         case "insertNewProject":
+            if (!$SESSION['id']) {
+                throw new Exception("Missing user id");
+            }
             echo "<pre>";
             print_r($_POST);
             $gif = $_POST['gif'] ?? "";
@@ -95,7 +98,7 @@ try {
             $description = $_POST['description'] ?? "";
             $tags = $_POST['tags'] ?? "";
             $languages = $_POST['languages'] ?? "";
-            $user_id = $_SESSION['user_id'] ?? "";
+            $user_id = $_SESSION['id'] ?? "";
 
             if ($user_id and $gif and $title and $description and $tags and $languages) {
                 insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
@@ -124,13 +127,13 @@ try {
 
             // FOR EDITING A USER
         case "editUser":
-            $username = $_SESSION['username'] ?? "";
-            $email = $_SESSION['email'] ?? "";
-            $password = $_SESSION['password'] ?? "";
-            $id = $_GET['id'] ?? "";
-            if ($id and $username and $email and $password) {
-
-                editUser($username, $email, $password);
+            $id = $_SESSION['id'];
+            $username = $_SESSION['username'];
+            $email = $_SESSION['email'];
+            if ($id and $username and $email) {
+                editUser($id, $username, $email);
+            } else {
+                throw new Exception("The data is missing");
             }
             break;
 

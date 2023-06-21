@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <title><?= $title; ?></title>
     <link href="./public/css/main.css" rel="stylesheet" />
-    <script src="./public/js/nyan.js"></script>
 
 </head>
 
@@ -23,7 +22,6 @@
 
     <!-- TODO: INCLUDE HEADER FOR NON LOGGED IN USERS -->
     <?php
-
 
     if (isset($_GET['error'])) {
         include "./view/component/statusPopUp.php";

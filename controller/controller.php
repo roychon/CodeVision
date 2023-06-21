@@ -72,7 +72,7 @@ function logIn($username, $password)
     $userManager = new UserManager();
     $result = $userManager->logIn($username, $password);
 
-
+    
 
     if ($result->username === $username && password_verify($password, $result->password)) {
 
@@ -88,7 +88,7 @@ function logIn($username, $password)
     }
 }
 
-function editUser($username, $email, $password)
+function editUser($id, $username, $email)
 {
     require "./view/editUserForm.php";
 }

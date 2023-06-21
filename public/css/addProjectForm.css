@@ -2,30 +2,70 @@
     box-sizing: border-box;
 }
 
+body {
+    color: white;
+    background-color: black;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+
+form {
+    background-color: #141518;
+    padding: .5em 2em;
+    max-width: 600px;
+    /* max-height: 650px; */
+    margin: auto;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* border-radius: 1.5rem; */
+}
+
+h2 {
+    text-align: center;
+}
+
+p, div:not(.languages-container, .tag-container, .tag) {
+    display: flex;
+    flex-direction: column;
+    gap: .7em;
+}
+
+
+.tag, .tag-container, .languages-container {
+    gap: 1em;
+    flex-wrap: wrap;
+    border-radius: .5em;
+}
+
 input {
+    color: white;
     outline: none;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: .5em;
+    background-color: #141518;
 }
 
 .red {
     border: 1px solid red;
 }
 
-.green {
-    border: 1px solid green;
+.purple {
+    border: 3px solid #8d5bf8;
 }
-
 
 .border {
     border: 1px solid black;
 }
 
 .selectSearch {
-    background: lightgray;
+    background: rgb(43, 42, 42);
 }
 
-
 .tag-container, .languages-container {
-    border: 1px solid black;
+    border: 1px solid lightgray;
     padding: 18px;
     border-radius: 5px;
     display: flex;
@@ -34,7 +74,7 @@ input {
 .tag-container .tag, .languages-container .tag {
     padding: 5px;
     border: 1px solid #ccc;
-    margin: 5px;
+    /* margin: 5px; */
     display: flex;
     align-items: center;
     z-index: 2; /* so users can click */
@@ -42,7 +82,7 @@ input {
 
 .tag-container input, .languages-container input {
     flex: 1;
-    font-size: 16px;
+    font-size: 1rem;
     padding: 5px;
     outline: none;
     border: 0;
@@ -63,8 +103,23 @@ input {
 
 #languageResults p {
     margin: 0;
+    cursor: pointer;
+}
+
+#languageResults p:hover {
+    background-color: lightgray;
 }
 
 #submit {
-    margin-top: 200px;
+    border: none;
+    width: 100%;
+    margin: auto;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #8d5bf8;
+}
+
+#submit:hover {
+    background-color: rgba(255, 255, 255, .1);
+    color: white;
 }
