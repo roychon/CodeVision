@@ -21,8 +21,8 @@ ob_start();
       <!-- <input type="text" name="username" id="username"> -->
     </p>
     <p>
-      <label for="password">Password: </label>
-      <input type="text" name="password" id="password">
+      <label for="loginPassword">Password: </label>
+      <input type="text" name="password" id="loginPassword">
     </p>
     <p>
       <input type="submit" value="submit" id="submit">
