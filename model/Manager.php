@@ -25,7 +25,7 @@ class Manager
             $HOST = "localhost";
             $DATABASE = "batch20_project";
             $USERNAME = "root";
-            $PASSWORD = "root";
+            $PASSWORD = "";
             $OPTIONS = array();
         }
 
