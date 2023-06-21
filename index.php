@@ -55,6 +55,15 @@ try {
             addUser();
             break;
 
+            //CREATING USER PROFILE VIEW PAGE
+        case "userProfileView":
+            if (isset($_GET['id'])) {
+                showUserProfile($_GET['id']);
+            } else {
+                throw new Exception("error");
+            }
+            break;
+
             // CREATING A NEW USER 
         case "createUser":
             $username = $_POST['username'] ?? "";
@@ -112,9 +121,10 @@ try {
 
             // FOR LOGGED IN USERS -- so that it doesn't take them to new page
         case "showUserPage":
-            showUserPage();
+            displayCards();
+            // showUserPage();
             break;
-  
+
             // FOR EDITING A USER
         case "editUser":
             $username = $_SESSION['username'] ?? "";
@@ -126,7 +136,7 @@ try {
                 editUser($username, $email, $password);
             }
             break;
-        
+
             // EDITING THE USER
         case "submitEditedUser":
             $id = $_POST['id'] ?? "";
