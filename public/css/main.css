@@ -140,3 +140,80 @@ input[type="search"] {
 .bottom-card-container {
     margin-top: 10px;
 }
+
+
+
+.index-container {
+	background-color: black;
+	height: 100vh;
+}
+
+
+/* CAROUSEL - TOP CONTAINER CSS */
+.carousel-container {
+	/* display: flex; */
+	/* flex-direction: column; */
+	background-color: white;
+	height: 50%;
+	padding: 3.7rem 3.9rem;
+}
+
+.carousel-container > p {
+	padding-bottom: .9rem;
+}
+.cusername {
+font-size: 1.1rem;
+}
+
+.ctitle {
+	font-size: 3.1rem;
+}
+
+.cdescription {
+	font-size: 0.9rem;
+}
+
+.carousel-more {
+	background-color: #74EBD5;
+    outline: 0;
+    border: none;
+    width: 9%;
+    padding: .7rem .1rem;
+    cursor: pointer;
+    border-radius: 0.7rem;
+}
+
+
+.project-container {
+	background-color: white;
+	height: 50%;
+}
+
+/* 
+
+<!-- OVERALL CONTAINER -->
+<div class="index-container">
+  <!-- carousel container -->
+  <div class="carousel-container">
+    <div class="carousel-img"></div>
+    <p class="cusername">username</p>
+    <p class="ctitle">title</p>
+    <p class="cdescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum dignissimos officiis nam id. Modi id amet ullam rem labore quam perspiciatis nulla explicabo aut pariatur fugiat eum, tenetur illum quis!</p>
+    <button class="carousel-more">view more</button>
+  </div>
+
+  <!-- <h1>Landing Page</h1> -->
+  <div class="project-container">
+    <?php
+    if (isset($_SESSION['id'])) {
+      include "./view/component/loggedInHeader.php";
+    }
+    echo "<h1>Landing Page</h1>";
+    foreach ($projects as $project) {
+      if ($project->is_active) {
+        include "./view/component/projectCard.php";
+      }
+    }
+    ?>
+  </div>
+ */

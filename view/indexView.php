@@ -4,19 +4,35 @@ $title = "Batch 20 Final Project";
 ob_start();
 ?>
 
-<!-- <h1>Landing Page</h1> -->
-<div class="project-container">
-  <?php
-  if (isset($_SESSION['id'])) {
-    include "./view/component/loggedInHeader.php";
-  }
-  echo "<h1>Landing Page</h1>";
-  foreach ($projects as $project) {
-    if ($project->is_active) {
-      include "./view/component/projectCard.php";
+<!-- OVERALL CONTAINER -->
+<div class="index-container">
+  <!-- carousel container -->
+  <div class="carousel-container">
+    <div class="carousel-img"></div>
+    <p class="cusername">username</p>
+    <p class="ctitle">title of project</p>
+    <p class="cdescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum dignissimos officiis nam id. Modi id amet ullam rem labore quam perspiciatis nulla explicabo aut pariatur fugiat eum, tenetur illum quis!</p>
+    <button class="carousel-more">view more</button>
+  </div>
+
+  <!-- <h1>Landing Page</h1> -->
+  <div class="project-container">
+    <?php
+    if (isset($_SESSION['id'])) {
+      include "./view/component/loggedInHeader.php";
     }
-  }
-  ?>
+    echo "<h1>Landing Page</h1>";
+    foreach ($projects as $project) {
+      if ($project->is_active) {
+        include "./view/component/projectCard.php";
+      }
+    }
+    ?>
+  </div>
+
+
+
+
 </div>
 
 <?php
