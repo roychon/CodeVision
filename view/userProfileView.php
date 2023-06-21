@@ -51,6 +51,10 @@ ob_start();
             ?>
         </div>
 
+        <?php if (isset($_SESSION) and $_SESSION['username'] === $profiles->username) { ?>
+            <button><a href="index.php?action=add_project">Add a Project</a></button>
+        <?php } ?>
+
     </section>
 </main>
 <?php

@@ -79,7 +79,7 @@ if (lastName) {
 const userNameEdit = document.querySelector("#usernameEdit");
 if (userNameEdit) {
 	// VALIDATING THE USERNAME INPUT (EDIT)
-	function checkUsername(userNameEdit) {
+	function checkUsername(useEdit) {
 		if (userNameEdit.value === "") {
 			userNameEdit.className = "red";
 			usernameMissing.style.display = "inline";

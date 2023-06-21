@@ -72,7 +72,7 @@ function logIn($username, $password)
     $userManager = new UserManager();
     $result = $userManager->logIn($username, $password);
 
-
+    
 
     if ($result->username === $username && password_verify($password, $result->password)) {
 
