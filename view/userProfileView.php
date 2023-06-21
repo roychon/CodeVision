@@ -9,10 +9,10 @@ ob_start();
 <main class="user-profile-view">
     <section class="user-profile-view-info">
         <h1> <?= $profiles->username; ?></h1>
-        <?php if (isset($_SESSION['id'])) { ?>
+        <!-- <?php if (isset($_SESSION['id'])) { ?>
             <a href="index.php?action=editUser">Edit Profile</a>
         <?php
-        } ?>
+                } ?> -->
 
     </section>
     <section class="user-profile-view">

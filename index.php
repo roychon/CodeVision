@@ -127,13 +127,13 @@ try {
 
             // FOR EDITING A USER
         case "editUser":
-            $username = $_SESSION['username'] ?? "";
-            $email = $_SESSION['email'] ?? "";
-            $password = $_SESSION['password'] ?? "";
-            $id = $_GET['id'] ?? "";
-            if ($id and $username and $email and $password) {
-
-                editUser($username, $email, $password);
+            $id = $_SESSION['id'];
+            $username = $_SESSION['username'];
+            $email = $_SESSION['email'];
+            if ($id and $username and $email) {
+                editUser($id, $username, $email);
+            } else {
+                throw new Exception("The data is missing");
             }
             break;
 
