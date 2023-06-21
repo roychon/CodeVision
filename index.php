@@ -2,7 +2,6 @@
 session_start();
 
 require "./controller/controller.php";
-session_start();
 require "./controller/projectcontroller.php";
 
 try {
@@ -80,6 +79,9 @@ try {
             break;
 
         case "insertNewProject":
+            if (!$SESSION['id']) {
+                throw new Exception("Missing user id");
+            }
             echo "<pre>";
             print_r($_POST);
             $gif = $_POST['gif'] ?? "";
@@ -87,7 +89,7 @@ try {
             $description = $_POST['description'] ?? "";
             $tags = $_POST['tags'] ?? "";
             $languages = $_POST['languages'] ?? "";
-            $user_id = $_SESSION['user_id'] ?? "";
+            $user_id = $_SESSION['id'] ?? "";
 
             if ($user_id and $gif and $title and $description and $tags and $languages) {
                 insertNewProject($user_id, $gif, $title, $description, $tags, $languages);

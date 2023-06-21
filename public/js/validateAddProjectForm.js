@@ -45,7 +45,7 @@ Functions
 function validateURL(url) {
     try {
         new URL(url);
-        gif.className = "green";
+        gif.className = "purple";
         return true;
     } catch {
         gif.className = "red";
@@ -63,7 +63,7 @@ function validateTitle(txt) {
         title.className = "red";
         return false;
     } else {
-        title.className = "green";
+        title.className = "purple";
         return true;
     }
 }
@@ -78,7 +78,7 @@ function validateDesc(txt) {
         description.className = "red";
         return false;
     } else {
-        description.className = "green";
+        description.className = "purple";
         return true;
     }
 }
@@ -182,6 +182,13 @@ function getLanguages(txt) {
             if (language.toLowerCase().startsWith(txt.toLowerCase(), 0)) {
                 const p = document.createElement("p");
                 p.textContent = language;
+                // add click event listener
+                p.addEventListener('click', () => {
+                    languages.push(p.textContent);
+                    addLanguages();
+                    languageInput.value = "";
+                    getLanguages('');
+                })
                 languageResults.appendChild(p);
             }
         });
@@ -200,7 +207,7 @@ function validateTags() {
         tagContainer.style.border = "1px solid red";
         return false;
     } else {
-        tagContainer.style.border = "1px solid black";
+        tagContainer.style.border = "3px solid #8d5bf8";
         return true;
     }
 }
@@ -210,7 +217,7 @@ function validateLanguages() {
         languageContainer.style.border = "1px solid red";
         return false;
     } else {
-        languageContainer.style.border = "1px solid black";
+        languageContainer.style.border = "3px solid #8d5bf8";
         return true;
     }
 }
@@ -267,7 +274,7 @@ let i; // index of currently selected language
 languagesInput.addEventListener("keyup", function (e) {
     allLanguages = languageResults.querySelectorAll("p");
     if (e.key === "Enter") {
-        language
+        language && allLanguages.length
             ? languages.push(language.textContent)
             : languages.push(languageInput.value);
         addLanguages();
