@@ -23,7 +23,7 @@ try {
             if ($project_id) {
                 deleteProject($project_id);
             } else {
-                throw new Exception("Missing project id");
+                throw new Exception("Missing project id in GET parameter");
             }
 
             break;
