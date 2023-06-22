@@ -24,6 +24,11 @@ ob_start();
       <label for="loginPassword">Password: </label>
       <input type="text" name="password" id="loginPassword">
     </p>
+
+    <a class="sign-assist" href="index.php?action=">Need help signing in?</a>
+
+
+
     <p>
       <input type="submit" value="submit" id="submit">
     </p>
@@ -31,8 +36,8 @@ ob_start();
     <!-- <span>Username or Password Invalid</span>; -->
     <!-- <span></span> -->
     <!-- </p> -->
-    <button>
-      <a href="index.php?action=add_user"> Don't have an account? Sign up</a>
+    <button class="sign-btn">
+      <a href="index.php?action=add_user">Don't have an account? Sign up</a>
     </button>
   </form>
   <script src="./public/js/signInValidation.js"></script>

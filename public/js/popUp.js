@@ -1,10 +1,6 @@
 const dialog = document.querySelector("dialog");
-const btn = document.querySelector(".close-button");
-
 
 // showModal -- makes sure the modal is visible
-
-
 dialog.showModal();
 
 
