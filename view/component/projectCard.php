@@ -21,6 +21,9 @@
         <span class="language-tag"> <?php
                                     echo join(", ", $project->languages) ?></span>
     </div>
+    <?php
+    include "projectVotes.php";
+    ?>
 
 </div>
 </div>
