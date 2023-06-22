@@ -1,14 +1,11 @@
-#usernameNotValid,
-#usernameMissing,
-#emailNotValid,
-#emailMissing,
-#passwordNotValid,
-#passwordMissing,
-#passwordConfirmError,
-#firstNameNotValid,
-#firstNameMissing,
-#lastNameNotValid,
-#lastNameMissing {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Molengo&display=swap');
+
+#usernameNotValid, #usernameMissing, 
+#emailNotValid, #emailMissing,
+#passwordNotValid, #passwordMissing, 
+#passwordConfirmError, #firstNameNotValid, 
+#firstNameMissing, #lastNameNotValid, 
+#lastNameMissing{
 	display: none;
 	color: red;
 	font-size: 10px;
@@ -20,29 +17,44 @@
 	box-shadow: 0 0 5px 1px rgba(44, 248, 3);
 }
 
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-	font-family: sans-serif;
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* font-family: sans-serif; */
 }
 
 :root {
-	--search-bar-radius: 1.5rem;
+	--search-bar-radius: 1.2rem;
 	--search-bar-shadow: rgba(223, 217, 217, 1);
 	--light-grey: rgba(0, 0, 0, 0.5);
+	--light-purple-btn: #948DCE;
+	--dark-purple-btn: #580EF6;
 }
 
 /* -------- HEADER LOGGED IN --------*/
+
+body {
+	color: white;
+	font-family: sans-serif;
+	background-color: #000000;
+}
+
+header {
+	font-family: 'Inter', sans-serif;
+}
+
+a {
+	text-decoration: none;
+}
 
 .logged-in {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem 1.5rem;
-	font-family: "Molengo", sans-serif;
+	padding: .7rem 1.5rem;
 	font-weight: 600;
-	background: #25272d;
+	background: #25272D;
 }
 
 /* .logged-in a:hover {
@@ -92,8 +104,9 @@ input[type="search"] {
 	text-decoration: none;
 	padding-right: 1rem;
 	color: white;
-	padding: 0.5em 1.6em;
+	padding: .5em 1.6em;
 	border-radius: 1em;
+	font-size: .9rem;
 }
 
 .right-side a:first-of-type {
@@ -108,36 +121,218 @@ input[type="search"] {
 	color: var(--light-grey);
 }
 
+
 /*-------- PROJECT CARD --------*/
 
 .main-container {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	margin-top: 2rem;
-	gap: 1.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex; 
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 1.5rem;
 }
 .project-gif {
-	width: 100%;
+    width: 100%;
 }
 
 .card {
-	width: 20%;
-	height: 20%;
-	border: 1px solid var(--search-bar-shadow);
-	border-radius: var(--search-bar-radius);
-	padding: 20px;
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-	font-size: 0.8rem;
+    width: 23%;
+    height: 20%;
+    border: 1px solid var(--search-bar-shadow);
+    border-radius: var(--search-bar-radius);
+    font-family:'Inter', sans-serif;
+    font-size: 0.8rem;
+	overflow: hidden;
+}
+
+.card .project-gif {
+	height: 200px;
+	aspect-ratio: 1;
 }
 
 .user-profile-pic {
-	width: 10%;
-	border-radius: 50%;
-	border: 1px solid var(--light-grey);
+    width: 40px;
+	height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--light-grey);
 }
 
 .bottom-card-container {
-	margin-top: 10px;
+	display: flex;
+    margin-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	gap: 7px;
 }
+
+.project-description {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.project-title {
+	font-weight: 800;
+	font-size: .9rem;
+}
+
+.language-tag {
+	color: lightgray;
+}
+
+/*-------- CSS For Viewing User Profile --------*/
+.user-profile-view {
+	margin: 1rem 3rem;
+	display: flex;
+	justify-content: center;
+	gap: 3rem;
+	/* width: 100%; */
+}
+
+.user-profile-info {
+	/* width: 50%; */
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.user-profile-info button {
+	border: 1px solid white;
+	padding: .6rem 1.2rem;
+	background-color: lightcyan;
+	/* margin: auto; */
+	border-radius: 1.4rem;
+}
+
+.user-profile-info button a {
+	color: black;
+}
+
+.user-profile-bio {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+
+.user-profile-projects {
+	width: 50%;
+}
+
+.user-profile-projects .card {
+	width: 270px;
+	height: 270px;
+}
+
+.user-profile-projects h1 {
+	font-size: 2rem;
+	margin-bottom: 1rem;
+	background: linear-gradient(#67b26f, #4ca2cd);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.projects {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+}
+
+.user-profile-bio p, .user-profile-bio span{
+	font-size: 1.1rem;
+	
+}
+
+#profile-img img {
+	width: 350px;
+	height: 350px;
+	border-radius: 50%;
+}
+
+#profile-name {
+	font-size: 2rem;
+}
+
+#profile-username {
+	font-weight: 400;
+	background: linear-gradient(to left, #be93c5, #7bc6cc);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	
+}
+
+#links-title {
+
+  color: lightcyan;
+}
+
+#languages {
+	/* font-size: 72px; */
+  background: linear-gradient(to left, #4568dc, #b06ab3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.user-profile-socials {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.links {
+	display: flex;
+	flex-direction: column;
+	gap: 1.2rem;
+}
+
+/* CAROUSEL - TOP CONTAINER CSS */
+.index-container {
+	padding: 3.7rem 3.9rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.2rem;
+}
+
+
+.carousel-container {
+	/* display: flex; */
+	/* flex-direction: column; */
+	/* background-color: white; */
+	height: 50%;
+	
+}
+
+.carousel-container > p {
+	padding-bottom: .9rem;
+}
+.cusername {
+font-size: 1.1rem;
+}
+
+.ctitle {
+	font-size: 3.1rem;
+}
+
+.cdescription {
+	font-size: 0.9rem;
+}
+
+.carousel-more {
+	background-color: #74EBD5;
+    outline: 0;
+    border: none;
+    width: 9%;
+    padding: .7rem .1rem;
+    cursor: pointer;
+    border-radius: 0.7rem;
+}
+
+
+.project-container {
+	display: flex;
+	justify-content: space-around;
+}
+
+

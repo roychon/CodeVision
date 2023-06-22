@@ -21,14 +21,14 @@ function showUserProfile($user_id)
 
         $projects = $projectManager->getUserProjects($user_id);
         // TODO: pass in the id/user not post
-        $profiles = ($userManager->getUserInfo($user_id))[$user_id];
-        // echo "<pre>";
-        // print_r($profiles[$user_id]);
-        // echo "</pre>";
-        // echo "<pre>";
-        // print_r($profiles);
-        // echo "</pre>";
-
+        if (count($projects)) {
+            // user has project(s)
+            $arr = ($userManager->getUserInfoProjects($user_id));
+            $profiles = $arr[array_key_first($arr)];
+        } else { 
+            // user has no projects
+            $profiles = $userManager->getUserInfo($user_id);
+        }
         require "./view/userProfileView.php";
     } else {
         require "./view/signInForm.php";
@@ -58,6 +58,7 @@ function insertNewProject($user_id, $gif, $title, $description, $tags, $language
 {
     $userManager = new UserManager();
     $userManager->insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
+    header("Location: index.php");
 }
 function logOut()
 {
@@ -79,6 +80,7 @@ function logIn($username, $password)
         $_SESSION['id'] = $result->id;
         $_SESSION['username'] = $result->username;
         $_SESSION['email'] = $result->email;
+        $_SESSION['profile_img'] = $result->profile_img;
         $message = urlencode("You have succesfully logged in!");
         header("Location: index.php?action=showUserPage&error=false&message=$message");
         require "./view/indexView.php";

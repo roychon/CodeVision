@@ -3,6 +3,8 @@
 $title = "Edit a user";
 ob_start();
 ?>
+<link href="./public/css/formInput.css" rel="stylesheet" />
+
 <div id="edit-user-form">
 
     <form action="index.php?action=submitEditedUser" method="POST" id="editForm">

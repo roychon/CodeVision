@@ -88,7 +88,7 @@ try {
             break;
 
         case "insertNewProject":
-            if (!$SESSION['id']) {
+            if (!$_SESSION['id']) {
                 throw new Exception("Missing user id");
             }
             echo "<pre>";
@@ -175,6 +175,18 @@ try {
                     $linked_in,
                     $git_hub
                 );
+            }
+            break;
+        case "getProjectVotes":
+            // grab the status, project_id, and user_id from the GET parameters
+            if (
+                isset($_GET['user_id']) and
+                isset($_GET['project_id']) and
+                isset($_GET['stat'])
+            ) {
+                getProjectVotes($_GET['user_id'], ($_GET['project_id']), ($_GET['stat']));
+            } else {
+                echo "Bad";
             }
             break;
 
