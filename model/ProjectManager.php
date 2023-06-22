@@ -92,6 +92,7 @@ class ProjectManager extends Manager
         $data = $req->fetch();
 
         if ($_SESSION['id'] == 0) {
+            header("Location: index.php?action=signinForm");
         } else {
             if ($data->stat != 0) {
                 $req = $db->prepare("UPDATE project_votes SET stat = 0 WHERE user_id = :user_id and project_id = :project_id");
