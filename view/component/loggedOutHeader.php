@@ -18,9 +18,9 @@
         </div>
         <!-- RIGHT SIDE -->
         <div>
-            <img class="user-profile-pic" src="" alt="">
-            <a href="index.php?action=signInForm">Log in</a>
-            <a class="" href="index.php?action=add_user">Sign up</a>
+            <!-- <img class="user-profile-pic" src="" alt=""> -->
+            <a href="index.php?action=signInForm">Log In</a>
+            <a class="" href="index.php?action=add_user">Sign Up</a>
             <i class="fa-solid fa-user"></i>
         </div>
         <!-- nav bar? -->
