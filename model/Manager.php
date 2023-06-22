@@ -5,7 +5,7 @@ class Manager
     protected function dbConnect()
     {
         // NOTE: set this to false to use local (phpmyadmin) database
-        $USE_PLANETSCALE = false;
+        $USE_PLANETSCALE = true;
 
         if ($USE_PLANETSCALE) {
             $HOST = getenv("PLANETSCALE_DB_HOST");
@@ -25,7 +25,7 @@ class Manager
             $HOST = "localhost";
             $DATABASE = "batch20_project";
             $USERNAME = "root";
-            $PASSWORD = "root";
+            $PASSWORD = "";
             $OPTIONS = array();
         }
 
