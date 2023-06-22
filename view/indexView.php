@@ -38,7 +38,7 @@ if (isset($_SESSION['id'])) {
 
 
 </div>
-
+<script defer src="./public/js/projectVotes.js"></script>
 <?php
 $content = ob_get_clean();
 
