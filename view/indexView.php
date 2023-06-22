@@ -25,7 +25,7 @@ if (isset($_SESSION['id'])) {
   <div class="project-container">
     <?php
 
-    echo "<h1>Landing Page</h1>";
+    // echo "<h1>Landing Page</h1>";
     foreach ($projects as $project) {
       if ($project->is_active) {
         include "./view/component/projectCard.php";
@@ -37,7 +37,7 @@ if (isset($_SESSION['id'])) {
 
 
 
-</div>
+<!-- </div> -->
 <script defer src="./public/js/projectVotes.js"></script>
 <?php
 $content = ob_get_clean();
