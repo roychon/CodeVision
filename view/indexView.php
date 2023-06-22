@@ -25,7 +25,7 @@ if (isset($_SESSION['id'])) {
   <div class="project-container">
     <?php
 
-    echo "<h1>Landing Page</h1>";
+    // echo "<h1>Landing Page</h1>";
     foreach ($projects as $project) {
       if ($project->is_active) {
         include "./view/component/projectCard.php";
