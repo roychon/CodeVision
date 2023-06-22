@@ -123,6 +123,7 @@ class UserManager extends Manager
         $req->bindParam("linkedIn", $linked_in, PDO::PARAM_STR);
         $req->bindParam("gitHub", $git_hub, PDO::PARAM_STR);
         $req->execute();
+        $_SESSION['profile_img'] = $profile_image;
     }
 
     // 'deactivate' project with 'project_id' (set is_active = false)
@@ -293,8 +294,7 @@ class UserManager extends Manager
         //i need to fetch all of the projects, languages, the profile pic, adctive status
         //where it all matches on the _id_id
         $db = $this->dbConnect();
-        $sql = "SELECT u.id as user_id, u.profile_img, u.username, u.is_active, u.bio, u.gitHub, u.linkedIn,
-        p.id as id, u.is_active, p.title, p.gif, p.description, l.language_name
+        $sql = "SELECT u.id as user_id, u.profile_img, u.username, u.is_active, u.bio, u.gitHub, u.linkedIn, u.first_name, u.last_name, p.id as id, u.is_active, p.title, p.gif, p.description, l.language_name
             FROM user u
             INNER JOIN project p
             ON u.id = p.user_id
@@ -326,10 +326,11 @@ class UserManager extends Manager
     }
 
     // get user info if they have no projects
-    public function getUserInfo($user_id) {
+    public function getUserInfo($user_id)
+    {
         $db = $this->dbConnect();
 
-        $req = $db->prepare("SELECT username, profile_img, bio, gitHub, linkedIn FROM user WHERE id = ? ");
+        $req = $db->prepare("SELECT first_name, last_name, username, profile_img, bio, gitHub, linkedIn FROM user WHERE id = ? ");
         $req->execute([$user_id]);
 
         return $req->fetch();
