@@ -80,6 +80,7 @@ function logIn($username, $password)
         $_SESSION['id'] = $result->id;
         $_SESSION['username'] = $result->username;
         $_SESSION['email'] = $result->email;
+        $_SESSION['profile_img'] = $result->profile_img;
         $message = urlencode("You have succesfully logged in!");
         header("Location: index.php?action=showUserPage&error=false&message=$message");
         require "./view/indexView.php";
