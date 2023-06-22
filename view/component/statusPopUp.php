@@ -1,16 +1,17 @@
 <?php
 if (isset($_GET['error']) and $_GET['error'] == "true") {
-    echo '<link rel="stylesheet" href="public/css/popUpError.css">';
+    echo '<link rel="stylesheet" href="public/css/popUp.css">';
 } else {
-    echo '<link rel="stylesheet" href="public/css/popUpSuccess.css">';
+    echo '<link rel="stylesheet" href="public/css/popUp.css">';
 }
 ?>
 
 <dialog>
-
+    <button class="x-btn" onclick="closeModal()">x</button>
     <div class="modal-content">
-        <button class="close-button" onclick="closeModal()">x</button>
-        <h1><?= $_GET['message'] ?></h1>
+        <p class="modal-message"><?= $_GET['message'] ?></p>
+        <button class="confirm-btn" onclick="closeModal()">Confirm</button>
+        <button class="close-btn" onclick="closeModal()">Close</button>
 
         <!-- Should there be a confirmation and cancel button?
                     additional redirect buttons? -->

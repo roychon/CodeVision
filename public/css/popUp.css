@@ -1,0 +1,80 @@
+dialog {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem 1.3rem;
+    width: 30%;
+    height: 40%;
+    border-radius: 0.3rem;
+    background-color: #25272d;
+    color: white;
+    box-shadow: rgb(121, 91, 255) 2px 4px 0px;
+    text-align: center;
+    border: none;
+    /* removes default chrome setting that gives it colored border */
+    outline: 0;
+}
+
+dialog::backdrop {
+    background-color: rgba(19, 19, 19, 0.95);
+}
+
+
+
+/* MESSAGE STYLING */
+.modal-message {
+    font-size: 24px;
+    margin-top: 4.3rem;
+    padding-bottom: 4.7rem;
+   
+}
+
+
+button {
+    color: white;
+}
+
+/* BUTTON STYLING */
+.x-btn {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    /* removes default chrome setting that gives it colored border */
+    outline: 0;
+
+    background: none;
+    border: none;
+    /* width: 27rem;
+    height: 2rem; */
+    cursor: pointer;
+    border-radius: 0.40rem;  
+    color: white;  
+}
+
+.x-btn:hover {
+    background-color: rgba(239, 239, 239, 0.712);
+}
+
+.confirm-btn {
+    background-color: #580EF6;;
+    outline: 0;
+    border: none;
+    width: 40%;
+    padding: .7rem .1rem;
+    cursor: pointer;
+    border-radius: 0.7rem;
+}
+.close-btn {
+    background-color: #484848;;
+    outline: 0;
+    border: none;
+    width: 40%;
+    padding: .7rem .1rem;
+    /* padding: .7rem 2.7rem; */
+    cursor: pointer;
+    border-radius: 0.7rem;
+}
+

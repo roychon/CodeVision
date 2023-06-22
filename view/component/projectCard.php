@@ -20,4 +20,7 @@
                                         echo "$language ";
                                     } ?></span>
     </div>
+    <?php
+    include "projectVotes.php";
+    ?>
 </div>
