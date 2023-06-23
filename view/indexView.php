@@ -49,6 +49,4 @@ if (isset($_SESSION['id'])) {
   require "nonLoggedInTemplate.php";
 }
 
-
-
 ?>
