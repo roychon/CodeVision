@@ -16,8 +16,6 @@ if (isset($_GET['error']) and $_GET['error'] == "true") {
         <!-- Should there be a confirmation and cancel button?
                     additional redirect buttons? -->
     </div>
-
-
 </dialog>
 
 <script src="./public/js/popUp.js"></script>
