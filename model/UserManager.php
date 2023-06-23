@@ -111,13 +111,13 @@ class UserManager extends Manager
     }
 
     // EDITING A USER
-    public function submitEditedUser(
+    public function submitEditedProfile(
         $id,
-        $first_name,
-        $last_name,
-        $username,
-        $email,
-        $password,
+        // $first_name,
+        // $last_name,
+        // $username,
+        // $email,
+        // $password,
         $profile_image,
         $bio,
         $linked_in,
@@ -125,15 +125,42 @@ class UserManager extends Manager
     ) {
         $db = $this->dbConnect();
         $req = $db->prepare("UPDATE user 
-                             SET first_name = :first_name, 
-                                 last_name = :last_name, 
-                                 username = :username,
-                                 email = :email,
-                                 password = :password,
+                             SET 
                                  profile_img = :profile_img,
                                  bio = :bio,
                                  linkedIn = :linkedIn,
                                  gitHub = :gitHub   
+                             WHERE id = :id");
+        $req->bindParam("id", $id, PDO::PARAM_INT);
+        // $req->bindParam("first_name", $first_name, PDO::PARAM_STR);
+        // $req->bindParam("last_name", $last_name, PDO::PARAM_STR);
+        // $req->bindParam("username", $username, PDO::PARAM_STR);
+        // $req->bindParam("email", $email, PDO::PARAM_STR);
+        // $req->bindParam("password", password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
+        $req->bindParam("profile_img", $profile_image, PDO::PARAM_STR);
+        $req->bindParam("bio", $bio, PDO::PARAM_STR);
+        $req->bindParam("linkedIn", $linked_in, PDO::PARAM_STR);
+        $req->bindParam("gitHub", $git_hub, PDO::PARAM_STR);
+        $req->execute();
+        $_SESSION['profile_img'] = $profile_image;
+    }
+
+    public function submitPersonalInfo(
+        $id,
+        $first_name,
+        $last_name,
+        $username,
+        $email,
+        $password
+
+    ) {
+        $db = $this->dbConnect();
+        $req = $db->prepare("UPDATE user 
+                             SET first_name = :first_name,
+                                 last_name = :last_name,
+                                 username = :username,
+                                 email = :email,
+                                 password = :password
                              WHERE id = :id");
         $req->bindParam("id", $id, PDO::PARAM_INT);
         $req->bindParam("first_name", $first_name, PDO::PARAM_STR);
@@ -141,12 +168,7 @@ class UserManager extends Manager
         $req->bindParam("username", $username, PDO::PARAM_STR);
         $req->bindParam("email", $email, PDO::PARAM_STR);
         $req->bindParam("password", password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
-        $req->bindParam("profile_img", $profile_image, PDO::PARAM_STR);
-        $req->bindParam("bio", $bio, PDO::PARAM_STR);
-        $req->bindParam("linkedIn", $linked_in, PDO::PARAM_STR);
-        $req->bindParam("gitHub", $git_hub, PDO::PARAM_STR);
         $req->execute();
-        $_SESSION['profile_img'] = $profile_image;
     }
 
     // 'deactivate' project with 'project_id' (set is_active = false)
