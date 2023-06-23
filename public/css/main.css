@@ -34,20 +34,6 @@
 
 /* -------- HEADER LOGGED IN --------*/
 
-body {
-	color: white;
-	font-family: sans-serif;
-	background-color: #000000;
-}
-
-header {
-	font-family: 'Inter', sans-serif;
-}
-
-a {
-	text-decoration: none;
-}
-
 .logged-in {
 	display: flex;
 	justify-content: space-between;
@@ -338,7 +324,6 @@ font-size: 1.1rem;
     cursor: pointer;
     border-radius: 0.7rem;
 }
-
 
 .project-container {
 	display: flex;
