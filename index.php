@@ -65,7 +65,7 @@ try {
             break;
 
             // CREATING A NEW USER 
-        case "createUser":
+        case "createUser": // add new user to database
             $username = $_POST['username'] ?? "";
             $email = $_POST['email'] ?? "";
             $password = $_POST['password'] ?? "";
@@ -77,7 +77,7 @@ try {
                 createUser($username, $email, $password, $password_confirm);
             } else {
                 // throw new Exception("Couldn't create your account, missing required information.");
-                // TODO: NEEDS TO GO BACK TO SIGN UP PAGE WITH ERROR MESSAGE
+                // TODO: NEEDS TO GO BACK TO SIGN UP PAGE WITH ERROR MESSAGE (maybe set action=add_user?)
                 $message = urlencode("Sign up failed");
                 header("Location: index.php?action=signInForm&error=true&message=$message");
             }

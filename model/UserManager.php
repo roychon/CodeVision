@@ -16,6 +16,29 @@ class UserManager extends Manager
         $req->bindParam("password", $hashed_password, PDO::PARAM_STR);
         $req->execute();
     }
+    //HANDLING USER ERROR: MULTIPLE USERNAMES AND EMAILS
+    public function userExists($username)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT COUNT(username) as count FROM user WHERE username = ?");
+        $req->execute([$username]);
+
+
+        return $req->fetch();
+    }
+
+    public function emailExists($email)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT COUNT(email) as count FROM user WHERE email = ?");
+        $req->execute([$email]);
+
+
+        return $req->fetch();
+    }
+
     // INSERT NEW PROJECT
     public function insertNewProject($user_id, $gif, $title, $description, $tags, $languages)
     {

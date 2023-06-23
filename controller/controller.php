@@ -45,9 +45,24 @@ function showUserProfile($user_id)
 function createUser($username, $email, $password)
 {
     $userManager = new UserManager();
-    $userManager->addUser($username, $email, $password);
-    $message = urlencode("User created successfully. Please log in.");
-    header("Location: index.php?action=signInForm&error=false&message=$message");
+    // select count of username + password
+    //    -> if both counts == 0 -> we can add user
+    //    -> else there is duplicate, show pop up error
+
+    $userCount = $userManager->userExists($username)->count;
+
+    $emailCount = $userManager->emailExists($email)->count;
+
+    if ($userCount == 0 and $emailCount == 0) { // Both unique
+        // echo "unique";
+        $userManager->addUser($username, $email, $password);
+        $message = urlencode("User created successfully. Please log in.");
+        header("Location: index.php?action=signInForm&error=false&message=$message");
+    } else { // already in db
+        // echo "not unique";
+        $message = urlencode("Username or email already exists");
+        header("Location: index.php?action=signInForm&error=true&message=$message");
+    }
 }
 
 function addUser()
