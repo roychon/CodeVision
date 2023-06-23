@@ -65,7 +65,7 @@ try {
             break;
 
             // CREATING A NEW USER 
-        case "createUser":
+        case "createUser": // add new user to database
             $username = $_POST['username'] ?? "";
             $email = $_POST['email'] ?? "";
             $password = $_POST['password'] ?? "";
@@ -77,7 +77,7 @@ try {
                 createUser($username, $email, $password, $password_confirm);
             } else {
                 // throw new Exception("Couldn't create your account, missing required information.");
-                // TODO: NEEDS TO GO BACK TO SIGN UP PAGE WITH ERROR MESSAGE
+                // TODO: NEEDS TO GO BACK TO SIGN UP PAGE WITH ERROR MESSAGE (maybe set action=add_user?)
                 $message = urlencode("Sign up failed");
                 header("Location: index.php?action=signInForm&error=true&message=$message");
             }
@@ -129,9 +129,6 @@ try {
 
             // FOR EDITING A USER
         case "editUser":
-            // $id = $_SESSION['id'];
-            // $username = $_SESSION['username'];
-            // $email = $_SESSION['email'];
             if (isset($_GET['id'])) {
                 editUser($_GET['id']);
             } else {
@@ -139,14 +136,17 @@ try {
             }
             break;
 
+        case "personal_info":
+            if (isset($_GET['id'])) {
+                personalInfo($_GET['id']);
+            } else {
+                throw new Exception("The data is missing");
+            }
+            break;
+
             // EDITING THE USER
-        case "submitEditedUser":
+        case "submitEditedProfile":
             $id = $_POST['id'] ?? "";
-            $first_name = $_POST['firstName'] ?? "";
-            $last_name = $_POST['lastName'] ?? "";
-            $username = $_POST['username'] ?? "";
-            $email = $_POST['email'] ?? "";
-            $password = $_POST['password'] ?? "";
             $profile_image = $_POST['profileImage'] ?? "";
             $bio = $_POST['bio'] ?? "";
             $linked_in = $_POST['linkedIn'] ?? "";
@@ -154,28 +154,46 @@ try {
             if (
                 // 'OR' IS USED SO THAT A USER CAN EDIT ANY PIECE OF 
                 // INFORMATION THEY WANT
-                $id or
-                $first_name or
-                $last_name or
-                $username or
-                $email or
-                $password or
+                $id and
                 $profile_image or
                 $bio or
                 $linked_in or
                 $git_hub
             ) {
-                submitEditedUser(
+                submitEditedProfile(
+                    $id,
+                    $profile_image,
+                    $bio,
+                    $linked_in,
+                    $git_hub
+                );
+            }
+            break;
+
+        case "submitPersonalInfo":
+            $id = $_POST['id'] ?? "";
+            $first_name = $_POST['firstName'] ?? "";
+            $last_name = $_POST['lastName'] ?? "";
+            $username = $_POST['username'] ?? "";
+            $email = $_POST['email'] ?? "";
+            $password = $_POST['password'] ?? "";
+            if (
+                // 'OR' IS USED SO THAT A USER CAN EDIT ANY PIECE OF 
+                // INFORMATION THEY WANT
+                $id and
+                $first_name or
+                $last_name or
+                $username or
+                $email or
+                $password
+            ) {
+                submitPersonalInfo(
                     $id,
                     $first_name,
                     $last_name,
                     $username,
                     $email,
-                    $password,
-                    $profile_image,
-                    $bio,
-                    $linked_in,
-                    $git_hub
+                    $password
                 );
             }
             break;

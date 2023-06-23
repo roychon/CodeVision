@@ -14,7 +14,7 @@
             <input class="search-bar" type="search" name="" id="" placeholder="Search">
             <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-        <img class="user-profile-pic" src="<?= $_SESSION['profile_img']?>">
+        <img class="user-profile-pic" src="<?= $_SESSION['profile_img'] ?>">
         <!-- TODO:users can click on profile pic to take them to their profile -->
         <div>
 

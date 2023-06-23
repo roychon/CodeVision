@@ -11,6 +11,16 @@ function addProject()
     require "./view/addProjectForm.php";
 }
 
+// function projectView($project_id)
+// {
+//     $userManager = new UserManager();
+//     $project = $userManager->getProject($project_id);
+//     $languages = $userManager->getProjectLanguages($project_id);
+//     $tags = $userManager->getProjectTags($project_id);
+
+//     require "./view/projectPageHtml.php";
+// }
+
 //TODO: CHECK PASSING PARAMATER??
 function showUserProfile($user_id)
 {
@@ -23,7 +33,7 @@ function showUserProfile($user_id)
         $userInfo = $userManager->getUserInfo($user_id);
 
         $userLanguages = $userManager->getUserLanguages($user_id);
-            
+
 
         require "./view/userProfileView.php";
     } else {
@@ -35,9 +45,24 @@ function showUserProfile($user_id)
 function createUser($username, $email, $password)
 {
     $userManager = new UserManager();
-    $userManager->addUser($username, $email, $password);
-    $message = urlencode("User created successfully. Please log in.");
-    header("Location: index.php?action=signInForm&error=false&message=$message");
+    // select count of username + password
+    //    -> if both counts == 0 -> we can add user
+    //    -> else there is duplicate, show pop up error
+
+    $userCount = $userManager->userExists($username)->count;
+
+    $emailCount = $userManager->emailExists($email)->count;
+
+    if ($userCount == 0 and $emailCount == 0) { // Both unique
+        // echo "unique";
+        $userManager->addUser($username, $email, $password);
+        $message = urlencode("User created successfully. Please log in.");
+        header("Location: index.php?action=signInForm&error=false&message=$message");
+    } else { // already in db
+        // echo "not unique";
+        $message = urlencode("Username or email already exists");
+        header("Location: index.php?action=signInForm&error=true&message=$message");
+    }
 }
 
 function addUser()
@@ -68,7 +93,7 @@ function logIn($username, $password)
     $userManager = new UserManager();
     $result = $userManager->logIn($username, $password);
 
-    
+
 
     if ($result->username === $username && password_verify($password, $result->password)) {
 
@@ -91,34 +116,53 @@ function editUser($id)
     $userinfo = $userManager->getUserInfo($id);
     require "./view/editUserForm.php";
 }
+
+function personalInfo($id)
+{
+    $userManager = new UserManager();
+    $userinfo = $userManager->getUserInfo($id);
+    require "./view/settings.php";
+}
 // EDITING A USER INFO
-function submitEditedUser(
+function submitEditedProfile(
     $id,
-    $first_name,
-    $last_name,
-    $username,
-    $email,
-    $password,
     $profile_image,
     $bio,
     $linked_in,
     $git_hub
 ) {
     $userManager = new UserManager();
-    $userManager->submitEditedUser(
+    $userManager->submitEditedProfile(
         $id,
-        $first_name,
-        $last_name,
-        $username,
-        $email,
-        $password,
         $profile_image,
         $bio,
         $linked_in,
         $git_hub
     );
 
-    header("Location: index.php");
+    header("Location: index.php?action=userProfileView&id=$id");
+}
+
+function submitPersonalInfo(
+    $id,
+    $first_name,
+    $last_name,
+    $username,
+    $email,
+    $password
+
+) {
+    $userManager = new UserManager();
+    $userManager->submitPersonalInfo(
+        $id,
+        $first_name,
+        $last_name,
+        $username,
+        $email,
+        $password
+    );
+
+    header("Location: index.php?action=userProfileView&id=$id");
 }
 
 

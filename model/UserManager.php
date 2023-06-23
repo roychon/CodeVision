@@ -16,6 +16,29 @@ class UserManager extends Manager
         $req->bindParam("password", $hashed_password, PDO::PARAM_STR);
         $req->execute();
     }
+    //HANDLING USER ERROR: MULTIPLE USERNAMES AND EMAILS
+    public function userExists($username)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT COUNT(username) as count FROM user WHERE username = ?");
+        $req->execute([$username]);
+
+
+        return $req->fetch();
+    }
+
+    public function emailExists($email)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT COUNT(email) as count FROM user WHERE email = ?");
+        $req->execute([$email]);
+
+
+        return $req->fetch();
+    }
+
     // INSERT NEW PROJECT
     public function insertNewProject($user_id, $gif, $title, $description, $tags, $languages)
     {
@@ -88,13 +111,13 @@ class UserManager extends Manager
     }
 
     // EDITING A USER
-    public function submitEditedUser(
+    public function submitEditedProfile(
         $id,
-        $first_name,
-        $last_name,
-        $username,
-        $email,
-        $password,
+        // $first_name,
+        // $last_name,
+        // $username,
+        // $email,
+        // $password,
         $profile_image,
         $bio,
         $linked_in,
@@ -102,15 +125,42 @@ class UserManager extends Manager
     ) {
         $db = $this->dbConnect();
         $req = $db->prepare("UPDATE user 
-                             SET first_name = :first_name, 
-                                 last_name = :last_name, 
-                                 username = :username,
-                                 email = :email,
-                                 password = :password,
+                             SET 
                                  profile_img = :profile_img,
                                  bio = :bio,
                                  linkedIn = :linkedIn,
                                  gitHub = :gitHub   
+                             WHERE id = :id");
+        $req->bindParam("id", $id, PDO::PARAM_INT);
+        // $req->bindParam("first_name", $first_name, PDO::PARAM_STR);
+        // $req->bindParam("last_name", $last_name, PDO::PARAM_STR);
+        // $req->bindParam("username", $username, PDO::PARAM_STR);
+        // $req->bindParam("email", $email, PDO::PARAM_STR);
+        // $req->bindParam("password", password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
+        $req->bindParam("profile_img", $profile_image, PDO::PARAM_STR);
+        $req->bindParam("bio", $bio, PDO::PARAM_STR);
+        $req->bindParam("linkedIn", $linked_in, PDO::PARAM_STR);
+        $req->bindParam("gitHub", $git_hub, PDO::PARAM_STR);
+        $req->execute();
+        $_SESSION['profile_img'] = $profile_image;
+    }
+
+    public function submitPersonalInfo(
+        $id,
+        $first_name,
+        $last_name,
+        $username,
+        $email,
+        $password
+
+    ) {
+        $db = $this->dbConnect();
+        $req = $db->prepare("UPDATE user 
+                             SET first_name = :first_name,
+                                 last_name = :last_name,
+                                 username = :username,
+                                 email = :email,
+                                 password = :password
                              WHERE id = :id");
         $req->bindParam("id", $id, PDO::PARAM_INT);
         $req->bindParam("first_name", $first_name, PDO::PARAM_STR);
@@ -118,12 +168,7 @@ class UserManager extends Manager
         $req->bindParam("username", $username, PDO::PARAM_STR);
         $req->bindParam("email", $email, PDO::PARAM_STR);
         $req->bindParam("password", password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
-        $req->bindParam("profile_img", $profile_image, PDO::PARAM_STR);
-        $req->bindParam("bio", $bio, PDO::PARAM_STR);
-        $req->bindParam("linkedIn", $linked_in, PDO::PARAM_STR);
-        $req->bindParam("gitHub", $git_hub, PDO::PARAM_STR);
         $req->execute();
-        $_SESSION['profile_img'] = $profile_image;
     }
 
     // 'deactivate' project with 'project_id' (set is_active = false)
@@ -337,7 +382,8 @@ class UserManager extends Manager
     }
 
 
-    public function getUserLanguages($user_id) {
+    public function getUserLanguages($user_id)
+    {
         $db = $this->dbConnect();
 
         $req = $db->prepare("SELECT DISTINCT(l.language_name)
@@ -354,10 +400,10 @@ class UserManager extends Manager
         $req->execute([$user_id]);
 
         $userLanguages = [];
-        while($language = $req->fetch()) {
+        while ($language = $req->fetch()) {
             array_push($userLanguages, $language->language_name);
         }
 
         return $userLanguages;
-    }   
+    }
 }
