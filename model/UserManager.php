@@ -77,7 +77,7 @@ class UserManager extends Manager
     public function logIn($username, $password)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT id, username, password, email FROM user WHERE username = :username");
+        $req = $db->prepare("SELECT profile_img, id, username, password, email FROM user WHERE username = :username");
         $req->execute([
             "username" => $username
         ]);
@@ -330,9 +330,34 @@ class UserManager extends Manager
     {
         $db = $this->dbConnect();
 
-        $req = $db->prepare("SELECT first_name, last_name, username, profile_img, bio, gitHub, linkedIn FROM user WHERE id = ? ");
+        $req = $db->prepare("SELECT * FROM user WHERE id = ? ");
         $req->execute([$user_id]);
 
         return $req->fetch();
     }
+
+
+    public function getUserLanguages($user_id) {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT DISTINCT(l.language_name)
+        FROM user u
+        INNER JOIN project p
+        ON u.id = p.user_id
+        INNER JOIN project_language_map plm
+        ON p.id = plm.project_id
+        INNER JOIN language l
+        ON plm.language_id = l.id
+        WHERE u.id = ?
+        ");
+
+        $req->execute([$user_id]);
+
+        $userLanguages = [];
+        while($language = $req->fetch()) {
+            array_push($userLanguages, $language->language_name);
+        }
+
+        return $userLanguages;
+    }   
 }

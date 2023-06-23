@@ -46,7 +46,8 @@ function validateURL(url) {
     try {
         new URL(url);
         gif.className = "purple";
-        return true;
+        return url.length < 255 ? true : false;
+        // return true;
     } catch {
         gif.className = "red";
         return false;
@@ -188,6 +189,7 @@ function getLanguages(txt) {
                     addLanguages();
                     languageInput.value = "";
                     getLanguages('');
+                    validateLanguages();
                 })
                 languageResults.appendChild(p);
             }
@@ -203,7 +205,11 @@ function getLanguages(txt) {
 }
 
 function validateTags() {
-    if (tags.length === 0 || tags.length > 5) {
+    if (
+        tags.length === 0 ||
+        tags.length > 5 ||
+        tags.length !== new Set(tags).size
+    ) {
         tagContainer.style.border = "1px solid red";
         return false;
     } else {
@@ -213,7 +219,11 @@ function validateTags() {
 }
 
 function validateLanguages() {
-    if (languages.length === 0 || languages.length > 8) {
+    if (
+        languages.length === 0 ||
+        languages.length > 8 ||
+        languages.length !== new Set(languages).size
+    ) {
         languageContainer.style.border = "1px solid red";
         return false;
     } else {
@@ -325,6 +335,7 @@ languageContainer.addEventListener("click", (e) => {
     }
 });
 
+
 // Before submitting form, join the 'tags' and 'languages' array and set them as values to their respective input field
 form.addEventListener("submit", (e) => {
     let valid = validateURL(gif.value);
@@ -345,8 +356,8 @@ form.addEventListener("submit", (e) => {
     }
 });
 
-// validate number of tags user can input
+// validate number of tags user can input + no duplicate tags
 tagInput.addEventListener("keyup", validateTags);
 
-// validate number of languages user can input
+// validate number of languages user can input + no duplicate languages
 languageInput.addEventListener("keyup", validateLanguages);

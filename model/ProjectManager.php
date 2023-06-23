@@ -90,17 +90,17 @@ class ProjectManager extends Manager
             "user_id" => $user_id
         ));
         $data = $req->fetch();
-
+        // inserted user_id, project_id, stat into project_votes
         if ($data->user_id == 0) {
             echo "oh no";
         } else {
-            if ($data->stat != 0) {
+            if ($data->stat != 0) { // if they are liking/disliking
                 $req = $db->prepare("UPDATE project_votes SET stat = 0 WHERE user_id = :user_id and project_id = :project_id");
                 $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
                 $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
                 $req->execute();
-            } else {
-                if ($data) {
+            } else { // NO like or dislike
+                if ($data) { 
                     // run an UPDATE
                     $req = $db->prepare("UPDATE project_votes SET stat = :stat WHERE user_id = :user_id and project_id = :project_id");
                     $req->bindParam("stat", $stat, PDO::PARAM_INT);
