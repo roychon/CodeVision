@@ -103,7 +103,7 @@ function logIn($username, $password)
         $_SESSION['profile_img'] = $result->profile_img;
         $message = urlencode("You have succesfully logged in!");
         header("Location: index.php?action=showUserPage&error=false&message=$message");
-        require "./view/indexView.php";
+        // require "./view/indexView.php";
     } else {
         $message = urlencode("You have failed to login. Please try again");
         header("Location: index.php?action=signInForm&error=true&message=$message");
