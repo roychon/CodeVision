@@ -6,7 +6,7 @@ ob_start();
 <!-- TODO: do we want to include this header? -->
 <?php include "./view/component/loggedInHeader.php" ?>
 <main>
-     
+
 
     <!-- </section> -->
     <section class="user-profile-view">
@@ -35,7 +35,7 @@ ob_start();
                 </span>
             </div>
             <hr>
-            
+
             <!-- <div class="user-profile-languages"> -->
             <!-- feel free to change the span to something else to make it easier
             to style :) -->
@@ -58,9 +58,11 @@ ob_start();
 
             </div>
 
-            
-            <button><a href="index.php?action=add_project">Add a Project</a></button>
-     
+            <!-- FOR DISPLAYING THE 'ADD PROJECT' ONLY WHEN 'MY PROJECT' IS CLICKED -->
+            <?php if (isset($_SESSION['id']) and isset($_GET['id']) and $_SESSION['id'] == $_GET['id']) { ?>
+                <button><a href="index.php?action=add_project">Add a Project</a></button>
+                <button><a href="index.php?action=personal_info&id=<?= $_SESSION['id'] ?>">Settings</a></button>
+            <?php } ?>
 
         </aside>
         <div class="user-profile-projects">
