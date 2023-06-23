@@ -20,15 +20,11 @@ function showUserProfile($user_id)
         $projectManager = new ProjectManager();
 
         $projects = $projectManager->getUserProjects($user_id);
-        // TODO: pass in the id/user not post
-        if (count($projects)) {
-            // user has project(s)
-            $arr = ($userManager->getUserInfoProjects($user_id));
-            $profiles = $arr[array_key_first($arr)];
-        } else { 
-            // user has no projects
-            $profiles = $userManager->getUserInfo($user_id);
-        }
+        $userInfo = $userManager->getUserInfo($user_id);
+
+        $userLanguages = $userManager->getUserLanguages($user_id);
+            
+
         require "./view/userProfileView.php";
     } else {
         require "./view/signInForm.php";
@@ -62,7 +58,6 @@ function insertNewProject($user_id, $gif, $title, $description, $tags, $language
 }
 function logOut()
 {
-    // session_start();
     session_destroy();
     // require "./view/signInForm.php";
     header("Location: index.php");
@@ -90,8 +85,10 @@ function logIn($username, $password)
     }
 }
 
-function editUser($id, $username, $email)
+function editUser($id)
 {
+    $userManager = new UserManager();
+    $userinfo = $userManager->getUserInfo($id);
     require "./view/editUserForm.php";
 }
 // EDITING A USER INFO

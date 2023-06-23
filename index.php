@@ -116,6 +116,8 @@ try {
             $password = $_POST['password'] ?? "";
             if ($username and $password) {
                 logIn($username, $password);
+            } else {
+                // do front-end validation + back-end validation
             }
             break;
 
@@ -127,11 +129,11 @@ try {
 
             // FOR EDITING A USER
         case "editUser":
-            $id = $_SESSION['id'];
-            $username = $_SESSION['username'];
-            $email = $_SESSION['email'];
-            if ($id and $username and $email) {
-                editUser($id, $username, $email);
+            // $id = $_SESSION['id'];
+            // $username = $_SESSION['username'];
+            // $email = $_SESSION['email'];
+            if (isset($_GET['id'])) {
+                editUser($_GET['id']);
             } else {
                 throw new Exception("The data is missing");
             }

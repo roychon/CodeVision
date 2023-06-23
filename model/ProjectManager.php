@@ -94,13 +94,13 @@ class ProjectManager extends Manager
         if ($_SESSION['id'] == 0) {
             header("Location: index.php?action=signinForm");
         } else {
-            if ($data->stat != 0) {
+            if ($data->stat != 0) { // if they are liking/disliking
                 $req = $db->prepare("UPDATE project_votes SET stat = 0 WHERE user_id = :user_id and project_id = :project_id");
                 $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
                 $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
                 $req->execute();
-            } else {
-                if ($data) {
+            } else { // NO like or dislike
+                if ($data) { 
                     // run an UPDATE
                     $req = $db->prepare("UPDATE project_votes SET stat = :stat WHERE user_id = :user_id and project_id = :project_id");
                     $req->bindParam("stat", $stat, PDO::PARAM_INT);
