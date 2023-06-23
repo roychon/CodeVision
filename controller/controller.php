@@ -122,14 +122,12 @@ function submitEditedUser(
     header("Location: index.php");
 }
 
-
 function deleteProject($project_id)
 {
     $userManager = new UserManager();
     $userManager->deleteProject($project_id);
     header("Location: index.php");
 }
-
 
 // user goes to update FORM and updates project with 'project_id'
 function updateProjectForm($project_id)
@@ -146,7 +144,6 @@ function updateProjectForm($project_id)
 
     require "./view/updateProjectForm.php";
 }
-
 
 // insert project updates into database
 function updateProject($gif, $description, $title, $tags, $languages, $project_id)

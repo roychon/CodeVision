@@ -2,10 +2,6 @@
 session_start();
 
 require "./controller/controller.php";
-<<<<<<< HEAD
-// session_start();
-=======
->>>>>>> main
 require "./controller/projectcontroller.php";
 
 try {
@@ -95,8 +91,8 @@ try {
             if (!$SESSION['id']) {
                 throw new Exception("Missing user id");
             }
-            echo "<pre>";
-            print_r($_POST);
+            // echo "<pre>";
+            // print_r($_POST);
             $gif = $_POST['gif'] ?? "";
             $title = $_POST['title'] ?? "";
             $description = $_POST['description'] ?? "";
@@ -180,6 +176,15 @@ try {
                     $git_hub
                 );
             }
+            break;
+
+        case "fullProjectPage":
+            // when you click on a project, it should bring you here
+            // with a GET parameter with the project id
+            $project_id = $_GET['project_id'] ?? "";
+            if ($project_id) {
+                displayFullProject($project_id);
+            };
             break;
 
         default:

@@ -14,6 +14,7 @@
         <a href="index.php?action=userProfileView&id=<?= $project->user_id ?>"><img class="user-profile-pic" src="<?= htmlspecialchars($project->profile_img) ?>" alt="user profile pic">
         </a>
 
+        <a href="index.php?action=fullProjectPage&project_id=<?= $project->id ?>">CLICK ME!!</a>
 
         <span class="language-tag"> <?php
                                     foreach ($project->languages as $language) {
