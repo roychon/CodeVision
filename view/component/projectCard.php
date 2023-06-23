@@ -1,7 +1,7 @@
 <div class="card">
 
     <p>
-        <img class="project-gif" src="<?= $project->gif ?>" alt="user project gif">
+        <a href="index.php?action=fullProjectPage&project_id=<?= $project->id ?>"> <img class="project-gif" src="<?= $project->gif ?>" alt="user project gif"></a>
     </p>
 
     <!-- ***** Bottom Half of Project Card ***** -->
@@ -21,8 +21,6 @@
                 <span class="language-tag"> <?php
                                             echo join(", ", $project->languages) ?></span>
             </div>
-
-
 
         </div>
         <!-- Upvote + Downvote Buttons -->

@@ -72,13 +72,14 @@ input {
 	color: var(--form-text-color);
 	width: var(--input-width);
 	height: var(--input-height);
+border: .1px solid white;
 }
 
 input:focus {
 	border: var(--input-focus-border);
 }
 
-#submit {
+/* #login-submit {
 	background-color: var(--submit-btn-bg-color);
 	color: var(--form-text-color);
 	cursor: var(--cursor);
@@ -86,7 +87,7 @@ input:focus {
 	border-radius: var(--submit-btn-border-radius);
 	line-height: var(--submit-btn-line-height);
 	padding: var(--submit-btn-padding);
-}
+} */
 
 button {
 	background: var(--secondary-btn-bg);

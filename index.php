@@ -91,8 +91,8 @@ try {
             if (!$_SESSION['id']) {
                 throw new Exception("Missing user id");
             }
-            echo "<pre>";
-            print_r($_POST);
+            // echo "<pre>";
+            // print_r($_POST);
             $gif = $_POST['gif'] ?? "";
             $title = $_POST['title'] ?? "";
             $description = $_POST['description'] ?? "";
@@ -208,6 +208,15 @@ try {
             } else {
                 echo "Bad";
             }
+            break;
+
+        case "fullProjectPage":
+            // when you click on a project, it should bring you here
+            // with a GET parameter with the project id
+            $project_id = $_GET['project_id'] ?? "";
+            if ($project_id) {
+                displayFullProject($project_id);
+            };
             break;
 
         default:
