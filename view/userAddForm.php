@@ -3,7 +3,7 @@ $title = "SIGN UP";
 ob_start();
 
 if (isset($_GET['error'])) {
-    include 'statusPopUp.php';
+    include './view/component/statusPopUp.php';
 };
 
 ?>
