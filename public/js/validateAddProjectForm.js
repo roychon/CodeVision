@@ -254,11 +254,19 @@ gif.addEventListener("keyup", () => {
 
 tagInput.addEventListener("keyup", (e) => {
     if (e.key === "Enter") {
-        tags.push(tagInput.value);
-        addTags();
-        tagInput.value = "";
+        if (tagInput.value.length < 20) {
+            tags.push(tagInput.value);
+            addTags();
+            tagInput.value = "";
+            validateTags();
+        } else {
+            tagContainer.style.border = "1px solid red";
+        }
     }
 });
+
+// validate number of tags user can input + no duplicate tags
+// tagInput.addEventListener("keyup", validateTags);
 
 tagContainer.addEventListener("click", (e) => {
     if (e.target.tagName === "I") {
@@ -284,9 +292,21 @@ let i; // index of currently selected language
 languagesInput.addEventListener("keyup", function (e) {
     allLanguages = languageResults.querySelectorAll("p");
     if (e.key === "Enter") {
-        language && allLanguages.length
-            ? languages.push(language.textContent)
-            : languages.push(languageInput.value);
+        // language && allLanguages.length
+        //     ? languages.push(language.textContent)
+        //     : languages.push(languageInput.value);
+        if (language) {
+            languages.push(language.textContent);
+        } else {
+            if (languagesInput.value.length < 20) {
+                languages.push(languagesInput.value);
+            } else {
+                languageContainer.style.border = "1px solid red";
+                return;
+            }
+        }
+        language = null;
+        validateLanguages();
         addLanguages();
         languageInput.value = "";
         getLanguages("");
@@ -356,8 +376,7 @@ form.addEventListener("submit", (e) => {
     }
 });
 
-// validate number of tags user can input + no duplicate tags
-tagInput.addEventListener("keyup", validateTags);
+
 
 // validate number of languages user can input + no duplicate languages
-languageInput.addEventListener("keyup", validateLanguages);
+// languageInput.addEventListener("keyup", validateLanguages);
