@@ -4,20 +4,23 @@ ob_start();
 ?>
 
 <!-- <div>Header</div> PLACEHOLDER -->
-
+<a href="http://localhost/sites/batch20-final-project/index.php?action=showUserPage"><button>Back</button></a>
+<a href="http://localhost/sites/batch20-final-project/"><button>Home</button></a>
 <div class="project-container">
 
   <div class="animation-container">
-    <!-- <p>
+    <p>
       <img class="project-gif" src="<?= $fullProject->gif ?>" alt="user project gif">
-    </p> -->
+    </p>
   </div>
 
   <div class="middle-container"> <!--block elements -->
     <div class="titleTag"> <!--inline elements -->
       <div class="title"><?= $fullProject->title ?>
       </div>
-      <div class="tags"></div>
+      <div class="tags"><?php foreach ($tags as $tag) {
+                          echo "$tag " . " ";
+                        } ?></div>
     </div>
 
     <div class="userLang"> <!--inline elements -->
@@ -25,9 +28,9 @@ ob_start();
       <div class="languages">
         <?php
         for ($i = 0; $i < count($fullProject->languages); $i++) {
-        ?>
-          <p> <?= $fullProject->languages[$i]; ?> </p>
-        <?php }; ?>
+
+          echo $fullProject->languages[$i] . " ";
+        }; ?>
       </div>
     </div>
   </div>
@@ -52,4 +55,5 @@ ob_start();
 <?php
 $content = ob_get_clean();
 require "projectTemplate.php";
+// require "template.php";
 ?>

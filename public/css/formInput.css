@@ -1,7 +1,156 @@
-.valid {
-    border: 1px solid green;
+/* form height is going to be different depending on the amount of inputs */
+/* --secondary-btn refers to the secondary button on log in form. use for secondary form buttons */
+
+:root {
+	--form-title-size: 20px;
+	--form-title-padding: 20px;
+	--form-width: 30rem;
+	--form-border-radius: 0.3rem;
+	--form-border: none;
+	--form-bg-color: #25272d;
+	--form-text-color: #ffff;
+	--label-margin-bottom: 0.5rem;
+	--input-width: 27rem;
+	--input-height: 2rem;
+	--input-border-radius: 0.4rem;
+	--input-padding: 0.5rem 0.8rem;
+	--input-bg-color: transparent;
+	--input-focus-border: 3px solid #580ef6;
+	--submit-btn-bg-color: #580ef6;
+	--submit-btn-border: 1px solid transparent;
+	--submit-btn-border-radius: 0.4rem;
+	--submit-btn-line-height: 1.5rem;
+	--submit-btn-padding: 0.3rem 12rem;
+	--secondary-btn-width: 27rem;
+	--secondary-btn-height: 2rem;
+	--secondary-btn-bg: none;
+	--secondary-btn-bg-hover: rgba(76, 76, 76, 0.445);
+	--secondary-btn-border: none;
+	--secondary-btn-border-radius: 0.4rem;
+	--cursor: pointer;
 }
 
-.invalid {
-    border: 1px solid red;
+body {
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* FORM STYLING */
+.login-form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+label {
+	display: flex;
+	align-items: center;
+	margin-bottom: var(--label-margin-bottom);
+}
+
+#login {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: var(--form-text-color);
+	background-color: var(--form-bg-color);
+	width: var(--form-width);
+	height: 22rem;
+	border-radius: var(--form-border-radius);
+	border: var(--form-border);
+}
+
+input {
+	border-radius: var(--input-border-radius);
+	padding: var(--input-padding);
+	margin-bottom: 20px;
+	background-color: var(--input-bg-color);
+	color: var(--form-text-color);
+	width: var(--input-width);
+	height: var(--input-height);
+}
+
+input:focus {
+	border: var(--input-focus-border);
+}
+
+#submit {
+	background-color: var(--submit-btn-bg-color);
+	color: var(--form-text-color);
+	cursor: var(--cursor);
+	border: var(--submit-btn-border);
+	border-radius: var(--submit-btn-border-radius);
+	line-height: var(--submit-btn-line-height);
+	padding: var(--submit-btn-padding);
+}
+
+button {
+	background: var(--secondary-btn-bg);
+	border: var(--secondary-btn-border);
+	width: var(--secondary-btn-width);
+	height: var(--secondary-btn-height);
+	cursor: var(--cursor);
+	border-radius: var(--secondary-btn-border-radius);
+}
+
+button:hover {
+	background: var(--secondary-btn-bg-hover);
+}
+
+a {
+	text-decoration: none;
+	color: var(--form-text-color);
+}
+
+.login-title {
+	color: var(--form-text-color);
+	font-size: var(--form-title-size);
+	padding-bottom: var(--form-title-padding);
+}
+
+/* ----EDIT A USER FORM ---- */
+#edit-user-form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--form-bg-color);
+	border: var(--form-border);
+	border-radius: var(--form-border-radius);
+	width: var(--form-width);
+	margin-top: 20px;
+}
+#edit-user-title {
+	color: var(--form-text-color);
+	font-size: var(--form-title-size);
+	padding: var(--form-title-padding);
+	text-align: center;
+}
+
+#editForm label {
+	color: var(--form-text-color);
+	margin-bottom: var(--label-margin-bottom);
+}
+
+input {
+	margin-bottom: 15px;
+}
+
+input[type="submit"] {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#editSubmit {
+	background-color: var(--submit-btn-bg-color);
+	color: var(--form-text-color);
+	cursor: var(--cursor);
+	border: var(--submit-btn-border);
+	border-radius: var(--submit-btn-border-radius);
+	line-height: var(--submit-btn-line-height);
+	padding: var(--submit-btn-padding);
 }

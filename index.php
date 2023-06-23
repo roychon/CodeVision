@@ -19,7 +19,7 @@ try {
             if ($project_id) {
                 deleteProject($project_id);
             } else {
-                throw new Exception("Missing project id");
+                throw new Exception("Missing project id in GET parameter");
             }
 
             break;
@@ -88,7 +88,7 @@ try {
             break;
 
         case "insertNewProject":
-            if (!$SESSION['id']) {
+            if (!$_SESSION['id']) {
                 throw new Exception("Missing user id");
             }
             // echo "<pre>";
@@ -116,6 +116,8 @@ try {
             $password = $_POST['password'] ?? "";
             if ($username and $password) {
                 logIn($username, $password);
+            } else {
+                // do front-end validation + back-end validation
             }
             break;
 
@@ -127,11 +129,11 @@ try {
 
             // FOR EDITING A USER
         case "editUser":
-            $id = $_SESSION['id'];
-            $username = $_SESSION['username'];
-            $email = $_SESSION['email'];
-            if ($id and $username and $email) {
-                editUser($id, $username, $email);
+            // $id = $_SESSION['id'];
+            // $username = $_SESSION['username'];
+            // $email = $_SESSION['email'];
+            if (isset($_GET['id'])) {
+                editUser($_GET['id']);
             } else {
                 throw new Exception("The data is missing");
             }
@@ -175,6 +177,18 @@ try {
                     $linked_in,
                     $git_hub
                 );
+            }
+            break;
+        case "getProjectVotes":
+            // grab the status, project_id, and user_id from the GET parameters
+            if (
+                isset($_GET['user_id']) and
+                isset($_GET['project_id']) and
+                isset($_GET['stat'])
+            ) {
+                getProjectVotes($_GET['user_id'], ($_GET['project_id']), ($_GET['stat']));
+            } else {
+                echo "Bad";
             }
             break;
 

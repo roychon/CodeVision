@@ -77,7 +77,7 @@ class UserManager extends Manager
     public function logIn($username, $password)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT id, username, password, email FROM user WHERE username = :username");
+        $req = $db->prepare("SELECT profile_img, id, username, password, email FROM user WHERE username = :username");
         $req->execute([
             "username" => $username
         ]);
@@ -123,6 +123,7 @@ class UserManager extends Manager
         $req->bindParam("linkedIn", $linked_in, PDO::PARAM_STR);
         $req->bindParam("gitHub", $git_hub, PDO::PARAM_STR);
         $req->execute();
+        $_SESSION['profile_img'] = $profile_image;
     }
 
     // 'deactivate' project with 'project_id' (set is_active = false)
@@ -287,13 +288,12 @@ class UserManager extends Manager
     }
 
     // TODO: check how to use $_POST['id'] so that it will grab the information for the user
-    public function getUserInfo($user_id)
+    public function getUserInfoProjects($user_id)
     {
         //i need to fetch all of the projects, languages, the profile pic, adctive status
         //where it all matches on the _id_id
         $db = $this->dbConnect();
-        $sql = "SELECT u.id as user_id, u.profile_img, u.username, u.is_active, u.bio, u.gitHub, u.linkedIn,
-        p.id as id, u.is_active, p.title, p.gif, p.description, l.language_name
+        $sql = "SELECT u.id as user_id, u.profile_img, u.username, u.is_active, u.bio, u.gitHub, u.linkedIn, u.first_name, u.last_name, p.id as id, u.is_active, p.title, p.gif, p.description, l.language_name
             FROM user u
             INNER JOIN project p
             ON u.id = p.user_id
@@ -322,4 +322,40 @@ class UserManager extends Manager
         }
         return $profiles;
     }
+
+    // get user info if they have no projects
+    public function getUserInfo($user_id)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT * FROM user WHERE id = ? ");
+        $req->execute([$user_id]);
+
+        return $req->fetch();
+    }
+
+
+    public function getUserLanguages($user_id) {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT DISTINCT(l.language_name)
+        FROM user u
+        INNER JOIN project p
+        ON u.id = p.user_id
+        INNER JOIN project_language_map plm
+        ON p.id = plm.project_id
+        INNER JOIN language l
+        ON plm.language_id = l.id
+        WHERE u.id = ?
+        ");
+
+        $req->execute([$user_id]);
+
+        $userLanguages = [];
+        while($language = $req->fetch()) {
+            array_push($userLanguages, $language->language_name);
+        }
+
+        return $userLanguages;
+    }   
 }

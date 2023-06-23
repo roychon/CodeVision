@@ -20,14 +20,10 @@ function showUserProfile($user_id)
         $projectManager = new ProjectManager();
 
         $projects = $projectManager->getUserProjects($user_id);
-        // TODO: pass in the id/user not post
-        $profiles = ($userManager->getUserInfo($user_id))[$user_id];
-        // echo "<pre>";
-        // print_r($profiles[$user_id]);
-        // echo "</pre>";
-        // echo "<pre>";
-        // print_r($profiles);
-        // echo "</pre>";
+        $userInfo = $userManager->getUserInfo($user_id);
+
+        $userLanguages = $userManager->getUserLanguages($user_id);
+            
 
         require "./view/userProfileView.php";
     } else {
@@ -58,10 +54,10 @@ function insertNewProject($user_id, $gif, $title, $description, $tags, $language
 {
     $userManager = new UserManager();
     $userManager->insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
+    header("Location: index.php");
 }
 function logOut()
 {
-    // session_start();
     session_destroy();
     // require "./view/signInForm.php";
     header("Location: index.php");
@@ -72,13 +68,14 @@ function logIn($username, $password)
     $userManager = new UserManager();
     $result = $userManager->logIn($username, $password);
 
-
+    
 
     if ($result->username === $username && password_verify($password, $result->password)) {
 
         $_SESSION['id'] = $result->id;
         $_SESSION['username'] = $result->username;
         $_SESSION['email'] = $result->email;
+        $_SESSION['profile_img'] = $result->profile_img;
         $message = urlencode("You have succesfully logged in!");
         header("Location: index.php?action=showUserPage&error=false&message=$message");
         require "./view/indexView.php";
@@ -88,8 +85,10 @@ function logIn($username, $password)
     }
 }
 
-function editUser($id, $username, $email)
+function editUser($id)
 {
+    $userManager = new UserManager();
+    $userinfo = $userManager->getUserInfo($id);
     require "./view/editUserForm.php";
 }
 // EDITING A USER INFO

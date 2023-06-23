@@ -6,6 +6,7 @@
     <title><?= $title; ?></title>
     <link href="./public/css/main.css" rel="stylesheet" />
 
+
 </head>
 
 <body>
@@ -28,7 +29,6 @@
     }
     ?>
     <?= $content; ?>
-
 
     <footer>
         <!-- TODO: INCLUDE FOOTER FOR NON LOGGED IN USERS -->
