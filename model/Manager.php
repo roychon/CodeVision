@@ -13,10 +13,10 @@ class Manager
             $USERNAME = getenv("PLANETSCALE_DB_USERNAME");
             $PASSWORD = getenv("PLANETSCALE_DB_PASSWORD");
             // This is for Mac and Vercel
-            $SSL_CERT = getenv("PLANETSCALE_SSL_CERT_PATH") ? getenv("PLANETSCALE_SSL_CERT_PATH") : "/etc/ssl/cert.pem";
+            // $SSL_CERT = getenv("PLANETSCALE_SSL_CERT_PATH") ? getenv("PLANETSCALE_SSL_CERT_PATH") : "/etc/ssl/cert.pem";
             // On Windows, download this to your C:\Temp folder - https://curl.se/ca/cacert-2023-05-30.pem   
             // then comment the $SSL_CERT above and uncomment the one below
-            // $SSL_CERT = getenv("PLANETSCALE_SSL_CERT_PATH") ? getenv("PLANETSCALE_SSL_CERT_PATH") : "C:\\temp\\cacert-2023-05-30.pem";
+            $SSL_CERT = getenv("PLANETSCALE_SSL_CERT_PATH") ? getenv("PLANETSCALE_SSL_CERT_PATH") : "C:\\Users\\cacert-2023-05-30.pem";
             $OPTIONS = array(
                 PDO::MYSQL_ATTR_SSL_CA => $SSL_CERT,
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET sql_mode="TRADITIONAL"'
@@ -25,7 +25,7 @@ class Manager
             $HOST = "localhost";
             $DATABASE = "batch20_project";
             $USERNAME = "root";
-            $PASSWORD = "";
+            $PASSWORD = "root";
             $OPTIONS = array();
         }
 
