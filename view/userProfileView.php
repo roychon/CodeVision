@@ -35,7 +35,7 @@ ob_start();
                 </span>
             </div>
             <hr>
-
+            
             <!-- <div class="user-profile-languages"> -->
             <!-- feel free to change the span to something else to make it easier
             to style :) -->
