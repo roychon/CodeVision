@@ -9,12 +9,14 @@ function validateText() {
     for (let i = 0; i < inputs.length; i++) {
         if (!inputs[i].value) { // if input is empty
             loginSubmit.disabled = true;
+            loginSubmit.classList.remove("enable");
             return;
         }
     }
 
     // this is reached when both are non-empty
     loginSubmit.disabled = false;
+    loginSubmit.classList.add("enable");
 }
 
 loginUsername.addEventListener('keyup', validateText);

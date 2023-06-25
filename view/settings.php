@@ -5,9 +5,8 @@ ob_start();
 ?>
 <link href="./public/css/formInput.css" rel="stylesheet" />
 
-<div id="edit-user-form">
-
-    <form action="index.php?action=submitPersonalInfo" method="POST" id="editForm">
+<div id="settings-form">
+    <form action="index.php?action=submitPersonalInfo" method="POST" id="settingsForm">
         <p id="edit-user-title">Edit User</p>
         <input type="hidden" name="id" value="<?= $userinfo->id ?>">
         <p>
