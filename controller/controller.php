@@ -51,7 +51,7 @@ function createUser($username, $email, $password)
     } else { // already in db
         // echo "not unique";
         $message = urlencode("Username or email already exists");
-        header("Location: index.php?action=signInForm&error=true&message=$message");
+        header("Location: index.php?action=add_user&error=true&message=$message");
     }
 }
 
