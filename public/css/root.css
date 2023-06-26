@@ -1,8 +1,0 @@
-/* form height is going to be different depending on the amount of inputs */
-/* --secondary-btn refers to the secondary button on log in form. use for secondary form buttons */
-
-:root {
-    --purple-accent-color: #580ef6;
-    --cyan-accent-color: #74ebd5;
-    --dialog-background: #74ebd5;
-}
