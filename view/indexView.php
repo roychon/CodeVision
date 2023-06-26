@@ -5,9 +5,6 @@ ob_start();
 ?>
 
 <?php
-if (isset($_GET['error'])) {
-  include 'statusPopUp.php';
-};
 if (isset($_SESSION['id'])) {
   include "./view/component/loggedInHeader.php";
 }
