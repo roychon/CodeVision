@@ -6,58 +6,13 @@ ob_start();
 <link href="./public/css/formInput.css" rel="stylesheet" />
 
 <div id="edit-user-form">
-
-    <form action="index.php?action=submitEditedUser" method="POST" id="editForm">
+    <form action="index.php?action=submitEditedProfile" method="POST" id="editForm">
         <p id="edit-user-title">Edit User</p>
         <input type="hidden" name="id" value="<?= $userinfo->id ?>">
-        <p>
-            <label for="firstName">First Name: </label>
-            <input type="text" name="firstName" id="firstName" value="<?= $userinfo->first_name ?? "" ?> ">
-        </p>
-        <p>
-            <span id="firstNameNotValid">Not valid First Name</span>
-            <span id="firstNameMissing">First Name is missing</span>
-            <span>&#8203;</span>
-        </p>
-        <p>
-            <label for="lastName">Last Name: </label>
-            <input type="text" name="lastName" id="lastName" value="<?= $userinfo->last_name ?? "" ?> ">
-        </p>
-        <p>
-            <span id="lastNameNotValid">Not valid Last Name</span>
-            <span id="lastNameMissing">Last Name is missing</span>
-            <span>&#8203;</span>
-        </p>
-        <p>
-            <label for="username">Username: </label>
-            <input type="text" name="username" id="usernameEdit" value="<?= $userinfo->username ?? "" ?> ">
-        </p>
-        <p>
-            <span id="usernameNotValid">Not valid Username</span>
-            <span id="usernameMissing">Username is missing</span>
-            <span>&#8203;</span>
-        </p>
-        <p>
-            <label for="email">E-mail: </label>
-            <input type="text" name="email" id="emailEdit" value="<?= $userinfo->email ?? "" ?> ">
-        </p>
-        <p>
-            <span id="emailNotValid">Not valid E-mail</span>
-            <span id="emailMissing">E-mail is missing</span>
-            <span>&#8203;</span>
-        </p>
-        <p>
-            <label for="password">Password: </label>
-            <input type="text" name="password" id="passwordEdit">
-        </p>
-        <p>
-            <span id="passwordNotValid">Not valid Password</span>
-            <span id="passwordMissing">Password is missing</span>
-            <span>&#8203;</span>
-        </p>
+
         <p>
             <label for="profileImage">Profile Image: </label>
-            <input type="text" name="profileImage" id="profileImage" value="<?= $userinfo->profile_img ?? "" ?> ">
+            <input type="text" name="profileImage" id="profileImage" value="<?= $userinfo->profile_img ?? "" ?>">
         </p>
         <p>
             <label for="bio">Bio: </label>
@@ -65,20 +20,18 @@ ob_start();
         </p>
         <p>
             <label for="linkedIn">LinkedIn: </label>
-            <input type="text" name="linkedIn" id="linkedIn" value="<?= $userinfo->linkedIn ?? "" ?> ">
+            <input type="text" name="linkedIn" id="linkedIn" value="<?= $userinfo->linkedIn ?? "" ?>">
         </p>
         <p>
             <label for="gitHub">GitHub: </label>
-            <input type="text" name="gitHub" id="gitHub" value="<?= $userinfo->gitHub ?? "" ?> ">
+            <input type="text" name="gitHub" id="gitHub" value="<?= $userinfo->gitHub ?? "" ?>">
         </p>
 
         <p>
             <input type="submit" value="submit changes" id="editSubmit">
         </p>
-
-
-
     </form>
+
 </div>
 <?php
 $content = ob_get_clean();

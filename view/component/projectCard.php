@@ -1,12 +1,6 @@
-<?php
-if (isset($_GET['error'])) {
-    include 'statusPopUp.php';
-};
-?>
 <div class="card">
-
     <p>
-        <img class="project-gif" src="<?= $project->gif ?>" alt="user project gif">
+        <a href="index.php?action=fullProjectPage&project_id=<?= $project->id ?>"> <img class="project-gif" src="<?= $project->gif ?>" alt="user project gif"></a>
     </p>
 
     <!-- ***** Bottom Half of Project Card ***** -->
@@ -26,13 +20,13 @@ if (isset($_GET['error'])) {
                 <span class="language-tag"> <?php
                                             echo join(", ", $project->languages) ?></span>
             </div>
+
         </div>
         <!-- Upvote + Downvote Buttons -->
         <div class="projectVotesContainer">
             <?php
             include "projectVotes.php";
             ?>
-            <script defer src="popUp.js"></script>
         </div>
     </div>
 
