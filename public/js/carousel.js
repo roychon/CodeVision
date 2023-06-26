@@ -21,3 +21,11 @@ buttons.forEach(button => {
         delete activeSlide.dataset.active;  
     })
 })
+
+const viewMores = document.querySelectorAll(".viewMore");
+
+viewMores.forEach(button => {
+    button.addEventListener("click", () => {
+        window.location.href = `index.php?action=fullProjectPage&project_id=${button.dataset.projectid}`;
+    })
+})
