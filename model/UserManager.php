@@ -329,7 +329,6 @@ class UserManager extends Manager
         }
     }
 
-
     // TODO: check how to use $_POST['id'] so that it will grab the information for the user
     public function getUserInfoProjects($user_id)
     {
@@ -345,7 +344,6 @@ class UserManager extends Manager
             INNER JOIN language l
             ON plm.language_id = l.id
             WHERE u.id = ?";
-
 
         $res = $db->prepare($sql);
 

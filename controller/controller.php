@@ -93,7 +93,7 @@ function logIn($username, $password)
         $_SESSION['profile_img'] = $result->profile_img;
         $message = urlencode("You have succesfully logged in!");
         header("Location: index.php?action=showUserPage&error=false&message=$message");
-        require "./view/indexView.php";
+        // require "./view/indexView.php";
     } else {
         $message = urlencode("You have failed to login. Please try again");
         header("Location: index.php?action=signInForm&error=true&message=$message");
@@ -175,7 +175,6 @@ function deleteProject($project_id)
     header("Location: index.php");
 }
 
-
 // user goes to update FORM and updates project with 'project_id'
 function updateProjectForm($project_id)
 {
@@ -191,7 +190,6 @@ function updateProjectForm($project_id)
 
     require "./view/updateProjectForm.php";
 }
-
 
 // insert project updates into database
 function updateProject($gif, $description, $title, $tags, $languages, $project_id)
