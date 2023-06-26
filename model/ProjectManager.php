@@ -164,4 +164,25 @@ class ProjectManager extends Manager
             }
         }
     }
+
+    public function getCarousels() {
+        $db = $this->dbConnect();
+
+        $projects = $db->query("
+        SELECT p.id, p.title, p.gif, p.description, u.profile_img, u.username 
+        FROM project p
+        INNER JOIN user u
+        ON p.user_id = u.id
+        WHERE p.is_active = 1
+        LIMIT 5
+        ");
+
+        $arr = [];
+        
+        while ($project = $projects->fetch()) {
+            array_push($arr, $project);
+        }
+
+        return $arr;
+    }
 }
