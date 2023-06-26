@@ -7,7 +7,7 @@ ob_start();
 
 <div id="settings-form">
     <form action="index.php?action=submitPersonalInfo" method="POST" id="settingsForm">
-        <p id="edit-user-title">Edit User</p>
+        <p id="edit-user-title">Edit Personal Information</p>
         <input type="hidden" name="id" value="<?= $userinfo->id ?>">
         <p>
             <label for="firstName">First Name: </label>
