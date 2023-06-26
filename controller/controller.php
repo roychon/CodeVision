@@ -11,16 +11,6 @@ function addProject()
     require "./view/addProjectForm.php";
 }
 
-// function projectView($project_id)
-// {
-//     $userManager = new UserManager();
-//     $project = $userManager->getProject($project_id);
-//     $languages = $userManager->getProjectLanguages($project_id);
-//     $tags = $userManager->getProjectTags($project_id);
-
-//     require "./view/projectPageHtml.php";
-// }
-
 //TODO: CHECK PASSING PARAMATER??
 function showUserProfile($user_id)
 {
@@ -91,11 +81,11 @@ function logOut()
 function logIn($username, $password)
 {
     $userManager = new UserManager();
-    $result = $userManager->logIn($username, $password);
+    $result = $userManager->logIn($username);
 
 
 
-    if ($result->username === $username && password_verify($password, $result->password)) {
+    if ($result->username === $username and password_verify($password, $result->password)) {
 
         $_SESSION['id'] = $result->id;
         $_SESSION['username'] = $result->username;
@@ -123,6 +113,7 @@ function personalInfo($id)
     $userinfo = $userManager->getUserInfo($id);
     require "./view/settings.php";
 }
+
 // EDITING A USER INFO
 function submitEditedProfile(
     $id,
@@ -148,8 +139,7 @@ function submitPersonalInfo(
     $first_name,
     $last_name,
     $username,
-    $email,
-    $password
+    $email
 
 ) {
     $userManager = new UserManager();
@@ -158,13 +148,25 @@ function submitPersonalInfo(
         $first_name,
         $last_name,
         $username,
-        $email,
-        $password
+        $email
     );
 
     header("Location: index.php?action=userProfileView&id=$id");
 }
 
+function changePassword($id)
+{
+    require "./view/changePassword.php";
+}
+
+function submitChangePassword($id, $password)
+{
+
+    $userManager = new UserManager();
+    $userManager->submitChangePassword($id, $password);
+
+    header("Location: index.php?action=userProfileView&id=$id");
+}
 
 function deleteProject($project_id)
 {

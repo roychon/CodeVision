@@ -13,7 +13,6 @@ ob_start();
 
     <p class="login-title"> Log in to "website"</p>
 
-
     <p>
       <label for="loginUsername">Username: </label>
       <!-- CREATED NEW USERNAME TO SEPERATE FROM SIGN UP USERNAME-->

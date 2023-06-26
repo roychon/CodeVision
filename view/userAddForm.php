@@ -28,7 +28,7 @@ if (isset($_GET['error'])) {
         <span>&#8203;</span>
     </p>
     <p>
-        <input type="password" name="password" placeholder="Password..." id="password">
+        <input type="text" name="password" placeholder="Password..." id="password">
     </p>
     <p>
         <span id="passwordNotValid">Not valid Password</span>
@@ -36,7 +36,7 @@ if (isset($_GET['error'])) {
         <span>&#8203;</span>
     </p>
     <p>
-        <input type="password" name="password_confirm" placeholder="Confirm password..." id="passwordConfirm">
+        <input type="text" name="password_confirm" placeholder="Confirm password..." id="passwordConfirm">
     </p>
     <p>
         <span id="passwordConfirmError">Password does not match</span>
