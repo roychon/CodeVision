@@ -176,12 +176,13 @@ class ProjectManager extends Manager
         $db = $this->dbConnect();
 
         $projects = $db->query("
-        SELECT p.id, p.title, p.gif, p.description, u.profile_img, u.username 
+        SELECT p.id as project_id, p.title, p.gif, p.description, u.profile_img, u.username 
         FROM project p
         INNER JOIN user u
         ON p.user_id = u.id
         WHERE p.is_active = 1
-        LIMIT 5
+        ORDER BY p.id ASC
+        LIMIT 5        
         ");
 
         $arr = [];
