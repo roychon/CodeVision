@@ -179,6 +179,10 @@ try {
             break;
         case "getProjectVotes":
             // grab the status, project_id, and user_id from the GET parameters
+            // if ($_SESSION['id'] == 0) {
+            //     // where the popup should start
+            //     header("Location: index.php");
+            // } else {
             if (
                 isset($_GET['user_id']) and
                 isset($_GET['project_id']) and
@@ -186,10 +190,9 @@ try {
             ) {
                 getProjectVotes($_GET['user_id'], ($_GET['project_id']), ($_GET['stat']));
             } else {
-                echo "Bad";
+                throw new Exception("The data is missing");
             }
             break;
-
         default:
             displayCards();
             break;

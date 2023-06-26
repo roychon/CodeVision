@@ -10,8 +10,8 @@ function displayCards()
 
 function getProjectVotes($user_id, $project_id, $stat)
 {
-
     $projectManager = new ProjectManager();
-    $projects = $projectManager->projectVotes($user_id, $project_id, $stat);
-    header("Location: index.php");
+    $status = $projectManager->projectVotes($user_id, $project_id, $stat);
+
+    echo $status;
 }

@@ -6,7 +6,7 @@ ob_start();
 <!-- TODO: do we want to include this header? -->
 <?php include "./view/component/loggedInHeader.php" ?>
 <main>
-     
+
 
     <!-- </section> -->
     <section class="user-profile-view">
@@ -35,7 +35,7 @@ ob_start();
                 </span>
             </div>
             <hr>
-            
+
             <!-- <div class="user-profile-languages"> -->
             <!-- feel free to change the span to something else to make it easier
             to style :) -->
@@ -58,9 +58,9 @@ ob_start();
 
             </div>
 
-            
+
             <button><a href="index.php?action=add_project">Add a Project</a></button>
-     
+
 
         </aside>
         <div class="user-profile-projects">
@@ -81,6 +81,7 @@ ob_start();
 
     </section>
 </main>
+<script defer src="./public/js/projectVotes.js"></script>
 <?php
 $content = ob_get_clean();
 require "template.php";

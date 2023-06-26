@@ -1,3 +1,8 @@
+<?php
+if (isset($_GET['error'])) {
+    include 'statusPopUp.php';
+};
+?>
 <div class="card">
 
     <p>
@@ -21,15 +26,13 @@
                 <span class="language-tag"> <?php
                                             echo join(", ", $project->languages) ?></span>
             </div>
-
-
-
         </div>
         <!-- Upvote + Downvote Buttons -->
-        <div class="project-votes-container">
+        <div class="projectVotesContainer">
             <?php
             include "projectVotes.php";
             ?>
+            <script defer src="popUp.js"></script>
         </div>
     </div>
 

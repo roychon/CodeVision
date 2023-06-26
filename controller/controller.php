@@ -23,7 +23,6 @@ function showUserProfile($user_id)
         $userInfo = $userManager->getUserInfo($user_id);
 
         $userLanguages = $userManager->getUserLanguages($user_id);
-            
 
         require "./view/userProfileView.php";
     } else {
@@ -68,7 +67,7 @@ function logIn($username, $password)
     $userManager = new UserManager();
     $result = $userManager->logIn($username, $password);
 
-    
+
 
     if ($result->username === $username && password_verify($password, $result->password)) {
 
