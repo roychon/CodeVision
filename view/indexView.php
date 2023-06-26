@@ -8,6 +8,7 @@ ob_start();
 if (isset($_SESSION['id'])) {
   include "./view/component/loggedInHeader.php";
 }
+
 ?>
 
 <!-- OVERALL CONTAINER -->
@@ -52,6 +53,7 @@ if (isset($_SESSION['id'])) {
   <!-- </div> -->
   <script defer src="./public/js/carousel.js"></script>
   <script defer src="./public/js/projectVotes.js"></script>
+  <!-- <script defer src="popUp.js"></script> -->
   <?php
   $content = ob_get_clean();
 
