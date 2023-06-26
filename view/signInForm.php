@@ -9,7 +9,7 @@ ob_start();
 <div class="login-form">
   <form action="index.php?action=logIn" method="POST" id="login">
 
-    <p class="login-title"> Log in to "website"</p>
+    <p class="login-title"> Log in to DevShop</p>
 
     <p>
       <label for="loginUsername">Username: </label>
@@ -19,9 +19,9 @@ ob_start();
       <label for="loginPassword">Password: </label>
       <input type="text" name="password" id="loginPassword">
     </p>
-    <p>
-      <a class="sign-assist" href="index.php?action=">Need help signing in?</a>
-    </p>
+
+    <a class="sign-assist" href="index.php?action=">Need help signing in?</a>
+
     <p>
       <input type="submit" value="submit" id="loginSubmit" disabled>
     </p>

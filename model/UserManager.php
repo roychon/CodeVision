@@ -189,6 +189,7 @@ class UserManager extends Manager
             "SELECT p.gif, p.description, p.title, p.id
             FROM project p
             WHERE id = ?"
+
         );
 
         $req->execute([$project_id]);
