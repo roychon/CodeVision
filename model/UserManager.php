@@ -97,7 +97,7 @@ class UserManager extends Manager
         };
     }
 
-    public function logIn($username, $password)
+    public function logIn($username)
     {
         $db = $this->dbConnect();
         $req = $db->prepare("SELECT profile_img, id, username, password, email FROM user WHERE username = :username");
@@ -106,18 +106,13 @@ class UserManager extends Manager
         ]);
 
         $result = $req->fetch();
-        // $array = [$result->id, $result->username, $result->email, $result->password];
+        // $array = [$result->id, $result->username, $result->email, $result->password, $result->profile_img];
         return $result;
     }
 
     // EDITING A USER
     public function submitEditedProfile(
         $id,
-        // $first_name,
-        // $last_name,
-        // $username,
-        // $email,
-        // $password,
         $profile_image,
         $bio,
         $linked_in,
@@ -132,11 +127,6 @@ class UserManager extends Manager
                                  gitHub = :gitHub   
                              WHERE id = :id");
         $req->bindParam("id", $id, PDO::PARAM_INT);
-        // $req->bindParam("first_name", $first_name, PDO::PARAM_STR);
-        // $req->bindParam("last_name", $last_name, PDO::PARAM_STR);
-        // $req->bindParam("username", $username, PDO::PARAM_STR);
-        // $req->bindParam("email", $email, PDO::PARAM_STR);
-        // $req->bindParam("password", password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
         $req->bindParam("profile_img", $profile_image, PDO::PARAM_STR);
         $req->bindParam("bio", $bio, PDO::PARAM_STR);
         $req->bindParam("linkedIn", $linked_in, PDO::PARAM_STR);
@@ -150,23 +140,30 @@ class UserManager extends Manager
         $first_name,
         $last_name,
         $username,
-        $email,
-        $password
-
+        $email
     ) {
         $db = $this->dbConnect();
         $req = $db->prepare("UPDATE user 
                              SET first_name = :first_name,
                                  last_name = :last_name,
                                  username = :username,
-                                 email = :email,
-                                 password = :password
+                                 email = :email
                              WHERE id = :id");
         $req->bindParam("id", $id, PDO::PARAM_INT);
         $req->bindParam("first_name", $first_name, PDO::PARAM_STR);
         $req->bindParam("last_name", $last_name, PDO::PARAM_STR);
         $req->bindParam("username", $username, PDO::PARAM_STR);
         $req->bindParam("email", $email, PDO::PARAM_STR);
+        $req->execute();
+    }
+
+    public function submitChangePassword($id, $password)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("UPDATE user 
+                             SET password = :password
+                             WHERE id = :id");
+        $req->bindParam("id", $id, PDO::PARAM_INT);
         $req->bindParam("password", password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
         $req->execute();
     }

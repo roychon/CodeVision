@@ -12,7 +12,7 @@ ob_start();
 
         <p>
             <label for="profileImage">Profile Image: </label>
-            <input type="text" name="profileImage" id="profileImage" value="<?= $userinfo->profile_img ?? "" ?> ">
+            <input type="text" name="profileImage" id="profileImage" value="<?= $userinfo->profile_img ?? "" ?>">
         </p>
         <p>
             <label for="bio">Bio: </label>
@@ -20,11 +20,11 @@ ob_start();
         </p>
         <p>
             <label for="linkedIn">LinkedIn: </label>
-            <input type="text" name="linkedIn" id="linkedIn" value="<?= $userinfo->linkedIn ?? "" ?> ">
+            <input type="text" name="linkedIn" id="linkedIn" value="<?= $userinfo->linkedIn ?? "" ?>">
         </p>
         <p>
             <label for="gitHub">GitHub: </label>
-            <input type="text" name="gitHub" id="gitHub" value="<?= $userinfo->gitHub ?? "" ?> ">
+            <input type="text" name="gitHub" id="gitHub" value="<?= $userinfo->gitHub ?? "" ?>">
         </p>
 
         <p>

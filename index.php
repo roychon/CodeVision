@@ -112,8 +112,8 @@ try {
             break;
 
         case "logIn":
-            $username = $_POST['username'] ?? "";
-            $password = $_POST['password'] ?? "";
+            $username = $_POST['username'];
+            $password = $_POST['password'];
             if ($username and $password) {
                 logIn($username, $password);
             } else {
@@ -176,7 +176,6 @@ try {
             $last_name = $_POST['lastName'] ?? "";
             $username = $_POST['username'] ?? "";
             $email = $_POST['email'] ?? "";
-            $password = $_POST['password'] ?? "";
             if (
                 // 'OR' IS USED SO THAT A USER CAN EDIT ANY PIECE OF 
                 // INFORMATION THEY WANT
@@ -184,19 +183,30 @@ try {
                 $first_name or
                 $last_name or
                 $username or
-                $email or
-                $password
+                $email
             ) {
                 submitPersonalInfo(
                     $id,
                     $first_name,
                     $last_name,
                     $username,
-                    $email,
-                    $password
+                    $email
                 );
             }
             break;
+
+        case "change_password":
+            if ($_GET['id']) {
+                changePassword($_GET['id']);
+            }
+            break;
+
+        case "submitChangePassword":
+            if ($_POST['password'] and $_POST['id']) {
+                submitChangePassword($_POST['id'], $_POST['password']);
+            }
+            break;
+
         case "getProjectVotes":
             // grab the status, project_id, and user_id from the GET parameters
             if (
