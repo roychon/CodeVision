@@ -4,7 +4,13 @@ require_once "./model/ProjectManager.php";
 function displayCards()
 {
     $projectManager = new ProjectManager();
+
+    $carousels = $projectManager->getCarousels();
     $projects = $projectManager->getCards();
+
+    // echo "<pre>";
+    // print_r($carousels);
+    // echo "</pre>";
     require './view/indexView.php';
 }
 
