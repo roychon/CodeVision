@@ -7,7 +7,6 @@ if (isset($_GET['error'])) {
 };
 
 ?>
-
 <h1>SIGN UP</h1>
 
 <form action="index.php?action=createUser" method="POST" id="form">
