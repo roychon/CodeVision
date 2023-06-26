@@ -41,6 +41,9 @@ if (isset($_SESSION['id'])) {
       }
     }
     ?>
+
+    <!-- SHOW MORE FOR LIMITS -->
+    <a href="index.php?limit=<?= $limit ?>">show more</a>
   </div>
 
 

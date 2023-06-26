@@ -5,6 +5,7 @@ class ProjectManager extends Manager
 {
     public function getCards()
     {
+
         $db = $this->dbConnect();
         $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.gif, p.description, l.language_name
             FROM user u
