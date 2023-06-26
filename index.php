@@ -91,8 +91,6 @@ try {
             if (!$_SESSION['id']) {
                 throw new Exception("Missing user id");
             }
-            // echo "<pre>";
-            // print_r($_POST);
             $gif = $_POST['gif'] ?? "";
             $title = $_POST['title'] ?? "";
             $description = $_POST['description'] ?? "";
