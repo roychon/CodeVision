@@ -143,11 +143,6 @@ class ProjectManager extends Manager
             "user_id" => $user_id
         ));
         $data = $req->fetch(); // will be FALSE if 1st time voting
-
-        // if ($_SESSION['id'] == 0) {
-        //     // where the popup should start
-        //     header("Location: index.php?error=true");
-        // } else {
         if ($data) {
             // run an UPDATE
             $req = $db->prepare("UPDATE project_votes SET stat = :stat WHERE user_id = :user_id and project_id = :project_id");
@@ -161,22 +156,6 @@ class ProjectManager extends Manager
                 $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
                 $req->execute();
             } // NO like or dislike
-            // if ($data) {
-            //     // run an UPDATE
-            //     $req = $db->prepare("UPDATE project_votes SET stat = :stat WHERE user_id = :user_id and project_id = :project_id");
-            //     $req->bindParam("stat", $stat, PDO::PARAM_INT);
-            //     $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
-            //     $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
-            //     $req->execute();
-            // } else {
-            //     // do an INSERT
-            //     $req = $db->prepare("INSERT INTO project_votes (user_id, project_id, stat) VALUES (:user_id, :project_id, :stat)");
-            //     $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
-            //     $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
-            //     $req->bindParam("stat", $stat, PDO::PARAM_INT);
-            //     $req->execute();
-            // }
-            // }
         } else {
             // do an INSERT
             $req = $db->prepare("INSERT INTO project_votes (user_id, project_id, stat) VALUES (:user_id, :project_id, :stat)");
