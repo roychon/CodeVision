@@ -14,14 +14,14 @@
         <div class="search-bar-div">
             <!-- MIDDLE -->
             <input class="search-bar" type="search" name="" id="" placeholder="Search">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
         </div>
         <!-- RIGHT SIDE -->
         <div>
             <!-- <img class="user-profile-pic" src="" alt=""> -->
             <a href="index.php?action=signInForm">Log In</a>
             <a class="" href="index.php?action=add_user">Sign Up</a>
-            <i class="fa-solid fa-user"></i>
+            <!-- <i class="fa-solid fa-user"></i> -->
         </div>
         <!-- nav bar? -->
     </div>
