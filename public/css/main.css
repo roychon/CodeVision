@@ -162,7 +162,7 @@ input[type="search"] {
     border: 1px solid var(--light-grey);
 }
 
-.bottom-card-container {
+.bottom-card-container, .project-votes-container {
     display: flex;
     margin-top: 10px;
     padding-left: 10px;
@@ -338,6 +338,7 @@ input[type="search"] {
 }
 
 .slide button {
+    z-index: 3;
     width: fit-content;
 }
 
@@ -434,6 +435,6 @@ input[type="search"] {
 
 .project-container {
 	display: flex;
-	justify-content: space-around;
 	flex-wrap: wrap;
+    gap: 2rem;
 }
