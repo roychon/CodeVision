@@ -1,3 +1,3 @@
 <i class="fa-solid fa-thumbs-up voteBtn" value="UPVOTE" id="upVote" name="upVote" onclick="projectVotes(<?= isset($_SESSION['id']) ? $_SESSION['id'] : 0; ?>, <?= $project->id ?>, '1', this);"></i>
 <p class="sum"><?= $project->sum ?></p>
-<i class="fa-solid fa-thumbs-down voteBtn" value="DOWNVOTE" id="downVote" name="downVote" onclick="projectVotes(<?= isset($_SESSION['id']) ? $_SESSION['id'] : 0; ?>, <?= $project->id ?>, '-1', this);""></i>
+<i class="fa-solid fa-thumbs-down voteBtn" value="DOWNVOTE" id="downVote" name="downVote" onclick="projectVotes(<?= isset($_SESSION['id']) ? $_SESSION['id'] : 0; ?>, <?= $project->id ?>, '-1', this);"></i>
