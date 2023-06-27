@@ -7,6 +7,11 @@ if (isset($_GET['error'])) {
 };
 
 ?>
+
+<!-- FOR SIGN IN WITH GOOGLE -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<!-- ======================== -->
+
 <h1>SIGN UP</h1>
 
 <form action="index.php?action=createUser" method="POST" id="form">
@@ -45,7 +50,15 @@ if (isset($_GET['error'])) {
         <input type="submit" value="Submit form">
     </p>
 
+    <!-- GOOGLE BUTTON -->
+    <div id="g_id_onload" data-client_id="<?= getenv("GOOGLE_CLIENT_ID") ?>" data-context="signin" data-ux_mode="popup" data-login_uri="http://localhost/sites/batch20-final-project/index.php?action=googleLogIn" data-auto_prompt="false">
+    </div>
+
+    <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline" data-text="signin_with" data-size="large" data-logo_alignment="left">
+    </div>
+
 </form>
+
 
 <?php
 $content = ob_get_clean();

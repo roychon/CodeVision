@@ -121,6 +121,24 @@ try {
             }
             break;
 
+            // FOR LOGING IN WITH GOOGLE BUTTON
+        case "googleLogIn":
+            $token = $_REQUEST['credential'];
+            $jwt = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $token)[1]))));
+
+            $currentdate = time();
+
+            if (
+                $jwt->aud === getenv("GOOGLE_CLIENT_ID") &&
+                ($jwt->iss === "accounts.google.com" || $jwt->iss === "https://accounts.google.com") &&
+                $currentdate < $jwt->exp
+            ) {
+                // FOR SPLITTING THE EMAIL ON @ SIGN, AND MAKING A USERNAME
+                $username = substr($jwt->email, 0, strpos($jwt->email, "@"));
+                logInGoogle($username, $jwt->given_name, $jwt->family_name, $jwt->email, $jwt->picture);
+            }
+            break;
+
             // FOR LOGGED IN USERS -- so that it doesn't take them to new page
         case "showUserPage":
             displayCards();
@@ -228,6 +246,8 @@ try {
                 displayFullProject($project_id);
             };
             break;
+
+
 
         default:
             displayCards();

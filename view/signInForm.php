@@ -6,6 +6,10 @@ ob_start();
 <link rel="stylesheet" href="./public/css/formInput.css">
 <script defer src="./public/js/validateSignIn.js"></script>
 
+<!-- FOR SIGN IN WITH GOOGLE -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<!-- ======================== -->
+
 <div class="login-form">
   <form action="index.php?action=logIn" method="POST" id="login">
 
@@ -29,6 +33,15 @@ ob_start();
     <button class="sign-btn">
       <a href="index.php?action=add_user">Don't have an account? Sign up</a>
     </button>
+
+    <!-- GOOGLE BUTTON -->
+    <div class="google-btn">
+      <div id="g_id_onload" data-client_id="<?= getenv("GOOGLE_CLIENT_ID") ?>" data-context="signin" data-ux_mode="popup" data-login_uri="http://localhost/sites/batch20-final-project/index.php?action=googleLogIn" data-auto_prompt="false">
+      </div>
+
+      <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline" data-text="signin_with" data-size="large" data-logo_alignment="left">
+      </div>
+    </div>
   </form>
 </div>
 

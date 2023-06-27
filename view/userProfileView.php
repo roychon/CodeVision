@@ -16,12 +16,12 @@ ob_start();
             </div>
             <div>
                 <h1 id='profile-name'><?= "$userInfo->first_name $userInfo->last_name"; ?></h1>
-                <h1 id='profile-username'><?= $userInfo->username; ?></h1>
+                <h1 id='profile-username'><?= $userInfo->username ?></h1>
             </div>
 
 
             <div class="user-profile-bio">
-                <p><?= $userInfo->bio ?></p>
+                <p><?= $userInfo->bio ?? "" ?></p>
                 <span class="user-language-tag">
                     <?php
                     echo "<span id='languages'>Languages: </span>";
