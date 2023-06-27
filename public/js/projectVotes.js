@@ -1,5 +1,6 @@
 // AJAX: upvote, downvote
 function projectVotes(user_id, project_id, stat, obj) {
+  const clickedSum = obj.closest(".card").querySelector(".sum");
   const xhr = new XMLHttpRequest();
   xhr.open(
     "GET",
@@ -7,8 +8,6 @@ function projectVotes(user_id, project_id, stat, obj) {
   );
 
   xhr.addEventListener("load", () => {
-    const clickedSum = obj.closest(".card").querySelector(".sum");
-
     clickedSum.innerHTML = xhr.responseText;
   });
   xhr.send();
