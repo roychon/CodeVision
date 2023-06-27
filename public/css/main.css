@@ -235,6 +235,10 @@ input[type="search"] {
     gap: 5rem;
 }
 
+.index-container form {
+    margin-left: 1rem;
+}
+
 .carousel-container {
     /* display: flex; */
     /* flex-direction: column; */
@@ -380,4 +384,9 @@ input[type="search"] {
 	display: flex;
 	flex-wrap: wrap;
     gap: 2rem;
+}
+
+/* The drop down list */
+#filter { 
+    width: fit-content;
 }
