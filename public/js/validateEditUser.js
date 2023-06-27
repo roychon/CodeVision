@@ -197,6 +197,7 @@ function checkInputs(e) {
 		checkPassword();
 	}
 }
+
 if (changePassword) {
 	changePassword.addEventListener("submit", checkInputs);
 }

@@ -21,6 +21,24 @@ class UserManager extends Manager
         $req->bindParam("image_url", $image_url, PDO::PARAM_STR);
         $req->execute();
     }
+
+    // INSERTING THE DATA INTO THE DATABASE WHEN SIGNED IN WITH GOOGLE 
+    public function addUserGoogle($username, $given_name, $family_name, $email, $picture)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("INSERT INTO user (username, email, profile_img, first_name, last_name) VALUES (:username, :email, :picture, :first_name, :last_name)");
+        $req->bindParam("username", $username, PDO::PARAM_STR);
+        $req->bindParam("first_name", $given_name, PDO::PARAM_STR);
+        $req->bindParam("last_name", $family_name, PDO::PARAM_STR);
+        $req->bindParam("email", $email, PDO::PARAM_STR);
+        $req->bindParam("picture", $picture, PDO::PARAM_STR);
+        $req->execute();
+
+        // FOR RETURNING THE 'ID' OF THE LAST INSERT
+        return $db->lastInsertId();
+    }
+
+
     //HANDLING USER ERROR: MULTIPLE USERNAMES AND EMAILS
     public function userExists($username)
     {
@@ -320,6 +338,17 @@ class UserManager extends Manager
 
         $req = $db->prepare("SELECT * FROM user WHERE id = ? ");
         $req->execute([$user_id]);
+
+        return $req->fetch();
+    }
+
+    // FUNCTION FOR GOOGLE SIGN IN BASED ON USERNAME
+    public function getUserInfoGoogle($username)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT * FROM user WHERE username = ? ");
+        $req->execute([$username]);
 
         return $req->fetch();
     }

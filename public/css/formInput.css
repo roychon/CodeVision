@@ -13,8 +13,15 @@ body {
   display: flex;
   justify-content: center;
   width: 35%;
-  height: 55%;
+  height: 60%;
   background-color: #232325;
+}
+
+.google-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #settings-form {

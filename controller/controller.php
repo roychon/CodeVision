@@ -61,6 +61,44 @@ function addUser()
     require "./view/userAddForm.php";
 }
 
+
+
+
+function logInGoogle($username, $given_name, $family_name, $email, $picture)
+{
+    $userManager = new UserManager();
+
+    $userCount = $userManager->userExists($username)->count;
+
+    $emailCount = $userManager->emailExists($email)->count;
+
+    // IF WE ARE CREATING A NEW USER
+    if ($userCount == 0 and $emailCount == 0) { // Both unique
+        $user_id = $userManager->addUserGoogle($username, $given_name, $family_name, $email, $picture);
+
+        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
+        $_SESSION['profile_img'] = $picture;
+
+        $userInfo = $userManager->getUserInfo($user_id);
+        $_SESSION['id'] = $user_id;
+
+        $message = urlencode("User created successfully.");
+        header("Location: index.php?action=userProfileView&id={$_SESSION['id']}&error=false&message=$message");
+    } else { // already in db
+
+        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
+        $_SESSION['profile_img'] = $picture;
+
+        $userInfo = $userManager->getUserInfoGoogle($username);
+        $_SESSION['id'] = $userInfo->id;
+
+        $message = urlencode("Welcome back!");
+        header("Location: index.php?action=userProfileView&id={$_SESSION['id']}&error=true&message=$message");
+    }
+}
+
 function showSignInForm()
 {
     require "./view/signInForm.php";
@@ -94,6 +132,7 @@ function logIn($username, $password)
         header("Location: index.php?action=signInForm&error=true&message=$message");
     }
 }
+
 
 function editUser($id)
 {
@@ -202,3 +241,14 @@ function showUserPage()
 {
     require "./view/indexView.php";
 }
+
+
+
+/*
+Client ID
+683613900914-mkh34gk46n9nghrhg53ms594daepg952.apps.googleusercontent.com
+
+
+Client secret
+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
+*/
