@@ -162,7 +162,7 @@ input[type="search"] {
     border: 1px solid var(--light-grey);
 }
 
-.bottom-card-container, .project-votes-container {
+.bottom-card-container, .projectVotesContainer{
     display: flex;
     margin-top: 10px;
     padding-left: 10px;
@@ -294,6 +294,10 @@ input[type="search"] {
     display: flex;
     flex-direction: column;
     gap: 5rem;
+}
+
+.index-container form {
+    margin-left: 1rem;
 }
 
 .carousel-container {
@@ -437,4 +441,9 @@ input[type="search"] {
 	display: flex;
 	flex-wrap: wrap;
     gap: 2rem;
+}
+
+/* The drop down list */
+#filter { 
+    width: fit-content;
 }
