@@ -218,6 +218,7 @@ class ProjectManager extends Manager
                 $insertReq->execute([$tag]);
             } catch (Exception $e) {
                 // TODO: do something later maybe?
+                echo "error";
             }
             // TODO: SELECT the id of the tag 
             $tagSelect = $db->prepare("SELECT id FROM tag WHERE tag_name =?");

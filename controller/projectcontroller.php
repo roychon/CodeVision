@@ -66,6 +66,7 @@ function insertNewProject($user_id, $video_source, $title, $description, $tags, 
             if (($_FILES['video']['size'] > $maxsize) or ($_FILES['video']['size'] == 0)) {
                 $message = urlencode("Your file is too big. Please upload a file smaller than 5 MB.");
                 header("Location: index.php?action=insertNewProject&error=true&message=$message");
+                //TODO: uncomment
             } else if
             //move_uploaded_file paramaters are the file name of the uploaded file to
             //the destination it needs to be moved
@@ -74,6 +75,7 @@ function insertNewProject($user_id, $video_source, $title, $description, $tags, 
             } else {
                 $message = urlencode("Failed to upload video file.");
                 header("Location: index.php?action=insertNewProject&error=true&message=$message");
+                //TODO: uncomment
             }
         }
     }
