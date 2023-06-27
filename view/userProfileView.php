@@ -84,6 +84,7 @@ ob_start();
 
     </section>
 </main>
+<script defer src="./public/js/projectVotes.js"></script>
 <?php
 $content = ob_get_clean();
 require "template.php";

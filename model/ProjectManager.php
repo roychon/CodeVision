@@ -68,6 +68,12 @@ class ProjectManager extends Manager
                 $projects[$project_id]->languages = [];
                 $projects[$project_id]->languages[] = $data->language_name;
 
+                $sumsQuery = $db->prepare("SELECT SUM(stat) AS sum_stat FROM project_votes WHERE project_id = :project_id");
+                $sumsQuery->bindParam("project_id", $project_id, PDO::PARAM_INT);
+                $sumsQuery->execute();
+                $sum = $sumsQuery->fetch()->sum_stat;
+                $projects[$project_id]->sum = $sum;
+
                 unset($projects[$project_id]->language_name);
             }
         }
@@ -136,33 +142,56 @@ class ProjectManager extends Manager
             "project_id" => $project_id,
             "user_id" => $user_id
         ));
-        $data = $req->fetch();
-
-        if ($_SESSION['id'] == 0) {
-            header("Location: index.php?action=signinForm");
-        } else {
+        $data = $req->fetch(); // will be FALSE if 1st time voting
+        if ($data) {
+            // run an UPDATE
+            $req = $db->prepare("UPDATE project_votes SET stat = :stat WHERE user_id = :user_id and project_id = :project_id");
+            $req->bindParam("stat", $stat, PDO::PARAM_INT);
+            $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
+            $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
+            $req->execute();
             if ($data->stat != 0) { // if they are liking/disliking
                 $req = $db->prepare("UPDATE project_votes SET stat = 0 WHERE user_id = :user_id and project_id = :project_id");
                 $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
                 $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
                 $req->execute();
-            } else { // NO like or dislike
-                if ($data) {
-                    // run an UPDATE
-                    $req = $db->prepare("UPDATE project_votes SET stat = :stat WHERE user_id = :user_id and project_id = :project_id");
-                    $req->bindParam("stat", $stat, PDO::PARAM_INT);
-                    $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
-                    $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
-                    $req->execute();
-                } else {
-                    // do an INSERT
-                    $req = $db->prepare("INSERT INTO project_votes (user_id, project_id, stat) VALUES (:user_id, :project_id, :stat)");
-                    $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
-                    $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
-                    $req->bindParam("stat", $stat, PDO::PARAM_INT);
-                    $req->execute();
-                }
-            }
+            } // NO like or dislike
+        } else {
+            // do an INSERT
+            $req = $db->prepare("INSERT INTO project_votes (user_id, project_id, stat) VALUES (:user_id, :project_id, :stat)");
+            $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
+            $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
+            $req->bindParam("stat", $stat, PDO::PARAM_INT);
+            $req->execute();
         }
+        $sumsQuery = $db->prepare("SELECT SUM(stat) AS sum_stat FROM project_votes WHERE project_id = :project_id");
+        $sumsQuery->bindParam("project_id", $project_id, PDO::PARAM_INT);
+        $sumsQuery->execute();
+        $sum = $sumsQuery->fetch()->sum_stat;
+        return $sum;
+    }
+
+    public function getCarousels()
+    {
+        $db = $this->dbConnect();
+
+        $projects = $db->query("
+        SELECT p.id as project_id, p.title, p.gif, p.description, u.profile_img, u.username 
+        FROM project p
+        INNER JOIN user u
+        ON p.user_id = u.id
+        WHERE p.is_active = 1
+        ORDER BY p.id ASC
+        LIMIT 5        
+        ");
+
+        $arr = [];
+
+        while ($project = $projects->fetch()) {
+            array_push($arr, $project);
+        }
+
+        return $arr;
     }
 }
+// }

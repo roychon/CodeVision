@@ -4,7 +4,13 @@ require_once "./model/ProjectManager.php";
 function displayCards()
 {
     $projectManager = new ProjectManager();
+
+    $carousels = $projectManager->getCarousels();
     $projects = $projectManager->getCards();
+
+    // echo "<pre>";
+    // print_r($carousels);
+    // echo "</pre>";
     require './view/indexView.php';
 }
 
@@ -20,8 +26,8 @@ function displayFullProject($project_id)
 }
 function getProjectVotes($user_id, $project_id, $stat)
 {
-
     $projectManager = new ProjectManager();
-    $projects = $projectManager->projectVotes($user_id, $project_id, $stat);
-    header("Location: index.php");
+    $status = $projectManager->projectVotes($user_id, $project_id, $stat);
+
+    echo $status;
 }

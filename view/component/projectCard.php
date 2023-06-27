@@ -1,5 +1,4 @@
 <div class="card">
-
     <p>
         <a href="index.php?action=fullProjectPage&project_id=<?= $project->id ?>"> <img class="project-gif" src="<?= $project->gif ?>" alt="user project gif"></a>
     </p>
@@ -24,7 +23,7 @@
 
         </div>
         <!-- Upvote + Downvote Buttons -->
-        <div class="project-votes-container">
+        <div class="projectVotesContainer">
             <?php
             include "projectVotes.php";
             ?>
