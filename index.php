@@ -1,6 +1,5 @@
 <?php
 session_start();
-// test
 
 require "./controller/controller.php";
 require "./controller/projectcontroller.php";
