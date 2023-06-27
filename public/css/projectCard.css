@@ -25,10 +25,11 @@
 
 .outer-container {
     background-color: #141518;
-    padding: 10px 5px;
+    padding: 10px 0;
+    position: relative;
 }
 
-.bottom-card-container, .project-votes-container {
+.bottom-card-container, .projectVotesContainer {
     display: flex;
     padding-left: 10px;
     padding-right: 10px;
@@ -36,10 +37,11 @@
     gap: 7px;
 }
 
-.project-votes-container {
-    display: flex; 
+.projectVotesContainer {
+    position: absolute;
+    right:3%;
+    bottom: 3%;
     flex-direction: column;
-    justify-content:right;
 }
 
 .project-description {
@@ -55,4 +57,8 @@
 
 .language-tag {
     color: lightgray;
+}
+
+.voted {
+    color: red;
 }

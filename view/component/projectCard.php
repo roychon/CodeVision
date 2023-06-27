@@ -18,13 +18,12 @@
                 <span class="language-tag"> <?php
                                             echo join(", ", $project->languages) ?></span>
             </div>
-
-        </div>
-        <!-- Upvote + Downvote Buttons -->
-        <div class="projectVotesContainer">
-            <?php
-            include "projectVotes.php";
-            ?>
+            <!-- Upvote + Downvote Buttons -->
+            <div class="projectVotesContainer">
+                <?php
+                include "projectVotes.php";
+                ?>
+            </div>
         </div>
     </div>
 
