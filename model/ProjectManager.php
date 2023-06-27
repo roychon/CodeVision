@@ -5,6 +5,7 @@ class ProjectManager extends Manager
 {
     public function getCards()
     {
+
         $db = $this->dbConnect();
         $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.gif, p.description, l.language_name
             FROM user u
@@ -73,6 +74,52 @@ class ProjectManager extends Manager
         return $projects;
     }
 
+    public function displayFullProject($project_id)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare(
+            "SELECT u.username, p.id, p.user_id as user_id, p.title, p.gif, p.description, l.language_name
+        FROM project p 
+        INNER JOIN user u
+            ON u.id = user_id
+        INNER JOIN project_language_map plm
+            ON p.id = plm.project_id
+        INNER JOIN language l
+            ON l.id = plm.language_id
+        WHERE p.id = ?"
+        );
+
+        $req->bindParam("id", $project_id, PDO::PARAM_INT);
+
+        $req->execute([$project_id]);
+
+        $projects = [];
+        while ($data = $req->fetch()) {
+            $project_id = $data->id;
+            if (isset($projects[$project_id])) {
+                // this is NOT the 1st time we've seen this same project.
+                // So just put the language name into the languages array
+                $projects[$project_id]->languages[] = $data->language_name;
+            } else {
+                // This IS the 1st time we've seen this project id
+                // so we need to add the project object to the $projects array
+                // THEN we will create the languages array on that object
+                // and put the language name into that array
+                $projects[$project_id] = $data;
+                $projects[$project_id]->languages = [];
+                $projects[$project_id]->languages[] = $data->language_name;
+
+                unset($projects[$project_id]->language_name);
+            }
+        }
+
+        return $projects[$project_id];
+    }
+
+
+    // $project = $req->fetch();
+    // return $project;
     public function projectVotes($user_id, $project_id, $stat)
     {
         $db = $this->dbConnect();
@@ -91,15 +138,15 @@ class ProjectManager extends Manager
         ));
         $data = $req->fetch();
 
-        if ($data->user_id == 0) {
-            echo "oh no";
+        if ($_SESSION['id'] == 0) {
+            header("Location: index.php?action=signinForm");
         } else {
-            if ($data->stat != 0) {
+            if ($data->stat != 0) { // if they are liking/disliking
                 $req = $db->prepare("UPDATE project_votes SET stat = 0 WHERE user_id = :user_id and project_id = :project_id");
                 $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
                 $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
                 $req->execute();
-            } else {
+            } else { // NO like or dislike
                 if ($data) {
                     // run an UPDATE
                     $req = $db->prepare("UPDATE project_votes SET stat = :stat WHERE user_id = :user_id and project_id = :project_id");
@@ -117,5 +164,27 @@ class ProjectManager extends Manager
                 }
             }
         }
+    }
+
+    public function getCarousels() {
+        $db = $this->dbConnect();
+
+        $projects = $db->query("
+        SELECT p.id as project_id, p.title, p.gif, p.description, u.profile_img, u.username 
+        FROM project p
+        INNER JOIN user u
+        ON p.user_id = u.id
+        WHERE p.is_active = 1
+        ORDER BY p.id ASC
+        LIMIT 5        
+        ");
+
+        $arr = [];
+        
+        while ($project = $projects->fetch()) {
+            array_push($arr, $project);
+        }
+
+        return $arr;
     }
 }
