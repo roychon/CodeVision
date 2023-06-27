@@ -10,9 +10,16 @@ function projectVotes(user_id, project_id, stat, obj) {
     const clickedSum = obj.closest(".card").querySelector(".sum");
     const upVote = obj.closest(".card").querySelector("#upVote");
     const downVote = obj.closest(".card").querySelector("#downVote");
+
     clickedSum.innerHTML = xhr.responseText;
 
-    if ()
+    // upVote.addEventListener("click", () => {
+    //   upVote.classList.toggle("voted");
+    // });
+
+    // downVote.addEventListener("click", () => {
+    //   downVote.classList.toggle("voted");
+    // });
   });
   xhr.send();
 }

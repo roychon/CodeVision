@@ -168,7 +168,7 @@ class ProjectManager extends Manager
         $sumsQuery->bindParam("project_id", $project_id, PDO::PARAM_INT);
         $sumsQuery->execute();
         $sum = $sumsQuery->fetch()->sum_stat;
-        return $sum;
+        // return [$sum, ];
     }
 
     public function getCarousels()
