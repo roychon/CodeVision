@@ -104,12 +104,6 @@ function showSignInForm()
     require "./view/signInForm.php";
 }
 
-function insertNewProject($user_id, $gif, $title, $description, $tags, $languages)
-{
-    $userManager = new UserManager();
-    $userManager->insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
-    header("Location: index.php");
-}
 function logOut()
 {
     session_destroy();
