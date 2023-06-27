@@ -198,6 +198,6 @@ function checkInputs(e) {
 	}
 }
 
-// if (changePassword) {
-// 	changePassword.addEventListener("submit", checkInputs);
-// }
+if (changePassword) {
+	changePassword.addEventListener("submit", checkInputs);
+}
