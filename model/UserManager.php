@@ -40,11 +40,12 @@ class UserManager extends Manager
     }
 
     // INSERT NEW PROJECT
-    public function insertNewProject($user_id, $gif, $title, $description, $tags, $languages)
+    //TODO: update "gif" with video_src
+    public function insertNewProject($user_id, $video_source, $title, $description, $tags, $languages)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("INSERT INTO project (user_id, gif, title, description)  VALUES (:user_id, :gif, :title, :description)"); //TODO:insert into tag table and language table)
-        $req->bindParam("gif", $gif, PDO::PARAM_STR);
+        $req = $db->prepare("INSERT INTO project (user_id, video_src, title, description)  VALUES (:user_id, :video_src, :title, :description)"); //TODO:insert into tag table and language table)
+        $req->bindParam("video_src", $video_source, PDO::PARAM_STR);
         $req->bindParam("title", $title, PDO::PARAM_STR);
         $req->bindParam("description", $description, PDO::PARAM_STR);
         $req->bindParam("user_id", $user_id, PDO::PARAM_STR);

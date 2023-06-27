@@ -7,7 +7,7 @@ class ProjectManager extends Manager
     {
 
         $db = $this->dbConnect();
-        $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.gif, p.description, l.language_name
+        $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.video_src, p.description, l.language_name
             FROM user u
             INNER JOIN project p
             ON u.id = p.user_id
@@ -43,7 +43,7 @@ class ProjectManager extends Manager
     public function getUserProjects($user_id)
     {
         $db = $this->dbConnect();
-        $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.gif, p.description, l.language_name
+        $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.video_src, p.description, l.language_name
             FROM user u
             INNER JOIN project p
             ON u.id = p.user_id
@@ -79,7 +79,7 @@ class ProjectManager extends Manager
         $db = $this->dbConnect();
 
         $req = $db->prepare(
-            "SELECT u.username, p.id, p.user_id as user_id, p.title, p.gif, p.description, l.language_name
+            "SELECT u.username, p.id, p.user_id as user_id, p.title, p.video_src, p.description, l.language_name
         FROM project p 
         INNER JOIN user u
             ON u.id = user_id
