@@ -25,6 +25,7 @@ function showUserProfile($user_id)
         $userLanguages = $userManager->getUserLanguages($user_id);
 
 
+
         require "./view/userProfileView.php";
     } else {
         require "./view/signInForm.php";
@@ -65,58 +66,6 @@ function showSignInForm()
     require "./view/signInForm.php";
 }
 
-function insertNewProject($user_id, $video_source, $title, $description, $tags, $languages)
-{
-    $userManager = new UserManager();
-
-    //UPLOADING VIDEO
-    // UPLOAD TO: $target_dir . $hashed_filename . $extension
-    // WHEN INSERTING INTO DB: $hashed_filename . $extension
-
-    $maxsize = 5242880; // max size is 30s video: 5MB in bytes
-    //if the video input section exists and it's not blank
-    //TODO: CHECK THE IN_ARRAY 
-    $extensions = array("mp4");
-    if (
-        isset($_FILES['video']['name']) and ($_FILES['video']['name'] != "")
-        and in_array("mp4", $extensions)
-    ) {
-
-        $name = $_FILES['video']['name'];
-
-        // print_r($_FILES);
-        //$target_dir specifies the directory
-        $target_dir = "./public/uploaded_videos/";
-
-        //saves unique name for each uploaded file
-        $hashed_filename = hash_file('md5', $_FILES['video']['tmp_name']);
-
-        //pathinfo() gives info about the path extenstions
-        $extension = strtolower(pathinfo($name, PATHINFO_EXTENSION));
-
-        //$target_file specifies the path of the file to be uploaded
-        $target_file = $target_dir . $hashed_filename . "." . $extension; //hash the file name here
-
-        //saving the info to store in DB
-        $video_source = $hashed_filename . "." . $extension;
-
-        //check the uploaded file
-        if (($_FILES['video']['size'] > $maxsize) or ($_FILES['video']['size'] == 0)) {
-            $message = urlencode("Your file is too big. Please upload a file smaller than 5 MB.");
-            header("Location: index.php?action=insertNewProject&error=true&message=$message");
-        } else if
-        //move_uploaded_file paramaters are the file name of the uploaded file to
-        //the destination it needs to be moved
-        (move_uploaded_file($_FILES['video']['tmp_name'], $target_file)) {
-            $userManager->insertNewProject($user_id, $video_source, $title, $description, $tags, $languages);
-        } else {
-            $message = urlencode("Failed to upload video file.");
-            header("Location: index.php?action=insertNewProject&error=true&message=$message");
-        }
-    }
-    // $userManager->insertNewProject($user_id, $video_source, $title, $description, $tags, $languages);
-    header("Location: index.php");
-}
 function logOut()
 {
     session_destroy();

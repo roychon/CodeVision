@@ -26,9 +26,7 @@ ob_start();
       <input type="submit" value="submit" id="loginSubmit" disabled>
     </p>
 
-    <button class="sign-btn">
-      <a href="index.php?action=add_user">Don't have an account? Sign up</a>
-    </button>
+    <a class="sign-btn" href="index.php?action=add_user">Don't have an account? Sign up</a>
   </form>
 </div>
 

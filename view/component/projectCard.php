@@ -1,5 +1,4 @@
 <div class="card">
-
     <p>
         <a href="index.php?action=fullProjectPage&project_id=<?= $project->id ?>">
             <!-- muted attribute enables video to play when hovered. otherwise user would have to click anywhere on the page -->
@@ -27,7 +26,7 @@
 
         </div>
         <!-- Upvote + Downvote Buttons -->
-        <div class="project-votes-container">
+        <div class="projectVotesContainer">
             <?php
             include "projectVotes.php";
             ?>

@@ -8,17 +8,27 @@ ob_start();
 if (isset($_SESSION['id'])) {
   include "./view/component/loggedInHeader.php";
 }
+
 ?>
 
 <!-- OVERALL CONTAINER -->
 <div class="index-container">
   <!-- carousel container -->
-  <div class="carousel-container">
-    <div class="carousel-img"></div>
+  <div class="carousel-container" data-carousel>
+    <button class="carousel-button prev" data-carousel-button='prev'>&#x2039</button>
+    <button class="carousel-button next" data-carousel-button='next'>&#x203A</button>
+    <div data-slides>
+      <?php
+      for ($i = 0; $i < count($carousels); $i++) {
+        include "./view/component/carousel.php";
+      }
+      ?>
+    </div>
+    <!-- <div class="carousel-img"></div>
     <p class="cusername">username</p>
     <p class="ctitle">title of project</p>
     <p class="cdescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum dignissimos officiis nam id. Modi id amet ullam rem labore quam perspiciatis nulla explicabo aut pariatur fugiat eum, tenetur illum quis!</p>
-    <button class="carousel-more">view more</button>
+    <button class="carousel-more">view more</button> -->
   </div>
 
   <!-- <h1>Landing Page</h1> -->
@@ -41,7 +51,9 @@ if (isset($_SESSION['id'])) {
 
 
   <!-- </div> -->
+  <script defer src="./public/js/carousel.js"></script>
   <script defer src="./public/js/projectVotes.js"></script>
+  <!-- <script defer src="popUp.js"></script> -->
   <?php
   $content = ob_get_clean();
 
