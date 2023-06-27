@@ -249,7 +249,13 @@ try {
             };
             break;
 
-
+        case "filter":
+            if (isset($_GET['filterOn'])) {
+                getFilteredProjects($_GET['filterOn']);
+            } else {
+                throw new Exception ("Missing filter value");
+            }
+            break;
 
         default:
             displayCards();

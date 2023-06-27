@@ -1,15 +1,14 @@
 <?php
 require_once "./model/ProjectManager.php";
 
-function displayCards()
+function displayCards($filter = "default")
 {
     $projectManager = new ProjectManager();
-
     $carousels = $projectManager->getCarousels();
     $projects = $projectManager->getCards();
 
     // echo "<pre>";
-    // print_r($carousels);
+    // print_r($projects);
     // echo "</pre>";
     require './view/indexView.php';
 }
@@ -30,4 +29,18 @@ function getProjectVotes($user_id, $project_id, $stat)
     $status = $projectManager->projectVotes($user_id, $project_id, $stat);
 
     echo $status;
+}
+
+function getFilteredProjects($filter)
+{
+    $projectManager = new ProjectManager();
+    if ($filter == 'mostRecent') {
+        $projects = $projectManager->getMostRecentProjects();
+    } else if ($filter == 'mostLikes') {
+        $projects = $projectManager->getMostLikedProjects();
+    }
+    
+    foreach ($projects as $project) {
+        require "./view/component/projectCard.php";
+    }
 }
