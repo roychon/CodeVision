@@ -8,8 +8,8 @@ function projectVotes(user_id, project_id, stat, obj) {
 
   xhr.addEventListener("load", () => {
     const clickedSum = obj.closest(".card").querySelector(".sum");
-    const upVote = obj.closest(".card").querySelector("#upVote");
-    const downVote = obj.closest(".card").querySelector("#downVote");
+    // const upVote = obj.closest(".card").querySelector("#upVote");
+    // const downVote = obj.closest(".card").querySelector("#downVote");
 
     clickedSum.innerHTML = xhr.responseText;
 
