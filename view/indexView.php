@@ -30,7 +30,11 @@ if (isset($_SESSION['id'])) {
     <p class="cdescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum dignissimos officiis nam id. Modi id amet ullam rem labore quam perspiciatis nulla explicabo aut pariatur fugiat eum, tenetur illum quis!</p>
     <button class="carousel-more">view more</button> -->
   </div>
-
+    <select name="filter" id="filter" onchange="filterProjects(this.value)">
+      <option value="" selected disabled hidden>Filter</option>
+      <option value="mostRecent">Most Recent</option>
+      <option value="mostLikes">Most Likes</option>
+    </select>
   <!-- <h1>Landing Page</h1> -->
   <div class="project-container">
     <?php
@@ -53,6 +57,7 @@ if (isset($_SESSION['id'])) {
   <!-- </div> -->
   <script defer src="./public/js/carousel.js"></script>
   <script defer src="./public/js/projectVotes.js"></script>
+  <script defer src="./public/js/filterProjects.js"></script>
   <!-- <script defer src="popUp.js"></script> -->
   <?php
   $content = ob_get_clean();
