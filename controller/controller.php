@@ -25,6 +25,7 @@ function showUserProfile($user_id)
         $userLanguages = $userManager->getUserLanguages($user_id);
 
 
+
         require "./view/userProfileView.php";
     } else {
         require "./view/signInForm.php";

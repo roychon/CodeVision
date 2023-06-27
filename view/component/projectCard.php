@@ -1,9 +1,4 @@
 <div class="card">
-    <h2 class="project-title">
-        <span>
-            <?= htmlspecialchars($project->title) ?>
-        </span>
-    </h2>
     <p>
         <a href="index.php?action=fullProjectPage&project_id=<?= $project->id ?>"> <img class="project-gif" src="<?= $project->gif ?>" alt="user project gif"></a>
     </p>
@@ -26,7 +21,7 @@
 
         </div>
         <!-- Upvote + Downvote Buttons -->
-        <div class="project-votes-container">
+        <div class="projectVotesContainer">
             <?php
             include "projectVotes.php";
             ?>
