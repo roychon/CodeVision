@@ -1,0 +1,58 @@
+.project-gif {
+    width: 100%;
+}
+
+.card {
+    width: 23%;
+    height: 20%;
+    border-radius: 3px;
+    font-family: "Inter", sans-serif;
+    font-size: 0.8rem;
+    overflow: hidden;
+}
+
+.card .project-gif {
+    height: 200px;
+    aspect-ratio: 1;
+}
+
+.user-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--light-grey);
+}
+
+.outer-container {
+    background-color: #141518;
+    padding: 10px 5px;
+}
+
+.bottom-card-container, .project-votes-container {
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    gap: 7px;
+}
+
+.project-votes-container {
+    display: flex; 
+    flex-direction: column;
+    justify-content:right;
+}
+
+.project-description {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.project-title {
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+.language-tag {
+    color: lightgray;
+}
