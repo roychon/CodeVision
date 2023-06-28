@@ -277,8 +277,9 @@ try {
             // when you click on a project, it should bring you here
             // with a GET parameter with the project id
             $project_id = $_GET['project_id'] ?? "";
+            // $profile_image = $_POST['profileImage'] ?? "";
             if ($project_id) {
-                displayFullProject($project_id);
+                displayFullProject($project_id);  //$profile_image//
             };
             break;
 

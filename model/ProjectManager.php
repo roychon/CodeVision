@@ -91,7 +91,7 @@ class ProjectManager extends Manager
         $db = $this->dbConnect();
 
         $req = $db->prepare(
-            "SELECT u.username, p.id, p.user_id as user_id, p.title, p.video_src, p.description, l.language_name
+            "SELECT u.username, u.profile_img, u.linkedIn, u.gitHub, p.id, p.user_id as user_id, p.title, p.video_src, p.description, l.language_name
         FROM project p 
         INNER JOIN user u
             ON u.id = user_id
@@ -128,7 +128,6 @@ class ProjectManager extends Manager
 
         return $projects[$project_id];
     }
-
 
     // $project = $req->fetch();
     // return $project;
