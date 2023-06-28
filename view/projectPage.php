@@ -16,7 +16,8 @@ TODO: add appropriate header template to the top of page-->
 
       <div class="animation-container">
         <p>
-          <img class="project-gif" src="<?= $fullProject->gif ?>" alt="user project gif">
+          <!-- TODO: update GIF to video -->
+          <video class="project-gif" muted autoplay loop src="./public/uploaded_videos/<?= $fullProject->video_src ?>" class="project-gif"></video>
         </p>
       </div>
 

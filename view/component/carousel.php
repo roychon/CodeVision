@@ -1,4 +1,4 @@
-<div class="slide" style="background-image: url(<?= $carousels[$i]->video_src ?>)" <?php if ($i == 0) echo "data-active" ?>>
+<div class="slide" style="background-image: url(./public/uploaded_videos/<?= $carousels[$i]->video_src ?>)" <?php if ($i == 0) echo "data-active" ?>>
     <div class="flex">
         <img class="carousel-profile-img" src="<?= $carousels[$i]->profile_img ?>" alt="">
         <p class="carousel-username"><?= $carousels[$i]->username ?></p>
