@@ -118,7 +118,6 @@ class UserManager extends Manager
     // EDITING A USER
     public function submitEditedProfile(
         $id,
-        $profile_image,
         $bio,
         $linked_in,
         $git_hub
@@ -126,18 +125,31 @@ class UserManager extends Manager
         $db = $this->dbConnect();
         $req = $db->prepare("UPDATE user 
                              SET 
-                                 profile_img = :profile_img,
                                  bio = :bio,
                                  linkedIn = :linkedIn,
                                  gitHub = :gitHub   
                              WHERE id = :id");
         $req->bindParam("id", $id, PDO::PARAM_INT);
-        $req->bindParam("profile_img", $profile_image, PDO::PARAM_STR);
         $req->bindParam("bio", $bio, PDO::PARAM_STR);
         $req->bindParam("linkedIn", $linked_in, PDO::PARAM_STR);
         $req->bindParam("gitHub", $git_hub, PDO::PARAM_STR);
         $req->execute();
-        $_SESSION['profile_img'] = $profile_image;
+    }
+
+    public function uploadProfilePicture($id, $target_file)
+    {
+        // $picture_path = "./public/profile_images/" . $profile_img['full_path'];
+        // echo "hello! targetfile: " . $target_file;
+
+        $db = $this->dbConnect();
+        $req = $db->prepare("UPDATE user 
+                             SET 
+                                 profile_img = :profile_img 
+                             WHERE id = :id");
+        $req->bindParam("id", $id, PDO::PARAM_INT);
+        $req->bindParam("profile_img", $target_file, PDO::PARAM_STR);
+        $req->execute();
+        $_SESSION['profile_img'] = $target_file;
     }
 
     public function submitPersonalInfo(

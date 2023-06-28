@@ -143,29 +143,51 @@ try {
             break;
 
             // EDITING THE USER
-        case "submitEditedProfile":
+
+        case "editUserPicture":
+            if (isset($_GET['id'])) {
+                editUserPicture($_GET['id']);
+            } else {
+                throw new Exception("The data is missing");
+            }
+            break;
+
+        case "submitEditedProfilePicture":
             $id = $_POST['id'] ?? "";
-            $profile_image = $_POST['profileImage'] ?? "";
+            $profile_image = $_FILES['profileImage'];
+
+            if (
+                $id and $profile_image
+            ) {
+                uploadProfilePicture($profile_image, $id);
+            }
+            break;
+
+        case "submitEditedProfile":
+
+
+            $id = $_POST['id'] ?? "";
             $bio = $_POST['bio'] ?? "";
             $linked_in = $_POST['linkedIn'] ?? "";
             $git_hub = $_POST['gitHub'] ?? "";
+
             if (
                 // 'OR' IS USED SO THAT A USER CAN EDIT ANY PIECE OF 
                 // INFORMATION THEY WANT
+
                 $id and
-                $profile_image or
                 $bio or
                 $linked_in or
                 $git_hub
             ) {
                 submitEditedProfile(
                     $id,
-                    $profile_image,
                     $bio,
                     $linked_in,
                     $git_hub
                 );
             }
+
             break;
 
         case "submitPersonalInfo":

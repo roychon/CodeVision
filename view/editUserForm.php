@@ -10,10 +10,7 @@ ob_start();
         <p id="edit-user-title">Edit User</p>
         <input type="hidden" name="id" value="<?= $userinfo->id ?>">
 
-        <p>
-            <label for="profileImage">Profile Image: </label>
-            <input type="text" name="profileImage" id="profileImage" value="<?= $userinfo->profile_img ?? "" ?>">
-        </p>
+
         <p>
             <label for="bio">Bio: </label>
             <input type="text" name="bio" id="bio" value="<?= $userinfo->bio ?? "" ?> ">

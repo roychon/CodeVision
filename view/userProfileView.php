@@ -12,7 +12,7 @@ ob_start();
     <section class="user-profile-view">
         <aside class="user-profile-info">
             <div id='profile-img'>
-                <img src="<?= $userInfo->profile_img ?>" alt="the photo of <?= $userInfo->username; ?>">
+                <a href="index.php?action=editUserPicture&id=<?= $_GET['id'] ?>"><img src="<?= $userInfo->profile_img ?>" alt="the photo of <?= $userInfo->username; ?>"></a>
             </div>
             <div>
                 <h1 id='profile-name'><?= "$userInfo->first_name $userInfo->last_name"; ?></h1>
