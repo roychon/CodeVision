@@ -256,7 +256,7 @@ class ProjectManager extends Manager
     public function getMostRecentProjects()
     {
         $db = $this->dbConnect();
-        $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.gif, p.description, l.language_name
+        $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.video_src, p.description, l.language_name
             FROM user u
             INNER JOIN project p
             ON u.id = p.user_id
@@ -293,7 +293,7 @@ class ProjectManager extends Manager
     public function getMostLikedProjects()
     {
         $db = $this->dbConnect();
-        $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.gif, p.description, l.language_name
+        $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.video_src, p.description, l.language_name
             FROM user u
             INNER JOIN project p
             ON u.id = p.user_id
@@ -330,5 +330,4 @@ class ProjectManager extends Manager
 
         return $projects;
     }
-
 }
