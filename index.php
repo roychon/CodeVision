@@ -272,10 +272,6 @@ try {
                 throw new Exception("The data is missing");
             }
             break;
-        case "getVoteStatus":
-            if ($_GET[$project_id]) {
-                applyVoteStatusFromStorage($user_id, $project_id, $stat);
-            }
 
         case "fullProjectPage":
             // when you click on a project, it should bring you here

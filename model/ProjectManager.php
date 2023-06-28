@@ -149,18 +149,6 @@ class ProjectManager extends Manager
         ));
         $data = $req->fetch();
         if ($data) {
-            // run an UPDATE
-            // $req = $db->prepare("UPDATE project_votes SET stat = :stat WHERE user_id = :user_id and project_id = :project_id");
-            // $req->bindParam("stat", $stat, PDO::PARAM_INT);
-            // $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
-            // $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
-            // $req->execute();
-            // if ($data->stat != 0) { // if they are liking/disliking
-            //     $stat = 0;
-            //     $req = $db->prepare("UPDATE project_votes SET stat = 0 WHERE user_id = :user_id and project_id = :project_id");
-            //     $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
-            //     $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
-            //     $req->execute();
             // NO like or dislike
             if ($stat == 1 and $data->stat == 0) {
                 $req = $db->prepare("UPDATE project_votes SET stat = 1 WHERE user_id = :user_id and project_id = :project_id");
@@ -392,7 +380,7 @@ class ProjectManager extends Manager
                 unset($projects[$project_id]->language_name);
             }
         }
- 
+
         usort($projects, function ($first, $second) {
             return strcmp($second->sum, $first->sum);
         });

@@ -9,15 +9,6 @@ function displayCards($filter = "default")
     $carousels = $projectManager->getCarousels();
     $projects = $projectManager->getCards();
     $votes = $projectManager->getUserVotes();
-    /* 
-        1. Create the getUSerVotes function in the ProjectManager
-        2. In that function, get all of the project_ids and stats from the project_votes table
-                Where the user matches the logged-in user
-        3. fetchAll and return that array from the model to here
-        4. In the view (projectCard?) check if the project_id exists in the $votes array.
-        5. If it does, check the stat.
-        6. If the stat is -1 or 1, add a class to the appropriate vote button
-    */
 
     // echo "<pre>";
     // print_r($votes);
@@ -108,11 +99,4 @@ function getFilteredProjects($filter)
     foreach ($projects as $project) {
         require "./view/component/projectCard.php";
     }
-}
-
-
-function applyVoteStatusFromStorage($user_id, $project_id, $stat)
-{
-    $projectManager = new ProjectManager();
-    $status = $projectManager->projectVotes($user_id, $project_id, $stat);
 }
