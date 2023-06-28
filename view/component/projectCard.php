@@ -1,6 +1,9 @@
 <div class="card">
     <p>
-        <a href="index.php?action=fullProjectPage&project_id=<?= $project->id ?>"> <img class="project-gif" src="<?= $project->gif ?>" alt="user project gif"></a>
+        <a href="index.php?action=fullProjectPage&project_id=<?= $project->id ?>">
+            <!-- muted attribute enables video to play when hovered. otherwise user would have to click anywhere on the page -->
+            <video muted src="./public/uploaded_videos/<?= htmlspecialchars($project->video_src) ?>" class="project-gif" onmouseover="this.play();" onmouseout="this.load();" onended="this.load()">
+            </video></a>
     </p>
 
     <!-- ***** Bottom Half of Project Card ***** -->
