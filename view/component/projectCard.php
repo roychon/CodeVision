@@ -28,7 +28,9 @@
         <!-- Upvote + Downvote Buttons -->
         <div class="projectVotesContainer">
             <?php
+            // if (isset($_GET['user_id']) ? $_SESSION['user_id'] : 0);
             include "projectVotes.php";
+
             ?>
         </div>
     </div>
