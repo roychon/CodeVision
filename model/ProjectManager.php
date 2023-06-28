@@ -5,6 +5,7 @@ class ProjectManager extends Manager
 {
     public function getCards()
     {
+        $limit = isset($_GET['limit']) ? (int)$_GET['limit'] + 3 : 3;
 
         $db = $this->dbConnect();
         $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.video_src, p.description, l.language_name
@@ -14,9 +15,13 @@ class ProjectManager extends Manager
             INNER JOIN project_language_map plm
             ON p.id = plm.project_id
             INNER JOIN language l
-            ON plm.language_id = l.id;";
+            ON plm.language_id = l.id
+            LIMIT :limit";
 
-        $res = $db->query($sql);
+
+        $res = $db->prepare($sql);
+        $res->bindParam(":limit", $limit, PDO::PARAM_INT);
+        $res->execute();
 
         $projects = [];
         while ($data = $res->fetch()) {
@@ -38,6 +43,7 @@ class ProjectManager extends Manager
             }
         }
         return $projects;
+        return $limit;
     }
 
     public function getUserProjects($user_id)
