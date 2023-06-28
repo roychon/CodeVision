@@ -57,7 +57,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.7rem 1.5rem;
+    padding: 1.2rem 1.5rem;
     font-weight: 600;
     background: #25272d;
 }
@@ -162,7 +162,8 @@ input[type="search"] {
     border: 1px solid var(--light-grey);
 }
 
-.bottom-card-container {
+.bottom-card-container,
+.projectVotesContainer {
     display: flex;
     margin-top: 10px;
     padding-left: 10px;
@@ -290,32 +291,154 @@ input[type="search"] {
 
 /* CAROUSEL - TOP CONTAINER CSS */
 .index-container {
-    padding: 3.7rem 3.9rem;
+    /* padding: 3.7rem 3.9rem; */
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 5rem;
+}
+
+.index-container form {
+    margin-left: 1rem;
 }
 
 .carousel-container {
     /* display: flex; */
     /* flex-direction: column; */
     /* background-color: white; */
-    height: 50%;
+    /* height: 50%; */
+    width: 100vw;
+    height: 60vh;
+    position: relative;
+    /* border: 1px solid white; */
 }
 
-.carousel-container > p {
+.carousel-container video {
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* width: fit-content; */
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.carousel-container > ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+    transition-delay: 200ms;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.slide h1,
+.slide .carousel-description,
+.slide button,
+.slide div {
+    max-width: 35%;
+    margin-left: 3rem;
+}
+
+.slide[data-active] {
+    opacity: 1;
+    transition-delay: 0;
+}
+
+.slide button {
+    z-index: 3;
+    width: fit-content;
+}
+
+.slide h1 {
+    font-weight: 900;
+    font-size: 4.5rem;
+    line-height: 1.2;
+    letter-spacing: -2px;
+}
+
+.slide .carousel-username {
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.slide .carousel-description {
+    font-size: 14px;
+    letter-spacing: 0.6px;
+}
+
+.slide button {
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: #0077ff;
+    color: white;
+    margin-top: 1rem; /* addition 1rem of top margin */
+    font-weight: 900;
+    font-size: 1rem;
+}
+
+/* the prev/next sliders */
+.carousel-button {
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    background: none;
+    border: none;
+    font-size: 3rem;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.carousel-button:hover,
+.carousel-button:focus {
+    color: white;
+}
+
+.carousel-button.prev {
+    left: 1rem;
+}
+
+.carousel-button.next {
+    right: 1rem;
+}
+
+.carousel-profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* .carousel-container > p {
     padding-bottom: 0.9rem;
 }
 .cusername {
-    font-size: 1.1rem;
+	font-size: 1.1rem;
 }
 
 .ctitle {
-    font-size: 3.1rem;
+	font-size: 3.1rem;
 }
 
 .cdescription {
-    font-size: 0.9rem;
+	font-size: 0.9rem;
 }
 
 .carousel-more {
@@ -326,12 +449,13 @@ input[type="search"] {
     padding: 0.7rem 0.1rem;
     cursor: pointer;
     border-radius: 0.7rem;
-}
+} */
 
 .project-container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    gap: 2rem;
 }
 
 /* CSS for Full Project Page (links to projectPage.php HTML */
@@ -587,4 +711,8 @@ input[type="search"] {
 .edit,
 .delete {
     color: white;
+}
+
+#filter {
+    width: fit-content;
 }

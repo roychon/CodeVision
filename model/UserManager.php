@@ -8,14 +8,37 @@ class UserManager extends Manager
     public function addUser($username, $email, $password)
     {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        // maybe we add the check here? 
+
+        $image_num = rand(0, 3);
+        $images = ['./public/s_green.png', './public/s_blue.png', './public/s_orange.png', './public/s_pink.png'];
+        $image_url = $images[$image_num];
+        // add a default image
         $db = $this->dbConnect();
-        $req = $db->prepare("INSERT INTO user (username, email, password) VALUES (:username, :email, :password)");
+        $req = $db->prepare("INSERT INTO user (username, email, password, profile_img) VALUES (:username, :email, :password, :image_url)");
         $req->bindParam("username", $username, PDO::PARAM_STR);
         $req->bindParam("email", $email, PDO::PARAM_STR);
         $req->bindParam("password", $hashed_password, PDO::PARAM_STR);
+        $req->bindParam("image_url", $image_url, PDO::PARAM_STR);
         $req->execute();
     }
+
+    // INSERTING THE DATA INTO THE DATABASE WHEN SIGNED IN WITH GOOGLE 
+    public function addUserGoogle($username, $given_name, $family_name, $email, $picture)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("INSERT INTO user (username, email, profile_img, first_name, last_name) VALUES (:username, :email, :picture, :first_name, :last_name)");
+        $req->bindParam("username", $username, PDO::PARAM_STR);
+        $req->bindParam("first_name", $given_name, PDO::PARAM_STR);
+        $req->bindParam("last_name", $family_name, PDO::PARAM_STR);
+        $req->bindParam("email", $email, PDO::PARAM_STR);
+        $req->bindParam("picture", $picture, PDO::PARAM_STR);
+        $req->execute();
+
+        // FOR RETURNING THE 'ID' OF THE LAST INSERT
+        return $db->lastInsertId();
+    }
+
+
     //HANDLING USER ERROR: MULTIPLE USERNAMES AND EMAILS
     public function userExists($username)
     {
@@ -39,65 +62,7 @@ class UserManager extends Manager
         return $req->fetch();
     }
 
-    // INSERT NEW PROJECT
-    public function insertNewProject($user_id, $gif, $title, $description, $tags, $languages)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare("INSERT INTO project (user_id, gif, title, description)  VALUES (:user_id, :gif, :title, :description)"); //TODO:insert into tag table and language table)
-        $req->bindParam("gif", $gif, PDO::PARAM_STR);
-        $req->bindParam("title", $title, PDO::PARAM_STR);
-        $req->bindParam("description", $description, PDO::PARAM_STR);
-        $req->bindParam("user_id", $user_id, PDO::PARAM_STR);
-        $req->execute();
-
-        // TODO: Find out how to get the id of a row that was just inserted
-        // $selectReq = $db->query(" id FROM project ORDER BY id DESC LIMIT 1");
-        $project_id = $db->lastInsertId();
-
-        // echo "LAST ID: " . $last_id . "<br><br><br><br><br>";
-
-        $languageArray = explode(",", $languages);
-        foreach ($languageArray as $language) {
-            // $selectReq = $db->prepare("SELECT language_name FROM language WHERE language_name = ?");
-            // $selectReq->execute([$language]);
-
-            // if ($fetchLanguage = $selectReq->fetch()) {
-            // insert into database
-            try {
-                $insertReq = $db->prepare("INSERT INTO language (language_name) VALUES (?)");
-                $insertReq->execute([$language]);
-            } catch (Exception $e) {
-                // TODO: do something later maybe?
-            }
-            // TODO: SELECT the id of the language 
-            $langSelect = $db->prepare("SELECT id FROM language WHERE language_name =?");
-            $langSelect->execute([$language]);
-            $langId = $langSelect->fetch()->id;
-
-            // TODO: Using the id, insert an entry into the project_language_map table
-            $req = $db->prepare("INSERT INTO project_language_map (project_id, language_id) VALUES (?, ?)");
-            $req->execute([$project_id, $langId]);
-        };
-        $tagArray = explode(",", $tags);
-        foreach ($tagArray as $tag) {
-
-            try {
-                $insertReq = $db->prepare("INSERT INTO tag (tag_name) VALUES (?)");
-                $insertReq->execute([$tag]);
-            } catch (Exception $e) {
-                // TODO: do something later maybe?
-            }
-            // TODO: SELECT the id of the tag 
-            $tagSelect = $db->prepare("SELECT id FROM tag WHERE tag_name =?");
-            $tagSelect->execute([$tag]);
-            $tagId = $tagSelect->fetch()->id;
-            // TODO: Using the id, insert an entry into the project_tag_map table
-            $req = $db->prepare("INSERT INTO project_tag_map (project_id, tag_id) VALUES (?, ?)");
-            $req->execute([$project_id, $tagId]);
-        };
-    }
-
-    public function logIn($username, $password)
+    public function logIn($username)
     {
         $db = $this->dbConnect();
         $req = $db->prepare("SELECT profile_img, id, username, password, email FROM user WHERE username = :username");
@@ -106,19 +71,13 @@ class UserManager extends Manager
         ]);
 
         $result = $req->fetch();
-        // $array = [$result->id, $result->username, $result->email, $result->password];
+        // $array = [$result->id, $result->username, $result->email, $result->password, $result->profile_img];
         return $result;
     }
 
     // EDITING A USER
     public function submitEditedProfile(
         $id,
-        // $first_name,
-        // $last_name,
-        // $username,
-        // $email,
-        // $password,
-        $profile_image,
         $bio,
         $linked_in,
         $git_hub
@@ -126,23 +85,31 @@ class UserManager extends Manager
         $db = $this->dbConnect();
         $req = $db->prepare("UPDATE user 
                              SET 
-                                 profile_img = :profile_img,
                                  bio = :bio,
                                  linkedIn = :linkedIn,
                                  gitHub = :gitHub   
                              WHERE id = :id");
         $req->bindParam("id", $id, PDO::PARAM_INT);
-        // $req->bindParam("first_name", $first_name, PDO::PARAM_STR);
-        // $req->bindParam("last_name", $last_name, PDO::PARAM_STR);
-        // $req->bindParam("username", $username, PDO::PARAM_STR);
-        // $req->bindParam("email", $email, PDO::PARAM_STR);
-        // $req->bindParam("password", password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
-        $req->bindParam("profile_img", $profile_image, PDO::PARAM_STR);
         $req->bindParam("bio", $bio, PDO::PARAM_STR);
         $req->bindParam("linkedIn", $linked_in, PDO::PARAM_STR);
         $req->bindParam("gitHub", $git_hub, PDO::PARAM_STR);
         $req->execute();
-        $_SESSION['profile_img'] = $profile_image;
+    }
+
+    public function uploadProfilePicture($id, $target_file)
+    {
+        // $picture_path = "./public/profile_images/" . $profile_img['full_path'];
+        // echo "hello! targetfile: " . $target_file;
+
+        $db = $this->dbConnect();
+        $req = $db->prepare("UPDATE user 
+                             SET 
+                                 profile_img = :profile_img 
+                             WHERE id = :id");
+        $req->bindParam("id", $id, PDO::PARAM_INT);
+        $req->bindParam("profile_img", $target_file, PDO::PARAM_STR);
+        $req->execute();
+        $_SESSION['profile_img'] = $target_file;
     }
 
     public function submitPersonalInfo(
@@ -150,23 +117,30 @@ class UserManager extends Manager
         $first_name,
         $last_name,
         $username,
-        $email,
-        $password
-
+        $email
     ) {
         $db = $this->dbConnect();
         $req = $db->prepare("UPDATE user 
                              SET first_name = :first_name,
                                  last_name = :last_name,
                                  username = :username,
-                                 email = :email,
-                                 password = :password
+                                 email = :email
                              WHERE id = :id");
         $req->bindParam("id", $id, PDO::PARAM_INT);
         $req->bindParam("first_name", $first_name, PDO::PARAM_STR);
         $req->bindParam("last_name", $last_name, PDO::PARAM_STR);
         $req->bindParam("username", $username, PDO::PARAM_STR);
         $req->bindParam("email", $email, PDO::PARAM_STR);
+        $req->execute();
+    }
+
+    public function submitChangePassword($id, $password)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("UPDATE user 
+                             SET password = :password
+                             WHERE id = :id");
+        $req->bindParam("id", $id, PDO::PARAM_INT);
         $req->bindParam("password", password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
         $req->execute();
     }
@@ -186,9 +160,10 @@ class UserManager extends Manager
         $db = $this->dbConnect();
 
         $req = $db->prepare(
-            "SELECT p.gif, p.description, p.title, p.id
+            "SELECT p.video_src, p.description, p.title, p.id
             FROM project p
             WHERE id = ?"
+
         );
 
         $req->execute([$project_id]);
@@ -338,7 +313,7 @@ class UserManager extends Manager
         //i need to fetch all of the projects, languages, the profile pic, adctive status
         //where it all matches on the _id_id
         $db = $this->dbConnect();
-        $sql = "SELECT u.id as user_id, u.profile_img, u.username, u.is_active, u.bio, u.gitHub, u.linkedIn, u.first_name, u.last_name, p.id as id, u.is_active, p.title, p.gif, p.description, l.language_name
+        $sql = "SELECT u.id as user_id, u.profile_img, u.username, u.is_active, u.bio, u.gitHub, u.linkedIn, u.first_name, u.last_name, p.id as id, u.is_active, p.title, p.video_src, p.description, l.language_name
             FROM user u
             INNER JOIN project p
             ON u.id = p.user_id
@@ -375,6 +350,17 @@ class UserManager extends Manager
 
         $req = $db->prepare("SELECT * FROM user WHERE id = ? ");
         $req->execute([$user_id]);
+
+        return $req->fetch();
+    }
+
+    // FUNCTION FOR GOOGLE SIGN IN BASED ON USERNAME
+    public function getUserInfoGoogle($username)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT * FROM user WHERE username = ? ");
+        $req->execute([$username]);
 
         return $req->fetch();
     }

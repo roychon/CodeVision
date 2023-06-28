@@ -12,16 +12,16 @@ ob_start();
     <section class="user-profile-view">
         <aside class="user-profile-info">
             <div id='profile-img'>
-                <img src="<?= $userInfo->profile_img ?>" alt="the photo of <?= $userInfo->username; ?>">
+                <a href="index.php?action=editUserPicture&id=<?= $_GET['id'] ?>"><img src="<?= $userInfo->profile_img ?>" alt="the photo of <?= $userInfo->username; ?>"></a>
             </div>
             <div>
                 <h1 id='profile-name'><?= "$userInfo->first_name $userInfo->last_name"; ?></h1>
-                <h1 id='profile-username'><?= $userInfo->username; ?></h1>
+                <h1 id='profile-username'><?= $userInfo->username ?></h1>
             </div>
 
 
             <div class="user-profile-bio">
-                <p><?= $userInfo->bio ?></p>
+                <p><?= $userInfo->bio ?? "" ?></p>
                 <span class="user-language-tag">
                     <?php
                     echo "<span id='languages'>Languages: </span>";
@@ -61,7 +61,8 @@ ob_start();
             <!-- FOR DISPLAYING THE 'ADD PROJECT' ONLY WHEN 'MY PROJECT' IS CLICKED -->
             <?php if (isset($_SESSION['id']) and isset($_GET['id']) and $_SESSION['id'] == $_GET['id']) { ?>
                 <button><a href="index.php?action=add_project">Add a Project</a></button>
-                <button><a href="index.php?action=personal_info&id=<?= $_SESSION['id'] ?>">Settings</a></button>
+                <button><a href="index.php?action=personal_info&id=<?= $_GET['id'] ?>">Edit Personal Information</a></button>
+                <button><a href="index.php?action=change_password&id=<?= $_SESSION['id'] ?>">Change Password</a></button>
             <?php } ?>
 
         </aside>
@@ -83,12 +84,8 @@ ob_start();
 
     </section>
 </main>
+<script defer src="./public/js/projectVotes.js"></script>
 <?php
 $content = ob_get_clean();
 require "template.php";
-// if (isset($_SESSION['user_id'])) {
-//     require "loggedInTemplate.php";
-// } else {
-//     require "nonLoggedInTemplate.php";
-// }
 ?>

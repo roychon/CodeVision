@@ -29,7 +29,9 @@ if (isset($_SESSION['id'])) {
   <div class="middle-container">
     <div class="animation-container">
       <p>
-        <img class="project-gif" src="<?= $fullProject->gif ?>" alt="user project gif">
+        <video class="project-gif" autoplay muted src="./public/uploaded_videos/<?= $fullProject->video_src ?>"></video>
+
+        <!-- <img class="project-gif" src="<?= $fullProject->gif ?>" alt="user project gif"> -->
       </p>
     </div>
 
@@ -50,6 +52,7 @@ if (isset($_SESSION['id'])) {
       <div class="linkedin">
         <a href="<?= $userInfo->linkedIn; ?>"><i class="fa-brands fa-2xl fa-linkedin" style="font-size: 4rem;;"></i></a>
       </div>
+
 
       <!-- The Modal -->
       <div id="myModal" class="modal">

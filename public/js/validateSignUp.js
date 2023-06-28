@@ -175,3 +175,19 @@ if (form) {
 	// EVENT LISTENER ON THE SUBMIT BUTTON
 	form.addEventListener("submit", checkAllInputs);
 }
+
+const signupSubmit = document.querySelector("#signupSubmit");
+if (signupSubmit) {
+	signupSubmit.addEventListener("blur", function () {
+		userName.className = email.className = password.className = passwordConfirm.className = "";
+
+		usernameMissing.style.display =
+			usernameNotValid.style.display =
+			emailMissing.style.display =
+			emailNotValid.style.display =
+			passwordNotValid.style.display =
+			passwordMissing.style.display =
+			passwordConfirmError.style.display =
+				"none";
+	});
+}

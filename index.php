@@ -91,18 +91,25 @@ try {
             if (!$_SESSION['id']) {
                 throw new Exception("Missing user id");
             }
+
             // echo "<pre>";
-            // print_r($_POST);
-            $gif = $_POST['gif'] ?? "";
+            // print_r($_FILES['video']);
+            // echo "</pre>";
+            $video_src = $_FILES['video'] ?? ""; // turning out to be an array
+            //need to insert the source instead of the array
             $title = $_POST['title'] ?? "";
             $description = $_POST['description'] ?? "";
             $tags = $_POST['tags'] ?? "";
             $languages = $_POST['languages'] ?? "";
             $user_id = $_SESSION['id'] ?? "";
 
-            if ($user_id and $gif and $title and $description and $tags and $languages) {
-                insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
+            if ($user_id and $video_src and $title and $description and $tags and $languages) {
+                insertNewProject($user_id, $video_src, $title, $description, $tags, $languages);
             } else {
+                // echo "<pre>";
+                // print_r($_POST);
+                // print_r($_FILES);
+                // print_r($_SESSION);
                 throw new Exception("Missing required information.");
             }
             break;
@@ -112,12 +119,30 @@ try {
             break;
 
         case "logIn":
-            $username = $_POST['username'] ?? "";
-            $password = $_POST['password'] ?? "";
+            $username = $_POST['username'];
+            $password = $_POST['password'];
             if ($username and $password) {
                 logIn($username, $password);
             } else {
                 // do front-end validation + back-end validation
+            }
+            break;
+
+            // FOR LOGING IN WITH GOOGLE BUTTON
+        case "googleLogIn":
+            $token = $_REQUEST['credential'];
+            $jwt = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $token)[1]))));
+
+            $currentdate = time();
+
+            if (
+                $jwt->aud === getenv("GOOGLE_CLIENT_ID") &&
+                ($jwt->iss === "accounts.google.com" || $jwt->iss === "https://accounts.google.com") &&
+                $currentdate < $jwt->exp
+            ) {
+                // FOR SPLITTING THE EMAIL ON @ SIGN, AND MAKING A USERNAME
+                $username = substr($jwt->email, 0, strpos($jwt->email, "@"));
+                logInGoogle($username, $jwt->given_name, $jwt->family_name, $jwt->email, $jwt->picture);
             }
             break;
 
@@ -145,29 +170,51 @@ try {
             break;
 
             // EDITING THE USER
-        case "submitEditedProfile":
+
+        case "editUserPicture":
+            if (isset($_GET['id'])) {
+                editUserPicture($_GET['id']);
+            } else {
+                throw new Exception("The data is missing");
+            }
+            break;
+
+        case "submitEditedProfilePicture":
             $id = $_POST['id'] ?? "";
-            $profile_image = $_POST['profileImage'] ?? "";
+            $profile_image = $_FILES['profileImage'];
+
+            if (
+                $id and $profile_image
+            ) {
+                uploadProfilePicture($profile_image, $id);
+            }
+            break;
+
+        case "submitEditedProfile":
+
+
+            $id = $_POST['id'] ?? "";
             $bio = $_POST['bio'] ?? "";
             $linked_in = $_POST['linkedIn'] ?? "";
             $git_hub = $_POST['gitHub'] ?? "";
+
             if (
                 // 'OR' IS USED SO THAT A USER CAN EDIT ANY PIECE OF 
                 // INFORMATION THEY WANT
+
                 $id and
-                $profile_image or
                 $bio or
                 $linked_in or
                 $git_hub
             ) {
                 submitEditedProfile(
                     $id,
-                    $profile_image,
                     $bio,
                     $linked_in,
                     $git_hub
                 );
             }
+
             break;
 
         case "submitPersonalInfo":
@@ -176,7 +223,6 @@ try {
             $last_name = $_POST['lastName'] ?? "";
             $username = $_POST['username'] ?? "";
             $email = $_POST['email'] ?? "";
-            $password = $_POST['password'] ?? "";
             if (
                 // 'OR' IS USED SO THAT A USER CAN EDIT ANY PIECE OF 
                 // INFORMATION THEY WANT
@@ -184,21 +230,36 @@ try {
                 $first_name or
                 $last_name or
                 $username or
-                $email or
-                $password
+                $email
             ) {
                 submitPersonalInfo(
                     $id,
                     $first_name,
                     $last_name,
                     $username,
-                    $email,
-                    $password
+                    $email
                 );
             }
             break;
+
+        case "change_password":
+            if ($_GET['id']) {
+                changePassword($_GET['id']);
+            }
+            break;
+
+        case "submitChangePassword":
+            if ($_POST['password'] and $_POST['id']) {
+                submitChangePassword($_POST['id'], $_POST['password']);
+            }
+            break;
+
         case "getProjectVotes":
             // grab the status, project_id, and user_id from the GET parameters
+            // if ($_SESSION['id'] == 0) {
+            //     // where the popup should start
+            //     header("Location: index.php");
+            // } else {
             if (
                 isset($_GET['user_id']) and
                 isset($_GET['project_id']) and
@@ -206,7 +267,7 @@ try {
             ) {
                 getProjectVotes($_GET['user_id'], ($_GET['project_id']), ($_GET['stat']));
             } else {
-                echo "Bad";
+                throw new Exception("The data is missing");
             }
             break;
 
@@ -218,6 +279,14 @@ try {
             if ($project_id) {
                 displayFullProject($project_id);  //$profile_image//
             };
+            break;
+
+        case "filter":
+            if (isset($_GET['filterOn'])) {
+                getFilteredProjects($_GET['filterOn']);
+            } else {
+                throw new Exception ("Missing filter value");
+            }
             break;
 
         default:
