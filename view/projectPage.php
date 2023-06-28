@@ -47,10 +47,12 @@ if (isset($_SESSION['id'])) {
 
       <!-- social media links -->
       <div class="gitHub">
+        <!-- TODO: fix this -->
         <a href="<?= $userInfo->gitHub; ?>"><i class="fa-brands fa-2xl fa-github" style=" font-size: 4rem;"></i></a>
       </div>
       <div class="linkedin">
-        <a href="<?= $userInfo->linkedIn; ?>"><i class="fa-brands fa-2xl fa-linkedin" style="font-size: 4rem;;"></i></a>
+        <!-- TODO: fix this -->
+        <a href="<?= $userInfo->linkedIn; ?>"><i class="fa-brands fa-2xl fa-linkedin" style="font-size: 4rem;"></i></a>
       </div>
 
 
