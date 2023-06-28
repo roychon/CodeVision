@@ -51,6 +51,9 @@ header {
 
 a {
     text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
 }
 
 .logged-in {
