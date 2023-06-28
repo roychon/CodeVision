@@ -91,16 +91,25 @@ try {
             if (!$_SESSION['id']) {
                 throw new Exception("Missing user id");
             }
-            $gif = $_POST['gif'] ?? "";
+
+            // echo "<pre>";
+            // print_r($_FILES['video']);
+            // echo "</pre>";
+            $video_src = $_FILES['video'] ?? ""; // turning out to be an array
+            //need to insert the source instead of the array
             $title = $_POST['title'] ?? "";
             $description = $_POST['description'] ?? "";
             $tags = $_POST['tags'] ?? "";
             $languages = $_POST['languages'] ?? "";
             $user_id = $_SESSION['id'] ?? "";
 
-            if ($user_id and $gif and $title and $description and $tags and $languages) {
-                insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
+            if ($user_id and $video_src and $title and $description and $tags and $languages) {
+                insertNewProject($user_id, $video_src, $title, $description, $tags, $languages);
             } else {
+                // echo "<pre>";
+                // print_r($_POST);
+                // print_r($_FILES);
+                // print_r($_SESSION);
                 throw new Exception("Missing required information.");
             }
             break;

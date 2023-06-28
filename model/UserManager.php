@@ -62,64 +62,6 @@ class UserManager extends Manager
         return $req->fetch();
     }
 
-    // INSERT NEW PROJECT
-    public function insertNewProject($user_id, $gif, $title, $description, $tags, $languages)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare("INSERT INTO project (user_id, gif, title, description)  VALUES (:user_id, :gif, :title, :description)"); //TODO:insert into tag table and language table)
-        $req->bindParam("gif", $gif, PDO::PARAM_STR);
-        $req->bindParam("title", $title, PDO::PARAM_STR);
-        $req->bindParam("description", $description, PDO::PARAM_STR);
-        $req->bindParam("user_id", $user_id, PDO::PARAM_STR);
-        $req->execute();
-
-        // TODO: Find out how to get the id of a row that was just inserted
-        // $selectReq = $db->query(" id FROM project ORDER BY id DESC LIMIT 1");
-        $project_id = $db->lastInsertId();
-
-        // echo "LAST ID: " . $last_id . "<br><br><br><br><br>";
-
-        $languageArray = explode(",", $languages);
-        foreach ($languageArray as $language) {
-            // $selectReq = $db->prepare("SELECT language_name FROM language WHERE language_name = ?");
-            // $selectReq->execute([$language]);
-
-            // if ($fetchLanguage = $selectReq->fetch()) {
-            // insert into database
-            try {
-                $insertReq = $db->prepare("INSERT INTO language (language_name) VALUES (?)");
-                $insertReq->execute([$language]);
-            } catch (Exception $e) {
-                // TODO: do something later maybe?
-            }
-            // TODO: SELECT the id of the language 
-            $langSelect = $db->prepare("SELECT id FROM language WHERE language_name =?");
-            $langSelect->execute([$language]);
-            $langId = $langSelect->fetch()->id;
-
-            // TODO: Using the id, insert an entry into the project_language_map table
-            $req = $db->prepare("INSERT INTO project_language_map (project_id, language_id) VALUES (?, ?)");
-            $req->execute([$project_id, $langId]);
-        };
-        $tagArray = explode(",", $tags);
-        foreach ($tagArray as $tag) {
-
-            try {
-                $insertReq = $db->prepare("INSERT INTO tag (tag_name) VALUES (?)");
-                $insertReq->execute([$tag]);
-            } catch (Exception $e) {
-                // TODO: do something later maybe?
-            }
-            // TODO: SELECT the id of the tag 
-            $tagSelect = $db->prepare("SELECT id FROM tag WHERE tag_name =?");
-            $tagSelect->execute([$tag]);
-            $tagId = $tagSelect->fetch()->id;
-            // TODO: Using the id, insert an entry into the project_tag_map table
-            $req = $db->prepare("INSERT INTO project_tag_map (project_id, tag_id) VALUES (?, ?)");
-            $req->execute([$project_id, $tagId]);
-        };
-    }
-
     public function logIn($username)
     {
         $db = $this->dbConnect();
@@ -206,7 +148,7 @@ class UserManager extends Manager
         $db = $this->dbConnect();
 
         $req = $db->prepare(
-            "SELECT p.gif, p.description, p.title, p.id
+            "SELECT p.video_src, p.description, p.title, p.id
             FROM project p
             WHERE id = ?"
 
@@ -359,7 +301,7 @@ class UserManager extends Manager
         //i need to fetch all of the projects, languages, the profile pic, adctive status
         //where it all matches on the _id_id
         $db = $this->dbConnect();
-        $sql = "SELECT u.id as user_id, u.profile_img, u.username, u.is_active, u.bio, u.gitHub, u.linkedIn, u.first_name, u.last_name, p.id as id, u.is_active, p.title, p.gif, p.description, l.language_name
+        $sql = "SELECT u.id as user_id, u.profile_img, u.username, u.is_active, u.bio, u.gitHub, u.linkedIn, u.first_name, u.last_name, p.id as id, u.is_active, p.title, p.video_src, p.description, l.language_name
             FROM user u
             INNER JOIN project p
             ON u.id = p.user_id

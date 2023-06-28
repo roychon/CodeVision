@@ -7,12 +7,14 @@ ob_start();
 <script defer src="./public/js/validateAddProjectForm.js"></script>
 <script defer src="https://kit.fontawesome.com/033b80222d.js" crossorigin="anonymous"></script>
 
+<!-- enctype needed to be able to upload video -->
+<form action="index.php?action=insertNewProject" method="POST" enctype="multipart/form-data">
+    <h2>Add a Project</h2>
 
-<form action="index.php?action=insertNewProject" method="POST">
-    <h2>Add Project to DevShop</h2>
+    <!-- changed input from text to file, added "accept" -->
     <p>
-        <label for="gif">Gif: </label>
-        <input type="text" name="gif" id="gif">
+        <label for="video">Video: </label>
+        <input type="file" name="video" id="video" accept="video/*">
     </p>
 
     <p>
@@ -36,9 +38,9 @@ ob_start();
         <span>Languages: </span>
         <div class="languages-container">
             <input type="text" name="languages" id="languagesInput">
-        <div id="languageResults"></div>
-    </div>
-        
+            <div id="languageResults"></div>
+        </div>
+
 
         <input type="submit" value="Add Project" id="submit">
 </form>
