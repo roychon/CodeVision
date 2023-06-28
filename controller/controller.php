@@ -78,9 +78,9 @@ function logInGoogle($username, $given_name, $family_name, $email, $picture)
 
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
-        $_SESSION['profile_img'] = $picture;
 
         $userInfo = $userManager->getUserInfo($user_id);
+        $_SESSION['profile_img'] = $userInfo->profile_img;
         $_SESSION['id'] = $user_id;
 
         $message = urlencode("User created successfully.");
@@ -89,9 +89,9 @@ function logInGoogle($username, $given_name, $family_name, $email, $picture)
 
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
-        $_SESSION['profile_img'] = $picture;
 
         $userInfo = $userManager->getUserInfoGoogle($username);
+        $_SESSION['profile_img'] = $userInfo->profile_img;
         $_SESSION['id'] = $userInfo->id;
 
         $message = urlencode("Welcome back!");
@@ -104,12 +104,6 @@ function showSignInForm()
     require "./view/signInForm.php";
 }
 
-function insertNewProject($user_id, $gif, $title, $description, $tags, $languages)
-{
-    $userManager = new UserManager();
-    $userManager->insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
-    header("Location: index.php");
-}
 function logOut()
 {
     session_destroy();
@@ -146,6 +140,12 @@ function editUser($id)
     $userinfo = $userManager->getUserInfo($id);
     require "./view/editUserForm.php";
 }
+function editUserPicture($id)
+{
+    $userManager = new UserManager();
+    $userinfo = $userManager->getUserInfo($id);
+    require "./view/editUserPictureForm.php";
+}
 
 function personalInfo($id)
 {
@@ -157,7 +157,6 @@ function personalInfo($id)
 // EDITING A USER INFO
 function submitEditedProfile(
     $id,
-    $profile_image,
     $bio,
     $linked_in,
     $git_hub
@@ -165,13 +164,61 @@ function submitEditedProfile(
     $userManager = new UserManager();
     $userManager->submitEditedProfile(
         $id,
-        $profile_image,
         $bio,
         $linked_in,
         $git_hub
     );
 
     header("Location: index.php?action=userProfileView&id=$id");
+}
+
+function uploadProfilePicture($profile_img, $id)
+{
+    $userManager = new UserManager();
+    //setting directory for where the profile image will be stored
+    $target_dir = "./public/profile_images/";
+    // set the path to the target directory
+    $hashName = hash_file('md5', $profile_img["tmp_name"]);
+    // get file extension name in lower case
+    $imageFileType = strtolower(pathinfo($profile_img["name"], PATHINFO_EXTENSION));
+    $target_file = $target_dir . $hashName . "." . $imageFileType;
+
+    // this is a value to check errors later
+    $uploadErrors = [];
+    // This will be used to determine if the upload is a pic or not
+    // check if the image is an image file
+    $check = getimagesize($profile_img['tmp_name']);
+    print_r($check);
+    $size = $profile_img['size'];
+    echo $size;
+    if ($size > 250000) {
+        $uploadErrors[] = "Your file is too large";
+    }
+
+    // only allow jpg, png, jpeg... no gif? 
+    if ($imageFileType != "jpg" and $imageFileType != "png" and $imageFileType != "jpeg") {
+        // $message = urlencode("File too large");
+        header("Location: index.php?action=editUserPicture&error=true&message=$message");
+        $uploadErrors[] = "You must use jpg png or jpeg file format.";
+        // $upload0k = 0;
+    }
+    // check the $upload0k error
+    if (!empty($uploadErrors)) {
+        // $message = urlencode("Upload Failed. Please check.");
+        $message = urlencode(implode(".", $uploadErrors));
+        echo $message;
+        header("Location: index.php?action=editUserPicture&error=true&id=$id&error=true&message=$message");
+        // if everything is ok, try to upload file
+    } else {
+        move_uploaded_file($profile_img["tmp_name"], $target_file);
+
+        // echo "The file " . htmlspecialchars(basename($profile_img["name"])) . " has been uploaded.";
+        $userManager->uploadProfilePicture($id, $target_file);
+        $message = urlencode("You uploaded your picture!");
+        // echo $id;
+        // header("Location: index.php?action=userProfileView&id=$id&error=false&message=$message");
+        header("Location: index.php?action=userProfileView&id=$id");
+    }
 }
 
 function submitPersonalInfo(
