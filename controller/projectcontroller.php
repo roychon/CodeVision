@@ -3,6 +3,8 @@ require_once "./model/ProjectManager.php";
 
 function displayCards($filter = "default")
 {
+    $limit = isset($_GET['limit']) ? (int)$_GET['limit'] + 3 : 3;
+
     $projectManager = new ProjectManager();
     $carousels = $projectManager->getCarousels();
     $projects = $projectManager->getCards();
@@ -12,6 +14,8 @@ function displayCards($filter = "default")
     // echo "</pre>";
     require './view/indexView.php';
 }
+
+
 
 function displayFullProject($project_id)
 {
