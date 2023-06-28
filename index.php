@@ -36,15 +36,15 @@ try {
             break;
 
         case "updateProject":
-            $gif = $_POST['gif'] ?? "";
+            $video_src = $_FILES['video'] ?? "";
             $description = $_POST['description'] ?? "";
             $title = $_POST['title'] ?? "";
             $tags = $_POST['tags'] ?? "";
             $languages = $_POST['languages'] ?? "";
             $project_id = $_GET['project_id'] ?? "";
 
-            if ($gif and $description and $title and $tags and $languages and $project_id) {
-                updateProject($gif, $description, $title, $tags, $languages, $_GET['project_id']);
+            if ($video_src and $description and $title and $tags and $languages and $project_id) {
+                updateProject($video_src, $description, $title, $tags, $languages, $_GET['project_id']);
             } else {
                 throw new Exception("Error, missing project info");
             }
@@ -91,16 +91,25 @@ try {
             if (!$_SESSION['id']) {
                 throw new Exception("Missing user id");
             }
-            $gif = $_POST['gif'] ?? "";
+
+            // echo "<pre>";
+            // print_r($_FILES['video']);
+            // echo "</pre>";
+            $video_src = $_FILES['video'] ?? ""; // turning out to be an array
+            //need to insert the source instead of the array
             $title = $_POST['title'] ?? "";
             $description = $_POST['description'] ?? "";
             $tags = $_POST['tags'] ?? "";
             $languages = $_POST['languages'] ?? "";
             $user_id = $_SESSION['id'] ?? "";
 
-            if ($user_id and $gif and $title and $description and $tags and $languages) {
-                insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
+            if ($user_id and $video_src and $title and $description and $tags and $languages) {
+                insertNewProject($user_id, $video_src, $title, $description, $tags, $languages);
             } else {
+                // echo "<pre>";
+                // print_r($_POST);
+                // print_r($_FILES);
+                // print_r($_SESSION);
                 throw new Exception("Missing required information.");
             }
             break;
@@ -143,6 +152,8 @@ try {
             // showUserPage();
             break;
 
+
+
             // FOR EDITING A USER
         case "editUser":
             if (isset($_GET['id'])) {
@@ -161,29 +172,51 @@ try {
             break;
 
             // EDITING THE USER
-        case "submitEditedProfile":
+
+        case "editUserPicture":
+            if (isset($_GET['id'])) {
+                editUserPicture($_GET['id']);
+            } else {
+                throw new Exception("The data is missing");
+            }
+            break;
+
+        case "submitEditedProfilePicture":
             $id = $_POST['id'] ?? "";
-            $profile_image = $_POST['profileImage'] ?? "";
+            $profile_image = $_FILES['profileImage'];
+
+            if (
+                $id and $profile_image
+            ) {
+                uploadProfilePicture($profile_image, $id);
+            }
+            break;
+
+        case "submitEditedProfile":
+
+
+            $id = $_POST['id'] ?? "";
             $bio = $_POST['bio'] ?? "";
             $linked_in = $_POST['linkedIn'] ?? "";
             $git_hub = $_POST['gitHub'] ?? "";
+
             if (
                 // 'OR' IS USED SO THAT A USER CAN EDIT ANY PIECE OF 
                 // INFORMATION THEY WANT
+
                 $id and
-                $profile_image or
                 $bio or
                 $linked_in or
                 $git_hub
             ) {
                 submitEditedProfile(
                     $id,
-                    $profile_image,
                     $bio,
                     $linked_in,
                     $git_hub
                 );
             }
+
             break;
 
         case "submitPersonalInfo":
@@ -244,8 +277,9 @@ try {
             // when you click on a project, it should bring you here
             // with a GET parameter with the project id
             $project_id = $_GET['project_id'] ?? "";
+            // $profile_image = $_POST['profileImage'] ?? "";
             if ($project_id) {
-                displayFullProject($project_id);
+                displayFullProject($project_id);  //$profile_image//
             };
             break;
 
@@ -253,7 +287,7 @@ try {
             if (isset($_GET['filterOn'])) {
                 getFilteredProjects($_GET['filterOn']);
             } else {
-                throw new Exception ("Missing filter value");
+                throw new Exception("Missing filter value");
             }
             break;
 
