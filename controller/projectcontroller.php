@@ -8,10 +8,12 @@ function displayCards($filter = "default")
     $projectManager = new ProjectManager();
     $carousels = $projectManager->getCarousels();
     $projects = $projectManager->getCards();
+    $votes = $projectManager->getUserVotes();
 
     // echo "<pre>";
-    // print_r($projects);
+    // print_r($votes);
     // echo "</pre>";
+    // TODO: uncomment this
     require './view/indexView.php';
 }
 
