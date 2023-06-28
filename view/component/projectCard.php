@@ -27,7 +27,7 @@
         <div class="project-votes-container">
             <?php
             include "projectVotes.php";
-            ?>
+            ?>`
         </div>
     </div>
 
