@@ -152,6 +152,8 @@ try {
             // showUserPage();
             break;
 
+
+
             // FOR EDITING A USER
         case "editUser":
             if (isset($_GET['id'])) {
@@ -284,7 +286,7 @@ try {
             if (isset($_GET['filterOn'])) {
                 getFilteredProjects($_GET['filterOn']);
             } else {
-                throw new Exception ("Missing filter value");
+                throw new Exception("Missing filter value");
             }
             break;
 
