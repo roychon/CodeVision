@@ -223,13 +223,13 @@ class UserManager extends Manager
     }
 
     // update gif, desciption, title of project with 'project_id'
-    public function updateProjectMain($gif, $description, $title, $project_id)
+    public function updateProjectMain($video_source, $description, $title, $project_id)
     {
         $db = $this->dbConnect();
 
-        $req = $db->prepare("UPDATE project SET gif = :gif, description = :description, title = :title WHERE id = :project_id");
+        $req = $db->prepare("UPDATE project SET video_src = :video_src, description = :description, title = :title WHERE id = :project_id");
         $req->execute(array(
-            "gif" => $gif,
+            "video_src" => $video_source,
             "description" => $description,
             "title" => $title,
             "project_id" => $project_id

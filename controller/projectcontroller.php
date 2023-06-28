@@ -43,10 +43,7 @@ function insertNewProject($user_id, $video_source, $title, $description, $tags, 
     //UPLOADING VIDEO
     // UPLOAD TO: $target_dir . $hashed_filename . $extension
     // WHEN INSERTING INTO DB: $hashed_filename . $extension
-
     $maxsize = 5242880; // max size is 30s video: 5MB in bytes
-    //if the video input section exists and it's not blank
-    //TODO: CHECK THE IN_ARRAY 
     if (
         isset($_FILES['video']['name']) and ($_FILES['video']['name'] != "")
     ) {
