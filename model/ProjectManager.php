@@ -258,13 +258,13 @@ class ProjectManager extends Manager
                 $sumsQuery = $db->prepare("SELECT SUM(stat) AS sum_stat FROM project_votes WHERE project_id = :project_id");
                 $sumsQuery->bindParam("project_id", $project_id, PDO::PARAM_INT);
                 $sumsQuery->execute();
-                $sum = $sumsQuery->fetch()->sum_stat;
+                $sum = $sumsQuery->fetch()->sum_stat ?? "0";
                 $projects[$project_id]->sum = $sum;
 
                 unset($projects[$project_id]->language_name);
             }
         }
-
+ 
         usort($projects, function ($first, $second) {
             return strcmp($second->sum, $first->sum);
         });
