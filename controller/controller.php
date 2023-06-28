@@ -197,7 +197,7 @@ function uploadProfilePicture($profile_img, $id)
 
     // only allow jpg, png, jpeg... no gif? 
     if ($imageFileType != "jpg" and $imageFileType != "png" and $imageFileType != "jpeg") {
-        // $message = urlencode("File too large");
+        $message = urlencode("File too large");
         header("Location: index.php?action=editUserPicture&error=true&message=$message");
         $uploadErrors[] = "You must use jpg png or jpeg file format.";
         // $upload0k = 0;
