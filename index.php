@@ -91,16 +91,25 @@ try {
             if (!$_SESSION['id']) {
                 throw new Exception("Missing user id");
             }
-            $gif = $_POST['gif'] ?? "";
+
+            // echo "<pre>";
+            // print_r($_FILES['video']);
+            // echo "</pre>";
+            $video_src = $_FILES['video'] ?? ""; // turning out to be an array
+            //need to insert the source instead of the array
             $title = $_POST['title'] ?? "";
             $description = $_POST['description'] ?? "";
             $tags = $_POST['tags'] ?? "";
             $languages = $_POST['languages'] ?? "";
             $user_id = $_SESSION['id'] ?? "";
 
-            if ($user_id and $gif and $title and $description and $tags and $languages) {
-                insertNewProject($user_id, $gif, $title, $description, $tags, $languages);
+            if ($user_id and $video_src and $title and $description and $tags and $languages) {
+                insertNewProject($user_id, $video_src, $title, $description, $tags, $languages);
             } else {
+                // echo "<pre>";
+                // print_r($_POST);
+                // print_r($_FILES);
+                // print_r($_SESSION);
                 throw new Exception("Missing required information.");
             }
             break;
@@ -116,6 +125,24 @@ try {
                 logIn($username, $password);
             } else {
                 // do front-end validation + back-end validation
+            }
+            break;
+
+            // FOR LOGING IN WITH GOOGLE BUTTON
+        case "googleLogIn":
+            $token = $_REQUEST['credential'];
+            $jwt = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $token)[1]))));
+
+            $currentdate = time();
+
+            if (
+                $jwt->aud === getenv("GOOGLE_CLIENT_ID") &&
+                ($jwt->iss === "accounts.google.com" || $jwt->iss === "https://accounts.google.com") &&
+                $currentdate < $jwt->exp
+            ) {
+                // FOR SPLITTING THE EMAIL ON @ SIGN, AND MAKING A USERNAME
+                $username = substr($jwt->email, 0, strpos($jwt->email, "@"));
+                logInGoogle($username, $jwt->given_name, $jwt->family_name, $jwt->email, $jwt->picture);
             }
             break;
 
@@ -251,6 +278,14 @@ try {
             if ($project_id) {
                 displayFullProject($project_id);
             };
+            break;
+
+        case "filter":
+            if (isset($_GET['filterOn'])) {
+                getFilteredProjects($_GET['filterOn']);
+            } else {
+                throw new Exception ("Missing filter value");
+            }
             break;
 
         default:
