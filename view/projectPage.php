@@ -16,7 +16,9 @@ TODO: add appropriate header template to the top of page-->
 
       <div class="animation-container">
         <p>
-          <img class="project-gif" src="<?= $fullProject->gif ?>" alt="user project gif">
+          <video class="project-gif" autoplay muted src="./public/uploaded_videos/<?= $fullProject->video_src ?>"></video>
+
+          <!-- <img class="project-gif" src="<?= $fullProject->gif ?>" alt="user project gif"> -->
         </p>
       </div>
 
