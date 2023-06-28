@@ -152,6 +152,8 @@ try {
             // showUserPage();
             break;
 
+
+
             // FOR EDITING A USER
         case "editUser":
             if (isset($_GET['id'])) {
@@ -275,8 +277,9 @@ try {
             // when you click on a project, it should bring you here
             // with a GET parameter with the project id
             $project_id = $_GET['project_id'] ?? "";
+            // $profile_image = $_POST['profileImage'] ?? "";
             if ($project_id) {
-                displayFullProject($project_id);
+                displayFullProject($project_id);  //$profile_image//
             };
             break;
 
@@ -284,7 +287,7 @@ try {
             if (isset($_GET['filterOn'])) {
                 getFilteredProjects($_GET['filterOn']);
             } else {
-                throw new Exception ("Missing filter value");
+                throw new Exception("Missing filter value");
             }
             break;
 
