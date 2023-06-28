@@ -461,6 +461,23 @@ input[type="search"] {
     gap: 2rem;
 }
 
+/* The drop down list */
+#filter {
+	color: white;
+	background-color: transparent;
+	margin-left: 10px;
+	width: fit-content;
+	outline: none;
+	border: 1px gray solid;
+	border-radius: .5rem;
+	padding: .6rem;
+	transition: border .6s ease;
+}
+
+#filter:hover {
+	border: 1px solid rgb(250, 201, 208);
+}
+
 /* CSS for Full Project Page (links to projectPage.php HTML */
 .main-container {
     display: flex;
