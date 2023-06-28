@@ -78,9 +78,9 @@ function logInGoogle($username, $given_name, $family_name, $email, $picture)
 
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
-        $_SESSION['profile_img'] = $picture;
 
         $userInfo = $userManager->getUserInfo($user_id);
+        $_SESSION['profile_img'] = $userInfo->profile_img;
         $_SESSION['id'] = $user_id;
 
         $message = urlencode("User created successfully.");
@@ -89,9 +89,9 @@ function logInGoogle($username, $given_name, $family_name, $email, $picture)
 
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
-        $_SESSION['profile_img'] = $picture;
 
         $userInfo = $userManager->getUserInfoGoogle($username);
+        $_SESSION['profile_img'] = $userInfo->profile_img;
         $_SESSION['id'] = $userInfo->id;
 
         $message = urlencode("Welcome back!");
