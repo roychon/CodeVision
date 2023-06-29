@@ -6,6 +6,8 @@ buttons.forEach(button => {
 
         const slides = button.closest("[data-carousel]").querySelector('[data-slides]');
 
+        if (slides.children.length == 1) return;
+
         const activeSlide = slides.querySelector('[data-active]');
         let newIndex = [...slides.children].indexOf(activeSlide) + offset;
 
