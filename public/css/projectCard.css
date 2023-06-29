@@ -9,9 +9,10 @@
     font-family: "Inter", sans-serif;
     font-size: 0.8rem;
     overflow: hidden;
+    /* box-shadow: 0 0 5px 1px rgba(57, 57, 57, 0.5); */
     /* background-color: rgba(223, 217, 217, 1); */
     /* background-color: white; */
-    /* background-color: rgb(245, 245, 245); */
+    /* background-color: rgb(21, 21, 21); */
 }
 
 .card .project-mp4 {
@@ -27,7 +28,7 @@
 }
 
 .outer-container {
-    background-color: #141518;
+    background-color: #1c1e26;
     padding: 10px 0;
     position: relative;
 }
@@ -43,9 +44,8 @@
 .projectVotesContainer {
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: 5px;
     flex-direction: column;
-    /* width: fit-content; */
     justify-content: center;
     align-items: center;
     padding-right: 15px;
@@ -87,9 +87,9 @@
 }
 
 .downVoted {
-    color: gray;
+    color: rgb(89, 85, 85);
 }
 
 #downVote:hover {
-  color: gray;
+  color: rgb(89, 85, 85);
 }
