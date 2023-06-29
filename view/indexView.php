@@ -30,11 +30,11 @@ if (isset($_SESSION['id'])) {
     <p class="cdescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum dignissimos officiis nam id. Modi id amet ullam rem labore quam perspiciatis nulla explicabo aut pariatur fugiat eum, tenetur illum quis!</p>
     <button class="carousel-more">view more</button> -->
   </div>
-    <select name="filter" id="filter" onchange="filterProjects(this.value)">
-      <option value="" selected disabled hidden>Filter</option>
-      <option value="mostRecent">Most Recent</option>
-      <option value="mostLikes">Most Likes</option>
-    </select>
+  <select name="filter" id="filter" onchange="filterProjects(this.value)">
+    <option value="" selected disabled hidden>Filter</option>
+    <option value="mostRecent">Most Recent</option>
+    <option value="mostLikes">Most Likes</option>
+  </select>
   <!-- <h1>Landing Page</h1> -->
   <div class="project-container">
     <?php
@@ -46,18 +46,18 @@ if (isset($_SESSION['id'])) {
       }
     }
     ?>
-
-    <!-- SHOW MORE FOR LIMITS -->
-    <a href="index.php?limit=<?= $limit ?>">show more</a>
   </div>
-
-
+  <!-- SHOW MORE FOR LIMITS -->
+  <button class="more"><a href="index.php?action=showUserPage&limit=<?= $limit ?>" onclick="scrollDown()">show more</a></button>
 
 
   <!-- </div> -->
   <script defer src="./public/js/carousel.js"></script>
   <script defer src="./public/js/projectVotes.js"></script>
   <script defer src="./public/js/filterProjects.js"></script>
+  <script defer src="./public/js/scrollDown.js"></script>
+
+
   <!-- <script defer src="popUp.js"></script> -->
   <?php
   $content = ob_get_clean();
@@ -69,4 +69,13 @@ if (isset($_SESSION['id'])) {
     require "nonLoggedInTemplate.php";
   }
 
+  if (isset($_GET["limit"])) {
+
+  ?>
+    <script>
+      window.scrollTo(0, document.body.scrollHeight);
+    </script>
+  <?php
+
+  }
   ?>

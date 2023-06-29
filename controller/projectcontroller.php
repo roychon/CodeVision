@@ -3,13 +3,17 @@ require_once "./model/ProjectManager.php";
 
 function displayCards($filter = "default")
 {
+    $limit = isset($_GET['limit']) ? (int)$_GET['limit'] + 5 : 5;
+
     $projectManager = new ProjectManager();
     $carousels = $projectManager->getCarousels();
     $projects = $projectManager->getCards();
+    $votes = $projectManager->getUserVotes();
 
     // echo "<pre>";
-    // print_r($projects);
+    // print_r($votes);
     // echo "</pre>";
+    // TODO: uncomment this
     require './view/indexView.php';
 }
 
@@ -26,12 +30,14 @@ function displayFullProject($project_id)
 {
     $projectManager = new ProjectManager();
     $userManager = new UserManager();
+    $userInfo = $userManager->getUserInfo($project_id);
     $fullProject = $projectManager->displayFullProject($project_id);
     $tags = $userManager->getProjectTags($project_id);
     // Use the project id (from the router)
     // to call a model function that will get all of the data for that specific project
-    require "./view/projectPage.php"; // TODO: uncomment this!
+    require "./view/projectPage.php";
 }
+
 function getProjectVotes($user_id, $project_id, $stat)
 {
     $projectManager = new ProjectManager();
@@ -46,10 +52,7 @@ function insertNewProject($user_id, $video_source, $title, $description, $tags, 
     //UPLOADING VIDEO
     // UPLOAD TO: $target_dir . $hashed_filename . $extension
     // WHEN INSERTING INTO DB: $hashed_filename . $extension
-
     $maxsize = 5242880; // max size is 30s video: 5MB in bytes
-    //if the video input section exists and it's not blank
-    //TODO: CHECK THE IN_ARRAY 
     if (
         isset($_FILES['video']['name']) and ($_FILES['video']['name'] != "")
     ) {

@@ -1,0 +1,95 @@
+.project-mp4 {
+    width: 100%;
+}
+
+.card {
+    width: 23%;
+    height: 20%;
+    border-radius: 3px;
+    font-family: "Inter", sans-serif;
+    font-size: 0.8rem;
+    overflow: hidden;
+    /* box-shadow: 0 0 5px 1px rgba(57, 57, 57, 0.5); */
+    /* background-color: rgba(223, 217, 217, 1); */
+    /* background-color: white; */
+    /* background-color: rgb(21, 21, 21); */
+}
+
+.card .project-mp4 {
+    height: 200px;
+    aspect-ratio: 1;
+}
+
+.user-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--light-grey);
+}
+
+.outer-container {
+    background-color: #1c1e26;
+    padding: 10px 0;
+    position: relative;
+}
+
+.bottom-card-container{
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    gap: 7px;
+}
+
+.projectVotesContainer {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-right: 15px;
+    /* padding-top: 10px; */
+}
+
+.projectVotesContainer > p {
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.project-description {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.project-title {
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+.language-tag {
+    color: lightgray;
+}
+
+.projectVotesContainer > i {
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+.upVoted{
+    color: var(--light-purple-btn);
+}
+
+#upVote:hover{
+    color: var(--light-purple-btn);
+}
+
+.downVoted {
+    color: rgb(89, 85, 85);
+}
+
+#downVote:hover {
+  color: rgb(89, 85, 85);
+}

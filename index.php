@@ -36,15 +36,15 @@ try {
             break;
 
         case "updateProject":
-            $gif = $_POST['gif'] ?? "";
+            $video_src = $_FILES['video'] ?? "";
             $description = $_POST['description'] ?? "";
             $title = $_POST['title'] ?? "";
             $tags = $_POST['tags'] ?? "";
             $languages = $_POST['languages'] ?? "";
             $project_id = $_GET['project_id'] ?? "";
 
-            if ($gif and $description and $title and $tags and $languages and $project_id) {
-                updateProject($gif, $description, $title, $tags, $languages, $_GET['project_id']);
+            if ($video_src and $description and $title and $tags and $languages and $project_id) {
+                updateProject($video_src, $description, $title, $tags, $languages, $_GET['project_id']);
             } else {
                 throw new Exception("Error, missing project info");
             }
@@ -151,6 +151,8 @@ try {
             displayCards();
             // showUserPage();
             break;
+
+
 
             // FOR EDITING A USER
         case "editUser":
@@ -275,8 +277,9 @@ try {
             // when you click on a project, it should bring you here
             // with a GET parameter with the project id
             $project_id = $_GET['project_id'] ?? "";
+            // $profile_image = $_POST['profileImage'] ?? "";
             if ($project_id) {
-                displayFullProject($project_id);
+                displayFullProject($project_id);  //$profile_image//
             };
             break;
 

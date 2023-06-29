@@ -4,11 +4,9 @@
         <!-- TODO: add logo  -->
         <img class="company-logo" src="" alt="">
         <!-- TODO:href take us back to index -->
-        <a href="">DevShop</a>
+        <a href="index.php?action=showUserPage">DevShop</a>
         <!-- homebutton -->
     </div>
-
-
 
     <div class="right-side">
         <div class="search-bar-div">
