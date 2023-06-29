@@ -9,6 +9,9 @@
     font-family: "Inter", sans-serif;
     font-size: 0.8rem;
     overflow: hidden;
+    /* background-color: rgba(223, 217, 217, 1); */
+    /* background-color: white; */
+    background-color: rgb(245, 245, 245);
 }
 
 .card .project-gif {
@@ -71,13 +74,22 @@
 
 .projectVotesContainer > i {
     font-size: 1.3rem;
+    cursor: pointer;
+    transition: 0.5s ease;
 }
 
-.upVoted {
-    color: var( --light-purple-btn);
+.upVoted{
+    color: var(--light-purple-btn);
+}
+
+#upVote:hover{
+    color: var(--light-purple-btn);
 }
 
 .downVoted {
-    color: blue;
+    color: gray;
 }
 
+#downVote:hover {
+  color: gray;
+}
