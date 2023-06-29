@@ -323,7 +323,8 @@ class ProjectManager extends Manager
             ON p.id = plm.project_id
             INNER JOIN language l
             ON plm.language_id = l.id
-            ORDER BY id DESC";
+            ORDER BY id DESC
+            LIMIT 5";
 
         $res = $db->query($sql);
 
@@ -359,7 +360,8 @@ class ProjectManager extends Manager
             INNER JOIN project_language_map plm
             ON p.id = plm.project_id
             INNER JOIN language l
-            ON plm.language_id = l.id";
+            ON plm.language_id = l.id
+            LIMIT 5";
 
         $res = $db->query($sql);
 
