@@ -29,7 +29,7 @@ if (isset($_SESSION['id'])) {
   <div class="middle-container">
     <div class="animation-container">
       <p>
-        <video class="project-gif" autoplay muted src="./public/uploaded_videos/<?= $fullProject->video_src ?>"></video>
+        <video class="project-mp4" autoplay muted src="./public/uploaded_videos/<?= $fullProject->video_src ?>"></video>
 
         <!-- <img class="project-gif" src="<?= $fullProject->gif ?>" alt="user project gif"> -->
       </p>
