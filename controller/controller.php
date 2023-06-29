@@ -124,6 +124,9 @@ function logIn($username, $password)
         $_SESSION['username'] = $result->username;
         $_SESSION['email'] = $result->email;
         $_SESSION['profile_img'] = $result->profile_img;
+        if ($password) {
+            $_SESSION['password_exist'] = "password_exist";
+        }
         $message = urlencode("You have succesfully logged in!");
         header("Location: index.php?action=showUserPage&error=false&message=$message");
         // require "./view/indexView.php";
@@ -331,6 +334,7 @@ function showUserPage()
 {
     require "./view/indexView.php";
 }
+
 
 
 
