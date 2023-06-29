@@ -26,7 +26,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* font-family: sans-serif; */
 }
 
 :root {
@@ -52,8 +51,11 @@ header {
 a {
     text-decoration: none;
     color: white;
+<<<<<<< HEAD
     /* display: flex;
     align-items: center; */
+=======
+>>>>>>> main
 }
 
 .logged-in {
@@ -70,10 +72,12 @@ a {
     
 } */
 
-.left-side > a {
+
+/* REDUNDANT CODE --- ALL A TAGS ARE ALREADY STYLED (52)  */
+/* .left-side > a {
     text-decoration: none;
     color: white;
-}
+} */
 
 .company-logo {
     width: 15%;
@@ -109,12 +113,15 @@ input[type="search"] {
 }
 
 .right-side a {
-    text-decoration: none;
     padding-right: 1rem;
-    color: white;
     padding: 0.5em 1.6em;
     border-radius: 1em;
     font-size: 0.9rem;
+
+
+
+    /* color: white; */
+    /* text-decoration: none; */
 }
 
 .right-side a:first-of-type {
@@ -127,67 +134,6 @@ input[type="search"] {
 
 .right-side i {
     color: var(--light-grey);
-}
-
-/*-------- PROJECT CARD --------*/
-
-.main-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-    gap: 1.5rem;
-}
-.project-gif {
-    width: 100%;
-}
-
-.card {
-    width: 23%;
-    height: 20%;
-    border: 1px solid var(--search-bar-shadow);
-    border-radius: var(--search-bar-radius);
-    font-family: "Inter", sans-serif;
-    font-size: 0.8rem;
-    overflow: hidden;
-}
-
-.card .project-gif {
-    height: 200px;
-    aspect-ratio: 1;
-}
-
-.user-profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--light-grey);
-}
-
-.bottom-card-container,
-.projectVotesContainer {
-    display: flex;
-    margin-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 5px;
-    gap: 7px;
-}
-
-.project-description {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.project-title {
-    font-weight: 800;
-    font-size: 0.9rem;
-}
-
-.language-tag {
-    color: lightgray;
 }
 
 /*-------- CSS For Viewing User Profile --------*/
@@ -459,6 +405,17 @@ input[type="search"] {
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 2rem;
+    padding: 0 1.7rem;
+}
+
+
+/* FOR THE INDIVIDUAL PROJECTS */
+.project-wrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 0 1.7rem;
 }
 
 /* The drop down list */
@@ -546,6 +503,7 @@ input[type="search"] {
     font-size: 12px;
     font-weight: 500;
     line-height: 16px;
+    width: 20%;
 }
 
 .profile-img {
@@ -735,4 +693,13 @@ input[type="search"] {
 
 #filter {
     width: fit-content;
+}
+.more {
+    margin-left: 39%;
+    width: 20%;
+    border-radius: 0.4rem;
+    padding: 0.5rem 0.8rem;
+    background-color: transparent;
+    color: white;
+    border: 0.1px solid white;
 }

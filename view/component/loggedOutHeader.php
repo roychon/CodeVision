@@ -4,7 +4,7 @@
         <!-- TODO: add logo  -->
         <img class="company-logo" src="" alt="">
         <!-- TODO:href take us back to index -->
-        <a href="index.php">DevShop</a>
+        <a href="index.php?action=showUserPage">DevShop</a>
         <!-- homebutton -->
     </div>
 

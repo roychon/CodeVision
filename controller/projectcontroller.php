@@ -3,15 +3,17 @@ require_once "./model/ProjectManager.php";
 
 function displayCards($filter = "default")
 {
-    $limit = isset($_GET['limit']) ? (int)$_GET['limit'] + 3 : 3;
+    $limit = isset($_GET['limit']) ? (int)$_GET['limit'] + 5 : 5;
 
     $projectManager = new ProjectManager();
     $carousels = $projectManager->getCarousels();
     $projects = $projectManager->getCards();
+    $votes = $projectManager->getUserVotes();
 
     // echo "<pre>";
-    // print_r($projects);
+    // print_r($votes);
     // echo "</pre>";
+    // TODO: uncomment this
     require './view/indexView.php';
 }
 

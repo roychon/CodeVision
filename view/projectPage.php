@@ -11,7 +11,7 @@ if (isset($_SESSION['id'])) {
 }
 ?>
 
-<div class="project-container">
+<div class="project-wrapper">
 
   <div class="top-container"> <!--block elements -->
     <div class="profile-img">
