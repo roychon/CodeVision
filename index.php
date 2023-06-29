@@ -284,7 +284,13 @@ try {
             if (isset($_GET['filterOn'])) {
                 getFilteredProjects($_GET['filterOn']);
             } else {
-                throw new Exception ("Missing filter value");
+                throw new Exception("Missing filter value");
+            }
+            break;
+
+        case "search_data":
+            if (isset($_GET['query'])) {
+                getSearchInfo($_GET['query']);
             }
             break;
 

@@ -13,6 +13,15 @@ function displayCards($filter = "default")
     require './view/indexView.php';
 }
 
+function getSearchInfo($query)
+{
+    $projectManager = new ProjectManager();
+    $projects = $projectManager->getProjectSearch($query);
+    foreach ($projects as $project) {
+        require "./view/component/projectCard.php";
+    }
+}
+
 function displayFullProject($project_id)
 {
     $projectManager = new ProjectManager();

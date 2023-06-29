@@ -330,4 +330,55 @@ class ProjectManager extends Manager
 
         return $projects;
     }
+
+
+    public function getProjectSearch($query)
+    {
+
+        $db = $this->dbConnect();
+        $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.video_src, p.description, l.language_name, t.tag_name
+            FROM user u
+            INNER JOIN project p
+            ON u.id = p.user_id
+            INNER JOIN project_language_map plm
+            ON p.id = plm.project_id
+            INNER JOIN language l
+            ON plm.language_id = l.id 
+            INNER JOIN project_tag_map ptm
+            ON ptm.project_id = p.id
+            INNER JOIN tag t
+            ON ptm.tag_id = t.id
+            WHERE p.title LIKE :title OR 
+                  l.language_name LIKE :language_name OR 
+                  t.tag_name LIKE :tag_name";
+
+        $res = $db->prepare($sql);
+
+        $res->execute([
+            'title' => "%" . $query,
+            'language_name' => "%" . $query,
+            'tag_name' => "%" . $query
+        ]);
+
+        $projects = [];
+        while ($data = $res->fetch()) {
+            $project_id = $data->id;
+            if (isset($projects[$project_id])) {
+                $projects[$project_id]->languages[] = $data->language_name;
+            } else {
+                $projects[$project_id] = $data;
+                $projects[$project_id]->languages = [];
+                $projects[$project_id]->languages[] = $data->language_name;
+
+                $sumsQuery = $db->prepare("SELECT SUM(stat) AS sum_stat FROM project_votes WHERE project_id = :project_id");
+                $sumsQuery->bindParam("project_id", $project_id, PDO::PARAM_INT);
+                $sumsQuery->execute();
+                $sum = $sumsQuery->fetch()->sum_stat;
+                $projects[$project_id]->sum = $sum;
+
+                unset($projects[$project_id]->language_name);
+            }
+        }
+        return $projects;
+    }
 }

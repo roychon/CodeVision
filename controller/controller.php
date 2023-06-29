@@ -124,6 +124,9 @@ function logIn($username, $password)
         $_SESSION['username'] = $result->username;
         $_SESSION['email'] = $result->email;
         $_SESSION['profile_img'] = $result->profile_img;
+        if ($password) {
+            $_SESSION['password_exist'] = "password_exist";
+        }
         $message = urlencode("You have succesfully logged in!");
         header("Location: index.php?action=showUserPage&error=false&message=$message");
         // require "./view/indexView.php";
@@ -197,7 +200,7 @@ function uploadProfilePicture($profile_img, $id)
 
     // only allow jpg, png, jpeg... no gif? 
     if ($imageFileType != "jpg" and $imageFileType != "png" and $imageFileType != "jpeg") {
-        // $message = urlencode("File too large");
+        $message = urlencode("File too large");
         header("Location: index.php?action=editUserPicture&error=true&message=$message");
         $uploadErrors[] = "You must use jpg png or jpeg file format.";
         // $upload0k = 0;
@@ -294,6 +297,7 @@ function showUserPage()
 {
     require "./view/indexView.php";
 }
+
 
 
 
