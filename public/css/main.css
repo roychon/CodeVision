@@ -51,8 +51,6 @@ header {
 a {
     text-decoration: none;
     color: white;
-    display: flex;
-    align-items: center;
 }
 
 .logged-in {
@@ -69,10 +67,12 @@ a {
     
 } */
 
-.left-side > a {
+
+/* REDUNDANT CODE --- ALL A TAGS ARE ALREADY STYLED (52)  */
+/* .left-side > a {
     text-decoration: none;
     color: white;
-}
+} */
 
 .company-logo {
     width: 15%;
@@ -108,12 +108,15 @@ input[type="search"] {
 }
 
 .right-side a {
-    text-decoration: none;
     padding-right: 1rem;
-    color: white;
     padding: 0.5em 1.6em;
     border-radius: 1em;
     font-size: 0.9rem;
+
+
+
+    /* color: white; */
+    /* text-decoration: none; */
 }
 
 .right-side a:first-of-type {
@@ -400,6 +403,16 @@ input[type="search"] {
     padding: 0 1.7rem;
 }
 
+
+/* FOR THE INDIVIDUAL PROJECTS */
+.project-wrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 0 1.7rem;
+}
+
 /* The drop down list */
 #filter {
 	color: white;
@@ -485,6 +498,7 @@ input[type="search"] {
     font-size: 12px;
     font-weight: 500;
     line-height: 16px;
+    width: 20%;
 }
 
 .profile-img {
@@ -674,4 +688,13 @@ input[type="search"] {
 
 #filter {
     width: fit-content;
+}
+.more {
+    margin-left: 39%;
+    width: 20%;
+    border-radius: 0.4rem;
+    padding: 0.5rem 0.8rem;
+    background-color: transparent;
+    color: white;
+    border: 0.1px solid white;
 }

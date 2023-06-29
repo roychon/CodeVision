@@ -18,8 +18,9 @@ body {
   background-color: #232325;
 }
 .signup-form{
-  height: 90%;
+  height: 80%;
 }
+
 .google-btn {
   width: 100%;
   display: flex;
@@ -39,7 +40,7 @@ body {
 #editForm,
 #settingsForm,
 /* #form is for the userAddForm */
-#form  {
+#signUpForm  {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,6 +48,10 @@ body {
   height: 100%;
   border-radius: 0.3rem;
   gap: 20px;
+}
+
+#signUpForm {
+  gap: 8px;
 }
 
 #settingsForm {
