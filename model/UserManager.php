@@ -9,8 +9,8 @@ class UserManager extends Manager
     {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $image_num = rand(0, 3);
-        $images = ['./public/s_green.png', './public/s_blue.png', './public/s_orange.png', './public/s_pink.png'];
+        $image_num = rand(0, 7);
+        $images = ['./public/pfp_default/pfp1.jpg', './public/pfp_default/pfp2.jpg', './public/pfp_default/pfp3.jpg', './public/pfp_default/pfp4.jpg', './public/pfp_default/pfp5.jpg', './public/pfp_default/pfp6.jpg', './public/pfp_default/pfp7.jpg', './public/pfp_default/pfp8.jpg'];
         $image_url = $images[$image_num];
         // add a default image
         $db = $this->dbConnect();
