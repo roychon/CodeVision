@@ -29,7 +29,7 @@
     position: relative;
 }
 
-.bottom-card-container, .projectVotesContainer {
+.bottom-card-container{
     display: flex;
     padding-left: 10px;
     padding-right: 10px;
@@ -39,9 +39,19 @@
 
 .projectVotesContainer {
     position: absolute;
-    right:3%;
-    bottom: 3%;
+    right: 0;
+    bottom: 0;
     flex-direction: column;
+    /* width: fit-content; */
+    justify-content: center;
+    align-items: center;
+    padding-right: 15px;
+    /* padding-top: 10px; */
+}
+
+.projectVotesContainer > p {
+    text-align: center;
+    font-size: 0.8rem;
 }
 
 .project-description {
@@ -59,7 +69,15 @@
     color: lightgray;
 }
 
-.voted {
-    color: red;
+.projectVotesContainer > i {
+    font-size: 1.3rem;
+}
+
+.upVoted {
+    color: var( --light-purple-btn);
+}
+
+.downVoted {
+    color: blue;
 }
 
