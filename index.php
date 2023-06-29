@@ -291,6 +291,12 @@ try {
             }
             break;
 
+        case "search_data":
+            if (isset($_GET['query'])) {
+                getSearchInfo($_GET['query']);
+            }
+            break;
+
         default:
             displayCards();
             break;
