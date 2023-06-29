@@ -46,13 +46,9 @@ if (isset($_SESSION['id'])) {
       }
     }
     ?>
-
-    <!-- SHOW MORE FOR LIMITS -->
-
-    <a href="index.php?action=showUserPage&limit=<?= $limit ?>" onclick="scrollDown()">show more</a>
   </div>
-
-
+  <!-- SHOW MORE FOR LIMITS -->
+  <button class="more"><a href="index.php?action=showUserPage&limit=<?= $limit ?>" onclick="scrollDown()">show more</a></button>
 
 
   <!-- </div> -->
@@ -78,7 +74,7 @@ if (isset($_SESSION['id'])) {
   ?>
     <script>
       window.scrollTo(0, document.body.scrollHeight);
-    </script>;
+    </script>
   <?php
 
   }

@@ -11,7 +11,7 @@ if (isset($_SESSION['id'])) {
 }
 ?>
 
-<div class="project-container">
+<div class="project-wrapper">
 
   <div class="top-container"> <!--block elements -->
     <div class="profile-img">
@@ -48,11 +48,11 @@ if (isset($_SESSION['id'])) {
       <!-- social media links -->
       <div class="gitHub">
         <!-- TODO: fix this -->
-        <a href="<?= $userInfo->gitHub; ?>"><i class="fa-brands fa-2xl fa-github" style=" font-size: 4rem;"></i></a>
+        <a href="<?= $fullProject->gitHub; ?>"><i class="fa-brands fa-2xl fa-github" style=" font-size: 4rem;"></i></a>
       </div>
       <div class="linkedin">
         <!-- TODO: fix this -->
-        <a href="<?= $userInfo->linkedIn; ?>"><i class="fa-brands fa-2xl fa-linkedin" style="font-size: 4rem;"></i></a>
+        <a href="<?= $fullProject->linkedIn; ?>"><i class="fa-brands fa-2xl fa-linkedin" style="font-size: 4rem;"></i></a>
       </div>
 
 

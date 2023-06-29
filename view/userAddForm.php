@@ -15,7 +15,7 @@ if (isset($_GET['error'])) {
 
 <div class="signup-form">
 
-    <form action="index.php?action=createUser" method="POST" id="form">
+    <form action="index.php?action=createUser" method="POST" id="signUpForm">
         <h1>SIGN UP</h1>
         <p>
             <label for="username">Username:</label>
