@@ -162,14 +162,14 @@ class ProjectManager extends Manager
                     $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
                     $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
                     $req->execute();
-                } else {
-                    // do an INSERT
-                    $req = $db->prepare("INSERT INTO project_votes (user_id, project_id, stat) VALUES (:user_id, :project_id, :stat)");
-                    $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
-                    $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
-                    $req->bindParam("stat", $stat, PDO::PARAM_INT);
-                    $req->execute();
                 }
+            } else {
+                // do an INSERT
+                $req = $db->prepare("INSERT INTO project_votes (user_id, project_id, stat) VALUES (:user_id, :project_id, :stat)");
+                $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
+                $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
+                $req->bindParam("stat", $stat, PDO::PARAM_INT);
+                $req->execute();
             }
             $sumsQuery = $db->prepare("SELECT SUM(stat) AS sum_stat FROM project_votes WHERE project_id = :project_id");
             $sumsQuery->bindParam("project_id", $project_id, PDO::PARAM_INT);
