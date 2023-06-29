@@ -1,4 +1,4 @@
-.project-gif {
+.project-mp4 {
     width: 100%;
 }
 
@@ -9,12 +9,13 @@
     font-family: "Inter", sans-serif;
     font-size: 0.8rem;
     overflow: hidden;
+    /*  */
     /* background-color: rgba(223, 217, 217, 1); */
     /* background-color: white; */
     /* background-color: rgb(245, 245, 245); */
 }
 
-.card .project-gif {
+.card .project-mp4 {
     height: 200px;
     aspect-ratio: 1;
 }
