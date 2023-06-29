@@ -8,8 +8,6 @@
         <!-- homebutton -->
     </div>
 
-
-
     <div class="right-side">
         <div class="search-bar-div">
             <!-- MIDDLE -->

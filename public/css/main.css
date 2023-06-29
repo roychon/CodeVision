@@ -421,19 +421,19 @@ input[type="search"] {
 
 /* The drop down list */
 #filter {
-  color: white;
-  background-color: transparent;
-  margin-left: 10px;
-  width: fit-content;
-  outline: none;
-  border: 1px gray solid;
-  border-radius: 0.5rem;
-  padding: 0.6rem;
-  transition: border 0.6s ease;
+    color: white;
+    background-color: transparent;
+    margin-left: 10px;
+    width: fit-content;
+    outline: none;
+    border: 1px gray solid;
+    border-radius: 0.5rem;
+    padding: 0.6rem;
+    transition: border 0.6s ease;
 }
 
 #filter:hover {
-  border: 1px solid rgb(250, 201, 208);
+    border: 1px solid rgb(250, 201, 208);
 }
 
 /* CSS for Full Project Page (links to projectPage.php HTML */
@@ -470,13 +470,16 @@ input[type="search"] {
 }
 
 .animation-container {
-  width: 100%;
+  width: 80%;
   height: 100%;
   border: 0.1px solid var(--search-bar-shadow);
   border-radius: var(--search-bar-radius);
   font-family: "Inter", sans-serif;
   font-size: 0.8rem;
   overflow: hidden;
+}
+.project-vid {
+  width: 100%;
 }
 
 .langTag {
@@ -532,14 +535,14 @@ input[type="search"] {
 }
 
 .user-img1 {
-  display: flex;
-  width: 90px;
-  height: 90px;
+    display: flex;
+    width: 100px;
+    height: 100px;
 }
 .user-img2 {
-  display: flex;
-  width: 50px;
-  height: 50px;
+    display: flex;
+    width: 60px;
+    height: 60px;
 }
 
 /* The Modal (background) */
