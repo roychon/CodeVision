@@ -3,7 +3,7 @@ require_once "./model/ProjectManager.php";
 
 function displayCards($filter = "default")
 {
-    $limit = isset($_GET['limit']) ? (int)$_GET['limit'] + 3 : 3;
+    $limit = isset($_GET['limit']) ? (int)$_GET['limit'] + 5 : 5;
 
     $projectManager = new ProjectManager();
     $carousels = $projectManager->getCarousels();
