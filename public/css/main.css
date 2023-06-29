@@ -749,7 +749,9 @@ input[type="search"] {
 #filter {
     width: fit-content;
 }
-
+.voted {
+    background-color: red;
+}
 
 .more {
     margin-left: 39%;
