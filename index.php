@@ -98,8 +98,7 @@ try {
             // echo "<pre>";
             // print_r($_FILES['video']);
             // echo "</pre>";
-            $video_src = $_FILES['video'] ?? ""; // turning out to be an array
-            //need to insert the source instead of the array
+            $video_src = $_FILES['video'] ?? "";
             $title = $_POST['title'] ?? "";
             $description = $_POST['description'] ?? "";
             $tags = $_POST['tags'] ?? "";
@@ -109,10 +108,6 @@ try {
             if ($user_id and $video_src and $title and $description and $tags and $languages) {
                 insertNewProject($user_id, $video_src, $title, $description, $tags, $languages);
             } else {
-                // echo "<pre>";
-                // print_r($_POST);
-                // print_r($_FILES);
-                // print_r($_SESSION);
                 throw new Exception("Missing required information.");
             }
             break;
@@ -192,6 +187,7 @@ try {
         case "submitEditedProfilePicture":
             $id = $_POST['id'] ?? "";
             $profile_image = $_FILES['profileImage'];
+            // $hidden_image = $_POST['hiddenImage'];
 
             if (
                 $id and $profile_image
