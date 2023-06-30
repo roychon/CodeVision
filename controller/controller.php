@@ -84,7 +84,8 @@ function logInGoogle($username, $given_name, $family_name, $email, $picture)
         $_SESSION['id'] = $user_id;
 
         $message = urlencode("User created successfully.");
-        header("Location: index.php?action=userProfileView&id={$_SESSION['id']}&error=false&message=$message");
+
+        header("Location: index.php?action=showUserPage&error=false&message=$message");
     } else { // already in db
 
         $_SESSION['username'] = $username;
@@ -95,7 +96,8 @@ function logInGoogle($username, $given_name, $family_name, $email, $picture)
         $_SESSION['id'] = $userInfo->id;
 
         $message = urlencode("Welcome back!");
-        header("Location: index.php?action=userProfileView&id={$_SESSION['id']}&error=true&message=$message");
+
+        header("Location: index.php?action=showUserPage&error=true&message=$message");
     }
 }
 
