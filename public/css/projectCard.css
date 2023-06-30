@@ -2,6 +2,7 @@
     width: 100%;
     height: auto;
     aspect-ratio: 1;
+    object-fit:fill;
 }
 
 .card {
@@ -92,32 +93,26 @@
 
 @media (max-width: 900px) {
     .project-container {
-        width: 800px;
+        width: 700px;
+        align-items: center;
     }
 
     .card {
         width: 40%;
         height: 70%;
     }
-
-
 }
 
-@media (max-width:550px) {
+@media (max-width:700px) {
     .project-container {
         flex-direction: column;
-        align-items: center;
         gap: 5rem;
         max-width: 550px;
     }
 
     .card {
-        width: 50%;
+        width: 80%;
         height: 70%;
-    }
-
-    .outer-container {
-        margin: 10px 10px;
     }
 
 }
