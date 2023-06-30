@@ -62,9 +62,7 @@ function addUser()
 }
 
 
-
-
-function logInGoogle($username, $given_name, $family_name, $email, $picture)
+function logInGoogle($username, $given_name, $family_name, $email, $picture, $signUp)
 {
     $userManager = new UserManager();
 
@@ -73,7 +71,12 @@ function logInGoogle($username, $given_name, $family_name, $email, $picture)
     $emailCount = $userManager->emailExists($email)->count;
 
     // IF WE ARE CREATING A NEW USER
-    if ($userCount == 0 and $emailCount == 0) { // Both unique
+    if ($userCount == 0 and $emailCount == 0 and $signUp === "false") {
+
+        $message = urlencode("User does not exist. Please, sign up first");
+
+        header("Location: index.php?action=add_user&error=false&message=$message");
+    } else if ($userCount == 0 and $emailCount == 0) { // Both unique
         $user_id = $userManager->addUserGoogle($username, $given_name, $family_name, $email, $picture);
 
         $_SESSION['username'] = $username;
@@ -86,6 +89,11 @@ function logInGoogle($username, $given_name, $family_name, $email, $picture)
         $message = urlencode("User created successfully.");
 
         header("Location: index.php?action=showUserPage&error=false&message=$message");
+    } else if ($signUp === "true") {
+
+        $message = urlencode("User already exists.");
+
+        header("Location: index.php?action=signInForm&error=false&message=$message");
     } else { // already in db
 
         $_SESSION['username'] = $username;
@@ -100,6 +108,7 @@ function logInGoogle($username, $given_name, $family_name, $email, $picture)
         header("Location: index.php?action=showUserPage&error=true&message=$message");
     }
 }
+
 
 function showSignInForm()
 {

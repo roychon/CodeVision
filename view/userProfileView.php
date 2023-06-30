@@ -12,22 +12,22 @@ ob_start();
     <section class="user-profile-view">
         <aside class="user-profile-info">
             <div id='profile-img' data-tooltip="Change the profile image">
-                <a href="index.php?action=editUserPicture&id=<?= $_GET['id'] ?>"><img src="<?= $userInfo->profile_img ?>" alt="the photo of <?= $userInfo->username; ?>"></a>
+                <a href="index.php?action=editUserPicture&id=<?= $_GET['id'] ?>"><img src="<?= htmlspecialchars($userInfo->profile_img) ?>" alt="the photo of <?= htmlspecialchars($userInfo->username); ?>"></a>
             </div>
             <div>
-                <h1 id='profile-name'><?= "$userInfo->first_name $userInfo->last_name"; ?></h1>
-                <h1 id='profile-username'><?= $userInfo->username ?></h1>
+                <h1 id='profile-name'><?= htmlspecialchars($userInfo->first_name) . " " . htmlspecialchars($userInfo->last_name); ?></h1>
+                <h1 id='profile-username'><?= htmlspecialchars($userInfo->username) ?></h1>
             </div>
 
 
             <div class="user-profile-bio">
-                <p><?= $userInfo->bio ?? "" ?></p>
+                <p><?= htmlspecialchars($userInfo->bio) ?? "" ?></p>
                 <span class="user-language-tag">
                     <?php
                     echo "<span id='languages'>Languages: </span>";
                     if (count($projects)) {
                         $languages = join(", ", $userLanguages);
-                        echo $languages;
+                        echo htmlspecialchars($languages);
                     } else {
                         echo "<i class='default'>none</i>";
                     }
@@ -49,10 +49,10 @@ ob_start();
                 <h1 id='links-title'>Social Links: </h1>
                 <div class="links">
                     <p class="social-link">
-                        <a href="<?= $userInfo->gitHub; ?>"><i class="fa-brands fa-2xl fa-github" style="color: #d2c3ee;"></i></a>
+                        <a href="<?= htmlspecialchars($userInfo->gitHub); ?>"><i class="fa-brands fa-2xl fa-github" style="color: #d2c3ee;"></i></a>
                     </p>
                     <p class="social-link">
-                        <a href="<?= $userInfo->linkedIn; ?>"><i class="fa-brands fa-2xl fa-linkedin" style="color: #d2c3ee;"></i></a>
+                        <a href="<?= htmlspecialchars($userInfo->linkedIn); ?>"><i class="fa-brands fa-2xl fa-linkedin" style="color: #d2c3ee;"></i></a>
                     </p>
                 </div>
 
@@ -61,7 +61,6 @@ ob_start();
             <!-- FOR DISPLAYING THE 'ADD PROJECT' ONLY WHEN 'MY PROJECT' IS CLICKED -->
             <?php if (isset($_SESSION['id']) and isset($_GET['id']) and $_SESSION['id'] == $_GET['id']) { ?>
                 <button><a href="index.php?action=add_project">Add a Project</a></button>
-
             <?php } ?>
 
         </aside>
