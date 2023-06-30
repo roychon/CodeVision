@@ -393,9 +393,9 @@ class ProjectManager extends Manager
         $res = $db->prepare($sql);
 
         $res->execute([
-            'title' => "%" . $query,
-            'language_name' => "%" . $query,
-            'tag_name' => "%" . $query
+            'title' => "%" . $query . "%",
+            'language_name' => "%" . $query . "%",
+            'tag_name' => "%" . $query . "%"
         ]);
 
         $projects = [];
