@@ -7,15 +7,15 @@ ob_start();
 
 <div id="settings-form">
     <form action="index.php?action=submitPersonalInfo" method="POST" id="settingsForm">
-        <p id="edit-user-title">Edit Personal Information</p>
+        <p id="edit-user-title">Edit Account Settings</p>
         <input type="hidden" name="id" value="<?= $userinfo->id ?>">
         <p>
             <label for="firstName">First Name: </label>
             <input type="text" name="firstName" id="firstName" value="<?= htmlspecialchars($userinfo->first_name) ?? "" ?>">
         </p>
         <p>
-            <span id="firstNameNotValid">Not valid First Name</span>
-            <span id="firstNameMissing">First Name is missing</span>
+            <!-- <span id="firstNameNotValid">Not valid First Name</span>
+            <span id="firstNameMissing">First Name is missing</span> -->
             <span>&#8203;</span>
         </p>
         <p>
@@ -23,8 +23,8 @@ ob_start();
             <input type="text" name="lastName" id="lastName" value="<?= htmlspecialchars($userinfo->last_name) ?? "" ?>">
         </p>
         <p>
-            <span id="lastNameNotValid">Not valid Last Name</span>
-            <span id="lastNameMissing">Last Name is missing</span>
+            <!-- <span id="lastNameNotValid">Not valid Last Name</span>
+            <span id="lastNameMissing">Last Name is missing</span> -->
             <span>&#8203;</span>
         </p>
         <p>
@@ -32,8 +32,8 @@ ob_start();
             <input type="text" name="username" id="usernameEdit" value="<?= htmlspecialchars($userinfo->username) ?>">
         </p>
         <p>
-            <span id="usernameNotValid">Not valid Username</span>
-            <span id="usernameMissing">Username is missing</span>
+            <!-- <span id="usernameNotValid">Not valid Username</span>
+            <span id="usernameMissing">Username is missing</span> -->
             <span>&#8203;</span>
         </p>
         <p>
@@ -41,8 +41,8 @@ ob_start();
             <input type="text" name="email" id="emailEdit" value="<?= htmlspecialchars($userinfo->email) ?>">
         </p>
         <p>
-            <span id="emailNotValid">Not valid E-mail</span>
-            <span id="emailMissing">E-mail is missing</span>
+            <!-- <span id="emailNotValid">Not valid E-mail</span> -->
+            <!-- <span id="emailMissing">E-mail is missing</span> -->
             <span>&#8203;</span>
         </p>
         <p>

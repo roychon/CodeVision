@@ -390,4 +390,26 @@ class UserManager extends Manager
 
         return $userLanguages;
     }
+
+    public function getUserLikes($user_id) {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("
+        SELECT SUM(pv.stat) as likes
+        FROM project p
+        INNER JOIN project_votes pv
+        ON p.id = pv.project_id
+        WHERE p.user_id = ?");
+
+        $req->execute([$user_id]);
+
+        // $likes = $req->fetch();
+        // if ($likes) {
+        //     return $likes
+        // }
+
+        $likes = $req->fetch()->likes;
+
+        return $likes ?? "0";
+    }
 }
