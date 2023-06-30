@@ -13,7 +13,7 @@ ob_start();
         <aside class="user-profile-info">
             <div class="user-info">
                 <div class="flex">
-                    <div id='profile-img'>
+                    <div id='profile-img' data-tooltip="Change the profile image">
                         <a href="index.php?action=editUserPicture&id=<?= $_GET['id'] ?>"><img src="<?= $userInfo->profile_img ?>" alt="profile image"></a>
                     </div>
                     <div id="profile">
@@ -45,15 +45,15 @@ ob_start();
                 </div>
 
                 <div class="social-links">
-                <?php if ($userInfo->gitHub) {
-                    echo "<a href='<?= $userInfo->gitHub; ?>'><i class='fa-brands fa-2xl fa-github'></i></a>";
-                }
-                ?>
+                    <?php if ($userInfo->gitHub) {
+                        echo "<a href='<?= $userInfo->gitHub; ?>'><i class='fa-brands fa-2xl fa-github'></i></a>";
+                    }
+                    ?>
 
-                <?php if ($userInfo->linkedIn) {
-                    echo "<a href='<?= $userInfo->linkedIn; ?>''><i class='fa-brands fa-2xl fa-linkedin'></i></a>";
-                }
-                ?>
+                    <?php if ($userInfo->linkedIn) {
+                        echo "<a href='<?= $userInfo->linkedIn; ?>''><i class='fa-brands fa-2xl fa-linkedin'></i></a>";
+                    }
+                    ?>
                 </div>
 
             </div>
@@ -73,7 +73,7 @@ ob_start();
 
         </aside>
         <div class="user-profile-projects">
-            <h1>Published Projects </h1>
+            <h1>Projects: </h1>
             <div class="projects">
                 <?php
                 if (count($projects)) {

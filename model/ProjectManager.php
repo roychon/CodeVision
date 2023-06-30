@@ -58,7 +58,7 @@ class ProjectManager extends Manager
             ON p.id = plm.project_id
             INNER JOIN language l
             ON plm.language_id = l.id
-            WHERE u.id = ?";
+            WHERE u.id = ? and p.is_active = 1";
 
         $res = $db->prepare($sql);
         $res->execute([$user_id]);
@@ -304,7 +304,7 @@ class ProjectManager extends Manager
             INNER JOIN language l
             ON plm.language_id = l.id
             ORDER BY id DESC
-            LIMIT 5";
+            LIMIT 4";
 
         $res = $db->query($sql);
 
@@ -341,7 +341,7 @@ class ProjectManager extends Manager
             ON p.id = plm.project_id
             INNER JOIN language l
             ON plm.language_id = l.id
-            LIMIT 5";
+            LIMIT 4";
 
         $res = $db->query($sql);
 
@@ -396,9 +396,9 @@ class ProjectManager extends Manager
         $res = $db->prepare($sql);
 
         $res->execute([
-            'title' => "%" . $query,
-            'language_name' => "%" . $query,
-            'tag_name' => "%" . $query
+            'title' => "%" . $query . "%",
+            'language_name' => "%" . $query . "%",
+            'tag_name' => "%" . $query . "%"
         ]);
 
         $projects = [];
