@@ -38,11 +38,13 @@
 
 /* -------- HEADER LOGGED IN --------*/
 
-body {
+body,
+html {
   color: white;
   font-family: sans-serif;
   background-color: #000000;
-  height: 100vh;
+  /* height: 100vh; */
+  /* width: 100vw; */
 }
 
 header {
@@ -56,10 +58,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 1.5rem;
+  padding: .5rem .8rem;
   font-weight: 600;
-  background: #25272d;
-  /* background: #000000; */
+  /* background: #25272d; */
+  background: rgb(22, 22, 22);
 
   /* padding: 1.2rem 1.5rem; */
 }
@@ -91,8 +93,13 @@ a {
     color: white;
 } */
 
+.left-side {
+  display: flex;
+  align-items: center;
+
+}
 .company-logo {
-  width: 15%;
+  width: 20%;
 }
 
 .search-bar-div {
@@ -873,18 +880,19 @@ input[type="search"] {
 
 /* FOOTER */
 footer {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 2rem;
+  background-color: rgba(37, 37, 37, 0.318);
+  padding: .7rem;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase ;
+  font-size: 14px;
+}
+footer p:nth-child(1){
+  font-weight: 900;
 }
 
-.footer-about {
-  padding-left: 2rem;
-  width: 50%;
-}
-
-.footer-links {
-  padding-right: 2rem;
+footer a{
+  color: rgb(96, 96, 96);
 }
 
 /* RESPONSIVENESS */
