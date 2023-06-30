@@ -42,10 +42,26 @@ body {
   color: white;
   font-family: sans-serif;
   background-color: #000000;
+  height: 100vh;
 }
 
 header {
   font-family: "Inter", sans-serif;
+  position: sticky;
+  width: 100%;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1.5rem;
+  font-weight: 600;
+  background: #25272d;
+  /* background: #000000; */
+
+  /* padding: 1.2rem 1.5rem; */
 }
 
 a {
@@ -53,14 +69,16 @@ a {
   color: white;
 }
 
-.logged-in {
+
+/* redudant -- this is just the class name for the header */
+/* .logged-in {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 1.5rem;
-  font-weight: 600;
-  background: #25272d;
-}
+  padding: 1.3rem 1.5rem;
+  font-weight: 900;
+  background: #000000;
+  /* background: black; */
 
 /* .logged-in a:hover {
     background-color: lightgray;
@@ -98,49 +116,54 @@ input[type="search"] {
   top: 0.8rem;
   color: var(--light-grey);
 }
-.right-side-wrap {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
+
+/* NOT IN HTML */
+/* .right-side-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
 
 .right-side {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-	/* min-width: 600px */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  /* min-width: 600px */
 }
 
 .right-side a {
-	text-decoration: none;
-	padding-right: 1rem;
-	color: white;
-	padding: 0.5em 1.6em;
-	border-radius: 1em;
-	font-size: 0.9rem;
-	/* background-color: var(--light-purple-btn); */
-
+  text-decoration: none;
+  padding-right: 1rem;
+  color: white;
+  padding: 0.5em 1.6em;
+  border-radius: 1em;
+  font-size: 0.9rem;
+  /* background-color: var(--light-purple-btn); */
 }
+
+/* .right-side a:nth-of-type(1) {
+  color: 
+} */
 
 .popup-container a {
-	background-color: transparent;
-	border-radius: 0;
-	border: none;
-	padding: 0;
-	font-size: 1rem;
-	
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  padding: 0;
+  font-size: 1rem;
 }
 .popup-container button {
-	background-color: transparent;
-	border-radius: 0;
-	border: none;
-	padding: 0;
-	text-align: left;
-	font-size: 1rem;
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  padding: 0;
+  text-align: left;
+  font-size: 1rem;
 }
 .log-out-btn {
-	background-color: var(--light-purple-btn);
+	background-color: #580EF6;
+  /* padding: 1rem 1.2rem; */
 }
 
 .right-side a:nth-of-type(2) {
@@ -148,201 +171,149 @@ input[type="search"] {
 }
 
 .right-side i {
-	color: var(--light-grey);
+  color: var(--light-grey);
 }
 
 .popup-container {
-	opacity: 0;
-	position: absolute;
-	transition: 1s;
-	z-index: 10;
-	width: 100%;
+  opacity: 0;
+  position: absolute;
+  transition: 1s;
+  z-index: 10;
+  width: 100%;
 }
 .popup-container p {
-	border-bottom: 1px black solid;
-	padding: .8rem;
-	width: 100%;
+  border-bottom: 1px black solid;
+  padding: 0.8rem;
+  width: 100%;
 }
 #checkbox {
-	display: none;
+  display: none;
 }
 #checkbox:checked ~ .popup-container {
-	opacity: 1;
-	background-color: #948dce;
-	width: 100%;
+  opacity: 1;
+  background-color: #948dce;
+  width: 100%;
 }
 
-#checkbox:checked ~ .popup-container p{
-	border-bottom: 1px black solid;
-	padding: .8rem;
-	width: 100%;
+#checkbox:checked ~ .popup-container p {
+  border-bottom: 1px black solid;
+  padding: 0.8rem;
+  width: 100%;
 }
 
 #blur-overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    pointer-events: none;
-    opacity: 0;
-    transition: .3s;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.3s;
 }
 #checkbox:checked ~ #blur-overlay {
-    opacity: 1;
-    pointer-events: all;
+  opacity: 1;
+  pointer-events: all;
 }
-
-/*-------- PROJECT CARD --------*/
-/*
-.main-container {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	margin-top: 2rem;
-	gap: 1.5rem;
-}
-.project-gif {
-	width: 100%;
-}
-
-.card {
-	width: 23%;
-	height: 20%;
-	border: 1px solid var(--search-bar-shadow);
-	border-radius: var(--search-bar-radius);
-	font-family: "Inter", sans-serif;
-	font-size: 0.8rem;
-	overflow: hidden;
-}
-
-.card .project-gif {
-	height: 200px;
-	aspect-ratio: 1;
-}
-.click-user-wrap {
-	width: fit-content;
-	position: relative;
-	padding: 0;
-	margin: 0;
-}
-#checkbox-label a{
-	padding: 0;
-}
-.click-user {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 1rem;
-	cursor: pointer;
-	width: fit-content;
-	padding: 0 1rem;
-}
-.user-profile-pic {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	border: 1px solid var(--light-grey);
-}
-
-.bottom-card-container,
-.projectVotesContainer {
-	display: flex;
-	margin-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-bottom: 5px;
-	gap: 7px;
-}
-
-.project-description {
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-}
-
-.project-title {
-	font-weight: 800;
-	font-size: 0.9rem;
-}
-
-.language-tag {
-	color: lightgray;
-}
-  */
-
 
 .click-user-wrap {
-	width: fit-content;
-	position: relative;
-	padding: 0;
-	margin: 0;
+  width: fit-content;
+  position: relative;
+  padding: 0;
+  margin: 0;
 }
-#checkbox-label a{
-	padding: 0;
+#checkbox-label a {
+  padding: 0;
 }
 .click-user {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 1rem;
-	cursor: pointer;
-	width: fit-content;
-	padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  width: fit-content;
+  padding: 0 1rem;
 }
-
-
 
 /*-------- CSS For Viewing User Profile --------*/
 .user-profile-view {
-  margin: 1rem 3rem;
   display: flex;
-  justify-content: center;
-  gap: 3rem;
+  flex-direction: column;
+  gap: 5rem;
+  margin: 2rem 3rem;
   /* width: 100%; */
 }
 
 .user-profile-info {
-  /* width: 50%; */
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.user-profile-info button {
-  border: 1px solid white;
-  padding: 0.6rem 1.2rem;
-  background-color: lightcyan;
-  /* margin: auto; */
-  border-radius: 1.4rem;
-}
-
-.user-profile-info button a {
-  color: black;
+  justify-content: space-between;
 }
 
 .user-profile-bio {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: .7rem;
+  font-size: 1.2rem;
+  max-width: 600px;
 }
 
-.user-profile-projects {
-  width: 50%;
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
 }
 
-.user-profile-projects .card {
-  width: 45%;
-  height: 40%;
+#profile {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.user-profile-projects h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(#67b26f, #4ca2cd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+#profile-name {
+  font-size: 2.5rem;
+}
+
+#profile-username {
+  color: lightgray;
+
+}
+
+#profile-img img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+    cursor: url(./pencil.png), auto;
+
+  
+}
+
+#languages {
+  font-weight: 900;
+  color: rgb(186, 252, 252);
+}
+
+#add-project-btn {
+  width: fit-content;
+  /* display: block; */
+  background-color: rgb(186, 252, 252);
+  /* color: black; */
+  border: none;
+  outline: none;
+  padding: 1rem 1.6rem;
+  border-radius: 2rem;
+}
+
+#add-project-btn a {
+  color: black;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.user-stats {
+  display: flex;
+  gap: 1.5rem;
 }
 
 .projects {
@@ -351,56 +322,58 @@ input[type="search"] {
   gap: 1.5rem;
 }
 
-.user-profile-bio p,
-.user-profile-bio span {
-  font-size: 1.1rem;
-}
-
-#profile-img img {
-  width: 350px;
-  height: 350px;
-  border-radius: 50%;
-}
-
-#profile-name {
-  font-size: 2rem;
-}
-
-#profile-username {
-  font-weight: 400;
-  background: linear-gradient(to left, #be93c5, #7bc6cc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-#links-title {
-  color: lightcyan;
-}
-
-#languages {
-  /* font-size: 72px; */
-  background: linear-gradient(to left, #4568dc, #b06ab3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.user-profile-socials {
+.social-links {
   display: flex;
-  flex-direction: column;
   gap: 1rem;
 }
 
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+
+#profile-img {
+  position: relative;
+  /* cursor: url(./pencil.png), auto; */
 }
 
-/* CAROUSEL - TOP CONTAINER CSS */
+
+#profile-img::before {
+  /* --scale: 0; */
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -1rem;
+  left: -.2rem;
+  opacity: 0;
+  font-size: .6rem;
+  padding: 10px;
+  width: 5rem;
+  background-color: var(--light-purple-btn);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: .4s;
+
+}
+#profile-img::after {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  opacity: 0;
+  left: 4rem;
+  border: 10px solid transparent;
+  border-top-color: var(--light-purple-btn);
+  transition: .4s;
+  cursor: url(./pen_cursor.png), auto;
+}
+#profile-img:hover::before, #profile-img:hover::after{
+  transition: .4s;
+  opacity: 1;
+}
+
+/* CSS for CAROUSEL - TOP CONTAINER CSS */
 .index-container {
   /* padding: 3.7rem 3.9rem; */
   display: flex;
   flex-direction: column;
+  /* height: 100vh; */
   gap: 2.4rem;
 }
 
@@ -414,8 +387,9 @@ input[type="search"] {
   /* background-color: white; */
   /* height: 50%; */
   width: 100vw;
-  height: 60vh;
+  height: 65vh;
   position: relative;
+
   /* border: 1px solid white; */
 }
 
@@ -430,6 +404,7 @@ input[type="search"] {
   object-fit: cover;
 }
 
+/* TODO: WHAT IS THIS */
 .carousel-container > ul {
   margin: 0;
   padding: 0;
@@ -464,7 +439,6 @@ input[type="search"] {
 
 .carousel-username {
     text-shadow: 2px 2px 2px rgba(94, 94, 94, 0.861)!important;
-    color: #0077ff;
 }
 
 .slide[data-active] {
@@ -479,30 +453,43 @@ input[type="search"] {
 
 .slide h1 {
   font-weight: 900;
-  font-size: 4.5rem;
+  font-size: 4.3rem;
   line-height: 1.2;
   letter-spacing: -2px;
 }
 
 .slide .carousel-username {
-  font-weight: 500;
+  font-weight: 900;
   font-size: 1.5rem;
 }
 
 .slide .carousel-description {
   font-size: 14px;
   letter-spacing: 0.6px;
+
+  /* responsiveness */
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .slide button {
-  padding: 1rem 2rem;
+  padding: 0.8rem 1.6rem;
   border-radius: 2rem;
   border: none;
   background-color: #0077ff;
   color: white;
-  margin-top: 1rem; /* addition 1rem of top margin */
+  margin-bottom: 0.8rem;
+  margin-top: 0.8rem; /* addition 1rem of top margin */
   font-weight: 900;
   font-size: 1rem;
+}
+
+.slide button:hover {
+  cursor: pointer;
 }
 
 /* the prev/next sliders */
@@ -543,31 +530,6 @@ input[type="search"] {
   gap: 1rem;
 }
 
-/* .carousel-container > p {
-    padding-bottom: 0.9rem;
-}
-.cusername {
-	font-size: 1.1rem;
-}
-
-.ctitle {
-	font-size: 3.1rem;
-}
-
-.cdescription {
-	font-size: 0.9rem;
-}
-
-.carousel-more {
-    background-color: #74ebd5;
-    outline: 0;
-    border: none;
-    width: 9%;
-    padding: 0.7rem 0.1rem;
-    cursor: pointer;
-    border-radius: 0.7rem;
-} */
-
 .project-container {
   display: flex;
   justify-content: space-around;
@@ -587,19 +549,21 @@ input[type="search"] {
 
 /* The drop down list */
 #filter {
+  font-size: 1rem;
+    font-weight: 900;
     color: white;
     background-color: transparent;
     margin-left: 10px;
     width: fit-content;
     outline: none;
-    border: 1px gray solid;
+    border: 1px white solid;
     border-radius: 0.5rem;
     padding: 0.6rem;
     transition: border 0.6s ease;
 }
 
 #filter:hover {
-    border: 1px solid rgb(250, 201, 208);
+    border: 1px solid #580EF6;
 }
 
 /* CSS for Full Project Page (links to projectPage.php HTML */
@@ -701,14 +665,14 @@ input[type="search"] {
 }
 
 .user-img1 {
-    display: flex;
-    width: 100px;
-    height: 100px;
+  display: flex;
+  width: 100px;
+  height: 100px;
 }
 .user-img2 {
-    display: flex;
-    width: 60px;
-    height: 60px;
+  display: flex;
+  width: 60px;
+  height: 60px;
 }
 
 /* The Modal (background) */
@@ -809,15 +773,17 @@ input[type="search"] {
 }
 
 .fa-github::before {
-  background: linear-gradient(to left, #4568dc, #b06ab3);
+  /* background: linear-gradient(to left, #4568dc, #b06ab3);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: lightcyan;
 }
 
 .fa-linkedin::before {
-  background: linear-gradient(to left, #4568dc, #b06ab3);
+  /* background: linear-gradient(to left, #4568dc, #b06ab3);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: lightcyan;
 }
 
 .bottom-container {
@@ -866,7 +832,22 @@ input[type="search"] {
 #filter {
   width: fit-content;
 }
+
+
+
 .more {
+  width: fit-content;
+  background-color: #0077FF;
+  color: white;
+  padding: 1rem 1.6rem;
+  outline: none;
+  border: none;
+  border-radius: 2rem;
+  margin: auto;
+  font-weight: 900;
+}
+
+/* .more {
   margin-left: 39%;
   width: 20%;
   border-radius: 0.4rem;
@@ -874,4 +855,65 @@ input[type="search"] {
   background-color: transparent;
   color: white;
   border: 0.1px solid white;
+}
+
+
+/* ABOUT SECTION */
+.about-container {
+  background-color: white;
+  color: black;
+  width: 100%;
+  height: 50%;
+}
+
+
+
+
+
+
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+}
+
+.footer-about {
+  padding-left: 2rem;
+  width: 50%;
+}
+
+.footer-links {
+  padding-right: 2rem;
+}
+
+/* RESPONSIVENESS */
+/* .carousel-description {
+  overflow: hidden;
+} */
+
+/* won't make h1 jump to new line */
+.slide h1 {
+  white-space: nowrap;
+}
+
+/* MEDIA QUERY */
+
+@media (max-width: 600px) {
+
+  h1 {
+    font-size: 2.5rem !important;
+  }
+
+  .right-side a {
+    display: none;
+  }
+}
+
+
+@media (max-width: 700px) {
+  .click-user p{
+    background-color: red;
+    display: none;
+  }
 }
