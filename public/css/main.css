@@ -57,9 +57,10 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 1.5rem;
-  font-weight: 600;
+  padding: 1.3rem 1.5rem;
+  font-weight: 900;
   background: #25272d;
+  /* background: black; */
 }
 
 /* .logged-in a:hover {
@@ -116,8 +117,8 @@ input[type="search"] {
 	text-decoration: none;
 	padding-right: 1rem;
 	color: white;
-	padding: 0.5em 1.6em;
-	border-radius: 1em;
+	padding: .7rem 1.5rem;
+	border-radius: 2rem;
 	font-size: 0.9rem;
 	/* background-color: var(--light-purple-btn); */
 
@@ -140,7 +141,8 @@ input[type="search"] {
 	font-size: 1rem;
 }
 .log-out-btn {
-	background-color: var(--light-purple-btn);
+	background-color: #580EF6;
+  /* padding: 1rem 1.2rem; */
 }
 
 .right-side a:nth-of-type(2) {
@@ -296,53 +298,83 @@ input[type="search"] {
 
 /*-------- CSS For Viewing User Profile --------*/
 .user-profile-view {
-  margin: 1rem 3rem;
   display: flex;
-  justify-content: center;
-  gap: 3rem;
+  flex-direction: column;
+  gap: 5rem;
+  margin: 2rem 3rem;
   /* width: 100%; */
 }
 
 .user-profile-info {
-  /* width: 50%; */
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.user-profile-info button {
-  border: 1px solid white;
-  padding: 0.6rem 1.2rem;
-  background-color: lightcyan;
-  /* margin: auto; */
-  border-radius: 1.4rem;
-}
-
-.user-profile-info button a {
-  color: black;
+  justify-content: space-between;
 }
 
 .user-profile-bio {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: .7rem;
+  font-size: 1.2rem;
+  max-width: 600px;
 }
 
-.user-profile-projects {
-  width: 50%;
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
 }
 
-.user-profile-projects .card {
-  width: 45%;
-  height: 40%;
+#profile {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.user-profile-projects h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(#67b26f, #4ca2cd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+#profile-name {
+  font-size: 2.5rem;
+}
+
+#profile-username {
+  color: lightgray;
+
+}
+
+#profile-img img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+    cursor: url(./pencil.png), auto;
+
+  
+}
+
+#languages {
+  font-weight: 900;
+  color: rgb(186, 252, 252);
+}
+
+#add-project-btn {
+  width: fit-content;
+  /* display: block; */
+  background-color: rgb(186, 252, 252);
+  /* color: black; */
+  border: none;
+  outline: none;
+  padding: 1rem 1.6rem;
+  border-radius: 2rem;
+}
+
+#add-project-btn a {
+  color: black;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.user-stats {
+  display: flex;
+  gap: 1.5rem;
 }
 
 .projects {
@@ -351,52 +383,53 @@ input[type="search"] {
   gap: 1.5rem;
 }
 
-.user-profile-bio p,
-.user-profile-bio span {
-  font-size: 1.1rem;
-}
-
-#profile-img img {
-  width: 350px;
-  height: 350px;
-  border-radius: 50%;
-}
-
-#profile-name {
-  font-size: 2rem;
-}
-
-#profile-username {
-  font-weight: 400;
-  background: linear-gradient(to left, #be93c5, #7bc6cc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-#links-title {
-  color: lightcyan;
-}
-
-#languages {
-  /* font-size: 72px; */
-  background: linear-gradient(to left, #4568dc, #b06ab3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.user-profile-socials {
+.social-links {
   display: flex;
-  flex-direction: column;
   gap: 1rem;
 }
 
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+
+#profile-img {
+  position: relative;
+  /* cursor: url(./pencil.png), auto; */
 }
 
-/* CAROUSEL - TOP CONTAINER CSS */
+
+#profile-img::before {
+  /* --scale: 0; */
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -1rem;
+  left: -.2rem;
+  opacity: 0;
+  font-size: .6rem;
+  padding: 10px;
+  width: 5rem;
+  background-color: var(--light-purple-btn);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: .4s;
+
+}
+#profile-img::after {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  opacity: 0;
+  left: 4rem;
+  border: 10px solid transparent;
+  border-top-color: var(--light-purple-btn);
+  transition: .4s;
+  cursor: url(./pen_cursor.png), auto;
+}
+#profile-img:hover::before, #profile-img:hover::after{
+  transition: .4s;
+  opacity: 1;
+}
+
+/* CSS for CAROUSEL - TOP CONTAINER CSS */
 .index-container {
   /* padding: 3.7rem 3.9rem; */
   display: flex;
@@ -414,7 +447,7 @@ input[type="search"] {
   /* background-color: white; */
   /* height: 50%; */
   width: 100vw;
-  height: 60vh;
+  height: 65vh;
   position: relative;
   /* border: 1px solid white; */
 }
@@ -464,7 +497,6 @@ input[type="search"] {
 
 .carousel-username {
     text-shadow: 2px 2px 2px rgba(94, 94, 94, 0.861)!important;
-    color: #0077ff;
 }
 
 .slide[data-active] {
@@ -485,7 +517,7 @@ input[type="search"] {
 }
 
 .slide .carousel-username {
-  font-weight: 500;
+  font-weight: 900;
   font-size: 1.5rem;
 }
 
@@ -543,31 +575,6 @@ input[type="search"] {
   gap: 1rem;
 }
 
-/* .carousel-container > p {
-    padding-bottom: 0.9rem;
-}
-.cusername {
-	font-size: 1.1rem;
-}
-
-.ctitle {
-	font-size: 3.1rem;
-}
-
-.cdescription {
-	font-size: 0.9rem;
-}
-
-.carousel-more {
-    background-color: #74ebd5;
-    outline: 0;
-    border: none;
-    width: 9%;
-    padding: 0.7rem 0.1rem;
-    cursor: pointer;
-    border-radius: 0.7rem;
-} */
-
 .project-container {
   display: flex;
   justify-content: space-around;
@@ -587,19 +594,21 @@ input[type="search"] {
 
 /* The drop down list */
 #filter {
+  font-size: 1rem;
+    font-weight: 900;
     color: white;
     background-color: transparent;
     margin-left: 10px;
     width: fit-content;
     outline: none;
-    border: 1px gray solid;
+    border: 1px white solid;
     border-radius: 0.5rem;
     padding: 0.6rem;
     transition: border 0.6s ease;
 }
 
 #filter:hover {
-    border: 1px solid rgb(250, 201, 208);
+    border: 1px solid #580EF6;
 }
 
 /* CSS for Full Project Page (links to projectPage.php HTML */
@@ -809,15 +818,17 @@ input[type="search"] {
 }
 
 .fa-github::before {
-  background: linear-gradient(to left, #4568dc, #b06ab3);
+  /* background: linear-gradient(to left, #4568dc, #b06ab3);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: lightcyan;
 }
 
 .fa-linkedin::before {
-  background: linear-gradient(to left, #4568dc, #b06ab3);
+  /* background: linear-gradient(to left, #4568dc, #b06ab3);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: lightcyan;
 }
 
 .bottom-container {
@@ -866,7 +877,21 @@ input[type="search"] {
 #filter {
   width: fit-content;
 }
+
+
 .more {
+  width: fit-content;
+  background-color: #0077FF;
+  color: white;
+  padding: 1rem 1.6rem;
+  outline: none;
+  border: none;
+  border-radius: 2rem;
+  margin: auto;
+  font-weight: 900;
+}
+
+/* .more {
   margin-left: 39%;
   width: 20%;
   border-radius: 0.4rem;
@@ -874,4 +899,4 @@ input[type="search"] {
   background-color: transparent;
   color: white;
   border: 0.1px solid white;
-}
+} */
