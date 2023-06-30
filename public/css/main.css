@@ -917,3 +917,26 @@ footer {
     display: none;
   }
 }
+
+@media (max-width: 650px) {
+  .user-profile-info {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .user-profile-projects h1 {
+    margin-bottom: 2rem;
+  }
+
+  .projects {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .projects .card {
+    width: 100%;
+  }
+
+  .outer-container {
+    margin: 0 6rem;
+  }
+}
