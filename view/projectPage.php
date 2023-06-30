@@ -29,9 +29,7 @@ if (isset($_SESSION['id'])) {
   <div class="middle-container">
     <div class="animation-container">
       <p>
-        <video class="project-mp4" autoplay muted src="./public/uploaded_videos/<?= $fullProject->video_src ?>"></video>
-
-        <!-- <img class="project-gif" src="<?= $fullProject->gif ?>" alt="user project gif"> -->
+        <video class="project-vid" onclick="this.paused ? this.play() : this.pause(); arguments[0].preventDefault();" autoplay muted src="./public/uploaded_videos/<?= $fullProject->video_src ?>"></video>
       </p>
     </div>
 
@@ -54,7 +52,6 @@ if (isset($_SESSION['id'])) {
         <!-- TODO: fix this -->
         <a href="<?= $fullProject->linkedIn; ?>"><i class="fa-brands fa-2xl fa-linkedin" style="font-size: 4rem;"></i></a>
       </div>
-
 
       <!-- The Modal -->
       <div id="myModal" class="modal">
@@ -80,11 +77,19 @@ if (isset($_SESSION['id'])) {
   </div>
   <!--inline elements -->
   <div class="bottom-container">
-    <div class="description"><?= $fullProject->description ?>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ex ab impedit assumenda minima minus beatae at neque alias in temporibus distinctio nam laudantium facere quas adipisci, amet, consequuntur accusamus! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni necessitatibus sequi consectetur sint voluptatibus a adipisci laboriosam minima id cum commodi, cupiditate quasi accusantium animi dignissimos doloribus? Unde, in rem.</div>
-    <div class="modify">
-      <button class="edit-btn"><a class="edit" href="index.php?action=updateProjectForm&project_id=<?= $fullProject->id ?>">Edit</a></button> <!--edit and delete, block elements -->
-      <button class="delete-btn"><span><a class="delete" href="index.php?action=delete_project&project_id=<?= $fullProject->id ?>">Delete</a></span></button>
-    </div>
+    <div class="description"><?= $fullProject->description ?></div>
+
+    <?php if (isset($_SESSION['id']) and $_SESSION['id'] == $fullProject->user_id) {
+    ?>
+      <div class="modify">
+        <button class="edit-btn"><a class="edit" href="index.php?action=updateProjectForm&project_id=<?= $fullProject->id ?>">Edit</a></button>
+        <button class="delete-btn"><span><a class="delete" href="index.php?action=delete_project&project_id=<?= $fullProject->id ?>">Delete</a></span></button>
+      </div>
+    <?php
+    }
+
+    ?>
+
   </div>
 
 </div>
