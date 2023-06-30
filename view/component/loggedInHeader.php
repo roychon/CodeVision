@@ -2,7 +2,7 @@
     <!-- TODO:place logo here. -->
     <div class="left-side">
         <!-- TODO: add logo  -->
-        <img class="company-logo" src="" alt="">
+        <img class="company-logo" src="public/logo.png" alt="">
         <!-- TODO:href take us back to index -->
         <a href="index.php">DevShop</a>
         <!-- homebutton -->
