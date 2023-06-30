@@ -179,49 +179,41 @@ function submitEditedProfile(
 function uploadProfilePicture($profile_img, $id)
 {
     $userManager = new UserManager();
-    //setting directory for where the profile image will be stored
-    $target_dir = "./public/profile_images/";
-    // set the path to the target directory
-    $hashName = hash_file('md5', $profile_img["tmp_name"]);
-    // get file extension name in lower case
-    $imageFileType = strtolower(pathinfo($profile_img["name"], PATHINFO_EXTENSION));
-    $target_file = $target_dir . $hashName . "." . $imageFileType;
+    if ($profile_img["name"]) {
+        //setting directory for where the profile image will be stored
+        $target_dir = "./public/profile_images/";
+        // set the path to the target directory
+        $hashName = hash_file('md5', $profile_img["tmp_name"]);
+        // get file extension name in lower case
+        $imageFileType = strtolower(pathinfo($profile_img["name"], PATHINFO_EXTENSION));
+        $target_file = $target_dir . $hashName . "." . $imageFileType;
+        $uploadErrors = [];
+        $size = $profile_img['size'];
+        // echo $size;
+        if ($size > 250000) {
+            $uploadErrors[] = "Your file is too large";
+        }
 
-    // this is a value to check errors later
-    $uploadErrors = [];
-    // This will be used to determine if the upload is a pic or not
-    // check if the image is an image file
-    $check = getimagesize($profile_img['tmp_name']);
-    print_r($check);
-    $size = $profile_img['size'];
-    echo $size;
-    if ($size > 250000) {
-        $uploadErrors[] = "Your file is too large";
-    }
+        if (!empty($uploadErrors)) {
+            $message = urlencode(implode(".", $uploadErrors));
+            echo $message;
+            header("Location: index.php?action=editUserPicture&error=true&id=$id&error=true&message=$message");
+            // if everything is ok, try to upload file
+        } else {
+            move_uploaded_file($profile_img["tmp_name"], $target_file);
 
-    // only allow jpg, png, jpeg... no gif? 
-    if ($imageFileType != "jpg" and $imageFileType != "png" and $imageFileType != "jpeg") {
-        $message = urlencode("File too large");
-        header("Location: index.php?action=editUserPicture&error=true&message=$message");
-        $uploadErrors[] = "You must use jpg png or jpeg file format.";
-        // $upload0k = 0;
-    }
-    // check the $upload0k error
-    if (!empty($uploadErrors)) {
-        // $message = urlencode("Upload Failed. Please check.");
+            // echo "The file " . htmlspecialchars(basename($profile_img["name"])) . " has been uploaded.";
+            $userManager->uploadProfilePicture($id, $target_file);
+            $message = urlencode("You uploaded your picture!");
+            // echo $id;
+            header("Location: index.php?action=userProfileView&id=$id");
+        }
+    } else {
+        header("Location: index.php?action=editUserPicture&id=$id");
+        $uploadErrors[] = "Please upload a photo.";
         $message = urlencode(implode(".", $uploadErrors));
         echo $message;
         header("Location: index.php?action=editUserPicture&error=true&id=$id&error=true&message=$message");
-        // if everything is ok, try to upload file
-    } else {
-        move_uploaded_file($profile_img["tmp_name"], $target_file);
-
-        // echo "The file " . htmlspecialchars(basename($profile_img["name"])) . " has been uploaded.";
-        $userManager->uploadProfilePicture($id, $target_file);
-        $message = urlencode("You uploaded your picture!");
-        // echo $id;
-        // header("Location: index.php?action=userProfileView&id=$id&error=false&message=$message");
-        header("Location: index.php?action=userProfileView&id=$id");
     }
 }
 
