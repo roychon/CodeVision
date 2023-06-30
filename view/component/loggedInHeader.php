@@ -29,14 +29,14 @@
                 <?php if (!(isset($_SESSION['id']) and isset($_GET['id']) and $_SESSION['id'] == $_GET['id'])) { ?>
                     <a href="index.php?action=userProfileView&id=<?= $_SESSION['id'] ?>">
                         <div class="click-user">
-                            <img class="user-profile-pic" src="<?= $_SESSION['profile_img'] ?>">
-                            <p><?= $_SESSION['username'] ?></p>
+                            <img class="user-profile-pic" src="<?= htmlspecialchars($_SESSION['profile_img']) ?>">
+                            <p><?= htmlspecialchars($_SESSION['username']) ?></p>
                         </div>
                     </a>
                 <?php } else { ?>
                     <div class="click-user">
-                        <img class="user-profile-pic" src="<?= $_SESSION['profile_img'] ?>">
-                        <p><?= $_SESSION['username'] ?></p>
+                        <img class="user-profile-pic" src="<?= htmlspecialchars($_SESSION['profile_img']) ?>">
+                        <p><?= htmlspecialchars($_SESSION['username']) ?></p>
                     </div>
                 <?php } ?>
             </label>
