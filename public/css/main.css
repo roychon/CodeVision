@@ -42,10 +42,26 @@ body {
   color: white;
   font-family: sans-serif;
   background-color: #000000;
+  height: 100vh;
 }
 
 header {
   font-family: "Inter", sans-serif;
+  position: sticky;
+  width: 100%;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1.5rem;
+  font-weight: 600;
+  background: #25272d;
+  /* background: #000000; */
+
+  /* padding: 1.2rem 1.5rem; */
 }
 
 a {
@@ -53,14 +69,16 @@ a {
   color: white;
 }
 
-.logged-in {
+
+/* redudant -- this is just the class name for the header */
+/* .logged-in {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem 1.5rem;
   font-weight: 600;
   background: #25272d;
-}
+} */
 
 /* .logged-in a:hover {
     background-color: lightgray;
@@ -98,12 +116,14 @@ input[type="search"] {
   top: 0.8rem;
   color: var(--light-grey);
 }
-.right-side-wrap {
+
+/* NOT IN HTML */
+/* .right-side-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .right-side {
   display: flex;
@@ -121,6 +141,10 @@ input[type="search"] {
   font-size: 0.9rem;
   /* background-color: var(--light-purple-btn); */
 }
+
+/* .right-side a:nth-of-type(1) {
+  color: 
+} */
 
 .popup-container a {
   background-color: transparent;
@@ -320,6 +344,7 @@ input[type="search"] {
   /* padding: 3.7rem 3.9rem; */
   display: flex;
   flex-direction: column;
+  /* height: 100vh; */
   gap: 2.4rem;
 }
 
@@ -477,31 +502,6 @@ input[type="search"] {
   align-items: center;
   gap: 1rem;
 }
-
-/* .carousel-container > p {
-    padding-bottom: 0.9rem;
-}
-.cusername {
-	font-size: 1.1rem;
-}
-
-.ctitle {
-	font-size: 3.1rem;
-}
-
-.cdescription {
-	font-size: 0.9rem;
-}
-
-.carousel-more {
-    background-color: #74ebd5;
-    outline: 0;
-    border: none;
-    width: 9%;
-    padding: 0.7rem 0.1rem;
-    cursor: pointer;
-    border-radius: 0.7rem;
-} */
 
 /* TODO: ALSKDJLAKSJDLASKJDLKASJDLKASDJLKSJ TODO: alskdJLASKJDLASKDJLAKSJD TODO: ALSDKJALSDJALSKDJ */
 
@@ -814,10 +814,19 @@ input[type="search"] {
   border: 0.1px solid white;
 }
 
+
+/* ABOUT SECTION */
 .about-container {
   background-color: white;
   color: black;
+  width: 100%;
+  height: 50%;
 }
+
+
+
+
+
 
 /* FOOTER */
 footer {
@@ -848,11 +857,20 @@ footer {
 /* MEDIA QUERY */
 
 @media (max-width: 600px) {
-  body {
-    background-color: pink;
-  }
 
   h1 {
     font-size: 2.5rem !important;
+  }
+
+  .right-side a {
+    display: none;
+  }
+}
+
+
+@media (max-width: 700px) {
+  .click-user p{
+    background-color: red;
+    display: none;
   }
 }
