@@ -21,10 +21,10 @@ function showUserProfile($user_id)
 
         $projects = $projectManager->getUserProjects($user_id);
         $userInfo = $userManager->getUserInfo($user_id);
-
+        $userLikes = $userManager->getUserLikes($user_id);
         $userLanguages = $userManager->getUserLanguages($user_id);
 
-
+        // echo($userLikes);
 
         require "./view/userProfileView.php";
     } else {

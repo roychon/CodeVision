@@ -75,7 +75,7 @@ function validateTitle(txt) {
  * @param {string} txt The description to validate.
  */
 function validateDesc(txt) {
-	if (txt.length < 5) {
+	if (txt.length < 5 || txt.length > 280) {
 		description.className = "red";
 		return false;
 	} else {

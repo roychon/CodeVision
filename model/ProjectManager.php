@@ -5,7 +5,7 @@ class ProjectManager extends Manager
 {
     public function getCards()
     {
-        $limit = isset($_GET['limit']) ? (int)$_GET['limit'] + 5 : 5;
+        $limit = isset($_GET['limit']) ? (int)$_GET['limit'] + 4 : 4;
 
         $db = $this->dbConnect();
         $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.video_src, p.description, l.language_name
@@ -16,6 +16,7 @@ class ProjectManager extends Manager
             ON p.id = plm.project_id
             INNER JOIN language l
             ON plm.language_id = l.id
+            WHERE p.is_active = 1
            LIMIT :limit;";
 
 
