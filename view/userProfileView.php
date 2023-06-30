@@ -11,58 +11,65 @@ ob_start();
     <!-- </section> -->
     <section class="user-profile-view">
         <aside class="user-profile-info">
-            <div id='profile-img' data-tooltip="Change the profile image">
-                <a href="index.php?action=editUserPicture&id=<?= $_GET['id'] ?>"><img src="<?= $userInfo->profile_img ?>" alt="the photo of <?= $userInfo->username; ?>"></a>
-            </div>
-            <div>
-                <h1 id='profile-name'><?= "$userInfo->first_name $userInfo->last_name"; ?></h1>
-                <h1 id='profile-username'><?= $userInfo->username ?></h1>
-            </div>
+            <div class="user-info">
+                <div class="flex">
+                    <div id='profile-img' data-tooltip="Change the profile image">
+                        <a href="index.php?action=editUserPicture&id=<?= $_GET['id'] ?>"><img src="<?= $userInfo->profile_img ?>" alt="profile image"></a>
+                    </div>
+                    <div id="profile">
+                        <h1 id='profile-name'><?= "$userInfo->first_name $userInfo->last_name"; ?></h1>
+                        <h1 id='profile-username'><?= "@$userInfo->username" ?></h1>
+                    </div>
+                </div>
 
+                <div class="user-stats">
+                    <h1><?= count($projects) . " projects" ?></h1>
+                    <h1><?= count($userLanguages) . " languages" ?></h1>
+                    <h1><?= $userLikes . " likes" ?></h1>
 
-            <div class="user-profile-bio">
-                <p><?= $userInfo->bio ?? "" ?></p>
-                <span class="user-language-tag">
-                    <?php
-                    echo "<span id='languages'>Languages: </span>";
-                    if (count($projects)) {
-                        $languages = join(", ", $userLanguages);
-                        echo $languages;
-                    } else {
-                        echo "<i class='default'>none</i>";
+                </div>
+
+                <div class="user-profile-bio">
+                    <p><?= $userInfo->bio ?? "" ?></p>
+                    <span class="user-language-tag">
+                        <?php
+                        echo "<span id='languages'>Languages: </span>";
+                        if (count($projects)) {
+                            $languages = join(", ", $userLanguages);
+                            echo $languages;
+                        } else {
+                            echo "<i class='default'>none</i>";
+                        }
+                        ?>
+                    </span>
+                </div>
+
+                <div class="social-links">
+                    <?php if ($userInfo->gitHub) {
+                        echo "<a href='<?= $userInfo->gitHub; ?>'><i class='fa-brands fa-2xl fa-github'></i></a>";
                     }
                     ?>
-                </span>
-            </div>
-            <hr>
 
-            <!-- <div class="user-profile-languages"> -->
-            <!-- feel free to change the span to something else to make it easier
-            to style :) -->
-            <!-- <span class="user-language-tag"> <?php
-                                                    if (count($projects))
-                                                        foreach ($userInfo->languages as $language) {
-                                                            echo "$language ";
-                                                        } ?></span> -->
-            <!-- </div> -->
-            <div class="user-profile-socials">
-                <h1 id='links-title'>Social Links: </h1>
-                <div class="links">
-                    <p class="social-link">
-                        <a href="<?= $userInfo->gitHub; ?>"><i class="fa-brands fa-2xl fa-github" style="color: #d2c3ee;"></i></a>
-                    </p>
-                    <p class="social-link">
-                        <a href="<?= $userInfo->linkedIn; ?>"><i class="fa-brands fa-2xl fa-linkedin" style="color: #d2c3ee;"></i></a>
-                    </p>
+                    <?php if ($userInfo->linkedIn) {
+                        echo "<a href='<?= $userInfo->linkedIn; ?>''><i class='fa-brands fa-2xl fa-linkedin'></i></a>";
+                    }
+                    ?>
                 </div>
 
             </div>
+            </div>
+
+
+
+
+
 
             <!-- FOR DISPLAYING THE 'ADD PROJECT' ONLY WHEN 'MY PROJECT' IS CLICKED -->
             <?php if (isset($_SESSION['id']) and isset($_GET['id']) and $_SESSION['id'] == $_GET['id']) { ?>
-                <button><a href="index.php?action=add_project">Add a Project</a></button>
+                <p><button id="add-project-btn"><a href="index.php?action=add_project">Add a Project</a></button></p>
 
             <?php } ?>
+
 
         </aside>
         <div class="user-profile-projects">
