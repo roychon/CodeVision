@@ -9,6 +9,7 @@ function projectVotes(user_id, project_id, stat, obj) {
 
   xhr.addEventListener("load", () => {
     clickedSum.innerHTML = xhr.responseText;
+    console.log(obj);
   });
   xhr.send();
 }

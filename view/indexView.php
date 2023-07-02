@@ -48,10 +48,12 @@ if (isset($_SESSION['id'])) {
     ?>
 
     <!-- SHOW MORE FOR LIMITS -->
+    <!-- <input type="button" class="voteBtn" value="UPVOTE" id="upVote" name="upVote" onclick="projectVotes(<?= isset($_SESSION['id']) ? $_SESSION['id'] : 0; ?>, <?= $project->id ?>, '1', this);"> -->
+    <!-- append to end a new amount of offset -->
 
-    <a href="index.php?action=showUserPage&limit=<?= $limit ?>" onclick="scrollDown()">show more</a>
+    <!-- <a href="index.php?action=showUserPage&limit=<?= $limit ?>" onclick="scrollDown()">show more</a> -->
   </div>
-
+  <input type="button" class="showMore" value="showMore" name="showMore" onclick="showMore()">
 
 
 
@@ -60,6 +62,7 @@ if (isset($_SESSION['id'])) {
   <script defer src="./public/js/projectVotes.js"></script>
   <script defer src="./public/js/filterProjects.js"></script>
   <script defer src="./public/js/scrollDown.js"></script>
+  <script defer src="./public/js/showMore.js"></script>
 
 
   <!-- <script defer src="popUp.js"></script> -->
@@ -73,16 +76,18 @@ if (isset($_SESSION['id'])) {
     require "nonLoggedInTemplate.php";
   }
 
-  if (isset($_GET["limit"])) {
+  // if (isset($_GET["limit"])) {
 
+  // 
   ?>
-    <script>
-      window.scrollTo(0, document.body.scrollHeight);
-    </script>;
-  <?php
+  // <script>
+    //     window.scrollTo(0, document.body.scrollHeight);
+    //   
+  </script>;
+  // <?php
 
-  }
+      // }
 
 
 
-  ?>
+      ?>

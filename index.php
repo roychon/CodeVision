@@ -152,6 +152,12 @@ try {
             // showUserPage();
             break;
 
+        case "increaseLimit":
+            $limit = $_GET['limit'];
+            // echo "LIMIT: " . $limit;
+            increaseLimit($limit);
+            break;
+
 
 
             // FOR EDITING A USER
