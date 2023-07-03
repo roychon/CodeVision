@@ -531,9 +531,12 @@ input[type="search"] {
 }
 
 .project-container {
-  display: flex;
+  /* display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
+  display: grid;
+  /* grid-template-columns: repeat(3, 1fr); */
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));;
   gap: 2rem;
   padding: 0 1.7rem;
 }
