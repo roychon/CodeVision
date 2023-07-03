@@ -12,16 +12,18 @@ if (isset($_GET['error'])) {
 <script defer src="./public/js/imageUploadPreview.js"></script>
 
 <div id="edit-user-picture-form">
-    <div class="center">
-        <div class="form-input">
-            <div class="preview">
-                <img id="profileImage">
-            </div>
-        </div>
-    </div>
+
 
     <form action="index.php?action=submitEditedProfilePicture" enctype="multipart/form-data" method="POST" id="editForm">
         <a href="index.php?action=userProfileView&id=<?= $_SESSION['id'] ?>">⬅ Go back</a>
+
+        <div class="center">
+            <div class="form-input">
+                <div class="preview">
+                    <img id="profileImage">
+                </div>
+            </div>
+        </div>
 
         <p id="edit-user-picture">Edit Picture</p>
         <input type="hidden" accept="image/.png, image/jpeg, image/jpg" name="id" value="<?= $userinfo->id ?>">
@@ -35,8 +37,9 @@ if (isset($_GET['error'])) {
         </p>
 
     </form>
+</div>
 
-    <?php
-    $content = ob_get_clean();
-    require "template.php";
-    ?>
+<?php
+$content = ob_get_clean();
+require "template.php";
+?>
