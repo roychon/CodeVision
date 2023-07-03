@@ -3,7 +3,6 @@ require_once "./model/ProjectManager.php";
 
 function displayCards($filter = "default")
 {
-    $limit = isset($_GET['limit']) ? (int)$_GET['limit'] + 4 : 4;
 
     $projectManager = new ProjectManager();
     $carousels = $projectManager->getCarousels();
@@ -17,6 +16,14 @@ function displayCards($filter = "default")
     require './view/indexView.php';
 }
 
+function increaseLimit($limit)
+{
+    $projectManager = new ProjectManager();
+    $projects = $projectManager->getCards($limit);
+    foreach ($projects as $project) {
+        require "./view/component/projectCard.php";
+    }
+}
 function getSearchInfo($query)
 {
     $projectManager = new ProjectManager();
@@ -94,16 +101,36 @@ function insertNewProject($user_id, $video_source, $title, $description, $tags, 
     header("Location: index.php");
 }
 
-function getFilteredProjects($filter)
+// we want the LIMIT to work on two conditions
+// 1 - where there is NO SORTING
+// 2 - where there is a sorted list, and it will give a limited amount
+// 3 - set a default on limit so even if its sorted without limit increased its fine
+// 4 - limit the display 
+// But.. how can we know if there is a filter set when we press increaseLimit? 
+// How can we know if there is a limit set if we press filter? 
+
+// They all lead to the same thing ? Right now, showmore runs viewCards() which will 
+// remove all the filters 
+
+// showMore button does
+
+
+function getFilteredProjects($filter, $limit)
 {
     $projectManager = new ProjectManager();
     if ($filter == 'mostRecent') {
         $projects = $projectManager->getMostRecentProjects();
     } else if ($filter == 'mostLikes') {
-        $projects = $projectManager->getMostLikedProjects();
+        // echo "limit from controller: . $limit . '<br>'";
+
+        $projects = $projectManager->getMostLikedProjects($limit);
+    } else {
+        $projects = $projectManager->getCards();
     }
+    // print_r($projects);
 
     foreach ($projects as $project) {
         require "./view/component/projectCard.php";
     }
+    // maybe use limit here? Only do the first $limit? 
 }
