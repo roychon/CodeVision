@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="utf-8" />
+  <link rel="icon" type="image/x-icon" href="./public/css/logo.png">
+
   <link href="./public/css/main.css" rel="stylesheet" />
   <link href="./public/css/projectCard.css" rel="stylesheet">
   <script defer src="./public/js/validateSignUp.js"></script>
