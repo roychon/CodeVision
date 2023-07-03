@@ -6,8 +6,10 @@
     <title><?= $title; ?></title>
     <link href="./public/css/main.css" rel="stylesheet" />
     <link href="./public/css/projectCard.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="./public/css/logo.png">
     <script defer src="https://kit.fontawesome.com/808c973e0c.js" crossorigin="anonymous"></script>
     <script defer src="./public/js/search.js"></script>
+
 
 
 </head>

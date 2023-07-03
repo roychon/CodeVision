@@ -1,8 +1,7 @@
 <header class="logged-in">
     <!-- TODO:place logo here. -->
     <div class="left-side">
-        <!-- TODO: add logo  -->
-        <img class="company-logo" src="public/logo.png" alt="">
+        <img class="company-logo" src="./public/css/logo.png" alt="Company's logo">
         <!-- TODO:href take us back to index -->
         <a href="index.php">DevShop</a>
         <!-- homebutton -->
@@ -29,14 +28,14 @@
                 <?php if (!(isset($_SESSION['id']) and isset($_GET['id']) and $_SESSION['id'] == $_GET['id'])) { ?>
                     <a href="index.php?action=userProfileView&id=<?= $_SESSION['id'] ?>">
                         <div class="click-user">
-                            <img class="user-profile-pic" src="<?= $_SESSION['profile_img'] ?>">
-                            <p><?= $_SESSION['username'] ?></p>
+                            <img class="user-profile-pic" src="<?= htmlspecialchars($_SESSION['profile_img'] ?? "") ?>">
+                            <p><?= htmlspecialchars($_SESSION['username'] ?? "") ?></p>
                         </div>
                     </a>
                 <?php } else { ?>
                     <div class="click-user">
-                        <img class="user-profile-pic" src="<?= $_SESSION['profile_img'] ?>">
-                        <p><?= $_SESSION['username'] ?></p>
+                        <img class="user-profile-pic" src="<?= htmlspecialchars($_SESSION['profile_img'] ?? "") ?>">
+                        <p><?= htmlspecialchars($_SESSION['username'] ?? "") ?></p>
                     </div>
                 <?php } ?>
             </label>
@@ -46,7 +45,7 @@
 
             <?php if (isset($_SESSION['id']) and isset($_GET['id']) and $_SESSION['id'] == $_GET['id']) { ?>
                 <div class="popup-container">
-                    <p><a href="index.php?action=editUser&id=<?= $_SESSION['id'] ?>">Edit Profile</a></p>
+                    <p><button><a href="index.php?action=editUser&id=<?= $_SESSION['id'] ?>">Edit Profile</a></button></p>
                     <p><button><a href="index.php?action=personal_info&id=<?= $_GET['id'] ?>">Edit Personal Information</a></button></p>
                     <?php if (isset($_SESSION['password_exist'])) { ?>
                         <p><button><a href="index.php?action=change_password&id=<?= $_SESSION['id'] ?>">Change Password</a></button></p>
@@ -55,6 +54,9 @@
             <?php } ?>
 
         </div>
+
+        <input type="checkbox" name="checkbox" id="checkbox">
+        <label for="checkbox" id="blur-overlay"></label>
 
 
 
@@ -77,6 +79,14 @@
     </div>
 
 
-    <!-- </div> -->
-    <!-- nav bar? -->
+    <input type="checkbox" name="toggle" id="toggle">
+    <label for="toggle" id="toggle">&#8942;</label>
+    <nav class="dropdown-responsive">
+        <ul class="drop-items">
+            <a href="index.php?action=logOut">
+                <li>Log Out</li>
+            </a>
+
+        </ul>
+    </nav>
 </header>
