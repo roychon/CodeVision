@@ -36,18 +36,21 @@ try {
             break;
 
         case "updateProject":
-            $gif = $_POST['gif'] ?? "";
+            //$hidden_video used for submitting update form without a video
+            $hidden_video = $_POST['hiddenVideo'] ?? "";
+            $video_src = $_FILES['video'] ?? "";
             $description = $_POST['description'] ?? "";
             $title = $_POST['title'] ?? "";
             $tags = $_POST['tags'] ?? "";
             $languages = $_POST['languages'] ?? "";
             $project_id = $_GET['project_id'] ?? "";
 
-            if ($gif and $description and $title and $tags and $languages and $project_id) {
-                updateProject($gif, $description, $title, $tags, $languages, $_GET['project_id']);
+            if ($video_src and $description and $title and $tags and $languages and $project_id and $hidden_video) {
+                updateProject($video_src, $description, $title, $tags, $languages, $_GET['project_id'], $hidden_video);
             } else {
                 throw new Exception("Error, missing project info");
             }
+
 
             break;
 
@@ -95,8 +98,7 @@ try {
             // echo "<pre>";
             // print_r($_FILES['video']);
             // echo "</pre>";
-            $video_src = $_FILES['video'] ?? ""; // turning out to be an array
-            //need to insert the source instead of the array
+            $video_src = $_FILES['video'] ?? "";
             $title = $_POST['title'] ?? "";
             $description = $_POST['description'] ?? "";
             $tags = $_POST['tags'] ?? "";
@@ -106,10 +108,6 @@ try {
             if ($user_id and $video_src and $title and $description and $tags and $languages) {
                 insertNewProject($user_id, $video_src, $title, $description, $tags, $languages);
             } else {
-                // echo "<pre>";
-                // print_r($_POST);
-                // print_r($_FILES);
-                // print_r($_SESSION);
                 throw new Exception("Missing required information.");
             }
             break;
@@ -128,8 +126,13 @@ try {
             }
             break;
 
+
             // FOR LOGING IN WITH GOOGLE BUTTON
         case "googleLogIn":
+            if (isset($_GET['signUp'])) {
+                $signUp = $_GET['signUp'];
+            }
+
             $token = $_REQUEST['credential'];
             $jwt = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $token)[1]))));
 
@@ -142,7 +145,7 @@ try {
             ) {
                 // FOR SPLITTING THE EMAIL ON @ SIGN, AND MAKING A USERNAME
                 $username = substr($jwt->email, 0, strpos($jwt->email, "@"));
-                logInGoogle($username, $jwt->given_name, $jwt->family_name, $jwt->email, $jwt->picture);
+                logInGoogle($username, $jwt->given_name, $jwt->family_name, $jwt->email, $jwt->picture, $signUp);
             }
             break;
 
@@ -154,6 +157,7 @@ try {
 
         case "increaseLimit":
             $limit = $_GET['limit'];
+            // print_r($_SESSION);
             // echo "LIMIT: " . $limit;
             increaseLimit($limit);
             break;
@@ -190,6 +194,7 @@ try {
         case "submitEditedProfilePicture":
             $id = $_POST['id'] ?? "";
             $profile_image = $_FILES['profileImage'];
+            // $hidden_image = $_POST['hiddenImage'];
 
             if (
                 $id and $profile_image
@@ -290,10 +295,31 @@ try {
             break;
 
         case "filter":
-            if (isset($_GET['filterOn'])) {
-                getFilteredProjects($_GET['filterOn']);
+            // try passing $_GET limit through if its set
+            // $_GET['limit'] isn't able to be grabbed because its a diff button
+            if (isset($_GET['filterOn']) and isset($_GET['limit'])) {
+                $_SESSION['filter'] = $_GET['filterOn'];
+                echo $_SESSION['filter'];
+                // echo "hello";
+                $limit = $_GET['limit'];
+                // echo "limit from case: . $limit . '<br>'";
+                getFilteredProjects($_GET['filterOn'], $limit);
+                // } 
+                // else if (isset($_GET['filterOn'])) {
+                //     getFilteredProjects($_GET['filterOn']);
+                // } else if (!isset($_GET['filterOn']) and isset($_GET['limit'])) {
+                // getFilteredProjects($_GET['limit']);
+                return;
+            } else if (isset($_GET['limit'])) {
+                getFilteredProjects('default', $limit);
             } else {
                 throw new Exception("Missing filter value");
+            }
+            break;
+
+        case "search_data":
+            if (isset($_GET['query'])) {
+                getSearchInfo($_GET['query']);
             }
             break;
 

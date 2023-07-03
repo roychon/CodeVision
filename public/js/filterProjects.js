@@ -3,7 +3,7 @@ function filterProjects(filterOn) {
 
     xhr.open("GET",
         `index.php?action=filter&filterOn=${filterOn}`);
-    
+
     xhr.addEventListener("load", () => {
         // clear previous projects
         const projectContainer = document.querySelector(".project-container");

@@ -14,19 +14,21 @@ class ProjectManager extends Manager
             ON p.id = plm.project_id
             INNER JOIN language l
             ON plm.language_id = l.id
-            LIMIT :limit";
+            WHERE p.is_active = 1";
 
 
         $res = $db->prepare($sql);
-        $res->bindParam(":limit", $limit, PDO::PARAM_INT);
+        // $res->bindParam(":limit", $limit, PDO::PARAM_INT);
         $res->execute();
 
         $projects = [];
         while ($data = $res->fetch()) {
             $project_id = $data->id;
             if (isset($projects[$project_id])) {
+                // same ID's with another language
                 $projects[$project_id]->languages[] = $data->language_name;
-            } else {
+            } else if (count($projects) < $limit) {
+                // unique ID's
                 $projects[$project_id] = $data;
                 $projects[$project_id]->languages = [];
                 $projects[$project_id]->languages[] = $data->language_name;
@@ -37,51 +39,14 @@ class ProjectManager extends Manager
                 $sum = $sumsQuery->fetch()->sum_stat;
                 $projects[$project_id]->sum = $sum;
 
+
                 unset($projects[$project_id]->language_name);
             }
         }
         return $projects;
     }
 
-    // public function increaseLimit($offset)
-    // {
-    //     $limit = 3;
-    //     $db = $this->dbConnect();
-    //     $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.video_src, p.description, l.language_name
-    //         FROM user u
-    //         INNER JOIN project p
-    //         ON u.id = p.user_id
-    //         INNER JOIN project_language_map plm
-    //         ON p.id = plm.project_id
-    //         INNER JOIN language l
-    //         ON plm.language_id = l.id
-    //         LIMIT :limit";
 
-    //     $res = $db->prepare($sql);
-    //     $res->bindParam(":limit", $limit, PDO::PARAM_INT);
-    //     $res->execute();
-
-    //     $projects = [];
-    //     while ($data = $res->fetch()) {
-    //         $project_id = $data->id;
-    //         if (isset($projects[$project_id])) {
-    //             $projects[$project_id]->languages[] = $data->language_name;
-    //         } else {
-    //             $projects[$project_id] = $data;
-    //             $projects[$project_id]->languages = [];
-    //             $projects[$project_id]->languages[] = $data->language_name;
-
-    //             $sumsQuery = $db->prepare("SELECT SUM(stat) AS sum_stat FROM project_votes WHERE project_id = :project_id");
-    //             $sumsQuery->bindParam("project_id", $project_id, PDO::PARAM_INT);
-    //             $sumsQuery->execute();
-    //             $sum = $sumsQuery->fetch()->sum_stat;
-    //             $projects[$project_id]->sum = $sum;
-
-    //             unset($projects[$project_id]->language_name);
-    //         }
-    //     }
-    //     return $projects;
-    // }
 
     public function getUserProjects($user_id)
     {
@@ -94,7 +59,7 @@ class ProjectManager extends Manager
             ON p.id = plm.project_id
             INNER JOIN language l
             ON plm.language_id = l.id
-            WHERE u.id = ?";
+            WHERE u.id = ? and p.is_active = 1";
 
         $res = $db->prepare($sql);
         $res->execute([$user_id]);
@@ -168,7 +133,7 @@ class ProjectManager extends Manager
 
     // $project = $req->fetch();
     // return $project;
-    public function projectVotes($user_id, $project_id, $stat)
+    public function projectVotes($user_id, $project_id, $stat) // UPVOTE -> 1 DOWNVOTE -> -1
     {
         $db = $this->dbConnect();
 
@@ -184,33 +149,66 @@ class ProjectManager extends Manager
             "project_id" => $project_id,
             "user_id" => $user_id
         ));
-        $data = $req->fetch(); // will be FALSE if 1st time voting
-        if ($data) {
-            // run an UPDATE
-            $req = $db->prepare("UPDATE project_votes SET stat = :stat WHERE user_id = :user_id and project_id = :project_id");
-            $req->bindParam("stat", $stat, PDO::PARAM_INT);
-            $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
-            $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
-            $req->execute();
-            if ($data->stat != 0) { // if they are liking/disliking
-                $req = $db->prepare("UPDATE project_votes SET stat = 0 WHERE user_id = :user_id and project_id = :project_id");
+        $data = $req->fetch();
+        if ($_SESSION['id'] != 0) {
+            if ($data) {
+                // NO like or dislike
+                if ($stat == 1 and $data->stat == 0) {
+                    $req = $db->prepare("UPDATE project_votes SET stat = 1 WHERE user_id = :user_id and project_id = :project_id");
+                    $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
+                    $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
+                    $req->execute();
+                } else if ($stat == 1 and $data->stat == 1) {
+                    $stat = 0;
+                    $req = $db->prepare("UPDATE project_votes SET stat = 0 WHERE user_id = :user_id and project_id = :project_id");
+                    $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
+                    $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
+                    $req->execute();
+                }
+            } else {
+                // do an INSERT
+                $req = $db->prepare("INSERT INTO project_votes (user_id, project_id, stat) VALUES (:user_id, :project_id, :stat)");
                 $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
                 $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
+                $req->bindParam("stat", $stat, PDO::PARAM_INT);
                 $req->execute();
-            } // NO like or dislike
-        } else {
-            // do an INSERT
-            $req = $db->prepare("INSERT INTO project_votes (user_id, project_id, stat) VALUES (:user_id, :project_id, :stat)");
-            $req->bindParam("user_id", $user_id, PDO::PARAM_INT);
-            $req->bindParam("project_id", $project_id, PDO::PARAM_INT);
-            $req->bindParam("stat", $stat, PDO::PARAM_INT);
-            $req->execute();
+            }
+            $sumsQuery = $db->prepare("SELECT SUM(stat) AS sum_stat FROM project_votes WHERE project_id = :project_id");
+            $sumsQuery->bindParam("project_id", $project_id, PDO::PARAM_INT);
+            $sumsQuery->execute();
+            $sum = $sumsQuery->fetch()->sum_stat;
+
+
+            $response = array(
+                "sum" => $sum,
+                "stat" => $stat
+            );
+
+            echo json_encode($response);
         }
-        $sumsQuery = $db->prepare("SELECT SUM(stat) AS sum_stat FROM project_votes WHERE project_id = :project_id");
-        $sumsQuery->bindParam("project_id", $project_id, PDO::PARAM_INT);
-        $sumsQuery->execute();
-        $sum = $sumsQuery->fetch()->sum_stat;
-        return $sum;
+    }
+
+    public function getUserVotes()
+    {
+
+        if (isset($_SESSION['id'])) {
+            $user_id = $_SESSION['id'];
+        } else {
+            return [];
+        }
+        $db = $this->dbConnect();
+
+        $sql = $db->prepare(
+            "SELECT stat, project_id FROM project_votes WHERE user_id = ?"
+        );
+
+        $sql->bindParam("id", $user_id, PDO::PARAM_INT);
+        $sql->execute(
+            [$user_id]
+        );
+        $votes = $sql->fetchAll();
+
+        return $votes;
     }
 
     // INSERT NEW PROJECT
@@ -306,7 +304,8 @@ class ProjectManager extends Manager
             ON p.id = plm.project_id
             INNER JOIN language l
             ON plm.language_id = l.id
-            ORDER BY id DESC";
+            ORDER BY id DESC
+            LIMIT 4";
 
         $res = $db->query($sql);
 
@@ -332,9 +331,11 @@ class ProjectManager extends Manager
         return $projects;
     }
 
-    public function getMostLikedProjects()
+    public function getMostLikedProjects($limit)
     {
         $db = $this->dbConnect();
+
+
         $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.video_src, p.description, l.language_name
             FROM user u
             INNER JOIN project p
@@ -345,6 +346,68 @@ class ProjectManager extends Manager
             ON plm.language_id = l.id";
 
         $res = $db->query($sql);
+
+        $projects = [];
+        while ($data = $res->fetch()) {
+            $project_id = $data->id;
+            if (isset($projects[$project_id])) {
+                echo $limit;
+
+                $projects[$project_id]->languages[] = $data->language_name;
+            } else if (count($projects) < $limit) {
+                echo $limit;
+
+                $projects[$project_id] = $data;
+                $projects[$project_id]->languages = [];
+                $projects[$project_id]->languages[] = $data->language_name;
+
+                $sumsQuery = $db->prepare("SELECT SUM(stat) AS sum_stat FROM project_votes WHERE project_id = :project_id");
+                $sumsQuery->bindParam("project_id", $project_id, PDO::PARAM_INT);
+                $sumsQuery->execute();
+                $sum = $sumsQuery->fetch()->sum_stat ?? "0";
+                $projects[$project_id]->sum = $sum;
+
+                unset($projects[$project_id]->language_name);
+            }
+        }
+
+
+        usort($projects, function ($first, $second) {
+            return strcmp($second->sum, $first->sum);
+        });
+
+        return array_slice($projects, 0, $limit);
+    }
+
+
+
+    public function getProjectSearch($query)
+    {
+
+        $db = $this->dbConnect();
+        $sql = "SELECT u.id as user_id, u.profile_img, p.id as id, u.is_active, p.title, p.video_src, p.description, l.language_name, t.tag_name
+            FROM user u
+            INNER JOIN project p
+            ON u.id = p.user_id
+            INNER JOIN project_language_map plm
+            ON p.id = plm.project_id
+            INNER JOIN language l
+            ON plm.language_id = l.id 
+            INNER JOIN project_tag_map ptm
+            ON ptm.project_id = p.id
+            INNER JOIN tag t
+            ON ptm.tag_id = t.id
+            WHERE p.title LIKE :title OR 
+                  l.language_name LIKE :language_name OR 
+                  t.tag_name LIKE :tag_name";
+
+        $res = $db->prepare($sql);
+
+        $res->execute([
+            'title' => "%" . $query . "%",
+            'language_name' => "%" . $query . "%",
+            'tag_name' => "%" . $query . "%"
+        ]);
 
         $projects = [];
         while ($data = $res->fetch()) {
@@ -365,11 +428,6 @@ class ProjectManager extends Manager
                 unset($projects[$project_id]->language_name);
             }
         }
-
-        usort($projects, function ($first, $second) {
-            return strcmp($second->sum, $first->sum);
-        });
-
         return $projects;
     }
 }

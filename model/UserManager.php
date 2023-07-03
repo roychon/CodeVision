@@ -9,8 +9,8 @@ class UserManager extends Manager
     {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $image_num = rand(0, 3);
-        $images = ['./public/s_green.png', './public/s_blue.png', './public/s_orange.png', './public/s_pink.png'];
+        $image_num = rand(0, 7);
+        $images = ['./public/pfp_default/pfp1.jpg', './public/pfp_default/pfp2.jpg', './public/pfp_default/pfp3.jpg', './public/pfp_default/pfp4.jpg', './public/pfp_default/pfp5.jpg', './public/pfp_default/pfp6.jpg', './public/pfp_default/pfp7.jpg', './public/pfp_default/pfp8.jpg'];
         $image_url = $images[$image_num];
         // add a default image
         $db = $this->dbConnect();
@@ -223,13 +223,13 @@ class UserManager extends Manager
     }
 
     // update gif, desciption, title of project with 'project_id'
-    public function updateProjectMain($gif, $description, $title, $project_id)
+    public function updateProjectMain($video_source, $description, $title, $project_id)
     {
         $db = $this->dbConnect();
 
-        $req = $db->prepare("UPDATE project SET gif = :gif, description = :description, title = :title WHERE id = :project_id");
+        $req = $db->prepare("UPDATE project SET video_src = :video_src, description = :description, title = :title WHERE id = :project_id");
         $req->execute(array(
-            "gif" => $gif,
+            "video_src" => $video_source,
             "description" => $description,
             "title" => $title,
             "project_id" => $project_id
@@ -389,5 +389,27 @@ class UserManager extends Manager
         }
 
         return $userLanguages;
+    }
+
+    public function getUserLikes($user_id) {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("
+        SELECT SUM(pv.stat) as likes
+        FROM project p
+        INNER JOIN project_votes pv
+        ON p.id = pv.project_id
+        WHERE p.user_id = ?");
+
+        $req->execute([$user_id]);
+
+        // $likes = $req->fetch();
+        // if ($likes) {
+        //     return $likes
+        // }
+
+        $likes = $req->fetch()->likes;
+
+        return $likes ?? "0";
     }
 }

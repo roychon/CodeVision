@@ -8,10 +8,11 @@ ob_start();
 
 <h1>Update Project</h1>
 
-<form action="index.php?action=updateProject&project_id=<?= $project->id ?>" method="POST">
+<form action="index.php?action=updateProject&project_id=<?= $project->id ?>" method="POST" enctype="multipart/form-data">
     <p>
-        <label for="gif">Gif: </label>
-        <input type="text" name="gif" id="gif" value="<?= htmlspecialchars($project->gif)  ?>">
+        <label for="video">Video: </label>
+        <input type="hidden" name="hiddenVideo" id="hiddenVideo" value="<?= htmlspecialchars($project->video_src)  ?>">
+        <input type="file" name="video" id="video" accept="video/*">
     </p>
 
     <p>

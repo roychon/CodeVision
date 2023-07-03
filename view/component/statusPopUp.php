@@ -9,8 +9,8 @@ if (isset($_GET['error']) and $_GET['error'] == "true") {
 <dialog>
 
     <button class="x-btn" onclick="closeModal()">x</button>
-    <div class="modal-content">
-        <p class="modal-message"><?= $_GET['message'] ?></p>
+    <div class="dialog-content">
+        <p class="dialog-message"><?= $_GET['message'] ?></p>
         <button class="confirm-btn" onclick="closeModal()">Confirm</button>
         <button class="close-btn" onclick="closeModal()">Close</button>
     </div>

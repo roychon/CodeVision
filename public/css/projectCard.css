@@ -1,0 +1,124 @@
+.project-mp4 {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+}
+
+.card {
+    width: 23%;
+    height: 20%;
+    font-family: "Inter", sans-serif;
+    overflow: hidden;
+}
+
+.card span {
+    font-size: 0.8rem;
+}
+
+.card .project-mp4 {
+    max-height: 200px;
+    aspect-ratio: 1;
+}
+
+.user-profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--light-grey);
+}
+
+.outer-container {
+    padding: 10px 0;
+    position: relative;
+}
+
+.bottom-card-container{
+    display: flex; 
+    padding-bottom: 5px;
+    gap: 7px;
+}
+
+.projectVotesContainer {
+    position: absolute;
+    right: 0;
+    top: 1rem;
+    display: flex;
+    justify-content: center; 
+}
+
+.projectVotesContainer > p {
+    font-size: 0.8rem;
+    padding-left: 8px;
+}
+
+.project-description {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.project-title {
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+.language-tag {
+    color: lightgray;
+}
+
+.projectVotesContainer > i {
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+.upVoted {
+    color: rgb(226, 0, 218);
+}
+
+#upVote:hover{
+    color: rgb(226, 0, 218);
+}
+
+@media (max-width: 1200px) {
+    .card {
+        width: 30%;
+        height: 80%;
+    }
+
+
+}
+
+
+@media (max-width: 900px) {
+    .project-container {
+        width: 800px;
+    }
+
+    .card {
+        width: 40%;
+        height: 70%;
+    }
+
+
+}
+
+@media (max-width:550px) {
+    .project-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 5rem;
+    }
+
+    .card {
+        width: 50%;
+        height: 70%;
+    }
+
+    .outer-container {
+        margin: 10px 10px;
+    }
+
+}
+
+

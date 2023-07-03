@@ -20,7 +20,7 @@ dialog::backdrop {
 }
 
 /* MESSAGE STYLING */
-.modal-message {
+.dialog-message {
     font-size: 24px;
     margin-top: 4.3rem;
     padding-bottom: 4.7rem;
@@ -63,6 +63,7 @@ button {
     cursor: pointer;
     border-radius: 0.7rem;
 }
+
 .close-btn {
     background-color: #484848;
     outline: 0;
@@ -73,3 +74,5 @@ button {
     cursor: pointer;
     border-radius: 0.7rem;
 }
+
+

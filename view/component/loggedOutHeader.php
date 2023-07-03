@@ -2,18 +2,17 @@
     <div class="left-side">
         <!-- LEFT SIDE  -->
         <!-- TODO: add logo  -->
-        <img class="company-logo" src="" alt="">
+        <img class="company-logo" src="public/logo.png" alt="">
         <!-- TODO:href take us back to index -->
-        <a href="">DevShop</a>
+        <a href="index.php?action=showUserPage">DevShop</a>
         <!-- homebutton -->
     </div>
-
-
 
     <div class="right-side">
         <div class="search-bar-div">
             <!-- MIDDLE -->
-            <input class="search-bar" type="search" name="" id="" placeholder="Search">
+            <input class="search-bar" type="search" name="input" id="input" placeholder="Search">
+            <div id="results"></div>
             <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
         </div>
         <!-- RIGHT SIDE -->
