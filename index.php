@@ -82,7 +82,7 @@ try {
                 // throw new Exception("Couldn't create your account, missing required information.");
                 // TODO: NEEDS TO GO BACK TO SIGN UP PAGE WITH ERROR MESSAGE (maybe set action=add_user?)
                 $message = urlencode("Sign up failed");
-                header("Location: index.php?action=signInForm&error=true&message=$message");
+                header("Location: index.php?action=add_user&error=true&message=$message");
             }
             break;
 

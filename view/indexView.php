@@ -1,3 +1,7 @@
+<!-- <head>
+  <link rel="icon" type="image/x-icon" href="./public/css/logo.png">
+</head> -->
+
 <?php
 
 $title = "Batch 20 Final Project";
@@ -10,6 +14,8 @@ if (isset($_SESSION['id'])) {
 }
 
 ?>
+
+
 
 <!-- OVERALL CONTAINER -->
 <div class="index-container">
