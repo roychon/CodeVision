@@ -11,7 +11,7 @@ ob_start();
         <input type="hidden" name="id" value="<?= $userinfo->id ?>">
         <p>
             <label for="firstName">First Name: </label>
-            <input type="text" name="firstName" id="firstName" value="<?= $userinfo->first_name ?? "" ?>">
+            <input type="text" name="firstName" id="firstName" value="<?= htmlspecialchars($userinfo->first_name) ?? "" ?>">
         </p>
         <p>
             <!-- <span id="firstNameNotValid">Not valid First Name</span>
@@ -20,7 +20,7 @@ ob_start();
         </p>
         <p>
             <label for="lastName">Last Name: </label>
-            <input type="text" name="lastName" id="lastName" value="<?= $userinfo->last_name ?? "" ?>">
+            <input type="text" name="lastName" id="lastName" value="<?= htmlspecialchars($userinfo->last_name) ?? "" ?>">
         </p>
         <p>
             <!-- <span id="lastNameNotValid">Not valid Last Name</span>
@@ -29,7 +29,7 @@ ob_start();
         </p>
         <p>
             <label for="username">Username: </label>
-            <input type="text" name="username" id="usernameEdit" value="<?= $userinfo->username ?>">
+            <input type="text" name="username" id="usernameEdit" value="<?= htmlspecialchars($userinfo->username) ?>">
         </p>
         <p>
             <!-- <span id="usernameNotValid">Not valid Username</span>
@@ -38,7 +38,7 @@ ob_start();
         </p>
         <p>
             <label for="email">E-mail: </label>
-            <input type="text" name="email" id="emailEdit" value="<?= $userinfo->email ?>">
+            <input type="text" name="email" id="emailEdit" value="<?= htmlspecialchars($userinfo->email) ?>">
         </p>
         <p>
             <!-- <span id="emailNotValid">Not valid E-mail</span> -->
