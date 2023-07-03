@@ -1,8 +1,11 @@
-<dialog>
-    <button class="x-btn" onclick="closeModal()">x</button>
-    <h1>Sign up Required</h1>
-    <p>Please log in to access this feature.</p>
-    <button onclick="closeModal()">Close</button>
-</dialog>
+<link rel="stylesheet" href="popUp.css">
+<!-- <script defer src="./public/js/popUp.js"></script> -->
+<script defer src="./public/js/votesPopUp.js"></script>
+<dialog class="votePop">
 
-<script src="./public/js/popUp.js"></script>
+    <button class="x-btn" onclick="closeModal()">x</button>
+    <div class="dialog-content">
+        <p class="dialog-message">Test</p>
+    </div>
+
+</dialog>
