@@ -82,7 +82,7 @@ try {
                 // throw new Exception("Couldn't create your account, missing required information.");
                 // TODO: NEEDS TO GO BACK TO SIGN UP PAGE WITH ERROR MESSAGE (maybe set action=add_user?)
                 $message = urlencode("Sign up failed");
-                header("Location: index.php?action=signInForm&error=true&message=$message");
+                header("Location: index.php?action=add_user&error=true&message=$message");
             }
             break;
 
@@ -153,6 +153,13 @@ try {
         case "showUserPage":
             displayCards();
             // showUserPage();
+            break;
+
+        case "increaseLimit":
+            $limit = $_GET['limit'];
+            // print_r($_SESSION);
+            // echo "LIMIT: " . $limit;
+            increaseLimit($limit);
             break;
 
 
@@ -288,8 +295,23 @@ try {
             break;
 
         case "filter":
-            if (isset($_GET['filterOn'])) {
-                getFilteredProjects($_GET['filterOn']);
+            // try passing $_GET limit through if its set
+            // $_GET['limit'] isn't able to be grabbed because its a diff button
+            if (isset($_GET['filterOn']) and isset($_GET['limit'])) {
+                $_SESSION['filter'] = $_GET['filterOn'];
+                echo $_SESSION['filter'];
+                // echo "hello";
+                $limit = $_GET['limit'];
+                // echo "limit from case: . $limit . '<br>'";
+                getFilteredProjects($_GET['filterOn'], $limit);
+                // } 
+                // else if (isset($_GET['filterOn'])) {
+                //     getFilteredProjects($_GET['filterOn']);
+                // } else if (!isset($_GET['filterOn']) and isset($_GET['limit'])) {
+                // getFilteredProjects($_GET['limit']);
+                return;
+            } else if (isset($_GET['limit'])) {
+                getFilteredProjects('default', $limit);
             } else {
                 throw new Exception("Missing filter value");
             }
