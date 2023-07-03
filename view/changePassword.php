@@ -9,6 +9,7 @@ ob_start();
 <div id="edit-user-form">
 
     <form action="index.php?action=submitChangePassword" method="POST" id="changePassword">
+        <a href="index.php?action=userProfileView&id=<?= $_SESSION['id'] ?>">⬅ Go back</a>
         <p id="edit-user-title">Change Password</p>
         <input type="hidden" name="id" value="<?= $_SESSION['id'] ?>">
         <p>
