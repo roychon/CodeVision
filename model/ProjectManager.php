@@ -150,6 +150,7 @@ class ProjectManager extends Manager
         ));
         $data = $req->fetch();
         if ($_SESSION['id'] != 0) {
+            include "votesPopUp.php";
             if ($data) {
                 // NO like or dislike
                 if ($stat == 1 and $data->stat == 0) {

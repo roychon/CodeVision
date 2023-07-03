@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title><?= $title; ?></title>
+    <link rel="icon" href="../public/logo.png">
     <link href="./public/css/main.css" rel="stylesheet" />
     <script defer src="./public/js/search.js"></script>
     <link href="./public/css/projectCard.css" rel="stylesheet">
