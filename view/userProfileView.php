@@ -78,7 +78,8 @@ ob_start();
                 <?php
                 if (count($projects)) {
                     foreach ($projects as $project) {
-                        include "./view/component/userProjectCard.php";
+                        // include "./view/component/userProjectCard.php";
+                        include "./view/component/projectCard.php";
                     }
                 } else {
                     echo "<i class='default'>No Projects</i>";

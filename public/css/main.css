@@ -233,7 +233,15 @@ input[type="search"] {
 /*-------- PROJECT CARD --------*/
 
 .project-card {
-    width: 23%;
+    /* width: 100%;
+    height: 100%; */
+    width: 100%;
+    border-radius: 5px;
+    height: 100%;
+    font-family: "Inter", sans-serif;
+    overflow: hidden;
+    /* width: 23%;
+    max-height: 200px; */
 }
 /* 
 .main-container {
@@ -413,9 +421,13 @@ input[type="search"] {
 }
 
 .projects {
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
+    gap: 1.5rem; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     gap: 1.5rem;
+    padding: 0 1.7rem;
 }
 
 .social-links {
