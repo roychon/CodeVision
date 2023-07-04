@@ -16,7 +16,7 @@ ob_start();
     <!-- changed input from text to file, added "accept" -->
     <p>
         <label for="video">Video: </label>
-        <input type="file" name="video" id="video" accept="video/*">
+        <input type="file" name="video" id="video" accept="video/mp4">
     </p>
 
     <p>

@@ -20,7 +20,8 @@ dialog.addEventListener("click", (e) => {
 function closeModal() {
 	// THIS IS SO POP UP NO APPEAR AGAIN AND AGAIN -- ONLY APPEAR ONCE!
 	const url = window.location.href;
-	const regex = /(&)\w?(.*)/;
+	// const regex = /(&)\w?(.*)/; //TODO: fix regex id bug
+	const regex = /^(.*?)\?(.&)/;
 	// This is removing too much. It should ONLY remove the error and message GET parameters
 	const newUrl = url.replace(regex, "");
 	history.replaceState(null, null, newUrl);
