@@ -93,6 +93,11 @@ if (isset($_SESSION['id'])) {
   <!-- SHOW MORE FOR LIMITS -->
   <button class="more showMoreBtn">Show More</button>
 
+  <?php if (!isset($_SESSION['id'])) {
+    include "./view/component/stats.php";
+  }
+  ?>
+
 
   <!-- </div> -->
   <script defer src="./public/js/carousel.js"></script>
