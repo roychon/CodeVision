@@ -1064,8 +1064,8 @@ footer a{
     height: fit-content;
     transition: top 1s, opacity .3s;
     opacity: 0;
-    border-bottom-left-radius: .6rem;
-    border-bottom-right-radius: .6rem;
+    /* border-bottom-left-radius: .6rem;
+    border-bottom-right-radius: .6rem; */
  
   }
   
