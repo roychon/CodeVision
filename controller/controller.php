@@ -343,14 +343,3 @@ function showUserPage()
 {
     require "./view/indexView.php";
 }
-
-
-
-/*
-Client ID
-683613900914-mkh34gk46n9nghrhg53ms594daepg952.apps.googleusercontent.com
-
-
-Client secret
-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
-*/
