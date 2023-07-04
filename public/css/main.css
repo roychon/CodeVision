@@ -55,7 +55,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 0.8rem;
+    padding: 0.6rem 0.8rem;
     font-weight: 600;
     /* background: #25272d; */
     background: rgb(22, 22, 22);
@@ -97,7 +97,7 @@ a {
   align-items: center;
 }
 .company-logo {
-  width: 20%;
+  width: 60px;
 }
 
 .search-bar-div {
@@ -1024,22 +1024,123 @@ outline: 1px solid rgba(255, 255, 255, 0.1);
   border: 0.1px solid white;
 } */
 
+
+
+/* FOOTER */
 footer {
-    background-color: rgba(37, 37, 37, 0.318);
-    padding: 0.7rem;
-    width: 100%;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 14px;
+  background-color: rgba(37, 37, 37, 0.318);
+  padding: .7rem;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase ;
+  font-size: 14px;
 }
-footer p:nth-child(1) {
+
+
+footer a{
+  color: rgb(96, 96, 96);
+}
+
+/* RESPONSIVENESS */
+/* .carousel-description {
+  overflow: hidden;
+} */
+
+/* won't make h1 jump to new line */
+
+.slide h1 {
+  white-space: nowrap;
+}
+
+
+
+/* RESPONSIVENESS */
+.dropdown-responsive {
+    position: fixed;
+    right: 0px;
+    top: 50px;
+    background-color: #171717;
+    width: 140px;
+    height: fit-content;
+    transition: top 1s, opacity .3s;
+    opacity: 0;
+    /* border-bottom-left-radius: .6rem;
+    border-bottom-right-radius: .6rem; */
+ 
+  }
+  
+input[type="checkbox"] {
+    display: none;
+}
+
+   label[for="toggle"]{
+    display: none;
+  } 
+
+  .drop-items {
+    list-style-type: none;
+  }
+  
+  .drop-items a{
+    
+  display: block;
+  margin-top: .4rem;
+  padding: .8rem 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: .8rem;
+  }
+  
+  .drop-items a:hover {
+    background-color:#580ef6;
+  }
+ 
+  
+  /* MEDIA QUERY */
+
+   
+  @media (max-width: 700px) {
+    .click-user p{
+      background-color: red;
+      display: none;
+    }
+  }
+
+@media (max-width: 600px) {
+
+    h1 {
+      font-size: 2.5rem !important;
+    }
+
+  }
+  
+  @media (max-width: 780px) {
+   
+    input[type="search"] {
+      width: 200px;
+    
+    }
+  
+    .log-out-btn,
+    .log-btn,
+    .sign-up-btn,
+    .click-user p {
+      display: none;
+    }
+  
+  label[for="toggle"] {
+    display: block;
+    cursor:pointer;
+    font-size: 1.6rem;
     font-weight: 900;
-}
-
-footer a {
-    color: rgb(96, 96, 96);
-}
-
+    
+  }
+    #toggle:checked ~ .dropdown-responsive {
+      top: 59px;
+      right: 0px;
+      opacity: 1;
+    }
+  }  
 		
 .about-container {
 width: 60%;
