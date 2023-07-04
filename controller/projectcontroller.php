@@ -1,20 +1,26 @@
 <?php
 require_once "./model/ProjectManager.php";
 
-function displayCards($filter = "default")
+function displayCards($limit = 4)
 {
-    $limit = isset($_GET['limit']) ? (int)$_GET['limit'] + 4 : 4;
 
     $projectManager = new ProjectManager();
     $carousels = $projectManager->getCarousels();
-    $projects = $projectManager->getCards();
+    $projects = $projectManager->getCards($limit);
     $votes = $projectManager->getUserVotes();
+    $projectCount = $projectManager->getCount();
 
+    if ($limit > 4) {
+        foreach ($projects as $project) {
+            require "./view/component/projectCard.php";
+        }
+    } else {
+        require './view/indexView.php';
+    }
     // echo "<pre>";
     // print_r($votes);
     // echo "</pre>";
     // TODO: uncomment this
-    require './view/indexView.php';
 }
 
 function getSearchInfo($query)
@@ -94,13 +100,13 @@ function insertNewProject($user_id, $video_source, $title, $description, $tags, 
     header("Location: index.php");
 }
 
-function getFilteredProjects($filter)
+function getFilteredProjects($filter, $limit)
 {
     $projectManager = new ProjectManager();
     if ($filter == 'mostRecent') {
-        $projects = $projectManager->getMostRecentProjects();
+        $projects = $projectManager->getMostRecentProjects($limit);
     } else if ($filter == 'mostLikes') {
-        $projects = $projectManager->getMostLikedProjects();
+        $projects = $projectManager->getMostLikedProjects($limit);
     }
 
     foreach ($projects as $project) {

@@ -74,6 +74,7 @@ input {
 .tag-container .tag, .languages-container .tag {
     padding: 5px;
     border: 1px solid #ccc;
+    width: fit-content;
     /* margin: 5px; */
     display: flex;
     align-items: center;
