@@ -33,7 +33,7 @@
                         </div>
                     </a>
                 <?php } else { ?>
-                    <div class="click-user">
+                    <div class="click-user-page">
                         <img class="user-profile-pic" src="<?= htmlspecialchars($_SESSION['profile_img'] ?? "") ?>">
                         <p><?= htmlspecialchars($_SESSION['username'] ?? "") ?></p>
                     </div>

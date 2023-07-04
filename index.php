@@ -6,6 +6,8 @@ require "./controller/projectcontroller.php";
 
 try {
     $action = $_GET['action'] ?? "";
+
+    //TODO: change add_project to addProject
     switch ($action) {
             // TODO: link add project btn to "index.php?action=add_project"
         case "add_project":
@@ -36,7 +38,7 @@ try {
             break;
 
         case "updateProject":
-            //$hidden_video used for submitting update form without a video
+            //$hidden_video is used for submitting update form without a video
             $hidden_video = $_POST['hiddenVideo'] ?? "";
             $video_src = $_FILES['video'] ?? "";
             $description = $_POST['description'] ?? "";
@@ -48,12 +50,13 @@ try {
             if ($video_src and $description and $title and $tags and $languages and $project_id and $hidden_video) {
                 updateProject($video_src, $description, $title, $tags, $languages, $_GET['project_id'], $hidden_video);
             } else {
-                throw new Exception("Error, missing project info");
+                $message = urlencode("Please upload a video under 30 MB.");
+                header("Location: index.php?action=updateProjectForm&project_id=$project_id&error=true&message=$message");
             }
 
 
             break;
-
+            //TODO: change add_user to addUser
         case "add_user":
             addUser();
             break;
@@ -82,7 +85,7 @@ try {
                 // throw new Exception("Couldn't create your account, missing required information.");
                 // TODO: NEEDS TO GO BACK TO SIGN UP PAGE WITH ERROR MESSAGE (maybe set action=add_user?)
                 $message = urlencode("Sign up failed");
-                header("Location: index.php?action=add_user&error=true&message=$message");
+                header("Location: index.php?action=signInForm&error=true&message=$message");
             }
             break;
 
@@ -94,10 +97,6 @@ try {
             if (!$_SESSION['id']) {
                 throw new Exception("Missing user id");
             }
-
-            // echo "<pre>";
-            // print_r($_FILES['video']);
-            // echo "</pre>";
             $video_src = $_FILES['video'] ?? "";
             $title = $_POST['title'] ?? "";
             $description = $_POST['description'] ?? "";
@@ -108,7 +107,8 @@ try {
             if ($user_id and $video_src and $title and $description and $tags and $languages) {
                 insertNewProject($user_id, $video_src, $title, $description, $tags, $languages);
             } else {
-                throw new Exception("Missing required information.");
+                $message = urlencode("Missing information or upload a video under 30 MB.");
+                header("Location: index.php?action=add_project&id=$user_id&error=true&message=$message");
             }
             break;
 
@@ -129,6 +129,7 @@ try {
 
             // FOR LOGING IN WITH GOOGLE BUTTON
         case "googleLogIn":
+            //TODO: change the signUp to sign_up
             if (isset($_GET['signUp'])) {
                 $signUp = $_GET['signUp'];
             }
@@ -143,7 +144,8 @@ try {
                 ($jwt->iss === "accounts.google.com" || $jwt->iss === "https://accounts.google.com") &&
                 $currentdate < $jwt->exp
             ) {
-                // FOR SPLITTING THE EMAIL ON @ SIGN, AND MAKING A USERNAME
+                // FOR SPLITTING THE EMAIL ON @ SIGN, AND MAKING A USERNAME 
+                //TODO: change the signUp to sign_up
                 $username = substr($jwt->email, 0, strpos($jwt->email, "@"));
                 logInGoogle($username, $jwt->given_name, $jwt->family_name, $jwt->email, $jwt->picture, $signUp);
             }
@@ -151,19 +153,9 @@ try {
 
             // FOR LOGGED IN USERS -- so that it doesn't take them to new page
         case "showUserPage":
-            displayCards();
+            displayCards(); // TODO: change to show all projects
             // showUserPage();
             break;
-
-        case "increaseLimit":
-            $limit = $_GET['limit'];
-            // print_r($_SESSION);
-            // echo "LIMIT: " . $limit;
-            increaseLimit($limit);
-            break;
-
-
-
             // FOR EDITING A USER
         case "editUser":
             if (isset($_GET['id'])) {
@@ -191,11 +183,10 @@ try {
             }
             break;
 
+            //TODO: change profileImage to profile_image
         case "submitEditedProfilePicture":
             $id = $_POST['id'] ?? "";
             $profile_image = $_FILES['profileImage'];
-            // $hidden_image = $_POST['hiddenImage'];
-
             if (
                 $id and $profile_image
             ) {
@@ -269,10 +260,6 @@ try {
 
         case "getProjectVotes":
             // grab the status, project_id, and user_id from the GET parameters
-            // if ($_SESSION['id'] == 0) {
-            //     // where the popup should start
-            //     header("Location: index.php");
-            // } else {
             if (
                 isset($_GET['user_id']) and
                 isset($_GET['project_id']) and
@@ -294,24 +281,11 @@ try {
             };
             break;
 
+            //TODO: change filterOn to filter_on
         case "filter":
-            // try passing $_GET limit through if its set
-            // $_GET['limit'] isn't able to be grabbed because its a diff button
-            if (isset($_GET['filterOn']) and isset($_GET['limit'])) {
-                $_SESSION['filter'] = $_GET['filterOn'];
-                echo $_SESSION['filter'];
-                // echo "hello";
-                $limit = $_GET['limit'];
-                // echo "limit from case: . $limit . '<br>'";
+            $limit = $_GET['limit'] ?? 4;
+            if (isset($_GET['filterOn'])) {
                 getFilteredProjects($_GET['filterOn'], $limit);
-                // } 
-                // else if (isset($_GET['filterOn'])) {
-                //     getFilteredProjects($_GET['filterOn']);
-                // } else if (!isset($_GET['filterOn']) and isset($_GET['limit'])) {
-                // getFilteredProjects($_GET['limit']);
-                return;
-            } else if (isset($_GET['limit'])) {
-                getFilteredProjects('default', $limit);
             } else {
                 throw new Exception("Missing filter value");
             }
@@ -324,7 +298,8 @@ try {
             break;
 
         default:
-            displayCards();
+            $limit = $_GET['limit'] ?? 4;
+            displayCards($limit);
             break;
     }
 } catch (Exception $e) {

@@ -1,29 +1,28 @@
 <?php
 require_once "./model/ProjectManager.php";
 
-function displayCards($filter = "default")
+function displayCards($limit = 4)
 {
 
     $projectManager = new ProjectManager();
     $carousels = $projectManager->getCarousels();
-    $projects = $projectManager->getCards();
+    $projects = $projectManager->getCards($limit);
     $votes = $projectManager->getUserVotes();
+    $projectCount = $projectManager->getCount();
 
+    if ($limit > 4) {
+        foreach ($projects as $project) {
+            require "./view/component/projectCard.php";
+        }
+    } else {
+        require './view/indexView.php';
+    }
     // echo "<pre>";
     // print_r($votes);
     // echo "</pre>";
     // TODO: uncomment this
-    require './view/indexView.php';
 }
 
-function increaseLimit($limit)
-{
-    $projectManager = new ProjectManager();
-    $projects = $projectManager->getCards($limit);
-    foreach ($projects as $project) {
-        require "./view/component/projectCard.php";
-    }
-}
 function getSearchInfo($query)
 {
     $projectManager = new ProjectManager();
@@ -73,6 +72,7 @@ function insertNewProject($user_id, $video_source, $title, $description, $tags, 
         $allowedExtensions = array("mp4"); //shows the kinds of files allowed in the array
         $extension = strtolower(pathinfo($name, PATHINFO_EXTENSION)); //extracts the file extension from the file name
         // in_array("mp4", $extensions)
+
         if (in_array($extension, $allowedExtensions)) {
             //$target_file specifies the path of the file to be uploaded
             $target_file = $target_dir . $hashed_filename . "." . $extension; //hash the file name here
@@ -82,55 +82,35 @@ function insertNewProject($user_id, $video_source, $title, $description, $tags, 
 
             //check the uploaded file
             if (($_FILES['video']['size'] > $maxsize) or ($_FILES['video']['size'] == 0)) {
-                $message = urlencode("Your file is too big. Please upload a file smaller than 5 MB.");
-                header("Location: index.php?action=insertNewProject&error=true&message=$message");
-                //TODO: uncomment
+
+                $message = urlencode("File size too large. Upload a file less than 30MB.");
+                header("Location: index.php?action=add_project&id=$user_id&error=true&message=$message");
             } else if
             //move_uploaded_file paramaters are the file name of the uploaded file to
             //the destination it needs to be moved
             (move_uploaded_file($_FILES['video']['tmp_name'], $target_file)) {
                 $projectManager->insertNewProject($user_id, $video_source, $title, $description, $tags, $languages);
             } else {
-                $message = urlencode("Failed to upload video file.");
-                header("Location: index.php?action=insertNewProject&error=true&message=$message");
+                $message = urlencode("Please upload a video in .mp4 format.");
+                header("Location: index.php?action=add_project&id=$user_id&error=true&message=$message");
                 //TODO: uncomment
             }
         }
     }
 
-    header("Location: index.php");
+    header("Location: index.php?action=userProfileView&id=$user_id");
 }
-
-// we want the LIMIT to work on two conditions
-// 1 - where there is NO SORTING
-// 2 - where there is a sorted list, and it will give a limited amount
-// 3 - set a default on limit so even if its sorted without limit increased its fine
-// 4 - limit the display 
-// But.. how can we know if there is a filter set when we press increaseLimit? 
-// How can we know if there is a limit set if we press filter? 
-
-// They all lead to the same thing ? Right now, showmore runs viewCards() which will 
-// remove all the filters 
-
-// showMore button does
-
 
 function getFilteredProjects($filter, $limit)
 {
     $projectManager = new ProjectManager();
     if ($filter == 'mostRecent') {
-        $projects = $projectManager->getMostRecentProjects();
+        $projects = $projectManager->getMostRecentProjects($limit);
     } else if ($filter == 'mostLikes') {
-        // echo "limit from controller: . $limit . '<br>'";
-
         $projects = $projectManager->getMostLikedProjects($limit);
-    } else {
-        $projects = $projectManager->getCards();
     }
-    // print_r($projects);
 
     foreach ($projects as $project) {
         require "./view/component/projectCard.php";
     }
-    // maybe use limit here? Only do the first $limit? 
 }
