@@ -11,7 +11,9 @@
                                                                                             } else {
                                                                                                 // echo "console.log('CLICK')";
                                                                                                 // include "statusPopUp.php";
-                                                                                                echo "openModal()";
+                                                                                                // echo "openModal()";
+                                                                                                // header("Location: index.php?action=add_user");
+                                                                                                echo "window.location.href = 'index.php?action=add_user'";
                                                                                                 // echo "dialog.showModal()";
                                                                                             }
                                                                                             ?>"></i>

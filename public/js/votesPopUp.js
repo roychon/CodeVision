@@ -1,7 +1,6 @@
-const dialog = document.querySelector(".votePop");
-
 // showModal -- makes sure the modal is visible
 function openModal() {
+  const dialog = document.querySelector(".votePop");
   dialog.showModal();
 
   // event listener for closing when clicked outside or pressing esc
