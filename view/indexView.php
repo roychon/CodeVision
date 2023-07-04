@@ -37,20 +37,16 @@ if (isset($_SESSION['id'])) {
     <div class="flexTag">
       <div class="tagline">
         <span class=unlock>Unlock the Potential of Pixels:</span>
-        <p>Showcasing Mastery in Digital Code</p>
+        <p class="showcasing">Showcasing Mastery in Digital Code</p>
       </div>
       <div class="signUp">
-        <a class="callAction" href="index.php?action=add_user">See Creative Visions Come To Life</a>
+        <a class="callAction" href="index.php?action=add_user">Get Started</a>
       </div>
     </div>
-    <!-- <marquee>ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!</marquee> -->
+
     <h1>About DevShop</h1>
     <p>DevShop is a platform that brings together developers of all skill levels to upload, share, and explore a wide range of projects. This makes it easier for others to discover like-minded developers and engage in meaningful collaborations.With DevShop, you can embark on a journey of exploration, inspiration, and growth. Unleash your creativity, share your expertise, and collaborate with fellow developers as you shape the future of software development.</p>
   </div>
-
-
-
-
   <div class="stat-container">
     <div class="container">
       <div class="circular-progress">

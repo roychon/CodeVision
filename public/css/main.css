@@ -570,9 +570,10 @@ input[type="search"] {
     top: 25%;
     /* transform: translateX(-50%); */
     cursor: pointer;
-    /* padding: 2em 1em; */
+    padding: 2em 0em;
     animation: bounce 1.5s infinite, fadein 1s 1.3s 1 forwards;
     opacity: 0;
+    align-items: center;
 }
 .carousel-button.prev {
     animation: bounceReverse 1.5s infinite, fadein 1s 1.3s 1 forwards;
@@ -1112,27 +1113,33 @@ footer a {
     justify-content: center;
     flex-direction: column;
     width: 100%;
+    margin-top: 80px;
 }
 
+.showcasing {
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
 .unlock {
     font-family: "Montserrat";
-    font-size: 80px;
+    font-size: 70px;
 }
 
 .callAction {
-    margin-top: 40px;
+    margin-top: 80px;
+    margin-bottom: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 800px;
-    height: 150px;
+    width: 300px;
+    height: 100px;
     text-align: center;
     text-decoration: none;
     padding-right: 1rem;
     color: white;
     padding: 0.7rem 1.5rem;
-    border-radius: 4rem;
-    font-size: 45px;
+    border-radius: 5 rem;
+    font-size: 25px;
     background-color: var(--dark-purple-btn);
 }
 
@@ -1205,4 +1212,9 @@ width: 420px; */
 .text {
     font-weight: 600;
     font-size: 1.2rem;
+}
+
+.profileImg {
+    max-width: 360px;
+    max-height: 360px;
 }
