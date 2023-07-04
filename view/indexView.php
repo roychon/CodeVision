@@ -60,12 +60,13 @@ if (isset($_SESSION['id'])) {
   <!-- SHOW MORE FOR LIMITS -->
   <button class="more"><a href="index.php?action=showUserPage&limit=<?= $limit ?>" onclick="scrollDown()">show more</a></button>
 
-
+  <?php include "./view/component/votesPopup.php"; ?>
   <!-- </div> -->
   <script defer src="./public/js/carousel.js"></script>
   <script defer src="./public/js/projectVotes.js"></script>
   <script defer src="./public/js/filterProjects.js"></script>
   <script defer src="./public/js/scrollDown.js"></script>
+  <script defer src="public/js/votesPopUp.js"></script>
 
 
   <!-- <script defer src="popUp.js"></script> -->
