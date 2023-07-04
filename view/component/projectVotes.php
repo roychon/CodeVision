@@ -9,9 +9,6 @@
                                                                                             if (isset($_SESSION['id'])) {
                                                                                                 echo "projectVotes({$_SESSION['id']}, $project->id , '1', this)";
                                                                                             } else {
-                                                                                                // echo "console.log('CLICK')";
-                                                                                                // echo "window.location.href = 'index.php?action=add_user'";
-
                                                                                                 echo "openModal();";
                                                                                             }
                                                                                             ?>"></i>
