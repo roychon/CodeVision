@@ -8,13 +8,13 @@ ob_start();
 <script defer src="https://kit.fontawesome.com/033b80222d.js" crossorigin="anonymous"></script>
 
 <!-- enctype needed to be able to upload video -->
-<form action="index.php?action=insertNewProject" method="POST" enctype="multipart/form-data">
+<form action="index.php?action=insertNewProject" method="POST" enctype="multipart/form-data" id="insert-form">
     <h2>Add a Project</h2>
 
     <!-- changed input from text to file, added "accept" -->
     <p>
         <label for="video">Video: </label>
-        <input type="file" name="video" id="video" accept="video/*">
+        <input type="file" name="video" id="video" accept="video/mp4">
     </p>
 
     <p>
