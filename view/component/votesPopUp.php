@@ -1,5 +1,5 @@
 <dialog class="votePop">
-    <button class="x-btn" onclick="closeModal()">x</button>
+    <button class="x-btn" onclick="closeModal2()">x</button>
     <img src="public\logo.png" alt="logo">
     <div class="dialog-content flexbox">
         <p class="dialog-text">Join Devshop to access this feature</p>

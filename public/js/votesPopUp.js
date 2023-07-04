@@ -20,7 +20,7 @@ modal2.addEventListener("click", (e) => {
 });
 
 //onclick function for the x
-function closeModal() {
+function closeModal2() {
   // THIS IS SO POP UP NO APPEAR AGAIN AND AGAIN -- ONLY APPEAR ONCE!
   const url = window.location.href;
   const regex = /(&)\w?(.*)/;
