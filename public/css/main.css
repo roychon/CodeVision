@@ -1136,6 +1136,7 @@ footer a {
 }
 
 .callAction {
+
     margin-top: 80px;
     margin-bottom: 80px;
     display: flex;
@@ -1148,7 +1149,7 @@ footer a {
     padding-right: 1rem;
     color: white;
     padding: 0.7rem 1.5rem;
-    border-radius: 5 rem;
+    border-radius: 5rem;
     font-size: 25px;
     background-color: var(--dark-purple-btn);
 }
