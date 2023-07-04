@@ -40,7 +40,15 @@ if (isset($_SESSION['id'])) {
   </div>
 
   <div class="about-container">
-    <marquee>ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!</marquee>
+    <div class="flexTag">
+      <div class="tagline">
+        <span class=unlock>Unlock the Potential of Pixels:</span>
+        <p>Showcasing Mastery in Digital Code</p>
+      </div>
+      <div class="signUp">
+        <a class="callAction" href="index.php?action=add_user">See Creative Visions Come To Life</a>
+      </div>
+    </div>
   </div>
 
   <!-- showMore(this.value) -->

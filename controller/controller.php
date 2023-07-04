@@ -262,11 +262,11 @@ function submitChangePassword($id, $password)
     header("Location: index.php?action=userProfileView&id=$id");
 }
 
-function deleteProject($project_id)
+function  deleteProject($project_id)
 {
     $userManager = new UserManager();
     $userManager->deleteProject($project_id);
-    header("Location: index.php");
+    header("Location: index.php?action=userProfileView&id={$_SESSION['id']}");
 }
 
 // user goes to update FORM and updates project with 'project_id'

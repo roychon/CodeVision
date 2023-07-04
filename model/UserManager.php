@@ -391,7 +391,8 @@ class UserManager extends Manager
         return $userLanguages;
     }
 
-    public function getUserLikes($user_id) {
+    public function getUserLikes($user_id)
+    {
         $db = $this->dbConnect();
 
         $req = $db->prepare("
