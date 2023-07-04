@@ -14,6 +14,7 @@ ob_start();
         <label for="video">Video: </label>
         <input type="hidden" name="hiddenVideo" id="hiddenVideo" value="<?= htmlspecialchars($project->video_src ?? "")  ?>">
         <input type="file" name="video" id="video" accept="video/*">
+        <span class="video-update"></span>
     </p>
 
     <p>

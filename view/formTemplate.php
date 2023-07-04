@@ -3,6 +3,7 @@
 
 <head>
     <link rel="icon" type="image/x-icon" href="./public/css/logo.png">
+    <script defer src="./public/js/validateAddProjectForm.js"></script>
 
     <meta charset="utf-8" />
     <title><?= $title; ?></title>

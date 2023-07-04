@@ -323,6 +323,27 @@ input[type="search"] {
     width: fit-content;
     padding: 0 1rem;
 }
+.click-user-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem 1.5rem;
+    gap: 1rem;
+    cursor: pointer;
+    width: fit-content;
+    border-radius: 2rem;
+
+}
+.click-user-page:hover {
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.09);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(1.2px);
+-webkit-backdrop-filter: blur(1.2px);
+outline: 1px solid rgba(255, 255, 255, 0.1);
+
+}
 
 /*-------- CSS For Viewing User Profile --------*/
 .user-profile-view {
