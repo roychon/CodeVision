@@ -346,23 +346,23 @@ languageContainer.addEventListener("click", (e) => {
 	}
 });
 
-let videoSpan = document.querySelector(".video-update");
+// let videoSpan = document.querySelector(".video-update");
 
-if (video && videoSpan) {
-	video.addEventListener("change", validateVideo);
-}
-function validateVideo() {
-	let files = video.files;
-	if (files.length > 0) {
-		if (files[0].size < 5 * 1024 * 1024) {
-			videoSpan.innerText = "Size exceeds 5mb";
-			return false;
-		} else {
-			return true;
-		}
-	}
-	videoSpan.innerText = " ";
-}
+// if (video && videoSpan) {
+// 	video.addEventListener("change", validateVideo);
+// }
+// function validateVideo() {
+// 	let files = video.files;
+// 	if (files.length > 0) {
+// 		if (files[0].size < 5 * 1024 * 1024) {
+// 			videoSpan.innerText = "Size exceeds 5mb";
+// 			return false;
+// 		} else {
+// 			return true;
+// 		}
+// 	}
+// 	videoSpan.innerText = " ";
+// }
 
 // Before submitting form, join the 'tags' and 'languages' array and set them as values to their respective input field
 form.addEventListener("submit", (e) => {
