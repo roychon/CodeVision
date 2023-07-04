@@ -14,34 +14,35 @@ if (isset($_GET['error'])) {
 <h1>Update Project</h1>
 
 <form action="index.php?action=updateProject&project_id=<?= $project->id ?>" method="POST" enctype="multipart/form-data">
+    <a href="index.php?action=fullProjectPage&project_id=<?= $project->id ?>">⬅ Go back</a>
     <p>
         <label for="video">Video: </label>
-        <input type="hidden" name="hiddenVideo" id="hiddenVideo" value="<?= htmlspecialchars($project->video_src)  ?>">
+        <input type="hidden" name="hiddenVideo" id="hiddenVideo" value="<?= htmlspecialchars($project->video_src ?? "")  ?>">
         <input type="file" name="video" id="video" accept="video/mp4">
         <!-- <span class="update-span"></span> -->
     </p>
 
     <p>
         <label for="title">Title: </label>
-        <input type="text" name="title" id="title" value="<?= htmlspecialchars($project->title) ?>">
+        <input type="text" name="title" id="title" value="<?= htmlspecialchars($project->title ?? "") ?>">
     </p>
 
     <p>
         <span>Tags: </span>
     <p class="tag-container">
-        <input type="text" name="tags" id="tags" value="<?= htmlspecialchars($tagsInputVal) ?>">
+        <input type="text" name="tags" id="tags" value="<?= htmlspecialchars($tagsInputVal ?? "") ?>">
     </p>
     </p>
 
     <p>
         <label for="description">Description: </label>
-        <input type="text" name="description" id="description" value="<?= htmlspecialchars($project->description) ?>">
+        <input type="text" name="description" id="description" value="<?= htmlspecialchars($project->description ?? "") ?>">
     </p>
 
     <div>
         <span>Languages: </span>
         <div class="languages-container">
-            <input type="text" name="languages" id="languagesInput" value="<?= htmlspecialchars($languageInputVal) ?>">
+            <input type="text" name="languages" id="languagesInput" value="<?= htmlspecialchars($languageInputVal ?? "") ?>">
             <p id="languageResults"></p>
         </div>
     </div>

@@ -153,12 +153,9 @@ try {
 
             // FOR LOGGED IN USERS -- so that it doesn't take them to new page
         case "showUserPage":
-            displayCards();
+            displayCards(); // TODO: change to show all projects
             // showUserPage();
             break;
-
-
-
             // FOR EDITING A USER
         case "editUser":
             if (isset($_GET['id'])) {
@@ -263,10 +260,6 @@ try {
 
         case "getProjectVotes":
             // grab the status, project_id, and user_id from the GET parameters
-            // if ($_SESSION['id'] == 0) {
-            //     // where the popup should start
-            //     header("Location: index.php");
-            // } else {
             if (
                 isset($_GET['user_id']) and
                 isset($_GET['project_id']) and
@@ -290,8 +283,9 @@ try {
 
             //TODO: change filterOn to filter_on
         case "filter":
+            $limit = $_GET['limit'] ?? 4;
             if (isset($_GET['filterOn'])) {
-                getFilteredProjects($_GET['filterOn']);
+                getFilteredProjects($_GET['filterOn'], $limit);
             } else {
                 throw new Exception("Missing filter value");
             }
@@ -304,7 +298,8 @@ try {
             break;
 
         default:
-            displayCards();
+            $limit = $_GET['limit'] ?? 4;
+            displayCards($limit);
             break;
     }
 } catch (Exception $e) {

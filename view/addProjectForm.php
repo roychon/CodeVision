@@ -8,7 +8,9 @@ ob_start();
 <script defer src="https://kit.fontawesome.com/033b80222d.js" crossorigin="anonymous"></script>
 
 <!-- enctype needed to be able to upload video -->
-<form action="index.php?action=insertNewProject" method="POST" enctype="multipart/form-data" id="insert-form">
+<form action="index.php?action=insertNewProject" method="POST" enctype="multipart/form-data">
+    <a href="index.php?action=userProfileView&id=<?= $_SESSION['id'] ?>">⬅ Go back</a>
+
     <h2>Add a Project</h2>
 
     <!-- changed input from text to file, added "accept" -->
@@ -49,4 +51,5 @@ ob_start();
 <?php
 $content = ob_get_clean();
 require "formTemplate.php";
+
 ?>

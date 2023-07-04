@@ -7,6 +7,8 @@ if (isset($_GET['error'])) {
 ?>
 
 <head>
+    <link rel="icon" type="image/x-icon" href="./public/css/logo.png">
+
     <meta charset="utf-8" />
     <script defer src="./public/js/validateAddProjectForm.js"></script>
 
