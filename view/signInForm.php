@@ -14,6 +14,8 @@ ob_start();
   <form action="index.php?action=logIn" method="POST" id="login">
 
     <div class="login-title">
+      <a href="index.php"><img class="company-logo" src="./public/css/logo.png" alt="Company's logo"></a>
+
       <p>Welcome back!</p>
       <p>Sign into your account</p>
     </div>

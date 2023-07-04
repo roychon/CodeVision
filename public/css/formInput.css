@@ -13,8 +13,8 @@ body {
 .signup-form {
     display: flex;
     justify-content: center;
-    width: 35%;
-    height: 70%;
+    width: 40%;
+    height: 75%;
     background-color: #171717c6;
 }
 
@@ -185,3 +185,4 @@ label {
 .form-input input {
     display: none;
 }
+
