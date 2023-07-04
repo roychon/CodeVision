@@ -266,6 +266,7 @@ function deleteProject($project_id)
 {
     $userManager = new UserManager();
     $userManager->deleteProject($project_id);
+    //TODO: update code to bring you back to your profile page
     header("Location: index.php");
 }
 
@@ -310,15 +311,19 @@ function updateProject($video_source, $description, $title, $tags, $languages, $
             $video_source = $hashed_filename . "." . $extension;
 
             if (($_FILES['video']['size'] > $maxsize) or ($_FILES['video']['size'] == 0)) {
-                echo "Video file size exceeds 30 MB.";
+                $message = urlencode("Video file exceeds 30 MB. Failed to upload.");
+                header("Location: index.php?action=updateProjectForm&project_id=$project_id&error=true&message=$message");
                 return;
             } else if (move_uploaded_file($_FILES['video']['tmp_name'], $target_file)) {
                 $userManager->updateProjectMain($video_source, $description, $title, $project_id);
                 $userManager->updateProjectTags($tags, $project_id);
                 $userManager->updateProjectLanguages($languages, $project_id);
             } else {
-                echo "Failed to upload file.";
-                return;
+                //TODO: if regex works, use this
+                // $message = urlencode("Video file exceeds 30 MB. Failed to upload.");
+                // header("Location: index.php?action=updateProjectForm&project_id=$project_id&error=true&message=$message");
+
+                header("Location: index.php?action=fullProjectPage&project_id=$project_id");
             }
         }
     } else {
@@ -326,10 +331,12 @@ function updateProject($video_source, $description, $title, $tags, $languages, $
         $userManager->updateProjectTags($tags, $project_id);
         $userManager->updateProjectLanguages($languages, $project_id);
     }
-    // $userManager->updateProjectTags($tags, $project_id);
-    // $userManager->updateProjectLanguages($languages, $project_id);
-    //TODO: comment this back
-    header("Location: index.php");
+    //if submit button with filling out nothing, bring back to project page
+    header("Location: index.php?action=fullProjectPage&project_id=$project_id");
+    //TODO: if regex works, use this
+    // $message = urlencode("Video file exceeds 30 MB. Failed to upload.");
+    // header("Location: index.php?action=updateProjectForm&project_id=$project_id&error=true&message=$message");
+
 }
 
 function showUserPage()
