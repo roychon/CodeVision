@@ -55,6 +55,9 @@
 
         </div>
 
+        <input type="checkbox" name="checkbox" id="checkbox">
+        <label for="checkbox" id="blur-overlay"></label>
+
 
 
         <!-- TODO:users can click on profile pic to take them to their profile -->
@@ -76,6 +79,14 @@
     </div>
 
 
-    <!-- </div> -->
-    <!-- nav bar? -->
+    <input type="checkbox" name="toggle" id="toggle">
+    <label for="toggle" id="toggle">&#8942;</label>
+    <nav class="dropdown-responsive">
+        <ul class="drop-items">
+            <a href="index.php?action=logOut">
+                <li>Log Out</li>
+            </a>
+
+        </ul>
+    </nav>
 </header>
