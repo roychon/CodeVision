@@ -2,9 +2,9 @@
     <button class="x-btn" onclick="closeModal2()">x</button>
     <img src="public\logo.png" alt="logo">
     <div class="dialog-content flexbox">
-        <p class="dialog-text">Join Devshop to access this feature</p>
-        <a href="http://localhost/sites/batch20-final-project/index.php?action=add_user">Don't have an account? Sign Up</a>
-        <a href="http://localhost/sites/batch20-final-project/index.php?action=signInForm">Already have an account? Sign in</a>
+        <p class="dialog-text vote-text">Join Devshop to access this feature</p>
+        <a class="vote-text" href="http://localhost/sites/batch20-final-project/index.php?action=add_user">Don't have an account? Sign Up</a>
+        <a class="vote-text" href="http://localhost/sites/batch20-final-project/index.php?action=signInForm">Already have an account? Sign in</a>
     </div>
 </dialog>
 

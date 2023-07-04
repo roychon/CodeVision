@@ -95,7 +95,7 @@ if (isset($_SESSION['id'])) {
   <script defer src="./public/js/filterProjects.js"></script>
   <script defer src="./public/js/circularProgress.js"></script>
   <script defer src="./public/js/showMoreBtn.js"></script>
-  <script defer src="public/js/votesPopUp.js"></script>
+  <script defer src="./public/js/votesPopUp.js"></script>
 
 
   <!-- <script defer src="popUp.js"></script> -->
