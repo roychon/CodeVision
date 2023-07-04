@@ -1,29 +1,28 @@
 <?php
 require_once "./model/ProjectManager.php";
 
-function displayCards($filter = "default")
+function displayCards($limit = 4)
 {
 
     $projectManager = new ProjectManager();
     $carousels = $projectManager->getCarousels();
-    $projects = $projectManager->getCards();
+    $projects = $projectManager->getCards($limit);
     $votes = $projectManager->getUserVotes();
+    $projectCount = $projectManager->getCount();
 
+    if ($limit > 4) {
+        foreach ($projects as $project) {
+            require "./view/component/projectCard.php";
+        }
+    } else {
+        require './view/indexView.php';
+    }
     // echo "<pre>";
     // print_r($votes);
     // echo "</pre>";
     // TODO: uncomment this
-    require './view/indexView.php';
 }
 
-function increaseLimit($limit)
-{
-    $projectManager = new ProjectManager();
-    $projects = $projectManager->getCards($limit);
-    foreach ($projects as $project) {
-        require "./view/component/projectCard.php";
-    }
-}
 function getSearchInfo($query)
 {
     $projectManager = new ProjectManager();
@@ -101,36 +100,16 @@ function insertNewProject($user_id, $video_source, $title, $description, $tags, 
     header("Location: index.php");
 }
 
-// we want the LIMIT to work on two conditions
-// 1 - where there is NO SORTING
-// 2 - where there is a sorted list, and it will give a limited amount
-// 3 - set a default on limit so even if its sorted without limit increased its fine
-// 4 - limit the display 
-// But.. how can we know if there is a filter set when we press increaseLimit? 
-// How can we know if there is a limit set if we press filter? 
-
-// They all lead to the same thing ? Right now, showmore runs viewCards() which will 
-// remove all the filters 
-
-// showMore button does
-
-
 function getFilteredProjects($filter, $limit)
 {
     $projectManager = new ProjectManager();
     if ($filter == 'mostRecent') {
-        $projects = $projectManager->getMostRecentProjects();
+        $projects = $projectManager->getMostRecentProjects($limit);
     } else if ($filter == 'mostLikes') {
-        // echo "limit from controller: . $limit . '<br>'";
-
         $projects = $projectManager->getMostLikedProjects($limit);
-    } else {
-        $projects = $projectManager->getCards();
     }
-    // print_r($projects);
 
     foreach ($projects as $project) {
         require "./view/component/projectCard.php";
     }
-    // maybe use limit here? Only do the first $limit? 
 }

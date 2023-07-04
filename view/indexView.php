@@ -1,7 +1,3 @@
-<!-- <head>
-  <link rel="icon" type="image/x-icon" href="./public/css/logo.png">
-</head> -->
-
 <?php
 
 $title = "Batch 20 Final Project";
@@ -14,8 +10,6 @@ if (isset($_SESSION['id'])) {
 }
 
 ?>
-
-
 
 <!-- OVERALL CONTAINER -->
 <div class="index-container">
@@ -40,14 +34,42 @@ if (isset($_SESSION['id'])) {
   </div>
 
   <div class="about-container">
-    <marquee>ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!</marquee>
+    <!-- <marquee>ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!ABOUT US!!!!!!!</marquee> -->
+    <h1>About DevShop</h1>
+    <p>DevShop is a platform that brings together developers of all skill levels to upload, share, and explore a wide range of projects. This makes it easier for others to discover like-minded developers and engage in meaningful collaborations.With DevShop, you can embark on a journey of exploration, inspiration, and growth. Unleash your creativity, share your expertise, and collaborate with fellow developers as you shape the future of software development.</p>
   </div>
 
-  <!-- showMore(this.value) -->
+
+
+
+  <div class="stat-container">
+    <div class="container">
+      <div class="circular-progress">
+        <span class="progress-value"><?= $projectCount[0] ?></span>
+      </div>
+      <span class="text">Projects</span>
+    </div>
+    <div class="container">
+      <div class="circular-progress">
+        <span class="progress-value"><?= $projectCount[1] ?></span>
+      </div>
+      <span class="text">Users</span>
+    </div>
+    <div class="container">
+      <div class="circular-progress">
+        <span class="progress-value"><?= $projectCount[2] ?></span>
+      </div>
+      <span class="text">Languages</span>
+    </div>
+
+
+  </div>
+
+
 
   <!-- FILTER PROJECTS -->
-  <select name="filter" id="filter" onchange="showMore(this.value)">
-    <option value="" selected disabled hidden>Filter</option>
+  <select name="filter" id="filter" onchange="filterProjects(this.value)">
+    <option value="default" class="selected" selected disabled hidden>Filter</option>
     <option value="mostRecent">Most Recent</option>
     <option value="mostLikes">Most Likes</option>
   </select>
@@ -62,33 +84,22 @@ if (isset($_SESSION['id'])) {
       }
     }
     ?>
-
-    <!-- SHOW MORE FOR LIMITS -->
-    <!-- <input type="button" class="voteBtn" value="UPVOTE" id="upVote" name="upVote" onclick="projectVotes(<?= isset($_SESSION['id']) ? $_SESSION['id'] : 0; ?>, <?= $project->id ?>, '1', this);"> -->
-    <!-- append to end a new amount of offset -->
-
-    <!-- <a href="index.php?action=showUserPage&limit=<?= $limit ?>" onclick="scrollDown()">show more</a> -->
   </div>
   <!-- SHOW MORE FOR LIMITS -->
-  <script>
-    // let filter = document.getElementById('filter').value;
-    // let filter = document.querySelector('.selected').value
-    // console.log(filter);
-  </script>
-  <input type="button" class="showMore" value="showMore" name="showMore" onclick="showMore()">
+  <button class="more showMoreBtn">Show More</button>
 
 
   <!-- </div> -->
   <script defer src="./public/js/carousel.js"></script>
   <script defer src="./public/js/projectVotes.js"></script>
   <script defer src="./public/js/filterProjects.js"></script>
-  <script defer src="./public/js/scrollDown.js"></script>
-  <script defer src="./public/js/showMore.js"></script>
-
+  <script defer src="./public/js/circularProgress.js"></script>
+  <script defer src="./public/js/showMoreBtn.js"></script>
 
   <!-- <script defer src="popUp.js"></script> -->
   <?php
   $content = ob_get_clean();
+
 
   if (isset($_SESSION['id'])) {
     require "loggedInTemplate.php";
@@ -96,7 +107,15 @@ if (isset($_SESSION['id'])) {
     require "nonLoggedInTemplate.php";
   }
 
+  if (isset($_GET["limit"])) {
 
+  ?>
+    <script>
+      window.scrollTo(0, document.body.scrollHeight);
+    </script>
+  <?php
+
+  }
 
 
   ?>

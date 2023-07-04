@@ -82,7 +82,7 @@ try {
                 // throw new Exception("Couldn't create your account, missing required information.");
                 // TODO: NEEDS TO GO BACK TO SIGN UP PAGE WITH ERROR MESSAGE (maybe set action=add_user?)
                 $message = urlencode("Sign up failed");
-                header("Location: index.php?action=add_user&error=true&message=$message");
+                header("Location: index.php?action=signInForm&error=true&message=$message");
             }
             break;
 
@@ -151,19 +151,9 @@ try {
 
             // FOR LOGGED IN USERS -- so that it doesn't take them to new page
         case "showUserPage":
-            displayCards();
+            displayCards(); // TODO: change to show all projects
             // showUserPage();
             break;
-
-        case "increaseLimit":
-            $limit = $_GET['limit'];
-            // print_r($_SESSION);
-            // echo "LIMIT: " . $limit;
-            increaseLimit($limit);
-            break;
-
-
-
             // FOR EDITING A USER
         case "editUser":
             if (isset($_GET['id'])) {
@@ -269,10 +259,6 @@ try {
 
         case "getProjectVotes":
             // grab the status, project_id, and user_id from the GET parameters
-            // if ($_SESSION['id'] == 0) {
-            //     // where the popup should start
-            //     header("Location: index.php");
-            // } else {
             if (
                 isset($_GET['user_id']) and
                 isset($_GET['project_id']) and
@@ -295,23 +281,9 @@ try {
             break;
 
         case "filter":
-            // try passing $_GET limit through if its set
-            // $_GET['limit'] isn't able to be grabbed because its a diff button
-            if (isset($_GET['filterOn']) and isset($_GET['limit'])) {
-                $_SESSION['filter'] = $_GET['filterOn'];
-                echo $_SESSION['filter'];
-                // echo "hello";
-                $limit = $_GET['limit'];
-                // echo "limit from case: . $limit . '<br>'";
+            $limit = $_GET['limit'] ?? 4;
+            if (isset($_GET['filterOn'])) {
                 getFilteredProjects($_GET['filterOn'], $limit);
-                // } 
-                // else if (isset($_GET['filterOn'])) {
-                //     getFilteredProjects($_GET['filterOn']);
-                // } else if (!isset($_GET['filterOn']) and isset($_GET['limit'])) {
-                // getFilteredProjects($_GET['limit']);
-                return;
-            } else if (isset($_GET['limit'])) {
-                getFilteredProjects('default', $limit);
             } else {
                 throw new Exception("Missing filter value");
             }
@@ -324,7 +296,8 @@ try {
             break;
 
         default:
-            displayCards();
+            $limit = $_GET['limit'] ?? 4;
+            displayCards($limit);
             break;
     }
 } catch (Exception $e) {
