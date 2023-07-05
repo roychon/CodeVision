@@ -43,7 +43,8 @@
 body {
     color: white;
     font-family: sans-serif;
-    background-color: #000000;
+    /* background-color: #000000; */
+    background-color: #0e0e10;
 }
 
 header {
@@ -235,7 +236,15 @@ input[type="search"] {
 /*-------- PROJECT CARD --------*/
 
 .project-card {
-    width: 23%;
+    /* width: 100%;
+    height: 100%; */
+    width: 100%;
+    border-radius: 5px;
+    height: 100%;
+    font-family: "Inter", sans-serif;
+    overflow: hidden;
+    /* width: 23%;
+    max-height: 200px; */
 }
 /* 
 .main-container {
@@ -436,9 +445,11 @@ outline: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .projects {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     gap: 1.5rem;
+    padding: 0 1.7rem;
+    margin-top: 20px;
 }
 
 .social-links {
