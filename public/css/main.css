@@ -1363,6 +1363,10 @@ input[type="checkbox"] {
       opacity: 1;
     }
 
+    .stat-container {
+        flex-direction: column;
+    }
+
     .circular-progress {
         height: 135px;
         width: 135px;
@@ -1412,6 +1416,10 @@ input[type="checkbox"] {
     .circular-progress::before {
         width: 120px;
         height: 120px;
+    }
+
+    .about-container {
+        width: 90%;
     }
 
 }
