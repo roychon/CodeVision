@@ -128,8 +128,13 @@ button {
 
 }
 
-/* @media (max-width: 800px) {
+@media (max-width: 800px) {
    .vote-text {
     font-size: 0.8rem;
    }
-} */
+
+   .votePop {
+    width: 30%;
+   }
+
+}
