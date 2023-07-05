@@ -1435,5 +1435,13 @@ input[type="checkbox"] {
         margin: 0;
     }
 
+    .unlock {
+        font-size: 35px;
+    }
+
+    .showcasing {
+        font-size: 25px;
+    }
+
 }
 
