@@ -1108,6 +1108,7 @@ outline: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 2rem;
     margin: auto;
     font-weight: 900;
+    cursor: pointer;
 }
 
 /* .more {

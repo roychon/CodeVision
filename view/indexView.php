@@ -64,13 +64,15 @@ if (isset($_SESSION['id'])) {
   }
   ?>
 
-
+  <?php include "./view/component/votesPopup.php"; ?>
   <!-- </div> -->
   <script defer src="./public/js/carousel.js"></script>
   <script defer src="./public/js/projectVotes.js"></script>
   <script defer src="./public/js/filterProjects.js"></script>
   <script defer src="./public/js/circularProgress.js"></script>
   <script defer src="./public/js/showMoreBtn.js"></script>
+  <script defer src="./public/js/votesPopUp.js"></script>
+
 
   <!-- <script defer src="popUp.js"></script> -->
   <?php
