@@ -33,16 +33,10 @@ if (isset($_SESSION['id'])) {
     <button class="carousel-more">view more</button> -->
   </div>
 
-  <div class="flexTag">
-    <div class="tagline">
-      <span class=unlock>Unlock the Potential of Pixels:</span>
-      <p class="showcasing">Showcasing Mastery in Digital Code</p>
-    </div>
-    <div class="signUp">
-      <a class="callAction" href="index.php?action=add_user">Get Started</a>
-    </div>
-  </div>
-  
+  <?php if (!isset($_SESSION['id'])) {
+    include "./view/component/aboutWebsite.php";
+  }
+  ?>
 
   <!-- FILTER PROJECTS -->
   <select name="filter" id="filter" onchange="filterProjects(this.value)">

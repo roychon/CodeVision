@@ -1419,3 +1419,33 @@ color: #FFFFFF;
 font-weight: 600;
 font-size: 1.2rem;
 }
+
+@media (max-width: 600px) {
+    .stat-container {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .carousel-container {
+        height: 50vh;
+    }
+
+    .slide h1, .slide .carousel-description, .slide button, .slide div {
+    max-width: 35%;
+    margin-left: 1rem;
+    }
+
+    .slide button {
+        padding: 1rem;
+    }
+
+    .circular-progress {
+        width: 150px;
+        height: 150px;
+    }
+
+    .circular-progress::before {
+        width: 120px;
+        height: 120px;
+    }
+}
