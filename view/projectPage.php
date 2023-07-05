@@ -35,7 +35,7 @@ if (isset($_SESSION['id'])) {
 
     <div class="langTag">
       <!-- flex-direction: column    -->
-      <div class="user-logo"><img class="user-img2" src="<?= htmlspecialchars($fullProject->profile_img ?? "") ?>" alt="the photo of <?= htmlspecialchars($fullProject->username ?? ""); ?>"></div>
+      <!-- <div class="user-logo"><img class="user-img2" src="<?= htmlspecialchars($fullProject->profile_img ?? "") ?>" alt="the photo of <?= htmlspecialchars($fullProject->username ?? ""); ?>"></div> -->
       <!-- Trigger/Open The Modal -->
       <div class="tooltip">
         <button id="infoBtn">
