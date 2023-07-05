@@ -601,6 +601,7 @@ outline: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 1rem; /* addition 1rem of top margin */
     font-weight: 900;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 /* the prev/next sliders */
@@ -733,7 +734,7 @@ outline: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 1rem;
     font-weight: 900;
     color: white;
-    background-color: transparent;
+    background-color: black;
     margin-left: 25px;
     width: fit-content;
     outline: none;
