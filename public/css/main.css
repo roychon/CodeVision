@@ -820,17 +820,20 @@ outline: 1px solid rgba(255, 255, 255, 0.1);
     width: 20%;
 }
 
-.profile-img {
+.profile-img img {
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    /* width: 50%; */
+    width: 70px;
+    height: 70px;
 
     /* background-color: #74ebd5; */
     overflow: hidden;
 }
 
-.user-logo {
+/* .user-logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -839,16 +842,20 @@ outline: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     background: linear-gradient(to left, #4568dc, #b06ab3);
     overflow: hidden;
-}
+} */
 
-.user-img1 {
+/* .user-img1 {
     display: flex;
-}
-.user-img2 {
+    width: 70px;
+    height: 70px;
+}  */
+
+
+/* .user-img2 {
     display: flex;
     width: 60px;
     height: 60px;
-}
+} */
 
 /* The Modal (background) */
 .modal {
@@ -1376,7 +1383,7 @@ input[type="checkbox"] {
         .circular-progress::before {
         height: 95px;
         width: 95px;
-        } */
+        } 
 
         .user-profile-info {
             display: flex;
@@ -1405,17 +1412,6 @@ input[type="checkbox"] {
     .slide button {
         padding: 1rem;
     }
-
-    .circular-progress {
-        width: 115px;
-        height: 115px;
-    }
-
-    .circular-progress::before {
-        width: 85px;
-        height: 85px;
-    }
-
 
     .about-container {
         width: 80%;
