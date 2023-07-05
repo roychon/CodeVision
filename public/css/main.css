@@ -721,6 +721,7 @@ outline: 1px solid rgba(255, 255, 255, 0.1);
 /* FOR THE INDIVIDUAL PROJECTS */
 .project-wrapper {
     display: flex;
+    position: relative;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 2rem;
@@ -880,6 +881,11 @@ outline: 1px solid rgba(255, 255, 255, 0.1);
     border: 1px solid #888;
     width: 40%;
     border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    position: absolute;
 }
 
 /* The Close Button */
@@ -1122,6 +1128,7 @@ outline: 1px solid rgba(255, 255, 255, 0.1);
    transform: translate(-50%, -50%);
    width: 80%;
    height: 15%;
+   /* z-index: 10000000; */
 }
 
 .languages {
