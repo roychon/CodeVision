@@ -17,42 +17,44 @@ if (isset($_GET['error'])) {
 <div class="signup-form">
 
     <form action="index.php?action=createUser" method="POST" id="signUpForm">
-        <h1>SIGN UP</h1>
+        <a href="index.php"><img class="company-logo" src="./public/css/logo.png" alt="Company's logo"></a>
+
+        <p>Sign Up</p>
         <p>
             <label for="username">Username:</label>
             <input type="text" name="username" placeholder="Username..." id="username">
         </p>
-        <p>
+        <!-- <p>
             <span id="usernameNotValid">Not valid Username</span>
             <span id="usernameMissing">Username is missing</span>
             <span>&#8203;</span>
-        </p>
+        </p> -->
         <p>
             <label for="email">E-mail:</label>
             <input type="email" name="email" placeholder="E-mail..." id="email">
         </p>
-        <p>
+        <!-- <p>
             <span id="emailNotValid">Not valid E-mail</span>
             <span id="emailMissing">E-mail is missing</span>
             <span>&#8203;</span>
-        </p>
+        </p> -->
         <p>
             <label for="password">Password:</label>
             <input type="text" name="password" placeholder="Password..." id="password">
         </p>
-        <p>
+        <!-- <p>
             <span id="passwordNotValid">Not valid Password</span>
             <span id="passwordMissing">Password is missing</span>
             <span>&#8203;</span>
-        </p>
+        </p> -->
         <p>
             <label for="password_confirm">Confirm password:</label>
             <input type="text" name="password_confirm" placeholder="Confirm password..." id="passwordConfirm">
         </p>
-        <p>
+        <!-- <p>
             <span id="passwordConfirmError">Password does not match</span>
             <span>&#8203;</span>
-        </p>
+        </p> -->
 
         <p>
             <input type="submit" value="Submit form" id="signupSubmit">
