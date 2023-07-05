@@ -1416,5 +1416,26 @@ input[type="checkbox"] {
     .about-container {
         width: 80%;
     }
+      .user-profile-info {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .user-info {
+        gap: 2rem;
+    }
+    
+    .user-profile-bio p {
+        margin: 0;
+    }
+
+    .unlock {
+        font-size: 35px;
+    }
+
+    .showcasing {
+        font-size: 25px;
+    }
 
 }
+
