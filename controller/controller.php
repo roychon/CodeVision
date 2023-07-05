@@ -262,12 +262,11 @@ function submitChangePassword($id, $password)
     header("Location: index.php?action=userProfileView&id=$id");
 }
 
-function deleteProject($project_id)
+function  deleteProject($project_id)
 {
     $userManager = new UserManager();
     $userManager->deleteProject($project_id);
-    //TODO: update code to bring you back to your profile page
-    header("Location: index.php");
+    header("Location: index.php?action=userProfileView&id={$_SESSION['id']}");
 }
 
 // user goes to update FORM and updates project with 'project_id'
@@ -343,14 +342,3 @@ function showUserPage()
 {
     require "./view/indexView.php";
 }
-
-
-
-/*
-Client ID
-683613900914-mkh34gk46n9nghrhg53ms594daepg952.apps.googleusercontent.com
-
-
-Client secret
-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
-*/

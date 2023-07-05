@@ -33,7 +33,7 @@
                         </div>
                     </a>
                 <?php } else { ?>
-                    <div class="click-user">
+                    <div class="click-user-page">
                         <img class="user-profile-pic" src="<?= htmlspecialchars($_SESSION['profile_img'] ?? "") ?>">
                         <p><?= htmlspecialchars($_SESSION['username'] ?? "") ?></p>
                     </div>
@@ -54,6 +54,9 @@
             <?php } ?>
 
         </div>
+
+        <input type="checkbox" name="checkbox" id="checkbox">
+        <label for="checkbox" id="blur-overlay"></label>
 
 
 
@@ -76,6 +79,14 @@
     </div>
 
 
-    <!-- </div> -->
-    <!-- nav bar? -->
+    <input type="checkbox" name="toggle" id="toggle">
+    <label for="toggle" id="toggle">&#8942;</label>
+    <nav class="dropdown-responsive">
+        <ul class="drop-items">
+            <a href="index.php?action=logOut">
+                <li>Log Out</li>
+            </a>
+
+        </ul>
+    </nav>
 </header>

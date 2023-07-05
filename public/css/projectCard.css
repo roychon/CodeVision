@@ -9,7 +9,7 @@
     
 }
 
-.card { 
+.card {
     width: 100%;
     max-width:400px;
     border-radius: 5px;
@@ -39,8 +39,8 @@
     position: relative;
 }
 
-.bottom-card-container{
-    display: flex; 
+.bottom-card-container {
+    display: flex;
     padding-bottom: 5px;
     gap: 7px;
 }
@@ -50,7 +50,7 @@
     right: 0;
     top: 1rem;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
 }
 
 .projectVotesContainer > p {
@@ -83,7 +83,7 @@
     color: rgb(226, 0, 218);
 }
 
-#upVote:hover{
+#upVote:hover {
     color: rgb(226, 0, 218);
 }
 
@@ -128,5 +128,3 @@
     width: 100%;
  }
 }
-
-

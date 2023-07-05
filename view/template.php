@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title; ?></title>
     <link rel="icon" type="image/x-icon" href="./public/css/logo.png">
     <link href="./public/css/main.css" rel="stylesheet" />
