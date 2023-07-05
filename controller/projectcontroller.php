@@ -72,6 +72,7 @@ function insertNewProject($user_id, $video_source, $title, $description, $tags, 
         $allowedExtensions = array("mp4"); //shows the kinds of files allowed in the array
         $extension = strtolower(pathinfo($name, PATHINFO_EXTENSION)); //extracts the file extension from the file name
         // in_array("mp4", $extensions)
+
         if (in_array($extension, $allowedExtensions)) {
             //$target_file specifies the path of the file to be uploaded
             $target_file = $target_dir . $hashed_filename . "." . $extension; //hash the file name here
@@ -81,23 +82,23 @@ function insertNewProject($user_id, $video_source, $title, $description, $tags, 
 
             //check the uploaded file
             if (($_FILES['video']['size'] > $maxsize) or ($_FILES['video']['size'] == 0)) {
-                $message = urlencode("Your file is too big. Please upload a file smaller than 5 MB.");
-                header("Location: index.php?action=insertNewProject&error=true&message=$message");
-                //TODO: uncomment
+
+                $message = urlencode("File size too large. Upload a file less than 30MB.");
+                header("Location: index.php?action=add_project&id=$user_id&error=true&message=$message");
             } else if
             //move_uploaded_file paramaters are the file name of the uploaded file to
             //the destination it needs to be moved
             (move_uploaded_file($_FILES['video']['tmp_name'], $target_file)) {
                 $projectManager->insertNewProject($user_id, $video_source, $title, $description, $tags, $languages);
             } else {
-                $message = urlencode("Failed to upload video file.");
-                header("Location: index.php?action=insertNewProject&error=true&message=$message");
+                $message = urlencode("Please upload a video in .mp4 format.");
+                header("Location: index.php?action=add_project&id=$user_id&error=true&message=$message");
                 //TODO: uncomment
             }
         }
     }
 
-    header("Location: index.php");
+    header("Location: index.php?action=userProfileView&id=$user_id");
 }
 
 function getFilteredProjects($filter, $limit)

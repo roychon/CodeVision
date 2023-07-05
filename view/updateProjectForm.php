@@ -1,10 +1,15 @@
 <?php
 $title = "Update Project";
 ob_start();
+if (isset($_GET['error'])) {
+    include './view/component/statusPopUp.php';
+};
 ?>
 <link rel="stylesheet" href="./public/css/addProjectForm.css">
 <script defer src="https://kit.fontawesome.com/033b80222d.js" crossorigin="anonymous"></script>
 <script defer src="./public/js/validateAddProjectForm.js"></script>
+<!-- <script defer src="./public/js/popUp.js"></script> -->
+
 
 <h1>Update Project</h1>
 
@@ -13,7 +18,8 @@ ob_start();
     <p>
         <label for="video">Video: </label>
         <input type="hidden" name="hiddenVideo" id="hiddenVideo" value="<?= htmlspecialchars($project->video_src ?? "")  ?>">
-        <input type="file" name="video" id="video" accept="video/*">
+        <input type="file" name="video" id="video" accept="video/mp4">
+        <!-- <span class="update-span"></span> -->
     </p>
 
     <p>
@@ -43,6 +49,7 @@ ob_start();
 
     <input type="submit" value="Update Project" id="submit">
 </form>
+
 
 
 <?php

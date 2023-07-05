@@ -12,16 +12,20 @@ dialog.addEventListener("click", (e) => {
     e.clientY < dialogClose.top ||
     e.clientY > dialogClose.bottom
   ) {
+    const url = window.location.href;
+    const regex = /[?&]error=[^&]+&message=[^&]+/;
+    const newUrl = url.replace(regex, "");
+    history.replaceState(null, null, newUrl);
+
     dialog.close();
   }
 });
 
 //onclick function for the x
 function closeModal() {
-  // THIS IS SO POP UP NO APPEAR AGAIN AND AGAIN -- ONLY APPEAR ONCE!
-  const url = window.location.href;
-  const regex = /(&)\w?(.*)/;
-  // This is removing too much. It should ONLY remove the error and message GET parameters
+  window.location.href;
+  url = window.location.href;
+  const regex = /[?&]error=[^&]+&message=[^&]+/;
   const newUrl = url.replace(regex, "");
   history.replaceState(null, null, newUrl);
   dialog.close();

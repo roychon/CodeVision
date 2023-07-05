@@ -346,9 +346,32 @@ languageContainer.addEventListener("click", (e) => {
 	}
 });
 
+// let videoSpan = document.querySelector(".video-update");
+
+// if (video && videoSpan) {
+// 	video.addEventListener("change", validateVideo);
+// }
+// function validateVideo() {
+// 	let files = video.files;
+// 	if (files.length > 0) {
+// 		if (files[0].size < 5 * 1024 * 1024) {
+// 			videoSpan.innerText = "Size exceeds 5mb";
+// 			return false;
+// 		} else {
+// 			return true;
+// 		}
+// 	}
+// 	videoSpan.innerText = " ";
+// }
+
 // Before submitting form, join the 'tags' and 'languages' array and set them as values to their respective input field
 form.addEventListener("submit", (e) => {
 	let valid = validateURL(video.value);
+	let maxSize = 30 * 1024 * 1024; // 30 MB in bytes
+	// debugger;
+	let videoFile = video.files[0];
+	console.log(videoFile);
+	// debugger;
 	if (!valid && hiddenVideo.value) {
 		valid = true;
 	}
@@ -358,13 +381,15 @@ form.addEventListener("submit", (e) => {
 	valid = validateLanguages() && valid;
 
 	if (valid) {
-		alert("Valid");
-		// Set the value of the languagesInput input field
-		languagesInput.value = languages.join(",");
-		// Set the value of the tags input field
-		tagInput.value = tags.join(",");
+		if ((videoFile && videoFile.size > maxSize) || (videoFile && videoFile.size == 0)) {
+			valid = false;
+			dialog.showModal("");
+			e.preventDefault();
+		} else {
+			languagesInput.value = languages.join(",");
+			tagInput.value = tags.join(",");
+		}
 	} else {
-		alert("Not valid");
 		e.preventDefault();
 	}
 });
