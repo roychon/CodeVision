@@ -13,8 +13,8 @@ body {
 .signup-form {
     display: flex;
     justify-content: center;
-    width: 35%;
-    height: 70%;
+    width: 40%;
+    height: 75%;
     background-color: #171717c6;
 }
 
@@ -120,17 +120,27 @@ label {
 
 /* CUSTOM SIGN UP STYLING */
 .signup-form {
+    
     height: 85%;
     width: 40%;
 }
 
-.signup-form h1 {
+.signup-form p:nth-child(2){
     text-align: center;
+    font-size: 1.6rem;
+    margin-top: -2rem;
 }
 
-#signUpForm {
-    gap: 8px;
+
+
+.signup-form a {
+text-align: center;
+margin-top: -1rem;
 }
+
+/* #signUpForm {
+    gap: 8px;
+} */
 
 #signupSubmit {
     margin-bottom: 0.5rem;
@@ -185,3 +195,4 @@ label {
 .form-input input {
     display: none;
 }
+

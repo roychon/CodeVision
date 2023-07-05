@@ -11,6 +11,7 @@ const observer = new IntersectionObserver(
             for (let i = 0; i < 3; i++) {
                 let progressStartValue = 0;
                 let progressEndValue = progressValue[i].textContent;
+                if (progressEndValue == 0) continue;
                 let progress = setInterval(() => {
                     progressStartValue++;
                     progressValue.textContent = `${progressStartValue}`;

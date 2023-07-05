@@ -1,7 +1,7 @@
 <header class="logged-in">
     <!-- TODO:place logo here. -->
     <div class="left-side">
-        <img class="company-logo" src="./public/css/logo.png" alt="Company's logo">
+        <a href="index.php"><img class="company-logo" src="./public/css/logo.png" alt="Company's logo"></a>
         <!-- TODO:href take us back to index -->
         <a href="index.php">DevShop</a>
         <!-- homebutton -->
