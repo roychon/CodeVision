@@ -5,5 +5,5 @@
     </div>
 
 </dialog>
-<link rel="stylesheet" href="popUp.css">
+<link rel="stylesheet" href="./public/css/popUp.css">
 <script src="./public/js/votesPopUp.js"></script>
