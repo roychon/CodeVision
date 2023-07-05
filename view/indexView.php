@@ -33,7 +33,10 @@ if (isset($_SESSION['id'])) {
     <button class="carousel-more">view more</button> -->
   </div>
 
-
+  <?php if (!isset($_SESSION['id'])) {
+    include "./view/component/aboutWebsite.php";
+  }
+  ?>
 
   <!-- FILTER PROJECTS -->
   <select name="filter" id="filter" onchange="filterProjects(this.value)">
