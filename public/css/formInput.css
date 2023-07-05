@@ -196,3 +196,17 @@ margin-top: -1rem;
     display: none;
 }
 
+
+
+@media (max-width: 844px) {
+    .login-form,
+#edit-user-form,
+#settings-form,
+.signup-form {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    height: 75%;
+    background-color: #171717c6;
+}
+}

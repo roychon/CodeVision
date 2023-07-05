@@ -79,9 +79,12 @@ button {
     border-radius: 0.7rem;
 } */
 
+  
+@media (max-width: 844px) {
+   
+dialog {
+    width: 45%;
+    height: 30%;
+}
 
-@media (max-width: 780px) {
-
-
-    
 }

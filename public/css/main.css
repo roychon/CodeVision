@@ -1333,7 +1333,7 @@ input[type="checkbox"] {
 
   } */
   
-  @media (max-width: 780px) {
+  @media (max-width: 844px) {
    
     input[type="search"] {
      display:none;
@@ -1405,13 +1405,13 @@ input[type="checkbox"] {
     }
 
     .circular-progress {
-        width: 150px;
-        height: 150px;
+        width: 115px;
+        height: 115px;
     }
 
     .circular-progress::before {
-        width: 120px;
-        height: 120px;
+        width: 85px;
+        height: 85px;
     }
 
 }
