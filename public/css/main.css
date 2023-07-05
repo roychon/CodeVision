@@ -1471,6 +1471,18 @@ input[type="checkbox"] {
     margin-left: 1rem;
     }
 
+    .carousel-description,
+    .user-profile-bio {
+        display: -webkit-box;
+        max-width: 80%;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .user-profile-bio p {
+        padding-bottom: 2.5rem;
+    }
+
     .slide button {
         padding: 1rem;
     }
@@ -1478,19 +1490,20 @@ input[type="checkbox"] {
     .about-container {
         width: 80%;
     }
-      .user-profile-info {
-        flex-direction: column;
-        gap: 2rem;
-    }
 
     .user-info {
         gap: 2rem;
+       width: 100%;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
     }
     
-    .user-profile-bio p {
-        margin: 0;
-    }
-
+  
+#profile-img img {
+    width: 80px;
+    height: 80px;
+}
     .unlock {
         font-size: 35px;
     }
