@@ -12,7 +12,6 @@ if (isset($_GET['error']) and $_GET['error'] == "true") {
     <div class="dialog-content">
         <p class="dialog-message"><?= $_GET['message'] ?></p>
         <button class="confirm-btn" onclick="closeModal()">Confirm</button>
-        <button class="close-btn" onclick="closeModal()">Close</button>
     </div>
 
 </dialog>

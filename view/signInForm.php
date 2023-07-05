@@ -30,7 +30,7 @@ ob_start();
       <input type="text" name="password" id="loginPassword">
     </p>
 
-    <a class="sign-assist" href="index.php?action=">Need help signing in?</a>
+    <!-- <a class="sign-assist" href="index.php?action=">Need help signing in?</a> -->
 
 
     <p>
