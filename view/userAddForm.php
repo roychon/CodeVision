@@ -8,6 +8,7 @@ if (isset($_GET['error'])) {
 
 ?>
 <link rel="stylesheet" href="./public/css/formInput.css">
+<link rel="stylesheet" href="./public/css/projectCard.css">
 
 <!-- FOR SIGN IN WITH GOOGLE -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
