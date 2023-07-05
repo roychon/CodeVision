@@ -7,5 +7,5 @@
         <a class="vote-text" href="http://localhost/sites/batch20-final-project/index.php?action=signInForm">Already have an account? Sign in</a>
     </div>
 </dialog>
-
-<link rel="stylesheet" href="public/css/popUp.css">
+<link rel="stylesheet" href="./public/css/popUp.css">
+<script src="./public/js/votesPopUp.js"></script>
