@@ -35,7 +35,8 @@
                 <?php } else { ?>
                     <div class="click-user-page">
                         <img class="user-profile-pic" src="<?= htmlspecialchars($_SESSION['profile_img'] ?? "") ?>">
-                        <p><?= htmlspecialchars($_SESSION['username'] ?? "") ?></p>
+                        <!-- <p><?= htmlspecialchars($_SESSION['username'] ?? "") ?></p> -->
+                        <p><?= htmlspecialchars($userInfo->username ?? "") ?></p>
                     </div>
                 <?php } ?>
             </label>
