@@ -17,5 +17,3 @@ https://github.com/roychon/DevShop/assets/110176807/c8f4d01f-9220-4f61-a8fa-7b29
 
 
 ![Screenshot 2023-08-27 at 3 32 07 AM](https://github.com/roychon/DevShop/assets/110176807/fba616e1-8671-4adb-b489-77cb38d64956)
-
-
